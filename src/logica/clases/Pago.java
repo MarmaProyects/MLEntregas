@@ -11,13 +11,13 @@ import logica.dataTypes.MetodoPago;
  *
  * @author leo
  */
-public class pago {
+public class Pago {
     private float precio;
     private MetodoPago pago;
     private DtFecha fecha;
     private int idPago;
 
-    public pago(float precio, MetodoPago pago, DtFecha fecha) {
+    public Pago(float precio, MetodoPago pago, DtFecha fecha) {
         this.precio = precio;
         this.pago = pago;
         this.fecha = fecha;

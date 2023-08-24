@@ -8,13 +8,13 @@ package logica.clases;
  *
  * @author leo
  */
-public class paquete {
+public class Paquete {
     private String codigo, descripcion;
     private float peso;
     private boolean esFragil, esEspecial;
     private int idPaquete;
 
-    public paquete(String codigo, String descripcion, float peso, boolean esFragil, boolean esEspecial) {
+    public Paquete(String codigo, String descripcion, float peso, boolean esFragil, boolean esEspecial) {
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.peso = peso;

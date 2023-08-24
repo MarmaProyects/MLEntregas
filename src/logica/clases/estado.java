@@ -11,13 +11,13 @@ import logica.dataTypes.TipoEstado;
  *
  * @author leo
  */
-public class estado {
+public class Estado {
     private String comentario;
     private TipoEstado tipo;
     private DtFecha fecha;
     private int idEstado;
 
-    public estado(String comentario, TipoEstado tipo, DtFecha fecha) {
+    public Estado(String comentario, TipoEstado tipo, DtFecha fecha) {
         this.comentario = comentario;
         this.tipo = tipo;
         this.fecha = fecha;
