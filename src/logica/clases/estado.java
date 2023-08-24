@@ -17,10 +17,19 @@ public class Estado {
     private DtFecha fecha;
     private int idEstado;
 
-    public Estado(String comentario, TipoEstado tipo, DtFecha fecha) {
+    public Estado(String comentario, TipoEstado tipo, DtFecha fecha, int idEstado) {
         this.comentario = comentario;
         this.tipo = tipo;
         this.fecha = fecha;
+        this.idEstado = idEstado;
+    }
+
+    public int getIdEstado() {
+        return idEstado;
+    }
+
+    public void setIdEstado(int idEstado) {
+        this.idEstado = idEstado;
     }
 
     public String getComentario() {

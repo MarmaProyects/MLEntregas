@@ -17,11 +17,22 @@ public class Pago {
     private DtFecha fecha;
     private int idPago;
 
-    public Pago(float precio, MetodoPago pago, DtFecha fecha) {
+    public Pago(float precio, MetodoPago pago, DtFecha fecha, int idPago) {
         this.precio = precio;
         this.pago = pago;
         this.fecha = fecha;
+        this.idPago = idPago;
     }
+
+    public int getIdPago() {
+        return idPago;
+    }
+
+    public void setIdPago(int idPago) {
+        this.idPago = idPago;
+    }
+
+   
 
     public float getPrecio() {
         return precio;
