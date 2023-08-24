@@ -4,6 +4,7 @@
  */
 package logica.clases;
 
+import java.util.List;
 /**
  *
  * @author MarmaduX
@@ -11,6 +12,7 @@ package logica.clases;
 public class Seccion {
     private String codigo;
     private int cantidad, idSeccion;
+    private List <Paquete> listaPaquetes;
     
     public Seccion(String codigo, int cantidad, int idSeccion) {
         this.codigo = codigo;
@@ -41,5 +43,16 @@ public class Seccion {
     public void setIdSeccion(int idSeccion) {
         this.idSeccion = idSeccion;
     }
+
+    public List<Paquete> getListaPaquetes() {
+        return listaPaquetes;
+    }
     
+    public void agregarPaquete(Paquete paquete){
+        listaPaquetes.add(paquete);
+    }
+    
+    public void quitarPaquete(Paquete paquete){
+        listaPaquetes.remove(paquete);
+    }
 }
