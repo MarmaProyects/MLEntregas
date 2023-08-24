@@ -8,15 +8,24 @@ package logica.clases;
  *
  * @author leo
  */
-public class cliente {
+public class Cliente {
       private int cedula, idCliente;
     private String nombre, apellido, telefono;
 
-    public cliente(int cedula, String nombre, String apellido, String telefono) {
+    public Cliente(int cedula, int idCliente, String nombre, String apellido, String telefono) {
         this.cedula = cedula;
+        this.idCliente = idCliente;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public int getCedula() {

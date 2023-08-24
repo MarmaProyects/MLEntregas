@@ -8,19 +8,30 @@ package logica.clases;
  *
  * @author leo
  */
-public class paquete {
+public class Paquete {
     private String codigo, descripcion;
     private float peso;
     private boolean esFragil, esEspecial;
     private int idPaquete;
 
-    public paquete(String codigo, String descripcion, float peso, boolean esFragil, boolean esEspecial) {
+    public Paquete(String codigo, String descripcion, float peso, boolean esFragil, boolean esEspecial, int idPaquete) {
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.peso = peso;
         this.esFragil = esFragil;
         this.esEspecial = esEspecial;
+        this.idPaquete = idPaquete;
     }
+
+    public int getIdPaquete() {
+        return idPaquete;
+    }
+
+    public void setIdPaquete(int idPaquete) {
+        this.idPaquete = idPaquete;
+    }
+
+    
 
     public String getCodigo() {
         return codigo;
