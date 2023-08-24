@@ -15,6 +15,7 @@ public class estado {
     private String comentario;
     private TipoEstado tipo;
     private DtFecha fecha;
+    private int idEstado;
 
     public estado(String comentario, TipoEstado tipo, DtFecha fecha) {
         this.comentario = comentario;
