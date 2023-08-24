@@ -9,7 +9,7 @@ package logica.clases;
  * @author leo
  */
 public class cliente {
-      private int cedula;
+      private int cedula, idCliente;
     private String nombre, apellido, telefono;
 
     public cliente(int cedula, String nombre, String apellido, String telefono) {

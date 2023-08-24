@@ -15,6 +15,7 @@ public class pago {
     private float precio;
     private MetodoPago pago;
     private DtFecha fecha;
+    private int idPago;
 
     public pago(float precio, MetodoPago pago, DtFecha fecha) {
         this.precio = precio;
