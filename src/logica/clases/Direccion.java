@@ -11,7 +11,7 @@ package logica.clases;
 public class Direccion {
     private String calle, segunda_calle, datos_adicionales;
     private int nro_puerta, idDireccion;
-
+    
     public Direccion(String calle, String segunda_calle, String datos_adicionales, int nro_puerta, int idDireccion) {
         this.calle = calle;
         this.segunda_calle = segunda_calle;
