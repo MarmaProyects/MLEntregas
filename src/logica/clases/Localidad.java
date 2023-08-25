@@ -19,10 +19,11 @@ public class Localidad {
     private int idLocalidad;
     private List <Direccion> listaDirecciones;
 
-    public Localidad(String zona, int codigoPostal, int idLocalidad) {
+    public Localidad(String zona, int codigoPostal, int idLocalidad, List<Direccion> listaDirecciones) {
         this.zona = zona;
         this.codigoPostal = codigoPostal;
         this.idLocalidad = idLocalidad;
+        this.listaDirecciones = listaDirecciones;
     }
 
     public String getZona() {
@@ -45,12 +46,23 @@ public class Localidad {
         return idLocalidad;
     }
 
+    public void setIdLocalidad(int idLocalidad) {
+        this.idLocalidad = idLocalidad;
+    }
+
     public List<Direccion> getListaDirecciones() {
         return listaDirecciones;
     }
-    
-    public void agregarDireccion(Direccion direccion) {
-        listaDirecciones.add(direccion);
+
+    public void setListaDirecciones(List<Direccion> listaDirecciones) {
+        this.listaDirecciones = listaDirecciones;
     }
     
+    public void añadirDireccion(Direccion direccion){
+        this.listaDirecciones.add(direccion);
+    }
+      
+    public void quitarDireccion(Direccion direccion){
+        this.listaDirecciones.remove(direccion);
+    }
 }
