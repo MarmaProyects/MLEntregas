@@ -11,5 +11,16 @@ import logica.interfaces.IEnvio;
  * @author MarmaduX
  */
 public class ControladorPaquete implements IEnvio {
+    private static ControladorPaquete instance;
+
+    public ControladorPaquete() {
+    }
+
+    public static ControladorPaquete getInstancia() {
+        if (instance == null) {
+            instance = new ControladorPaquete();
+        }
+        return instance;
+    }
     
 }

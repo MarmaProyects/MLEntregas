@@ -11,5 +11,15 @@ import logica.interfaces.IAdministracion;
  * @author MarmaduX
  */
 public class ControladorPago implements IAdministracion {
-    
+    private static ControladorPago instance;
+
+    public ControladorPago() {
+    }
+
+    public static ControladorPago getInstancia() {
+        if (instance == null) {
+            instance = new ControladorPago();
+        }
+        return instance;
+    }
 }

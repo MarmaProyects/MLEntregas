@@ -11,5 +11,16 @@ import logica.interfaces.IProximidad;
  * @author MarmaduX
  */
 public class ControladorLocalidad implements IProximidad {
+    private static ControladorLocalidad instance;
+
+    public ControladorLocalidad() {
+    }
+
+    public static ControladorLocalidad getInstancia() {
+        if (instance == null) {
+            instance = new ControladorLocalidad();
+        }
+        return instance;
+    }
     
 }

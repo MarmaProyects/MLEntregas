@@ -11,5 +11,16 @@ import logica.interfaces.IEnvio;
  * @author MarmaduX
  */
 public class ControladorEstado implements IEnvio {
+    private static ControladorEstado instance;
+
+    public ControladorEstado() {
+    }
+
+    public static ControladorEstado getInstancia() {
+        if (instance == null) {
+            instance = new ControladorEstado();
+        }
+        return instance;
+    }
     
 }

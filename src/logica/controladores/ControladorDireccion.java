@@ -11,5 +11,16 @@ import logica.interfaces.IEnvio;
  * @author MarmaduX
  */
 public class ControladorDireccion implements IEnvio {
+    private static ControladorDireccion instance;
+
+    public ControladorDireccion() {
+    }
+
+    public static ControladorDireccion getInstancia() {
+        if (instance == null) {
+            instance = new ControladorDireccion();
+        }
+        return instance;
+    }
 
 }
