@@ -11,13 +11,17 @@ package logica.clases;
 public class Direccion {
     private String calle, segunda_calle, datos_adicionales;
     private int nro_puerta, idDireccion;
-    
-    public Direccion(String calle, String segunda_calle, String datos_adicionales, int nro_puerta, int idDireccion) {
+    private String zonaLocalidad;
+    private int codigoPostal;
+
+    public Direccion(String calle, String segunda_calle, String datos_adicionales, int nro_puerta, int idDireccion, String zonaLocalidad, int codigoPostal) {
         this.calle = calle;
         this.segunda_calle = segunda_calle;
         this.datos_adicionales = datos_adicionales;
         this.nro_puerta = nro_puerta;
         this.idDireccion = idDireccion;
+        this.zonaLocalidad = zonaLocalidad;
+        this.codigoPostal = codigoPostal;
     }
 
     public String getCalle() {
@@ -58,6 +62,22 @@ public class Direccion {
 
     public void setIdDireccion(int idDireccion) {
         this.idDireccion = idDireccion;
+    }
+
+    public String getZonaLocalidad() {
+        return zonaLocalidad;
+    }
+
+    public void setZonaLocalidad(String zonaLocalidad) {
+        this.zonaLocalidad = zonaLocalidad;
+    }
+
+    public int getCodigoPostal() {
+        return codigoPostal;
+    }
+
+    public void setCodigoPostal(int codigoPostal) {
+        this.codigoPostal = codigoPostal;
     }
     
 }

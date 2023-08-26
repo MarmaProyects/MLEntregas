@@ -10,22 +10,23 @@ import java.util.List;
  * @author MarmaduX
  */
 public class Seccion {
-    private String codigo;
+    private String nombre;//cambiar a nombre
     private int cantidad, idSeccion;
     private List <Paquete> listaPaquetes;
-    
-    public Seccion(String codigo, int cantidad, int idSeccion) {
-        this.codigo = codigo;
+
+    public Seccion(String nombre, int cantidad, int idSeccion, List<Paquete> listaPaquetes) {
+        this.nombre = nombre;
         this.cantidad = cantidad;
         this.idSeccion = idSeccion;
+        this.listaPaquetes = listaPaquetes;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public int getCantidad() {
@@ -47,11 +48,15 @@ public class Seccion {
     public List<Paquete> getListaPaquetes() {
         return listaPaquetes;
     }
-    
-    public void agregarPaquete(Paquete paquete){
-        listaPaquetes.add(paquete);
+
+    public void setListaPaquetes(List<Paquete> listaPaquetes) {
+        this.listaPaquetes = listaPaquetes;
     }
     
+    public void añadirPaquete(Paquete paquete){
+        listaPaquetes.add(paquete);
+    }
+      
     public void quitarPaquete(Paquete paquete){
         listaPaquetes.remove(paquete);
     }

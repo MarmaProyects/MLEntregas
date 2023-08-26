@@ -15,16 +15,17 @@ public class Envio {
     private Direccion direccionDestino, direccionOrigen;
     private Tarifa tarifa;
     private Paquete paquete;
-    private Cliente clienteEmisor;
-    private List<Estado> estados;
+    private Cliente clienteEmisor, clienteReceptor;
+    private List<Estado> estados; 
 
-    public Envio(int idEnvio, Direccion direccionDestino, Direccion direccionOrigen, Tarifa tarifa, Paquete paquete, Cliente clienteEmisor, Estado estado) {
+    public Envio(int idEnvio, Direccion direccionDestino, Direccion direccionOrigen, Tarifa tarifa, Paquete paquete, Cliente clienteEmisor, Cliente clienteReceptor, Estado estado) {
         this.idEnvio = idEnvio;
         this.direccionDestino = direccionDestino;
         this.direccionOrigen = direccionOrigen;
         this.tarifa = tarifa;
         this.paquete = paquete;
         this.clienteEmisor = clienteEmisor;
+        this.clienteReceptor = clienteReceptor;
         this.estados.add(estado);
     }
 
@@ -68,20 +69,36 @@ public class Envio {
         this.paquete = paquete;
     }
 
-    public Cliente getCliente() {
+    public Cliente getClienteEmisor() {
         return clienteEmisor;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.clienteEmisor = cliente;
+    public void setClienteEmisor(Cliente clienteEmisor) {
+        this.clienteEmisor = clienteEmisor;
+    }
+
+    public Cliente getClienteReceptor() {
+        return clienteReceptor;
+    }
+
+    public void setClienteReceptor(Cliente clienteReceptor) {
+        this.clienteReceptor = clienteReceptor;
     }
 
     public List<Estado> getEstados() {
         return estados;
-    } 
+    }
+
+    public void setEstados(List<Estado> estados) {
+        this.estados = estados;
+    }
     
-    public void AgregarEstado(Estado estado){
+    public void añadirEstado(Estado estado){
         this.estados.add(estado);
+    }
+      
+    public void quitarEstado(Estado estado){
+        this.estados.remove(estado);
     }
     
 }

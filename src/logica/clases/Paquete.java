@@ -13,14 +13,16 @@ public class Paquete {
     private float peso;
     private boolean esFragil, esEspecial;
     private int idPaquete;
-
-    public Paquete(String codigo, String descripcion, float peso, boolean esFragil, boolean esEspecial, int idPaquete) {
+    private String nombreSeccion;
+    
+    public Paquete(String codigo, String descripcion, float peso, boolean esFragil, boolean esEspecial, int idPaquete, String nombreSeccion) {
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.peso = peso;
         this.esFragil = esFragil;
         this.esEspecial = esEspecial;
         this.idPaquete = idPaquete;
+        this.nombreSeccion = nombreSeccion;
     }
 
     public int getIdPaquete() {
@@ -31,7 +33,13 @@ public class Paquete {
         this.idPaquete = idPaquete;
     }
 
-    
+    public String getNombreSeccion() {
+        return nombreSeccion;
+    }
+
+    public void setNombreSeccion(String nombreSeccion) {
+        this.nombreSeccion = nombreSeccion;
+    }
 
     public String getCodigo() {
         return codigo;
