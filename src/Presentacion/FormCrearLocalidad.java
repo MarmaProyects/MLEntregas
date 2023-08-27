@@ -4,17 +4,35 @@
  */
 package Presentacion;
 
+import logica.fabrica.Fabrica;
+import logica.interfaces.IProximidad;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author leo
  */
 public class FormCrearLocalidad extends javax.swing.JFrame {
+    private IProximidad IP; 
 
     /**
      * Creates new form FormCrearLocalidad
      */
     public FormCrearLocalidad() {
+        this.IP = Fabrica.getInstancia().getControladorLocalidad();
         initComponents();
+    }
+    
+    public void llamarAlertaLocalidadExistente(){
+        JOptionPane.showMessageDialog(null, "El nombre y el código postal ya existen en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    public void llamarAlertaDatosFaltantes(){
+        JOptionPane.showMessageDialog(null, "El nombre o el código postal no han sido ingresados", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    public void llamarAlertaLocalidadCreada(){
+        JOptionPane.showMessageDialog(null, "Localidad creada exitosamente", "Creación exitosa", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**
@@ -26,9 +44,35 @@ public class FormCrearLocalidad extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jOptionPane1 = new javax.swing.JOptionPane();
+        jDialog1 = new javax.swing.JDialog();
+        jDialog2 = new javax.swing.JDialog();
         botonConfirmar = new javax.swing.JButton();
         TextFieldNombreLocalidad = new javax.swing.JTextField();
         TextFieldCodigoPostal = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
+        jDialog2.getContentPane().setLayout(jDialog2Layout);
+        jDialog2Layout.setHorizontalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog2Layout.setVerticalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
@@ -40,6 +84,11 @@ public class FormCrearLocalidad extends javax.swing.JFrame {
         });
 
         botonConfirmar.setText("Confirmar");
+        botonConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonConfirmarActionPerformed(evt);
+            }
+        });
 
         TextFieldNombreLocalidad.setText("Nombre");
         TextFieldNombreLocalidad.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -48,6 +97,11 @@ public class FormCrearLocalidad extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 TextFieldNombreLocalidadFocusLost(evt);
+            }
+        });
+        TextFieldNombreLocalidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextFieldNombreLocalidadActionPerformed(evt);
             }
         });
 
@@ -60,26 +114,44 @@ public class FormCrearLocalidad extends javax.swing.JFrame {
                 TextFieldCodigoPostalFocusLost(evt);
             }
         });
+        TextFieldCodigoPostal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextFieldCodigoPostalKeyTyped(evt);
+            }
+        });
+
+        jButton1.setText("Volver");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(TextFieldCodigoPostal, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                    .addComponent(TextFieldNombreLocalidad))
-                .addGap(26, 26, 26))
             .addGroup(layout.createSequentialGroup()
-                .addGap(88, 88, 88)
-                .addComponent(botonConfirmar)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addComponent(botonConfirmar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TextFieldCodigoPostal, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TextFieldNombreLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addGap(26, 26, 26)
                 .addComponent(TextFieldNombreLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(TextFieldCodigoPostal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -121,10 +193,48 @@ public class FormCrearLocalidad extends javax.swing.JFrame {
         this.requestFocusInWindow();
     }//GEN-LAST:event_formWindowGainedFocus
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void TextFieldNombreLocalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldNombreLocalidadActionPerformed
+        
+    }//GEN-LAST:event_TextFieldNombreLocalidadActionPerformed
+
+    private void botonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConfirmarActionPerformed
+        String nombre = this.TextFieldNombreLocalidad.getText();
+        String verificaCodigo = this.TextFieldCodigoPostal.getText();
+        if (nombre.equals("Nombre") || verificaCodigo.equals("Código postal")) {
+            llamarAlertaDatosFaltantes();
+            return;
+        }
+        int codigoPostal = Integer.parseInt(this.TextFieldCodigoPostal.getText());
+        if (this.IP.verificarExisteLocalidadNueva(nombre, codigoPostal) != true){
+            this.insertarNuevaLocalidad(nombre, codigoPostal);
+            llamarAlertaLocalidadCreada();
+        }
+        else {
+            llamarAlertaLocalidadExistente();
+        }
+    }//GEN-LAST:event_botonConfirmarActionPerformed
+
+    private void TextFieldCodigoPostalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextFieldCodigoPostalKeyTyped
+        int key = evt.getKeyChar();
+
+        if (!Character.isDigit(key)) {
+            evt.consume();
+        }
+
+        if (TextFieldCodigoPostal.getText().trim().length() == 6) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_TextFieldCodigoPostalKeyTyped
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -152,13 +262,24 @@ public class FormCrearLocalidad extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FormCrearLocalidad().setVisible(true);
+                
             }
         });
+        
+        
     }
+    
+    private void insertarNuevaLocalidad(String nombre, int codigoPostal){
+            this.IP.agregarLocalidad(nombre, codigoPostal);
+        }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TextFieldCodigoPostal;
     private javax.swing.JTextField TextFieldNombreLocalidad;
     private javax.swing.JButton botonConfirmar;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JDialog jDialog2;
+    private javax.swing.JOptionPane jOptionPane1;
     // End of variables declaration//GEN-END:variables
 }

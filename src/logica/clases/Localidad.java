@@ -25,6 +25,13 @@ public class Localidad {
         this.idLocalidad = idLocalidad;
         this.listaDirecciones = listaDirecciones;
     }
+    
+    public Localidad(String zona, int codigoPostal, int idLocalidad) {
+        this.zona = zona;
+        this.codigoPostal = codigoPostal;
+        this.idLocalidad = idLocalidad;
+    }
+    
 
     public String getZona() {
         return zona;
