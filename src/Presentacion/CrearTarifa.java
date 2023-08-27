@@ -4,6 +4,7 @@
  */
 package Presentacion;
 
+import javax.swing.JOptionPane;
 import logica.fabrica.Fabrica;
 import logica.interfaces.IAdministracion;
 
@@ -31,48 +32,11 @@ public class CrearTarifa extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 = new javax.swing.JDialog();
-        jLabel2 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
         TextPrecio = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         TextNombre = new javax.swing.JTextField();
-
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel2.setText("Debe de completar los datos para continuar");
-
-        jButton3.setText("Cerrar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog1Layout.createSequentialGroup()
-                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDialog1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel2))
-                    .addGroup(jDialog1Layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(jButton3)))
-                .addContainerGap(21, Short.MAX_VALUE))
-        );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3)
-                .addContainerGap(21, Short.MAX_VALUE))
-        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -215,15 +179,9 @@ public class CrearTarifa extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-<<<<<<< Updated upstream
-        if(TextNombre.getText().equals("Ingrese el nombre") || TextPrecio.getText().equals("Ingrese el precio") ){  
-            jDialog1.setBounds(40, 100, 315, 142);
-            jDialog1.setVisible(true);
-=======
         String nombreText = TextNombre.getText().trim();
-        if(TextNombre.getText().equals("Ingrese el nombre") || TextPrecio.getText().equals("Ingrese el precio") || nombreText.isEmpty() ){  
+        if(TextNombre.getText().equals("Ingrese el nombre") || TextPrecio.getText().equals("Ingrese el precio") || nombreText.isEmpty() ){ 
             JOptionPane.showMessageDialog(null, "El nombre y el precio no pueden ser vacios", "Error", JOptionPane.ERROR_MESSAGE);
->>>>>>> Stashed changes
         }else{
             this.IA.crearTarifa(TextNombre.getText().trim(), Float.parseFloat(TextPrecio.getText()));
             ListaTarifas listaTarifas = new ListaTarifas();
@@ -231,10 +189,6 @@ public class CrearTarifa extends javax.swing.JFrame {
             listaTarifas.setVisible(true);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        jDialog1.setVisible(false);
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void TextPrecioComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_TextPrecioComponentAdded
     }//GEN-LAST:event_TextPrecioComponentAdded
@@ -291,9 +245,6 @@ public class CrearTarifa extends javax.swing.JFrame {
     private javax.swing.JTextField TextPrecio;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
