@@ -10,13 +10,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import logica.fabrica.Fabrica;
+import logica.interfaces.IProximidad;
 
 /**
  *
  * @author MarmaduX
  */
 public class MLEntregas {
-
+    
     /**
      * @param args the command line arguments
      */
@@ -41,7 +43,6 @@ public class MLEntregas {
                 } catch (SQLException e) {
                 System.out.println("Error: " + e);
             }
-        
     }
     
 }

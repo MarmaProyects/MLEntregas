@@ -9,5 +9,5 @@ package logica.interfaces;
  * @author MarmaduX
  */
 public interface IProximidad {
-    
+    public void agregarLocalidad(String nombre, int codigoPostal);
 }

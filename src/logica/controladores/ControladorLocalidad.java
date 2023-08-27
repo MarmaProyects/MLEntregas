@@ -5,6 +5,7 @@
 package logica.controladores;
 
 import logica.interfaces.IProximidad;
+import logica.servicios.servicioLocalidad;
 
 /**
  *
@@ -12,8 +13,10 @@ import logica.interfaces.IProximidad;
  */
 public class ControladorLocalidad implements IProximidad {
     private static ControladorLocalidad instance;
+    private servicioLocalidad servicioLocalidad;
 
     public ControladorLocalidad() {
+        this.servicioLocalidad = new servicioLocalidad();
     }
 
     public static ControladorLocalidad getInstancia() {
@@ -22,5 +25,8 @@ public class ControladorLocalidad implements IProximidad {
         }
         return instance;
     }
-    
+
+    public void agregarLocalidad(String nombre, int codigoPostal) {
+        this.servicioLocalidad.insertarLocalidad(nombre, codigoPostal);
+    }
 }
