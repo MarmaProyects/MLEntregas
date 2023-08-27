@@ -27,7 +27,6 @@ public class ControladorLocalidad implements IProximidad {
     }
 
     public void agregarLocalidad(String nombre, int codigoPostal) {
-        System.out.println("llega");
         this.servicioLocalidad.insertarLocalidad(nombre, codigoPostal);
     }
 }

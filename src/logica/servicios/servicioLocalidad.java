@@ -20,9 +20,8 @@ public class servicioLocalidad {
     public void insertarLocalidad(String nombreLocalidad, int codigoPostal) {
         int id = 1;
         try {
-            PreparedStatement query = conexion.prepareStatement("INSERT INTO `localidad` (`id`, `nombre`, `codigoPostal`) VALUES ('" + id + "','" + nombreLocalidad + "','" + codigoPostal + "');");
+            PreparedStatement query = conexion.prepareStatement("INSERT INTO `localidad` (`nombre`, `codigoPostal`) VALUES ('" + nombreLocalidad + "','" + codigoPostal + "');");
             query.executeUpdate();
-            System.out.println("hacido");
         } catch (SQLException e) {
             System.out.println("Error: " + e);
         }
