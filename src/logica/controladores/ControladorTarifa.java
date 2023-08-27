@@ -4,7 +4,10 @@
  */
 package logica.controladores;
 
+import java.util.ArrayList;
+import logica.clases.Tarifa;
 import logica.interfaces.IAdministracion;
+import logica.servicios.ServicioTarifa;
 
 /**
  *
@@ -12,8 +15,10 @@ import logica.interfaces.IAdministracion;
  */
 public class ControladorTarifa implements IAdministracion {
     private static ControladorTarifa instance;
+    private ServicioTarifa servicioTarifa;
 
     public ControladorTarifa() {
+         this.servicioTarifa = new ServicioTarifa();
     }
 
     public static ControladorTarifa getInstancia() {
@@ -22,4 +27,14 @@ public class ControladorTarifa implements IAdministracion {
         }
         return instance;
     } 
+
+    @Override
+    public void crearTarifa(String nombre, float precioBase) {
+        this.servicioTarifa.crearTarifa(nombre, precioBase);
+    }
+
+    @Override
+    public ArrayList<Tarifa> listarTarifas() {
+        return this.servicioTarifa.listarTarifas();
+    }
 }

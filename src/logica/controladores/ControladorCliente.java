@@ -4,6 +4,8 @@
  */
 package logica.controladores;
 
+import java.util.ArrayList;
+import logica.clases.Tarifa;
 import logica.interfaces.IAdministracion;
 
 /**
@@ -21,5 +23,15 @@ public class ControladorCliente implements IAdministracion {
             instance = new ControladorCliente();
         }
         return instance;
+    }
+
+    @Override
+    public void crearTarifa(String nombre, float precioBase) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ArrayList<Tarifa> listarTarifas() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
