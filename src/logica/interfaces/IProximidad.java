@@ -13,5 +13,7 @@ import logica.clases.Localidad;
  */
 public interface IProximidad {
     public abstract void agregarLocalidad(String nombre, int codigoPostal);
+    public abstract void agregarSeccion(String nombre, String localidad);
+    public abstract ArrayList<Localidad> obtenerLocalidades();
     public abstract Boolean verificarExisteLocalidadNueva(String nombre, int codigoPostal);
 }
