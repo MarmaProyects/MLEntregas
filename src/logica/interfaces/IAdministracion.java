@@ -4,10 +4,14 @@
  */
 package logica.interfaces;
 
+import java.util.ArrayList;
+import logica.clases.Tarifa;
+
 /**
  *
  * @author MarmaduX
  */
 public interface IAdministracion {
-    
+    public ArrayList<Tarifa> listarTarifas();
+    public void crearTarifa(String nombre, float precioBase);
 }

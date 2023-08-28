@@ -19,33 +19,30 @@ import logica.interfaces.IProximidad;
  * @author MarmaduX
  */
 public class MLEntregas {
-    
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-       Connection conexion = new Conexion().getConexion();
+        Connection conexion = new Conexion().getConexion();
         ArrayList resultado = new ArrayList();
-        
+
         try {
-                
+
             PreparedStatement query = conexion.prepareStatement("SELECT * FROM cliente");
             ResultSet resultadoDeLaQuery = query.executeQuery();
-            while(resultadoDeLaQuery.next()) {
+            while (resultadoDeLaQuery.next()) {
                 String nombre = resultadoDeLaQuery.getString("nombre");
                 String apellido = resultadoDeLaQuery.getString("apellido");
                 System.out.println(nombre);
                 System.out.println(apellido);
-                
+
             }
-            
-            
-                } catch (SQLException e) {
-                System.out.println("Error: " + e);
-            }
-        FormCrearLocalidad form = new FormCrearLocalidad();
-        form.setVisible(true);
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+        }
+
     }
-    
+
 }
