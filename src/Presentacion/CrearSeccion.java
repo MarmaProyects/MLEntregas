@@ -146,7 +146,7 @@ public class CrearSeccion extends javax.swing.JFrame {
 
     private void buttonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCrearActionPerformed
         // TODO add your handling code here:
-        String nombre = nombreField.getText();
+        String nombre = nombreField.getText().trim();
         String localidad = jComboBox1.getSelectedItem().toString();
         if (!nombre.equals("")) {
             this.IPR.agregarSeccion(nombre, localidad);
