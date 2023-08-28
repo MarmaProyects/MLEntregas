@@ -5,6 +5,7 @@
 package mlentregas;
 
 import BaseDeDatos.Conexion;
+import Presentacion.FormCrearLocalidad;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -43,6 +44,8 @@ public class MLEntregas {
                 } catch (SQLException e) {
                 System.out.println("Error: " + e);
             }
+        FormCrearLocalidad form = new FormCrearLocalidad();
+        form.setVisible(true);
     }
     
 }

@@ -27,5 +27,10 @@ public class ControladorSeccion implements IProximidad {
     public void agregarLocalidad(String nombre, int codigoPostal) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public Boolean verificarExisteLocalidadNueva(String nombre, int codigoPostal) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

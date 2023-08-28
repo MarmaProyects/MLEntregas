@@ -4,10 +4,14 @@
  */
 package logica.interfaces;
 
+import java.util.ArrayList;
+import logica.clases.Localidad;
+
 /**
  *
  * @author MarmaduX
  */
 public interface IProximidad {
     public void agregarLocalidad(String nombre, int codigoPostal);
+    public Boolean verificarExisteLocalidadNueva(String nombre, int codigoPostal);
 }
