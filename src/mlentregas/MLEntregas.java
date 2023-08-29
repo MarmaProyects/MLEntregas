@@ -5,6 +5,7 @@
 package mlentregas;
 
 import BaseDeDatos.Conexion;
+import Presentacion.CrearCliente;
 import Presentacion.FormCrearLocalidad;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,22 +27,8 @@ public class MLEntregas {
     public static void main(String[] args) {
         // TODO code application logic here
         Connection conexion = new Conexion().getConexion();
-        ArrayList resultado = new ArrayList();
-
-        try {
-
-            PreparedStatement query = conexion.prepareStatement("SELECT * FROM cliente");
-            ResultSet resultadoDeLaQuery = query.executeQuery();
-            while (resultadoDeLaQuery.next()) {
-                String nombre = resultadoDeLaQuery.getString("nombre");
-                String apellido = resultadoDeLaQuery.getString("apellido");
-                System.out.println(nombre);
-                System.out.println(apellido);
-
-            }
-        } catch (SQLException e) {
-            System.out.println("Error: " + e);
-        }
+        CrearCliente form = new CrearCliente();
+        form.setVisible(true);
 
     }
 

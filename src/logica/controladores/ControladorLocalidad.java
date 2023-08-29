@@ -38,6 +38,7 @@ public class ControladorLocalidad implements IProximidad {
         for(Localidad localidad:localidades){
             if (localidad.getZona().equals(nombre) && localidad.getCodigoPostal() == codigoPostal) {
                 resultado = true;
+                break;
             }
         }
         return resultado;

@@ -12,6 +12,8 @@ import logica.clases.Tarifa;
  * @author MarmaduX
  */
 public interface IAdministracion {
-    public ArrayList<Tarifa> listarTarifas();
-    public void crearTarifa(String nombre, float precioBase);
+    public abstract ArrayList<Tarifa> listarTarifas();
+    public abstract void crearTarifa(String nombre, float precioBase);
+    public abstract void agregarCliente(int cedula, String nombre ,String apellido, int telefono);
+    public abstract Boolean verificarExisteClienteNuevo(int cedula);
 }

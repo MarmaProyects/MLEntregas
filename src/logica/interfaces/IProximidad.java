@@ -12,6 +12,6 @@ import logica.clases.Localidad;
  * @author MarmaduX
  */
 public interface IProximidad {
-    public void agregarLocalidad(String nombre, int codigoPostal);
-    public Boolean verificarExisteLocalidadNueva(String nombre, int codigoPostal);
+    public abstract void agregarLocalidad(String nombre, int codigoPostal);
+    public abstract Boolean verificarExisteLocalidadNueva(String nombre, int codigoPostal);
 }
