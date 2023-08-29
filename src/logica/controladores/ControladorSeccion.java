@@ -6,6 +6,7 @@ package logica.controladores;
 
 import java.util.ArrayList;
 import logica.clases.Localidad;
+import logica.clases.Seccion;
 import logica.interfaces.IProximidad;
 import logica.servicios.ServicioSeccion;
 
@@ -30,6 +31,10 @@ public class ControladorSeccion implements IProximidad {
 
     public void agregarSeccion(String nombre, String localidad) {
         this.servicio.agregarSeccion(nombre, localidad);
+    }
+    
+    public ArrayList<Seccion> obtenerSecciones(){
+        return this.servicio.obtenerListaSeccion();
     }
     
     @Override

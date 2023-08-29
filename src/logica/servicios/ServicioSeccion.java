@@ -7,9 +7,11 @@ package logica.servicios;
 import BaseDeDatos.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import logica.clases.Localidad;
+import logica.clases.Seccion;
 import logica.fabrica.Fabrica;
 import logica.interfaces.IProximidad;
 
@@ -21,6 +23,22 @@ public class ServicioSeccion {
 
     private Connection conexion = new Conexion().getConexion();
     private IProximidad IPR;
+
+    public ArrayList<Seccion> obtenerListaSeccion() {
+        ArrayList<Seccion> resultado = new ArrayList<Seccion>();
+        try {
+            PreparedStatement query = conexion.prepareStatement("SELECT * FROM seccion");
+            ResultSet resultadoDeLaQuery = query.executeQuery();
+            while (resultadoDeLaQuery.next()) {
+                String nombre = resultadoDeLaQuery.getString("nombre");
+                int cantidad = Integer.parseInt(resultadoDeLaQuery.getString("cantidad"));
+                resultado.add(new Seccion(nombre, cantidad));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+        }
+        return resultado;
+    }
 
     public void agregarSeccion(String nombre, String localidad) {
 

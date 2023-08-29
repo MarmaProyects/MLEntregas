@@ -6,6 +6,7 @@ package logica.controladores;
 
 import java.util.ArrayList;
 import logica.clases.Localidad;
+import logica.clases.Seccion;
 import logica.interfaces.IProximidad;
 import logica.servicios.servicioLocalidad;
 
@@ -51,6 +52,11 @@ public class ControladorLocalidad implements IProximidad {
 
     @Override
     public void agregarSeccion(String nombre, String localidad) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ArrayList<Seccion> obtenerSecciones() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

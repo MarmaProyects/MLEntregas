@@ -6,6 +6,7 @@ package logica.interfaces;
 
 import java.util.ArrayList;
 import logica.clases.Localidad;
+import logica.clases.Seccion;
 
 /**
  *
@@ -15,5 +16,6 @@ public interface IProximidad {
     public abstract void agregarLocalidad(String nombre, int codigoPostal);
     public abstract void agregarSeccion(String nombre, String localidad);
     public abstract ArrayList<Localidad> obtenerLocalidades();
+    public abstract ArrayList<Seccion> obtenerSecciones();
     public abstract Boolean verificarExisteLocalidadNueva(String nombre, int codigoPostal);
 }

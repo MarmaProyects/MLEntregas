@@ -151,7 +151,7 @@ public class CrearSeccion extends javax.swing.JFrame {
         String nombre = nombreField.getText().trim();
         String localidad = jComboBox1.getSelectedItem().toString();
         if (!nombre.equals("")) {
-            ArrayList<Seccion> listaSec = this.obtenerListaSeccion();
+            ArrayList<Seccion> listaSec = this.IPR.obtenerSecciones();
             for (Seccion sec : listaSec) {
                 if (sec.getNombre().equals(nombre)) {
                     JOptionPane.showMessageDialog(null, "El nombre ya existe en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
@@ -178,22 +178,6 @@ public class CrearSeccion extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.requestFocusInWindow();
     }//GEN-LAST:event_formWindowGainedFocus
-
-    private ArrayList<Seccion> obtenerListaSeccion() {
-        try {
-            PreparedStatement query = conexion.prepareStatement("SELECT * FROM seccion");
-            ResultSet resultadoDeLaQuery = query.executeQuery();
-            while (resultadoDeLaQuery.next()) {
-                String nombre = resultadoDeLaQuery.getString("nombre");
-                int cantidad = Integer.parseInt(resultadoDeLaQuery.getString("cantidad"));
-                listaSeccion.add(new Seccion(nombre, cantidad));
-            }
-
-        } catch (SQLException e) {
-            System.out.println("Error: " + e);
-        }
-        return listaSeccion;
-    }
     
     private ArrayList<String> obtenerListaLocalidad() {
         try {
