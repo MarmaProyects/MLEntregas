@@ -54,7 +54,7 @@ public class ServicioSeccion {
             ArrayList<Localidad> localidades = this.IPR.obtenerLocalidades();
             int idLocalidad = 0;
             for (Localidad loc : localidades) {
-                if (loc.getZona().equals(localidad)) {
+                if (loc.getNombre().equals(localidad)) {
                     idLocalidad = loc.getIdLocalidad();
                     break;
                 }

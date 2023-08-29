@@ -19,7 +19,6 @@ public class Cliente {
         this.telefono = telefono;
     }
 
-
     public int getCedula() {
         return cedula;
     }

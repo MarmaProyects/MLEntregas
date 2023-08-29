@@ -44,7 +44,8 @@ public class ControladorLocalidad implements IProximidad {
         Boolean resultado = false;
         ArrayList<Localidad> localidades = this.servicioLocalidad.obtenerLasLocalidades();
         for (Localidad localidad : localidades) {
-            if (localidad.getZona().equals(nombre) && localidad.getCodigoPostal() == codigoPostal) {
+            if (localidad.getNombre().equals(nombre) && localidad.getCodigoPostal() == codigoPostal) {
+
                 resultado = true;
                 break;
             }

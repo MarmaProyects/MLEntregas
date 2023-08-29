@@ -8,31 +8,29 @@ package logica.clases;
 
 import java.util.List;
 
-
-
 /**
  *
  * @author MarmaduX
  */
 public class Localidad {
-    private String zona;
+
+    private String nombre;
     private int codigoPostal;
     private int idLocalidad;
-    private List <Direccion> listaDirecciones;
+    private List<Direccion> listaDirecciones;
 
-    public Localidad(String zona, int codigoPostal, int idLocalidad) {
-        this.zona = zona;
+    public Localidad(String nombre, int codigoPostal, int idLocalidad) {
+        this.nombre = nombre;
         this.codigoPostal = codigoPostal;
         this.idLocalidad = idLocalidad;
     }
-    
-
-    public String getZona() {
-        return zona;
+   
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setZona(String zona) {
-        this.zona = zona;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public int getCodigoPostal() {
@@ -51,19 +49,11 @@ public class Localidad {
         this.idLocalidad = idLocalidad;
     }
 
-    public List<Direccion> getListaDirecciones() {
-        return listaDirecciones;
-    }
-
-    public void setListaDirecciones(List<Direccion> listaDirecciones) {
-        this.listaDirecciones = listaDirecciones;
-    }
-    
-    public void añadirDireccion(Direccion direccion){
+    public void añadirDireccion(Direccion direccion) {
         this.listaDirecciones.add(direccion);
     }
-      
-    public void quitarDireccion(Direccion direccion){
+
+    public void quitarDireccion(Direccion direccion) {
         this.listaDirecciones.remove(direccion);
     }
 }
