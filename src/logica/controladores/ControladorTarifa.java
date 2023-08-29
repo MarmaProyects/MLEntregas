@@ -37,4 +37,14 @@ public class ControladorTarifa implements IAdministracion {
     public ArrayList<Tarifa> listarTarifas() {
         return this.servicioTarifa.listarTarifas();
     }
+
+    @Override
+    public void agregarCliente(int cedula, String nombre, String apellido, int telefono) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Boolean verificarExisteClienteNuevo(int cedula) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

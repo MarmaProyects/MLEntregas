@@ -24,7 +24,7 @@ public class FormCrearLocalidad extends javax.swing.JFrame {
     }
     
     public void llamarAlertaLocalidadExistente(){
-        JOptionPane.showMessageDialog(null, "El nombre y el código postal ya existen en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Ya existe una localidad en el sistema con los mismos datos", "Error", JOptionPane.ERROR_MESSAGE);
     }
     
     public void llamarAlertaDatosFaltantes(){
@@ -164,27 +164,27 @@ public class FormCrearLocalidad extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TextFieldNombreLocalidadFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldNombreLocalidadFocusGained
-        if(TextFieldNombreLocalidad.getText().equals("Nombre")){
+        if(TextFieldNombreLocalidad.getText().trim().equals("Nombre")){
             TextFieldNombreLocalidad.setText(null);
             TextFieldNombreLocalidad.requestFocus();
         }
     }//GEN-LAST:event_TextFieldNombreLocalidadFocusGained
 
     private void TextFieldCodigoPostalFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldCodigoPostalFocusGained
-        if(TextFieldCodigoPostal.getText().equals("Código postal")){
+        if(TextFieldCodigoPostal.getText().trim().equals("Código postal")){
             TextFieldCodigoPostal.setText(null);
             TextFieldCodigoPostal.requestFocus();
         }
     }//GEN-LAST:event_TextFieldCodigoPostalFocusGained
 
     private void TextFieldNombreLocalidadFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldNombreLocalidadFocusLost
-        if(TextFieldNombreLocalidad.getText().length()==0) {
+        if(TextFieldNombreLocalidad.getText().trim().length()==0) {
             TextFieldNombreLocalidad.setText("Nombre");
         }
     }//GEN-LAST:event_TextFieldNombreLocalidadFocusLost
 
     private void TextFieldCodigoPostalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldCodigoPostalFocusLost
-        if(TextFieldCodigoPostal.getText().length()==0) {
+        if(TextFieldCodigoPostal.getText().trim().length()==0) {
             TextFieldCodigoPostal.setText("Código postal");
         }
     }//GEN-LAST:event_TextFieldCodigoPostalFocusLost
@@ -202,13 +202,13 @@ public class FormCrearLocalidad extends javax.swing.JFrame {
     }//GEN-LAST:event_TextFieldNombreLocalidadActionPerformed
 
     private void botonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConfirmarActionPerformed
-        String nombre = this.TextFieldNombreLocalidad.getText();
-        String verificaCodigo = this.TextFieldCodigoPostal.getText();
+        String nombre = this.TextFieldNombreLocalidad.getText().trim();
+        String verificaCodigo = this.TextFieldCodigoPostal.getText().trim();
         if (nombre.equals("Nombre") || verificaCodigo.equals("Código postal")) {
             llamarAlertaDatosFaltantes();
             return;
         }
-        int codigoPostal = Integer.parseInt(this.TextFieldCodigoPostal.getText());
+        int codigoPostal = Integer.parseInt(this.TextFieldCodigoPostal.getText().trim());
         if (this.IP.verificarExisteLocalidadNueva(nombre, codigoPostal) != true){
             this.insertarNuevaLocalidad(nombre, codigoPostal);
             llamarAlertaLocalidadCreada();

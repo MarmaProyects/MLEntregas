@@ -5,8 +5,10 @@
 package logica.controladores;
 
 import java.util.ArrayList;
+import logica.clases.Cliente;
 import logica.clases.Tarifa;
 import logica.interfaces.IAdministracion;
+import logica.servicios.ServicioCliente;
 
 /**
  *
@@ -14,8 +16,26 @@ import logica.interfaces.IAdministracion;
  */
 public class ControladorCliente implements IAdministracion {
     private static ControladorCliente instance;
+    private ServicioCliente ServicioCliente;
 
     public ControladorCliente() {
+        this.ServicioCliente = new ServicioCliente();
+    }
+    
+    public void agregarCliente(int cedula, String nombre ,String apellido, int telefono) {
+            this.ServicioCliente.insertarCliente(cedula, nombre, apellido, telefono);
+    }
+    
+    public Boolean verificarExisteClienteNuevo(int cedula){
+        Boolean resultado = false;
+        ArrayList<Cliente> clientes = this.ServicioCliente.obtenerCliente();
+        for(Cliente cliente:clientes){
+            if (cliente.getCedula() == cedula) {
+                resultado = true;
+                break;
+            }
+        }
+        return resultado;
     }
 
     public static ControladorCliente getInstancia() {
@@ -24,6 +44,8 @@ public class ControladorCliente implements IAdministracion {
         }
         return instance;
     }
+    
+    
 
     @Override
     public void crearTarifa(String nombre, float precioBase) {
