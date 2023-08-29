@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import logica.clases.Seccion;
 import logica.fabrica.Fabrica;
 import logica.interfaces.IProximidad;
 
@@ -22,7 +23,8 @@ public class CrearSeccion extends javax.swing.JFrame {
 
     Connection conexion = new Conexion().getConexion();
     private IProximidad IPR;
-    ArrayList<String> listaLocalidad = new ArrayList();
+    ArrayList<String> listaLocalidad = new ArrayList<String>();
+    ArrayList<Seccion> listaSeccion = new ArrayList<Seccion>();
 
     /**
      * Creates new form crearSeccion
@@ -149,7 +151,15 @@ public class CrearSeccion extends javax.swing.JFrame {
         String nombre = nombreField.getText().trim();
         String localidad = jComboBox1.getSelectedItem().toString();
         if (!nombre.equals("")) {
+            ArrayList<Seccion> listaSec = this.obtenerListaSeccion();
+            for (Seccion sec : listaSec) {
+                if (sec.getNombre().equals(nombre)) {
+                    JOptionPane.showMessageDialog(null, "El nombre ya existe en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
             this.IPR.agregarSeccion(nombre, localidad);
+            JOptionPane.showMessageDialog(null, "Sección creada exitosamente", "Creación exitosa", JOptionPane.INFORMATION_MESSAGE);
         }
         else {
             JOptionPane.showMessageDialog(null, "Ingrese un nombre", "Error", JOptionPane.ERROR_MESSAGE);
@@ -169,21 +179,33 @@ public class CrearSeccion extends javax.swing.JFrame {
         this.requestFocusInWindow();
     }//GEN-LAST:event_formWindowGainedFocus
 
-    private ArrayList<String> obtenerListaLocalidad() {
+    private ArrayList<Seccion> obtenerListaSeccion() {
         try {
-
-            PreparedStatement query = conexion.prepareStatement("SELECT nombre FROM localidad");
+            PreparedStatement query = conexion.prepareStatement("SELECT * FROM seccion");
             ResultSet resultadoDeLaQuery = query.executeQuery();
             while (resultadoDeLaQuery.next()) {
                 String nombre = resultadoDeLaQuery.getString("nombre");
-                listaLocalidad.add(nombre);
-                //System.out.println(nombre);
+                int cantidad = Integer.parseInt(resultadoDeLaQuery.getString("cantidad"));
+                listaSeccion.add(new Seccion(nombre, cantidad));
             }
 
         } catch (SQLException e) {
             System.out.println("Error: " + e);
         }
-        
+        return listaSeccion;
+    }
+    
+    private ArrayList<String> obtenerListaLocalidad() {
+        try {
+            PreparedStatement query = conexion.prepareStatement("SELECT nombre FROM localidad");
+            ResultSet resultadoDeLaQuery = query.executeQuery();
+            while (resultadoDeLaQuery.next()) {
+                String nombre = resultadoDeLaQuery.getString("nombre");
+                listaLocalidad.add(nombre);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+        }        
         return listaLocalidad;
     }
 
