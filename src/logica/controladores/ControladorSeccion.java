@@ -4,7 +4,11 @@
  */
 package logica.controladores;
 
+import java.util.ArrayList;
+import logica.clases.Localidad;
+import logica.clases.Seccion;
 import logica.interfaces.IProximidad;
+import logica.servicios.ServicioSeccion;
 
 /**
  *
@@ -12,8 +16,10 @@ import logica.interfaces.IProximidad;
  */
 public class ControladorSeccion implements IProximidad {
     private static ControladorSeccion instance;
-
+    private ServicioSeccion servicio;
+    
     public ControladorSeccion() {
+        this.servicio = new ServicioSeccion();
     }
 
     public static ControladorSeccion getInstancia() {
@@ -23,6 +29,14 @@ public class ControladorSeccion implements IProximidad {
         return instance;
     }
 
+    public void agregarSeccion(String nombre, String localidad) {
+        this.servicio.agregarSeccion(nombre, localidad);
+    }
+    
+    public ArrayList<Seccion> obtenerSecciones(){
+        return this.servicio.obtenerListaSeccion();
+    }
+    
     @Override
     public void agregarLocalidad(String nombre, int codigoPostal) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -32,5 +46,10 @@ public class ControladorSeccion implements IProximidad {
     public Boolean verificarExisteLocalidadNueva(String nombre, int codigoPostal) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
+    @Override
+    public ArrayList<Localidad> obtenerLocalidades() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

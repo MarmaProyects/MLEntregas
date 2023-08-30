@@ -7,6 +7,7 @@ package mlentregas;
 import BaseDeDatos.Conexion;
 import Presentacion.CrearCliente;
 import Presentacion.FormCrearLocalidad;
+import Presentacion.CrearSeccion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,9 +28,6 @@ public class MLEntregas {
     public static void main(String[] args) {
         // TODO code application logic here
         Connection conexion = new Conexion().getConexion();
-        CrearCliente form = new CrearCliente();
-        form.setVisible(true);
-
     }
 
 }
