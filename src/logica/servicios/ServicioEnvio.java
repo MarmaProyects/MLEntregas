@@ -56,4 +56,30 @@ public class ServicioEnvio {
         }
         return listadoEnv;
     }
+    
+    public ArrayList<Envio> obtenerEnvios(){
+         ArrayList<Envio> resultado = new ArrayList<Envio>();
+        try {
+                
+            PreparedStatement query = conexion.prepareStatement("SELECT * FROM Envio");
+            ResultSet resultadoDeLaQuery = query.executeQuery();
+            while(resultadoDeLaQuery.next()) {
+                int idEnvio = resultadoDeLaQuery.getInt("id");
+                int idPaquete = resultadoDeLaQuery.getInt("idPaquete");
+                int idTarifa = resultadoDeLaQuery.getInt("idTarifa");
+                int idDireccionOrigen = resultadoDeLaQuery.getInt("idDireccionOrigen");
+                int idDireccionDestino = resultadoDeLaQuery.getInt("idDireccionDestino");
+                int idPago = resultadoDeLaQuery.getInt("idPago");
+                
+              //  resultado.add(new Object(int idEnvio, ));
+            }
+                } catch (SQLException e) {
+                System.out.println("Error: " + e);
+            }
+        
+        return resultado;
+    }
+    
 }
+
+    

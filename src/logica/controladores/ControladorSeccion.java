@@ -16,25 +16,38 @@ import logica.servicios.ServicioSeccion;
  */
 public class ControladorSeccion implements IProximidad {
     private static ControladorSeccion instance;
-    private ServicioSeccion servicio;
-    
+    private ServicioSeccion ServicioSeccion;
+
     public ControladorSeccion() {
-        this.servicio = new ServicioSeccion();
+        this.ServicioSeccion = new ServicioSeccion();
     }
 
+    public Seccion buscarSeccion(int idSeccion){
+        ArrayList<Seccion> Secciones = this.ServicioSeccion.obtenerSecciones();
+        Seccion resultado = null;
+        for (Seccion seccion:Secciones) {
+            if(idSeccion == seccion.getIdSeccion()) {
+                resultado = seccion;
+            }
+        }
+        return resultado;
+    }
+    
     public static ControladorSeccion getInstancia() {
         if (instance == null) {
             instance = new ControladorSeccion();
         }
         return instance;
     }
+    
+    
 
     public void agregarSeccion(String nombre, String localidad) {
-        this.servicio.agregarSeccion(nombre, localidad);
+        this.ServicioSeccion.agregarSeccion(nombre, localidad);
     }
     
     public ArrayList<Seccion> obtenerSecciones(){
-        return this.servicio.obtenerListaSeccion();
+        return this.ServicioSeccion.obtenerListaSeccion();
     }
     
     @Override

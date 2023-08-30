@@ -32,7 +32,7 @@ public class ServicioSeccion {
             while (resultadoDeLaQuery.next()) {
                 String nombre = resultadoDeLaQuery.getString("nombre");
                 int cantidad = Integer.parseInt(resultadoDeLaQuery.getString("cantidad"));
-                resultado.add(new Seccion(nombre, cantidad));
+                resultado.add(new Seccion(nombre, cantidad, 0));
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e);
@@ -67,4 +67,43 @@ public class ServicioSeccion {
             }
         }
     }
+    
+    public ArrayList<Seccion> obtenerSecciones(){
+         ArrayList<Seccion> resultado = new ArrayList<Seccion>();
+        try {
+                
+            PreparedStatement query = conexion.prepareStatement("SELECT * FROM seccion");
+            ResultSet resultadoDeLaQuery = query.executeQuery();
+            while(resultadoDeLaQuery.next()) {
+                int id = resultadoDeLaQuery.getInt("id");
+                int idLocalidad = resultadoDeLaQuery.getInt("idLocalidad");
+                String nombre = resultadoDeLaQuery.getString("nombre");
+                int cantidad = resultadoDeLaQuery.getInt("cantidad");
+                resultado.add(new Seccion(nombre, cantidad, id));
+            }
+                } catch (SQLException e) {
+                System.out.println("Error: " + e);
+            }
+        
+        return resultado;
+    }
+    
+    
+    public int obtenerIdSeccion_Paquete(int idPaquete){
+        int resultado = 0;
+        try {   
+            PreparedStatement query = conexion.prepareStatement("SELECT * FROM seccion_paquete");
+            ResultSet resultadoDeLaQuery = query.executeQuery();
+            while(resultadoDeLaQuery.next()) {
+                if (idPaquete == resultadoDeLaQuery.getInt("id")) {
+                    resultado = resultadoDeLaQuery.getInt("id");
+                    break;
+                }
+            }
+                } catch (SQLException e) {
+                System.out.println("Error: " + e);
+            }
+        return resultado;
+    }
+
 }

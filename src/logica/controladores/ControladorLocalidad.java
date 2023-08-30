@@ -48,7 +48,6 @@ public class ControladorLocalidad implements IProximidad {
         }
         return resultado;
     }
-    
 
     @Override
     public void agregarSeccion(String nombre, String localidad) {
@@ -59,4 +58,10 @@ public class ControladorLocalidad implements IProximidad {
     public ArrayList<Seccion> obtenerSecciones() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public Seccion buscarSeccion(int idSeccion) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

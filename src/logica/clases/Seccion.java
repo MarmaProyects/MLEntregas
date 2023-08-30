@@ -27,11 +27,6 @@ public class Seccion {
         this.idSeccion = idSeccion;
     }
 
-    public Seccion(String nombre, int cantidad) {
-        this.nombre = nombre;
-        this.cantidad = cantidad;
-    }
-
     public String getNombre() {
         return nombre;
     }
