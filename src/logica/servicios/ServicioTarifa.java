@@ -33,7 +33,7 @@ public class ServicioTarifa {
         String nombre;
         float precioBase;
         int id;
-        ArrayList resultado = new ArrayList();
+        ArrayList<Tarifa> resultado = new ArrayList<Tarifa>();
         try {
             PreparedStatement query = conexion.prepareStatement("SELECT * FROM tarifa");
             ResultSet resQuery = query.executeQuery();

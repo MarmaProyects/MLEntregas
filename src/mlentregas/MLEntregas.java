@@ -5,16 +5,7 @@
 package mlentregas;
 
 import BaseDeDatos.Conexion;
-import Presentacion.CrearCliente;
-import Presentacion.FormCrearLocalidad;
-import Presentacion.CrearSeccion;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import logica.fabrica.Fabrica;
-import logica.interfaces.IProximidad;
 
 /**
  *
@@ -28,6 +19,6 @@ public class MLEntregas {
     public static void main(String[] args) {
         // TODO code application logic here
         Connection conexion = new Conexion().getConexion();
-    }
 
+    }
 }

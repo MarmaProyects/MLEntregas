@@ -4,6 +4,8 @@
  */
 package logica.controladores;
 
+import java.util.ArrayList;
+import logica.clases.Envio;
 import logica.interfaces.IEnvio;
 
 /**
@@ -21,6 +23,11 @@ public class ControladorDireccion implements IEnvio {
             instance = new ControladorDireccion();
         }
         return instance;
+    }
+
+    @Override
+    public ArrayList<Envio> listaDeEnvios() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
