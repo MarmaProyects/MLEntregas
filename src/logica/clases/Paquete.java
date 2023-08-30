@@ -9,44 +9,19 @@ package logica.clases;
  * @author leo
  */
 public class Paquete {
-    private String codigo, descripcion;
+    private String descripcion;
     private float peso;
     private boolean esFragil, esEspecial;
     private int idPaquete;
     private String nombreSeccion;
-    
-    public Paquete(String codigo, String descripcion, float peso, boolean esFragil, boolean esEspecial, int idPaquete, String nombreSeccion) {
-        this.codigo = codigo;
+
+    public Paquete(String descripcion, float peso, boolean esFragil, boolean esEspecial, int idPaquete, String nombreSeccion) {
         this.descripcion = descripcion;
         this.peso = peso;
         this.esFragil = esFragil;
         this.esEspecial = esEspecial;
         this.idPaquete = idPaquete;
         this.nombreSeccion = nombreSeccion;
-    }
-
-    public int getIdPaquete() {
-        return idPaquete;
-    }
-
-    public void setIdPaquete(int idPaquete) {
-        this.idPaquete = idPaquete;
-    }
-
-    public String getNombreSeccion() {
-        return nombreSeccion;
-    }
-
-    public void setNombreSeccion(String nombreSeccion) {
-        this.nombreSeccion = nombreSeccion;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
 
     public String getDescripcion() {
@@ -80,6 +55,21 @@ public class Paquete {
     public void setEsEspecial(boolean esEspecial) {
         this.esEspecial = esEspecial;
     }
-    
-    
+
+    public int getIdPaquete() {
+        return idPaquete;
+    }
+
+    public void setIdPaquete(int idPaquete) {
+        this.idPaquete = idPaquete;
+    }
+
+    public String getNombreSeccion() {
+        return nombreSeccion;
+    }
+
+    public void setNombreSeccion(String nombreSeccion) {
+        this.nombreSeccion = nombreSeccion;
+    }
+        
 }

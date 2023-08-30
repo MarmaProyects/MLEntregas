@@ -4,10 +4,13 @@
  */
 package logica.interfaces;
 
+import java.util.ArrayList;
+import logica.clases.Envio;
+
 /**
  *
  * @author MarmaduX
  */
 public interface IEnvio {
-    
+    public abstract ArrayList<Envio> listaDeEnvios() ;
 }
