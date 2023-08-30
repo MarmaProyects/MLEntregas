@@ -23,4 +23,9 @@ public class ControladorDireccion implements IEnvio {
         return instance;
     }
 
+    @Override
+    public void facturarEnvio(float precio, String metodoPago) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

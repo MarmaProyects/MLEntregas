@@ -9,5 +9,5 @@ package logica.interfaces;
  * @author MarmaduX
  */
 public interface IEnvio {
-    
+    public abstract void facturarEnvio(float precio, String metodoPago);
 }

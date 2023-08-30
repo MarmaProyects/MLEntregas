@@ -5,6 +5,7 @@
 package logica.controladores;
 
 import logica.interfaces.IEnvio;
+import logica.servicios.ServicioEnvio;
 
 /**
  *
@@ -12,8 +13,10 @@ import logica.interfaces.IEnvio;
  */
 public class ControladorEnvio implements IEnvio {
     private static ControladorEnvio instance;
-
+    private ServicioEnvio servicio;
+    
     public ControladorEnvio() {
+        this.servicio = new ServicioEnvio();
     }
 
     public static ControladorEnvio getInstancia() {
@@ -22,5 +25,11 @@ public class ControladorEnvio implements IEnvio {
         }
         return instance;
     }
+    
+    public void facturarEnvio(float precio, String metodoPago) {
+        this.servicio.facturarEnvio(precio, metodoPago);
+    }
+    
+    
 
 }

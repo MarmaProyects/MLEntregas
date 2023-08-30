@@ -9,7 +9,8 @@ package logica.clases;
  * @author leo
  */
 public class Cliente {
-      private int cedula;
+
+    private int cedula;
     private String nombre, apellido, telefono;
 
     public Cliente(int cedula, String nombre, String apellido, String telefono) {
@@ -18,7 +19,6 @@ public class Cliente {
         this.apellido = apellido;
         this.telefono = telefono;
     }
-
 
     public int getCedula() {
         return cedula;
@@ -51,5 +51,5 @@ public class Cliente {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    
+
 }

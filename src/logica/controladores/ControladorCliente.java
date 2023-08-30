@@ -28,7 +28,7 @@ public class ControladorCliente implements IAdministracion {
     
     public Boolean verificarExisteClienteNuevo(int cedula){
         Boolean resultado = false;
-        ArrayList<Cliente> clientes = this.ServicioCliente.obtenerCliente();
+        ArrayList<Cliente> clientes = this.ServicioCliente.obtenerClientes();
         for(Cliente cliente:clientes){
             if (cliente.getCedula() == cedula) {
                 resultado = true;
@@ -45,6 +45,9 @@ public class ControladorCliente implements IAdministracion {
         return instance;
     }
     
+    public ArrayList<Cliente> obtenerCliente() {
+        return this.ServicioCliente.obtenerClientes();
+    }
     
 
     @Override

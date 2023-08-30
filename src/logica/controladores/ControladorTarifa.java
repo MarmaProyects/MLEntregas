@@ -5,6 +5,7 @@
 package logica.controladores;
 
 import java.util.ArrayList;
+import logica.clases.Cliente;
 import logica.clases.Tarifa;
 import logica.interfaces.IAdministracion;
 import logica.servicios.ServicioTarifa;
@@ -45,6 +46,11 @@ public class ControladorTarifa implements IAdministracion {
 
     @Override
     public Boolean verificarExisteClienteNuevo(int cedula) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ArrayList<Cliente> obtenerCliente() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

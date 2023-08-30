@@ -5,6 +5,7 @@
 package logica.interfaces;
 
 import java.util.ArrayList;
+import logica.clases.Cliente;
 import logica.clases.Tarifa;
 
 /**
@@ -15,5 +16,6 @@ public interface IAdministracion {
     public abstract ArrayList<Tarifa> listarTarifas();
     public abstract void crearTarifa(String nombre, float precioBase);
     public abstract void agregarCliente(int cedula, String nombre ,String apellido, int telefono);
+    public abstract ArrayList<Cliente> obtenerCliente();
     public abstract Boolean verificarExisteClienteNuevo(int cedula);
 }

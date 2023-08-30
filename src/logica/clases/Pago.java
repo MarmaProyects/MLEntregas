@@ -32,8 +32,6 @@ public class Pago {
         this.idPago = idPago;
     }
 
-   
-
     public float getPrecio() {
         return precio;
     }
