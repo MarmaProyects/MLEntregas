@@ -5,16 +5,21 @@
 package Presentacion;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import logica.clases_customs.TableActionCellRender;
+import logica.clases_customs.TableActionCellEditor;
 import logica.clases.Tarifa;
 import logica.fabrica.Fabrica;
 import logica.interfaces.IAdministracion;
+import logica.interfaces.ITableActionEvent;
 
 /**
  *
  * @author MarmaduX
  */
 public class ListaTarifas extends javax.swing.JFrame {
+
     private IAdministracion IA;
 
     /**
@@ -24,6 +29,38 @@ public class ListaTarifas extends javax.swing.JFrame {
         initComponents();
         this.IA = Fabrica.getInstancia().getControladorTarifa();
         this.cargarTodasLasTarifas();
+        ITableActionEvent event = new ITableActionEvent() {
+
+            @Override
+            public void onEdit(int id) {
+                EditarTarifa editTarifa = new EditarTarifa(id);
+                editTarifa.setVisible(true);
+                setVisible(false);
+            }
+
+            @Override
+            public void onDelete(int id, int row) {
+                if (IA.eliminarTarifaSeleccionada(id)) {
+                    JOptionPane.showMessageDialog(null, "La tarifa fue eliminada con exito", "Success", JOptionPane.DEFAULT_OPTION);
+                    if (tableTarifa.isEditing()) {
+                        tableTarifa.getCellEditor().stopCellEditing();
+                    }
+                    DefaultTableModel model = (DefaultTableModel) tableTarifa.getModel();
+                    model.removeRow(row);
+                } else {
+                    JOptionPane.showMessageDialog(null, "La tarifa esta en uso por lo que no se puede eliminar", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+            @Override
+            public void onView(int id) {
+                EditarTarifa editTarifa = new EditarTarifa(id);
+                editTarifa.setVisible(true);
+                setVisible(false);
+            }
+        };
+        this.tableTarifa.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
+        this.tableTarifa.getColumnModel().getColumn(3).setCellEditor(new TableActionCellEditor(event));
     }
 
     /**
@@ -36,29 +73,47 @@ public class ListaTarifas extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableTarifa = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableTarifa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nombre", "Precio"
+                "Id", "Nombre", "Precio", "Acciones"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
+            boolean[] canEdit = new boolean [] {
+                true, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        tableTarifa.setRowHeight(30);
+        jScrollPane1.setViewportView(tableTarifa);
+        if (tableTarifa.getColumnModel().getColumnCount() > 0) {
+            tableTarifa.getColumnModel().getColumn(0).setMinWidth(0);
+            tableTarifa.getColumnModel().getColumn(0).setPreferredWidth(0);
+            tableTarifa.getColumnModel().getColumn(0).setMaxWidth(0);
+            tableTarifa.getColumnModel().getColumn(1).setResizable(false);
+            tableTarifa.getColumnModel().getColumn(2).setResizable(false);
+            tableTarifa.getColumnModel().getColumn(3).setResizable(false);
+            tableTarifa.getColumnModel().getColumn(3).setPreferredWidth(23);
+        }
 
         jButton3.setText("Crear tarifas");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -74,6 +129,8 @@ public class ListaTarifas extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("TARIFAS");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -81,26 +138,30 @@ public class ListaTarifas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton4))
+                        .addComponent(jButton4)
+                        .addGap(201, 201, 201)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(176, 176, 176)
-                        .addComponent(jButton3)))
-                .addContainerGap(160, Short.MAX_VALUE))
+                        .addGap(246, 246, 246)
+                        .addComponent(jButton3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(8, 8, 8)
-                .addComponent(jButton4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton4)
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGap(40, 40, 40))
         );
 
         pack();
@@ -150,13 +211,14 @@ public class ListaTarifas extends javax.swing.JFrame {
             }
         });
     }
-    
-    private void cargarTodasLasTarifas(){
-        ArrayList<Tarifa> listaDeUsuarios = this.IA.listarTarifas();
-        
-        DefaultTableModel modelo = (DefaultTableModel) this.jTable1.getModel();
-        for(Tarifa tarifa : listaDeUsuarios) {
-            Object[] row = {tarifa.getNombre(), tarifa.getPrecio()};
+
+    private void cargarTodasLasTarifas() {
+        ArrayList<Tarifa> listaDeTarifas = this.IA.listarTarifas();
+
+        DefaultTableModel modelo = (DefaultTableModel) this.tableTarifa.getModel();
+
+        for (Tarifa tarifa : listaDeTarifas) {
+            Object[] row = {tarifa.getIdTarifa(), tarifa.getNombre(), tarifa.getPrecio()};
             modelo.addRow(row);
         }
     }
@@ -164,7 +226,8 @@ public class ListaTarifas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tableTarifa;
     // End of variables declaration//GEN-END:variables
 }

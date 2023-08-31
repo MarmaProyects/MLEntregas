@@ -225,7 +225,7 @@ public class FormCrearLocalidad extends javax.swing.JFrame {
             evt.consume();
         }
 
-        if (TextFieldCodigoPostal.getText().trim().length() == 6) {
+        if (TextFieldCodigoPostal.getText().trim().length() == 5) {
             evt.consume();
         }
     }//GEN-LAST:event_TextFieldCodigoPostalKeyTyped
