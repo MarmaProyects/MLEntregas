@@ -4,6 +4,8 @@
  */
 package logica.controladores;
 
+import java.util.ArrayList;
+import logica.clases.Envio;
 import logica.interfaces.IEnvio;
 import logica.servicios.ServicioEnvio;
 
@@ -13,10 +15,12 @@ import logica.servicios.ServicioEnvio;
  */
 public class ControladorEnvio implements IEnvio {
     private static ControladorEnvio instance;
-    private ServicioEnvio servicio;
-    
+
+    private ServicioEnvio servicioEnvio;
+
     public ControladorEnvio() {
-        this.servicio = new ServicioEnvio();
+        this.servicioEnvio = new ServicioEnvio();
+
     }
 
     public static ControladorEnvio getInstancia() {
@@ -27,9 +31,14 @@ public class ControladorEnvio implements IEnvio {
     }
     
     public void facturarEnvio(float precio, String metodoPago) {
-        this.servicio.facturarEnvio(precio, metodoPago);
+        this.servicioEnvio.facturarEnvio(precio, metodoPago);
     }
     
     
+
+    @Override
+    public ArrayList<Envio> listaDeEnvios() {
+        return this.servicioEnvio.listarEnvios();
+    }
 
 }

@@ -4,7 +4,7 @@
  */
 package logica.clases;
 
-import logica.dataTypes.DtFecha;
+import java.sql.Timestamp;
 import logica.dataTypes.TipoEstado;
 
 /**
@@ -14,10 +14,10 @@ import logica.dataTypes.TipoEstado;
 public class Estado {
     private String comentario;
     private TipoEstado tipo;
-    private DtFecha fecha;
+    private Timestamp fecha;
     private int idEstado;
 
-    public Estado(String comentario, TipoEstado tipo, DtFecha fecha, int idEstado) {
+    public Estado(String comentario, TipoEstado tipo, Timestamp fecha, int idEstado) {
         this.comentario = comentario;
         this.tipo = tipo;
         this.fecha = fecha;
@@ -48,11 +48,11 @@ public class Estado {
         this.tipo = tipo;
     }
 
-    public DtFecha getFecha() {
+    public Timestamp getFecha() {
         return fecha;
     }
 
-    public void setFecha(DtFecha fecha) {
+    public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
     }
     

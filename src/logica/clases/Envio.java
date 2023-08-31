@@ -4,7 +4,7 @@
  */
 package logica.clases;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,9 +16,9 @@ public class Envio {
     private Tarifa tarifa;
     private Paquete paquete;
     private Cliente clienteEmisor, clienteReceptor;
-    private List<Estado> estados; 
+    private ArrayList<Estado> estados; 
 
-    public Envio(int idEnvio, Direccion direccionDestino, Direccion direccionOrigen, Tarifa tarifa, Paquete paquete, Cliente clienteEmisor, Cliente clienteReceptor, Estado estado) {
+    public Envio(int idEnvio, Direccion direccionDestino, Direccion direccionOrigen, Tarifa tarifa, Paquete paquete, Cliente clienteEmisor, Cliente clienteReceptor, ArrayList<Estado> estado) {
         this.idEnvio = idEnvio;
         this.direccionDestino = direccionDestino;
         this.direccionOrigen = direccionOrigen;
@@ -26,7 +26,7 @@ public class Envio {
         this.paquete = paquete;
         this.clienteEmisor = clienteEmisor;
         this.clienteReceptor = clienteReceptor;
-        this.estados.add(estado);
+        this.estados = estado;
     }
 
     public int getIdEnvio() {
@@ -85,12 +85,12 @@ public class Envio {
         this.clienteReceptor = clienteReceptor;
     }
 
-    public List<Estado> getEstados() {
+    public ArrayList<Estado> getEstados() {
         return estados;
     }
 
-    public void setEstados(List<Estado> estados) {
-        this.estados = estados;
+    public void setEstados(ArrayList<Estado> estados) {
+        this.estados = estados; 
     }
     
     public void añadirEstado(Estado estado){

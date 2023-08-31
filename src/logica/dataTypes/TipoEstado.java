@@ -9,5 +9,18 @@ package logica.dataTypes;
  * @author leo
  */
 public enum TipoEstado {
-    Entregado, EnCamino, Preparando, ListoParaRetirar
+    Entregado("Entregado"), 
+    EnCamino("En camino"), 
+    Preparando("En preparación"), 
+    ListoParaRetirar("Listo para entregar");
+    
+    private final String estado;
+
+    private TipoEstado(String estado) {
+        this.estado = estado;
+    }
+    
+    public String getEstado() {
+        return estado;
+    }
 }

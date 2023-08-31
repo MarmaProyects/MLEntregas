@@ -4,10 +4,15 @@
  */
 package logica.interfaces;
 
+import java.util.ArrayList;
+import logica.clases.Envio;
+
 /**
  *
  * @author MarmaduX
  */
 public interface IEnvio {
     public abstract void facturarEnvio(float precio, String metodoPago);
+    public abstract ArrayList<Envio> listaDeEnvios() ;
+
 }

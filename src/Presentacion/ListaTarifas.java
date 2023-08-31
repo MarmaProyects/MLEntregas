@@ -15,7 +15,7 @@ import logica.interfaces.IAdministracion;
  * @author MarmaduX
  */
 public class ListaTarifas extends javax.swing.JFrame {
-     private IAdministracion IA;
+    private IAdministracion IA;
 
     /**
      * Creates new form ListaTarifas

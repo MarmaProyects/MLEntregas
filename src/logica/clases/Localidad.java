@@ -19,13 +19,6 @@ public class Localidad {
     private int idLocalidad;
     private List <Direccion> listaDirecciones;
 
-    public Localidad(String zona, int codigoPostal, int idLocalidad, List<Direccion> listaDirecciones) {
-        this.zona = zona;
-        this.codigoPostal = codigoPostal;
-        this.idLocalidad = idLocalidad;
-        this.listaDirecciones = listaDirecciones;
-    }
-    
     public Localidad(String zona, int codigoPostal, int idLocalidad) {
         this.zona = zona;
         this.codigoPostal = codigoPostal;

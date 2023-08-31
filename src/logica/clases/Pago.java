@@ -4,7 +4,7 @@
  */
 package logica.clases;
 
-import logica.dataTypes.DtFecha;
+import java.sql.Timestamp;
 import logica.dataTypes.MetodoPago;
 
 /**
@@ -14,10 +14,10 @@ import logica.dataTypes.MetodoPago;
 public class Pago {
     private float precio;
     private MetodoPago pago;
-    private DtFecha fecha;
+    private Timestamp fecha;
     private int idPago;
 
-    public Pago(float precio, MetodoPago pago, DtFecha fecha, int idPago) {
+    public Pago(float precio, MetodoPago pago, Timestamp fecha, int idPago) {
         this.precio = precio;
         this.pago = pago;
         this.fecha = fecha;
@@ -48,11 +48,11 @@ public class Pago {
         this.pago = pago;
     }
 
-    public DtFecha getFecha() {
+    public Timestamp getFecha() {
         return fecha;
     }
 
-    public void setFecha(DtFecha fecha) {
+    public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
     }
     

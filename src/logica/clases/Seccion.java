@@ -21,6 +21,17 @@ public class Seccion {
         this.listaPaquetes = listaPaquetes;
     }
 
+    public Seccion(String nombre, int cantidad, int idSeccion) {
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+        this.idSeccion = idSeccion;
+    }
+
+    public Seccion(String nombre, int cantidad) {
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+    }
+
     public String getNombre() {
         return nombre;
     }
