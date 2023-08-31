@@ -18,6 +18,7 @@ import logica.clases.Tarifa;
  * @author MarmaduX
  */
 public class ServicioTarifa {
+
     private Connection conexion = new Conexion().getConexion();
 
     public void crearTarifa(String nombre, float precioBase) {
@@ -29,6 +30,47 @@ public class ServicioTarifa {
         }
     }
     
+    public Tarifa traerTarifa(int idTarifa) {
+        Tarifa tarifa = null;
+        try {
+            System.err.println(idTarifa);
+            PreparedStatement queryTraer = conexion.prepareStatement("SELECT *  FROM `tarifa` WHERE id = " + idTarifa);
+            ResultSet tarifaExtraida = queryTraer.executeQuery();
+            if(tarifaExtraida.next()){
+                String nombre = tarifaExtraida.getString("nombre");
+                System.err.println(nombre);
+                float precioBase = tarifaExtraida.getFloat("precioBase");
+                int id = tarifaExtraida.getInt("id");
+                tarifa = new Tarifa(precioBase, nombre, id);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+        }
+        return tarifa;
+    }
+    
+    public boolean editarTarifa(int idTarifa, String nombre, float precio) {
+        try {
+            PreparedStatement query = conexion.prepareStatement("UPDATE `tarifa` SET `nombre`='" + nombre + "',`precioBase`= " + precio + " WHERE id = " + idTarifa);
+            int rowsAffected = query.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+            return false;
+        }
+    }
+
+    public boolean eliminarTarifa(int idTarifa) {
+        try {
+            PreparedStatement query = conexion.prepareStatement("DELETE FROM `tarifa` WHERE id = " + idTarifa);
+            int rowsAffected = query.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+            return false;
+        }
+    }
+
     public ArrayList<Tarifa> listarTarifas() {
         String nombre;
         float precioBase;
@@ -37,7 +79,7 @@ public class ServicioTarifa {
         try {
             PreparedStatement query = conexion.prepareStatement("SELECT * FROM tarifa");
             ResultSet resQuery = query.executeQuery();
-            while(resQuery.next()){
+            while (resQuery.next()) {
                 nombre = resQuery.getString("nombre");
                 precioBase = resQuery.getFloat("precioBase");
                 id = resQuery.getInt("id");
