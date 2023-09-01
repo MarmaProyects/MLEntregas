@@ -10,11 +10,14 @@ import logica.clases.Seccion;
 import logica.interfaces.IProximidad;
 import logica.servicios.servicioLocalidad;
 
+
+
 /**
  *
  * @author MarmaduX
  */
 public class ControladorLocalidad implements IProximidad {
+
     private static ControladorLocalidad instance;
     private servicioLocalidad servicioLocalidad;
 
@@ -30,17 +33,17 @@ public class ControladorLocalidad implements IProximidad {
     }
 
     public void agregarLocalidad(String nombre, int codigoPostal) {
-            this.servicioLocalidad.insertarLocalidad(nombre, codigoPostal);
+        this.servicioLocalidad.insertarLocalidad(nombre, codigoPostal);
     }
-    
+
     public ArrayList<Localidad> obtenerLocalidades() {
-        return this.servicioLocalidad.obtenerLocalidades();
+        return this.servicioLocalidad.obtenerLasLocalidades();
     }
-    
-    public Boolean verificarExisteLocalidadNueva(String nombre, int codigoPostal){
+
+    public Boolean verificarExisteLocalidadNueva(String nombre, int codigoPostal) {
         Boolean resultado = false;
-        ArrayList<Localidad> localidades = this.servicioLocalidad.obtenerLocalidades();
-        for(Localidad localidad:localidades){
+        ArrayList<Localidad> localidades = this.servicioLocalidad.obtenerLasLocalidades();
+        for (Localidad localidad : localidades) {
             if (localidad.getZona().equals(nombre) && localidad.getCodigoPostal() == codigoPostal) {
                 resultado = true;
                 break;

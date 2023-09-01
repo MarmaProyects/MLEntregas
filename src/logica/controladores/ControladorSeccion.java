@@ -23,7 +23,7 @@ public class ControladorSeccion implements IProximidad {
     }
 
     public Seccion buscarSeccion(int idSeccion){
-        ArrayList<Seccion> Secciones = this.ServicioSeccion.obtenerSecciones();
+        ArrayList<Seccion> Secciones = this.ServicioSeccion.obtenerLasSecciones();
         Seccion resultado = null;
         for (Seccion seccion:Secciones) {
             if(idSeccion == seccion.getIdSeccion()) {
@@ -43,7 +43,7 @@ public class ControladorSeccion implements IProximidad {
     
 
     public void agregarSeccion(String nombre, String localidad) {
-        this.ServicioSeccion.agregarSeccion(nombre, localidad);
+        this.ServicioSeccion.agregarUnaSeccion(nombre, localidad);
     }
     
     public ArrayList<Seccion> obtenerSecciones(){

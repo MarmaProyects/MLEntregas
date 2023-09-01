@@ -6,6 +6,7 @@ package logica.clases;
 
 import java.util.ArrayList;
 
+
 /**
  *
  * @author MarmaduX
@@ -16,9 +17,10 @@ public class Envio {
     private Tarifa tarifa;
     private Paquete paquete;
     private Cliente clienteEmisor, clienteReceptor;
+    private Pago pago;
     private ArrayList<Estado> estados; 
 
-    public Envio(int idEnvio, Direccion direccionDestino, Direccion direccionOrigen, Tarifa tarifa, Paquete paquete, Cliente clienteEmisor, Cliente clienteReceptor, ArrayList<Estado> estado) {
+    public Envio(int idEnvio, Direccion direccionDestino, Direccion direccionOrigen, Tarifa tarifa, Paquete paquete, Cliente clienteEmisor, Cliente clienteReceptor, Pago pago, ArrayList<Estado> estados) {
         this.idEnvio = idEnvio;
         this.direccionDestino = direccionDestino;
         this.direccionOrigen = direccionOrigen;
@@ -26,7 +28,16 @@ public class Envio {
         this.paquete = paquete;
         this.clienteEmisor = clienteEmisor;
         this.clienteReceptor = clienteReceptor;
-        this.estados = estado;
+        this.pago = pago;
+        this.estados = estados;
+    }
+
+    public Pago getPago() {
+        return pago;
+    }
+
+    public void setPago(Pago pago) {
+        this.pago = pago;
     }
 
     public int getIdEnvio() {

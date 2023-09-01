@@ -40,7 +40,7 @@ public class ServicioSeccion {
         return resultado;
     }
 
-    public void agregarSeccion(String nombre, String localidad) {
+    public void agregarUnaSeccion(String nombre, String localidad) {
 
         this.IPR = Fabrica.getInstancia().getControladorLocalidad();
         if (localidad.equals(" ")) {
@@ -68,7 +68,7 @@ public class ServicioSeccion {
         }
     }
     
-    public ArrayList<Seccion> obtenerSecciones(){
+    public ArrayList<Seccion> obtenerLasSecciones(){
          ArrayList<Seccion> resultado = new ArrayList<Seccion>();
         try {
                 
