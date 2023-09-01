@@ -22,7 +22,7 @@ import logica.interfaces.IEnvio;
  */
 public class ServicioPaquete {
 
-    private Connection conexion = new Conexion().getConexion();
+    private Connection conexion = new Conexion().getConnection();
     private IEnvio IE;
 
     public ArrayList<Paquete> obtenerListaPaquetesPorSeccion(int idSeccion) {
@@ -57,25 +57,25 @@ public class ServicioPaquete {
         }
         return paquetes;
     }
-    
-    public void moverPaquteDeSeccion (int idPaquete, int idSeccionAMover) {
+
+    public void moverPaquteDeSeccion(int idPaquete, int idSeccionAMover) {
         try {
-            PreparedStatement queryDelete= conexion.prepareStatement("DELETE FROM seccion_paquete WHERE idPaquete = " + idPaquete);
+            PreparedStatement queryDelete = conexion.prepareStatement("DELETE FROM seccion_paquete WHERE idPaquete = " + idPaquete);
             queryDelete.executeUpdate();
             PreparedStatement queryInsert = conexion.prepareStatement("INSERT INTO seccion_paquete VALUES (" + idSeccionAMover + "," + idPaquete + ")");
             queryInsert.executeUpdate();
         } catch (SQLException e) {
             System.err.println(e);
         }
-    
-    
-    public ArrayList<Paquete> obtenerPaquetes(){
-         ArrayList<Paquete> resultado = new ArrayList<Paquete>();
+    }
+
+    public ArrayList<Paquete> obtenerPaquetes() {
+        ArrayList<Paquete> resultado = new ArrayList<Paquete>();
         try {
-                
+
             PreparedStatement query = conexion.prepareStatement("SELECT * FROM paquete");
             ResultSet resultadoDeLaQuery = query.executeQuery();
-            while(resultadoDeLaQuery.next()) {
+            while (resultadoDeLaQuery.next()) {
                 int id = resultadoDeLaQuery.getInt("id");
                 String descripcion = resultadoDeLaQuery.getString("descripcion");
                 float peso = resultadoDeLaQuery.getFloat("peso");
@@ -86,12 +86,12 @@ public class ServicioPaquete {
                 int idSeccion = ServicioSeccion.obtenerIdSeccion_Paquete(id);
                 IProximidad IP = Fabrica.getInstancia().getControladorSeccion();
                 Seccion nombreSeccion = IP.buscarUnaSeccion(idSeccion);
-               // resultado.add(new Paquete(id, descripcion, peso, esFragil, esEspecial, nombreSeccion.getNombre()));
+                // resultado.add(new Paquete(id, descripcion, peso, esFragil, esEspecial, nombreSeccion.getNombre()));
             }
-                } catch (SQLException e) {
-                System.out.println("Error: " + e);
-            }
-        
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+        }
+
         return resultado;
     }
 }

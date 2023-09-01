@@ -19,6 +19,7 @@ import logica.interfaces.IEnvio;
  * @author MarmaduX
  */
 public class ControladorDireccion implements IEnvio {
+
     private static ControladorDireccion instance;
 
     public ControladorDireccion() {
@@ -38,8 +39,9 @@ public class ControladorDireccion implements IEnvio {
 
     @Override
     public ArrayList<Paquete> listarPaquetesPorSeccion(int idSeccion) {
-    
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
     public Envio verDetallesDelEnvio(int idEnvio) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }

@@ -857,7 +857,7 @@ public class CrearEnvio extends javax.swing.JFrame {
         if (checkSucursal.isSelected()) {
             Direccion sucursal = this.iEnvio.traerDireccionSucursal();
             idDireccionOrigen = sucursal.getIdDireccion();
-           
+
         } else {
 //------CREACION DE LA DIRECCION ORIGEN-----------------------------------------------------------------------------------------------------
             idDireccionOrigen = this.iEnvio.crearDireccion(campoCalleDireccionO.getText(), campoCalle2DireccionO.getText(),
@@ -890,9 +890,9 @@ public class CrearEnvio extends javax.swing.JFrame {
 //---CONEXION ENVIO Y ESTADO-------------------------------------------------------------------------------------
 
         this.iEnvio.crearEstado(idEnvio, "Preparando", "Creacion del envio");
-        
-       JOptionPane.showMessageDialog(null, "El envio fue ingresado con éxito", "Success", JOptionPane.DEFAULT_OPTION);
-       
+
+        JOptionPane.showMessageDialog(null, "El envio fue ingresado con éxito", "Success", JOptionPane.DEFAULT_OPTION);
+
 
     }//GEN-LAST:event_botonCrearEnvioActionPerformed
 
@@ -1157,6 +1157,8 @@ public class CrearEnvio extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(CrearEnvio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

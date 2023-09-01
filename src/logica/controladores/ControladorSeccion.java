@@ -20,7 +20,7 @@ public class ControladorSeccion implements IProximidad {
     private ServicioSeccion servicioSeccion;
 
     public ControladorSeccion() {
-        this.ServicioSeccion = new ServicioSeccion();
+        this.servicioSeccion = new ServicioSeccion();
     }
 
     public static ControladorSeccion getInstancia() {
@@ -31,7 +31,7 @@ public class ControladorSeccion implements IProximidad {
     }
 
     public Seccion buscarUnaSeccion(int idSeccion) {
-        ArrayList<Seccion> Secciones = this.ServicioSeccion.obtenerLasSecciones();
+        ArrayList<Seccion> Secciones = this.servicioSeccion.obtenerLasSecciones();
         Seccion resultado = null;
         for (Seccion seccion : Secciones) {
             if (idSeccion == seccion.getIdSeccion()) {
@@ -42,15 +42,15 @@ public class ControladorSeccion implements IProximidad {
     }
 
     public boolean eliminarSeccion(int id) {
-        return this.servicio.eliminarUnaSeccion(id);
+        return this.servicioSeccion.eliminarUnaSeccion(id);
     }
-  
+
     public void agregarUnaSeccion(String nombre, String localidad) {
-        this.ServicioSeccion.agregarUnaSeccion(nombre, localidad);
+        this.servicioSeccion.agregarUnaSeccion(nombre, localidad);
     }
 
     public ArrayList<Seccion> obtenerLasSecciones() {
-        return this.ServicioSeccion.obtenerListaSeccion();
+        return this.servicioSeccion.obtenerListaSeccion();
     }
 
     @Override
@@ -69,12 +69,11 @@ public class ControladorSeccion implements IProximidad {
     }
 
     public Seccion traerSeccionSeleccionada(int id) {
-        return this.servicio.traerSeccion(id);
+        return this.servicioSeccion.traerSeccion(id);
     }
 
-
     public boolean editarSeccionSeleccionada(int idSeccion, String nombre, int idLocalidad) {
-        return this.servicio.editarSeccion(idSeccion, nombre, idLocalidad);
+        return this.servicioSeccion.editarSeccion(idSeccion, nombre, idLocalidad);
     }
 
 }

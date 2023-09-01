@@ -19,6 +19,7 @@ import logica.interfaces.IEnvio;
  * @author MarmaduX
  */
 public class ControladorEstado implements IEnvio {
+
     private static ControladorEstado instance;
 
     public ControladorEstado() {
@@ -30,7 +31,6 @@ public class ControladorEstado implements IEnvio {
         }
         return instance;
     }
-
 
     @Override
     public int crearDireccion(String calle, String calle2, int puerta, String apartamento) {
@@ -109,19 +109,21 @@ public class ControladorEstado implements IEnvio {
 
     @Override
     public ArrayList<Paquete> listarPaquetesPorSeccion(int idSeccion) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-  
+
     public Envio verDetallesDelEnvio(int idEnvio) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void moverPaqueteASeccion(int idPaquete, int idSeccionAMover) {
-      throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
     @Override
     public int crearPaquete(String desc, float peso, int fragil, int tipo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

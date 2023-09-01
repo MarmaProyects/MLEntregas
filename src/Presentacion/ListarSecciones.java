@@ -221,14 +221,14 @@ public class ListarSecciones extends javax.swing.JFrame {
     }
 
     private void cargarListaSecciones() {
-        ArrayList<Seccion> listaDeSecciones = this.fb.getControladorSeccion().obtenerSecciones();
-        ArrayList<Localidad> listaDeLocalidades = this.fb.getControladorLocalidad().obtenerLocalidades();
+        ArrayList<Seccion> listaDeSecciones = this.fb.getControladorSeccion().obtenerLasSecciones();
+        ArrayList<Localidad> listaDeLocalidades = this.fb.getControladorLocalidad().obtenerLasLocalidades();
         String localidad = "";
         DefaultTableModel modelo = (DefaultTableModel) this.tablaSecciones.getModel();
         for (Seccion sec : listaDeSecciones) {
             for (Localidad loc : listaDeLocalidades) {
                 if (sec.getIdLocalidad() == loc.getIdLocalidad()) {
-                    localidad = loc.getZona();
+                    localidad = loc.getNombre();
                 }
             }
             Object[] row = {sec.getIdSeccion(), sec.getNombre(), sec.getCantidad(), localidad};

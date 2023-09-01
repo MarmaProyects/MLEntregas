@@ -35,9 +35,9 @@ public class EditarSeccion extends javax.swing.JFrame {
         this.id = id;
         if (id != -1) {
             this.seccion = this.fb.getControladorSeccion().traerSeccionSeleccionada(id);
-            this.localidades = this.fb.getControladorLocalidad().obtenerLocalidades();
+            this.localidades = this.fb.getControladorLocalidad().obtenerLasLocalidades();
             for (Localidad loc : localidades) {
-                this.localidadComboBox.addItem(loc.getZona());
+                this.localidadComboBox.addItem(loc.getNombre());
             }
             this.nombreField.setText(seccion.getNombre());
             this.localidadComboBox.setSelectedIndex(seccion.getIdLocalidad() - 1);
@@ -45,14 +45,14 @@ public class EditarSeccion extends javax.swing.JFrame {
         } else {
             this.editButton.setVisible(false);
         }
-        this.secciones = this.fb.getControladorSeccion().obtenerSecciones();
-        ArrayList<Localidad> localidades = this.fb.getControladorLocalidad().obtenerLocalidades();
+        this.secciones = this.fb.getControladorSeccion().obtenerLasSecciones();
+        ArrayList<Localidad> localidades = this.fb.getControladorLocalidad().obtenerLasLocalidades();
         this.comboBoxSecciones.addItem(" ");
         for (Seccion sec : secciones) {
             if (sec.getIdLocalidad() != -1) {
                 for (Localidad loc : localidades) {
                     if (sec.getIdLocalidad() == loc.getIdLocalidad()) {
-                        this.comboBoxSecciones.addItem(sec.getNombre() + " - " + loc.getZona());
+                        this.comboBoxSecciones.addItem(sec.getNombre() + " - " + loc.getNombre());
                         break;
                     }
                 }
@@ -255,7 +255,7 @@ public class EditarSeccion extends javax.swing.JFrame {
         // TODO add your handling code here:
         int idLocalidad = 0;
         for (Localidad loc : localidades) {
-            if (loc.getZona().equals(localidadComboBox.getSelectedItem().toString())) {
+            if (loc.getNombre().equals(localidadComboBox.getSelectedItem().toString())) {
                 idLocalidad = loc.getIdLocalidad();
                 break;
             }
@@ -305,7 +305,7 @@ public class EditarSeccion extends javax.swing.JFrame {
     private void nombreFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreFieldKeyTyped
         // TODO add your handling code here:
         int key = evt.getKeyChar();
-        
+
         if (key == '-') {
             evt.consume();
         }
