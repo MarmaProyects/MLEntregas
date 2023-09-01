@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 import logica.fabrica.Fabrica;
 import logica.interfaces.IAdministracion;
 
+
+
 /**
  *
  * @author leo
@@ -49,7 +51,7 @@ public class CrearCliente extends javax.swing.JFrame {
         TextFieldNombre1 = new javax.swing.JTextField();
         TextFieldApellido = new javax.swing.JTextField();
         TextFieldTelefono = new javax.swing.JTextField();
-        BotonConfirmar1 = new javax.swing.JButton();
+        BotonConfirmar = new javax.swing.JButton();
         BotonVolver = new javax.swing.JButton();
         TituloCrearUsuario1 = new javax.swing.JLabel();
 
@@ -142,10 +144,10 @@ public class CrearCliente extends javax.swing.JFrame {
             }
         });
 
-        BotonConfirmar1.setText("Confirmar");
-        BotonConfirmar1.addActionListener(new java.awt.event.ActionListener() {
+        BotonConfirmar.setText("Confirmar");
+        BotonConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonConfirmar1ActionPerformed(evt);
+                BotonConfirmarActionPerformed(evt);
             }
         });
 
@@ -185,7 +187,7 @@ public class CrearCliente extends javax.swing.JFrame {
                         .addComponent(BotonVolver))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(134, 134, 134)
-                        .addComponent(BotonConfirmar1)))
+                        .addComponent(BotonConfirmar)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -204,7 +206,7 @@ public class CrearCliente extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(TextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(BotonConfirmar1)
+                .addComponent(BotonConfirmar)
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -300,7 +302,7 @@ public class CrearCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonVolverActionPerformed
 
-    private void BotonConfirmar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonConfirmar1ActionPerformed
+    private void BotonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonConfirmarActionPerformed
        String verificaCedula = this.TextFieldCedula.getText().trim();
        String nombre = this.TextFieldNombre1.getText().trim();
        String apellido = this.TextFieldApellido.getText().trim();
@@ -318,7 +320,7 @@ public class CrearCliente extends javax.swing.JFrame {
        else {
            llamarAlertaClienteExistente();
        }
-    }//GEN-LAST:event_BotonConfirmar1ActionPerformed
+    }//GEN-LAST:event_BotonConfirmarActionPerformed
 
     private void TextFieldCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextFieldCedulaKeyTyped
         int key = evt.getKeyChar();
@@ -339,7 +341,7 @@ public class CrearCliente extends javax.swing.JFrame {
             evt.consume();
         }
 
-        if (TextFieldTelefono.getText().trim().length() == 15) {
+        if (TextFieldTelefono.getText().trim().length() == 9) {
             evt.consume();
         }
     }//GEN-LAST:event_TextFieldTelefonoKeyTyped
@@ -380,7 +382,7 @@ public class CrearCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonConfirmar1;
+    private javax.swing.JButton BotonConfirmar;
     private javax.swing.JButton BotonVolver;
     private javax.swing.JTextField TextFieldApellido;
     private javax.swing.JTextField TextFieldCedula;

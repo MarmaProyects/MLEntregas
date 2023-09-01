@@ -13,4 +13,5 @@ import logica.clases.Envio;
  */
 public interface IEnvio {
     public abstract ArrayList<Envio> listaDeEnvios() ;
+    public abstract Envio verDetallesDelEnvio(int idEnvio);
 }

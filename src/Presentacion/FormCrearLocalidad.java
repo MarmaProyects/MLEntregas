@@ -4,16 +4,17 @@
  */
 package Presentacion;
 
+import javax.swing.JOptionPane;
 import logica.fabrica.Fabrica;
 import logica.interfaces.IProximidad;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author leo
  */
 public class FormCrearLocalidad extends javax.swing.JFrame {
-    private IProximidad IP; 
+
+    private IProximidad IP;
 
     /**
      * Creates new form FormCrearLocalidad
@@ -22,16 +23,16 @@ public class FormCrearLocalidad extends javax.swing.JFrame {
         this.IP = Fabrica.getInstancia().getControladorLocalidad();
         initComponents();
     }
-    
-    public void llamarAlertaLocalidadExistente(){
+
+    public void llamarAlertaLocalidadExistente() {
         JOptionPane.showMessageDialog(null, "Ya existe una localidad en el sistema con los mismos datos", "Error", JOptionPane.ERROR_MESSAGE);
     }
-    
-    public void llamarAlertaDatosFaltantes(){
+
+    public void llamarAlertaDatosFaltantes() {
         JOptionPane.showMessageDialog(null, "El nombre o el código postal no han sido ingresados", "Error", JOptionPane.ERROR_MESSAGE);
     }
-    
-    public void llamarAlertaLocalidadCreada(){
+
+    public void llamarAlertaLocalidadCreada() {
         JOptionPane.showMessageDialog(null, "Localidad creada exitosamente", "Creación exitosa", JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -50,7 +51,7 @@ public class FormCrearLocalidad extends javax.swing.JFrame {
         botonConfirmar = new javax.swing.JButton();
         TextFieldNombreLocalidad = new javax.swing.JTextField();
         TextFieldCodigoPostal = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        BotonVolver = new javax.swing.JButton();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -120,10 +121,10 @@ public class FormCrearLocalidad extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Volver");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BotonVolver.setText("Volver");
+        BotonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BotonVolverActionPerformed(evt);
             }
         });
 
@@ -138,7 +139,7 @@ public class FormCrearLocalidad extends javax.swing.JFrame {
                         .addComponent(botonConfirmar))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1))
+                        .addComponent(BotonVolver))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,7 +151,7 @@ public class FormCrearLocalidad extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addComponent(BotonVolver)
                 .addGap(26, 26, 26)
                 .addComponent(TextFieldNombreLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -164,27 +165,27 @@ public class FormCrearLocalidad extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TextFieldNombreLocalidadFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldNombreLocalidadFocusGained
-        if(TextFieldNombreLocalidad.getText().trim().equals("Nombre")){
+        if (TextFieldNombreLocalidad.getText().trim().equals("Nombre")) {
             TextFieldNombreLocalidad.setText(null);
             TextFieldNombreLocalidad.requestFocus();
         }
     }//GEN-LAST:event_TextFieldNombreLocalidadFocusGained
 
     private void TextFieldCodigoPostalFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldCodigoPostalFocusGained
-        if(TextFieldCodigoPostal.getText().trim().equals("Código postal")){
+        if (TextFieldCodigoPostal.getText().trim().equals("Código postal")) {
             TextFieldCodigoPostal.setText(null);
             TextFieldCodigoPostal.requestFocus();
         }
     }//GEN-LAST:event_TextFieldCodigoPostalFocusGained
 
     private void TextFieldNombreLocalidadFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldNombreLocalidadFocusLost
-        if(TextFieldNombreLocalidad.getText().trim().length()==0) {
+        if (TextFieldNombreLocalidad.getText().trim().length() == 0) {
             TextFieldNombreLocalidad.setText("Nombre");
         }
     }//GEN-LAST:event_TextFieldNombreLocalidadFocusLost
 
     private void TextFieldCodigoPostalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldCodigoPostalFocusLost
-        if(TextFieldCodigoPostal.getText().trim().length()==0) {
+        if (TextFieldCodigoPostal.getText().trim().length() == 0) {
             TextFieldCodigoPostal.setText("Código postal");
         }
     }//GEN-LAST:event_TextFieldCodigoPostalFocusLost
@@ -193,12 +194,12 @@ public class FormCrearLocalidad extends javax.swing.JFrame {
         this.requestFocusInWindow();
     }//GEN-LAST:event_formWindowGainedFocus
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BotonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonVolverActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BotonVolverActionPerformed
 
     private void TextFieldNombreLocalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldNombreLocalidadActionPerformed
-        
+
     }//GEN-LAST:event_TextFieldNombreLocalidadActionPerformed
 
     private void botonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConfirmarActionPerformed
@@ -209,11 +210,10 @@ public class FormCrearLocalidad extends javax.swing.JFrame {
             return;
         }
         int codigoPostal = Integer.parseInt(this.TextFieldCodigoPostal.getText().trim());
-        if (this.IP.verificarExisteLocalidadNueva(nombre, codigoPostal) != true){
+        if (this.IP.verificarExisteLocalidadNueva(nombre, codigoPostal) != true) {
             this.insertarNuevaLocalidad(nombre, codigoPostal);
             llamarAlertaLocalidadCreada();
-        }
-        else {
+        } else {
             llamarAlertaLocalidadExistente();
         }
     }//GEN-LAST:event_botonConfirmarActionPerformed
@@ -234,7 +234,7 @@ public class FormCrearLocalidad extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
+
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -262,22 +262,21 @@ public class FormCrearLocalidad extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FormCrearLocalidad().setVisible(true);
-                
+
             }
         });
-        
-        
+
     }
-    
-    private void insertarNuevaLocalidad(String nombre, int codigoPostal){
-            this.IP.agregarLocalidad(nombre, codigoPostal);
-        }
+
+    private void insertarNuevaLocalidad(String nombre, int codigoPostal) {
+        this.IP.agregarLocalidad(nombre, codigoPostal);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonVolver;
     private javax.swing.JTextField TextFieldCodigoPostal;
     private javax.swing.JTextField TextFieldNombreLocalidad;
     private javax.swing.JButton botonConfirmar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JOptionPane jOptionPane1;

@@ -27,8 +27,12 @@ public class ControladorEnvio implements IEnvio {
         }
         return instance;
     }
+    
+    public Envio verDetallesDelEnvio(int idEnvio){
+        Envio envio = this.servicioEnvio.obtenerDetallesEnvio(idEnvio);
+        return envio;
+    }
 
-    @Override
     public ArrayList<Envio> listaDeEnvios() {
         return this.servicioEnvio.listarEnvios();
     }

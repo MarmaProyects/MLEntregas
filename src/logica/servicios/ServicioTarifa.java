@@ -21,7 +21,7 @@ public class ServicioTarifa {
 
     private Connection conexion = new Conexion().getConexion();
 
-    public void crearTarifa(String nombre, float precioBase) {
+    public void crearLaTarifa(String nombre, float precioBase) {
         try {
             PreparedStatement query = conexion.prepareStatement("INSERT INTO `tarifa` (`nombre`, `precioBase`) VALUES ('" + nombre + "','" + precioBase + "');");
             query.executeUpdate();
@@ -70,8 +70,8 @@ public class ServicioTarifa {
             return false;
         }
     }
-
-    public ArrayList<Tarifa> listarTarifas() {
+  
+    public ArrayList<Tarifa> listarLasTarifas() {
         String nombre;
         float precioBase;
         int id;

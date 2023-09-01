@@ -5,6 +5,7 @@
 package Presentacion;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import logica.clases.Envio;
 import logica.fabrica.Fabrica;
@@ -15,7 +16,9 @@ import logica.interfaces.IEnvio;
  * @author MarmaduX
  */
 public class ListaEnvios extends javax.swing.JFrame {
+
     private IEnvio IE;
+
     /**
      * Creates new form ListaEnvios
      */
@@ -23,6 +26,10 @@ public class ListaEnvios extends javax.swing.JFrame {
         initComponents();
         this.IE = Fabrica.getInstancia().getControladorEnvio();
         this.cargarTodasLosEnvios();
+    }
+    
+    public void llamarAlertaNoSeleccionado(){
+        JOptionPane.showMessageDialog(null, "No se ha seleccionado ningún paquete", "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     /**
@@ -37,6 +44,7 @@ public class ListaEnvios extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableEnvio = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        VerDetallesEnvio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,6 +69,13 @@ public class ListaEnvios extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Listado de envios");
 
+        VerDetallesEnvio.setText("Ver detalles");
+        VerDetallesEnvio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VerDetallesEnvioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,6 +89,10 @@ public class ListaEnvios extends javax.swing.JFrame {
                         .addGap(65, 65, 65)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(47, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(VerDetallesEnvio)
+                .addGap(362, 362, 362))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,11 +101,25 @@ public class ListaEnvios extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(42, 42, 42)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(VerDetallesEnvio)
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void VerDetallesEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerDetallesEnvioActionPerformed
+        int row = this.tableEnvio.getSelectedRow();
+        if (row != -1) {
+            int id = Integer.parseInt(this.tableEnvio.getValueAt(row, 0).toString());
+            VerDetallesEnvio accedeDetalles = new VerDetallesEnvio(id);
+            accedeDetalles.setVisible(true);
+        }
+        else {
+            llamarAlertaNoSeleccionado();
+        }
+    }//GEN-LAST:event_VerDetallesEnvioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,21 +155,23 @@ public class ListaEnvios extends javax.swing.JFrame {
             }
         });
     }
-    
-    private void cargarTodasLosEnvios(){
+
+    private void cargarTodasLosEnvios() {
         ArrayList<Envio> listaDeEnvios = this.IE.listaDeEnvios();
         String estado;
         String fecha;
         DefaultTableModel modelo = (DefaultTableModel) this.tableEnvio.getModel();
-        for(Envio envio : listaDeEnvios) {
-            estado = envio.getEstados().get(envio.getEstados().size()-1).getTipo().getEstado();
+        for (Envio envio : listaDeEnvios) {
+            estado = envio.getEstados().get(envio.getEstados().size() - 1).getTipo().getEstado();
             fecha = envio.getEstados().get(0).getFecha().toString();
-            Object[] row = {envio.getIdEnvio(), envio.getClienteEmisor().getNombre() + " " + envio.getClienteEmisor().getApellido(), estado, envio.getPaquete().getDescripcion(), fecha };
+            Object[] row = {envio.getIdEnvio(), envio.getClienteEmisor().getNombre() + " " + envio.getClienteEmisor().getApellido(), estado, envio.getPaquete().getDescripcion(), fecha};
             modelo.addRow(row);
+
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton VerDetallesEnvio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableEnvio;

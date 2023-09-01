@@ -29,7 +29,7 @@ public class servicioLocalidad {
         }
     }
     
-    public ArrayList<Localidad> obtenerLocalidades(){
+    public ArrayList<Localidad> obtenerLasLocalidades(){
          ArrayList<Localidad> resultado = new ArrayList<Localidad>();
         try {
                 
