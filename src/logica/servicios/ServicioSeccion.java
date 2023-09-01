@@ -32,7 +32,7 @@ public class ServicioSeccion {
             while (resultadoDeLaQuery.next()) {
                 String nombre = resultadoDeLaQuery.getString("nombre");
                 int cantidad = Integer.parseInt(resultadoDeLaQuery.getString("cantidad"));
-                resultado.add(new Seccion(nombre, cantidad, 0));
+                resultado.add(new Seccion(nombre, cantidad, 0, null));
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e);
@@ -79,7 +79,7 @@ public class ServicioSeccion {
                 int idLocalidad = resultadoDeLaQuery.getInt("idLocalidad");
                 String nombre = resultadoDeLaQuery.getString("nombre");
                 int cantidad = resultadoDeLaQuery.getInt("cantidad");
-                resultado.add(new Seccion(nombre, cantidad, id));
+                resultado.add(new Seccion(nombre, cantidad, id, null));
             }
                 } catch (SQLException e) {
                 System.out.println("Error: " + e);

@@ -5,21 +5,22 @@
 package logica.servicios;
 
 import BaseDeDatos.Conexion;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Logger;
-import logica.clases.Cliente;
-import logica.clases.Direccion;
 import logica.clases.Envio;
 import logica.clases.Estado;
+import logica.clases.Cliente;
+import logica.clases.Direccion;
 import logica.clases.Localidad;
 import logica.clases.Paquete;
 import logica.clases.Seccion;
 import logica.clases.Tarifa;
 import logica.dataTypes.TipoEstado;
+import java.util.logging.Logger;
 
 /**
  *
@@ -134,7 +135,9 @@ public class ServicioEnvio {
     public int crearPaquete(String desc, float peso, int fragil, int tipo) {
         int idGenerado = 0;
         try {
-            PreparedStatement queryGuardarPaquete = conexion.prepareStatement("INSERT INTO paquete (descripcion, peso, esFragil, esEspecial) VALUES (?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            PreparedStatement queryGuardarPaquete = conexion.prepareStatement(""
+                    + "INSERT INTO paquete (descripcion, peso, esFragil, esEspecial) "
+                    + "VALUES (?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
             queryGuardarPaquete.setString(1, desc);
             queryGuardarPaquete.setFloat(2, peso);
             queryGuardarPaquete.setInt(3, fragil);
@@ -193,6 +196,7 @@ public class ServicioEnvio {
         return listaLocalidades;
     }
 
+
     public ArrayList<Seccion> listarSecciones() {
 
         ArrayList<Seccion> listaSecciones = new ArrayList<Seccion>();
@@ -206,7 +210,7 @@ public class ServicioEnvio {
                 String nombre = listaS.getString("nombre");
                 int cant = listaS.getInt("cantidad");
 
-                listaSecciones.add(new Seccion(nombre, cant, id));
+                listaSecciones.add(new Seccion(nombre, cant, id, null));
             }
         } catch (Exception e) {
             Logger.getLogger("Error en obtener las secciones" + e);
@@ -215,6 +219,7 @@ public class ServicioEnvio {
     }
 
     public void conexionSeccion_Paquete(int idPaquete, int idSeccion) {
+
         try {
             PreparedStatement queryconexionS_P = conexion.prepareStatement("INSERT INTO seccion_paquete (idSeccion, idPaquete) VALUES (?,?)");
             queryconexionS_P.setInt(1, idSeccion);
@@ -225,8 +230,9 @@ public class ServicioEnvio {
         }
     }
 
-    public ArrayList<Cliente> listarClientesEmisor() {
 
+
+    public ArrayList<Cliente> listarClientes() {
         ArrayList listaCE = new ArrayList();
 
         try {
@@ -241,9 +247,172 @@ public class ServicioEnvio {
                 listaCE.add(new Cliente(cedula, nombre, apellido, telefono));
             }
         } catch (Exception e) {
-            System.out.println("Error en la consulta de obtener los clientes" + e);
+
+            Logger.getLogger("Error en obtener los clientes" + e);
         }
 
         return listaCE;
     }
+
+    public Cliente traerCliente(int cedula) {
+
+        Cliente cliente = null;
+        try {
+            PreparedStatement queryTraerCliente = conexion.prepareStatement("SELECT * FROM cliente WHERE cedula = " + cedula + ";");
+            ResultSet clienteSeleccionado = queryTraerCliente.executeQuery();
+            while (clienteSeleccionado.next()) {
+                cliente = new Cliente(clienteSeleccionado.getInt("cedula"),
+                        clienteSeleccionado.getString("nombre"),
+                        clienteSeleccionado.getString("apellido"),
+                        clienteSeleccionado.getString("telefono"));
+
+            }
+
+        } catch (Exception e) {
+
+            Logger.getLogger("Error en obtener el cliente" + e);
+
+        }
+        return cliente;
+    }
+
+    public Direccion traerDireccionSucursal() {
+
+        Direccion dire = null;
+
+        try {
+            PreparedStatement queryTraerDireccionS = conexion.prepareStatement("SELECT * FROM direccion WHERE calle= 'Solano Garcia' AND nroPuerta= 1465 ;");
+            ResultSet dirSucursal = queryTraerDireccionS.executeQuery();
+            while (dirSucursal.next()) {
+                dire = new Direccion(dirSucursal.getString("calle"),
+                        dirSucursal.getString("calle2"),
+                        "", dirSucursal.getInt("nroPuerta"),
+                        1, "", 60000);
+            }
+        } catch (Exception e) {
+
+            Logger.getLogger("Error en obtener la direccion de sucursal" + e);
+        }
+        return dire;
+    }
+
+    public ArrayList<Tarifa> obtenerTarifasEspeciales() {
+
+        ArrayList listaTEspeciales = new ArrayList();
+
+        try {
+            PreparedStatement queryListarTarifasEsp = conexion.prepareStatement("SELECT * FROM tarifa WHERE id > 3;");
+            ResultSet listaTarifasEsp = queryListarTarifasEsp.executeQuery();
+            while (listaTarifasEsp.next()) {
+                int id = listaTarifasEsp.getInt("id");
+                float precio = listaTarifasEsp.getFloat("precioBase");
+                String nombre = listaTarifasEsp.getString("nombre");
+                listaTEspeciales.add(new Tarifa(precio, nombre, id));
+            }
+        } catch (Exception e) {
+
+            Logger.getLogger("Error en obtener las tarifas" + e);
+        }
+        return listaTEspeciales;
+    }
+
+    public Localidad traerIdLocalidadSucursal() {
+        Localidad locali = null;
+        try {
+            PreparedStatement queryTraerLocalidadS = conexion.prepareStatement("SELECT * FROM localidad WHERE nombre= 'Barrio Este';");
+            ResultSet localiSucursal = queryTraerLocalidadS.executeQuery();
+            while (localiSucursal.next()) {
+                locali = new Localidad(localiSucursal.getString("nombre"),
+                        localiSucursal.getInt("codigoPostal"),
+                        localiSucursal.getInt("id"));
+            }
+        } catch (Exception e) {
+
+            Logger.getLogger("Error en obtener el id de sucursal" + e);
+        }
+        return locali;
+    }
+
+    public void conexionLocalidad_Direccion(int idLocalidad, int idDireccion) {
+
+        try {
+            PreparedStatement queryconexionL_D = conexion.prepareStatement("INSERT INTO localidad_direccion (idLocalidad, idDireccion) VALUES (?,?)");
+            queryconexionL_D.setInt(1, idLocalidad);
+            queryconexionL_D.setInt(2, idDireccion);
+            queryconexionL_D.executeUpdate();
+        } catch (Exception e) {
+
+            Logger.getLogger("Error en registrar la conexion LOCALIDAD y DIRECCION" + e);
+        }
+    }
+
+    public int crearEnvio(int idPaquete, int idTarifa, int idDireOrigen, int idDireDestino, int idPago) {
+        int idEnvio = 0;
+        try {
+            PreparedStatement queryCrearEnvio = conexion.prepareStatement(""
+                    + "INSERT INTO envio (idPaquete, idTarifa, idDireccionOrigen,"
+                    + " idDireccionDestino) VALUES (?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            queryCrearEnvio.setInt(1, idPaquete);
+            queryCrearEnvio.setInt(2, idTarifa);
+            queryCrearEnvio.setInt(3, idDireOrigen);
+            queryCrearEnvio.setInt(4, idDireDestino);
+            queryCrearEnvio.executeUpdate();
+            // OBTENGO EL ID GENERADO 
+            ResultSet idE = queryCrearEnvio.getGeneratedKeys();
+            if (idE.next()) {
+                idEnvio = idE.getInt(1);
+            }
+            
+        } catch (Exception e) {
+
+            Logger.getLogger("Error en registrar el Envio" + e);
+        }
+        return idEnvio;
+    }
+
+    public int crearEstado(int idEnvio, String tipo, String comentario) {
+        int idEstado = 0;
+        try {
+            PreparedStatement queryCrearEstado = conexion.prepareStatement(" INSERT INTO estado (tipo, comentario) VALUES (?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            queryCrearEstado.setString(1, tipo);
+            queryCrearEstado.setString(2, comentario);
+            queryCrearEstado.executeUpdate();
+            ResultSet resultadoEstado = queryCrearEstado.getGeneratedKeys();
+            if (resultadoEstado.next()) {
+                idEstado = resultadoEstado.getInt(1);
+            }
+        } catch (Exception e) {
+            Logger.getLogger("Error en registrar el estado" + e);
+        }
+        this.conexionEnvio_Estado(idEnvio, idEstado);
+        return idEstado;
+    }
+
+    public void conexionEnvio_Cliente(int idEnvio, int cedulaCliente, String tipoEntrega) {
+        try {
+            PreparedStatement queryconexionE_C = conexion.prepareStatement("INSERT INTO envio_cliente (idEnvio, cedulaCliente, tipoEntrega) VALUES (?,?,?)");
+            queryconexionE_C.setInt(1, idEnvio);
+            queryconexionE_C.setInt(2, cedulaCliente);
+            queryconexionE_C.setString(3, tipoEntrega);
+            queryconexionE_C.executeUpdate();
+        } catch (Exception e) {
+
+            Logger.getLogger("Error en registrar la conexion ENVIO y CLIENTE" + e);
+        }
+
+    }
+
+    public void conexionEnvio_Estado(int idEnvio, int idEstado) {
+        try {
+            PreparedStatement queryconexionE_E = conexion.prepareStatement("INSERT INTO envio_estado (idEnvio, idEstado) VALUES (?,?)");
+            queryconexionE_E.setInt(1, idEnvio);
+            queryconexionE_E.setInt(2, idEstado);
+            queryconexionE_E.executeUpdate();
+        } catch (Exception e) {
+
+            Logger.getLogger("Error en registrar la conexion ENVIO y ESTADO" + e);
+        }
+
+    }
+    
 }

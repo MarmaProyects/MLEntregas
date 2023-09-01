@@ -14,12 +14,14 @@ public class Seccion {
     private int cantidad, idSeccion;
     private List <Paquete> listaPaquetes;
 
-    public Seccion(String nombre, int cantidad, int idSeccion) {
+    public Seccion(String nombre, int cantidad, int idSeccion, List<Paquete> listaPaquetes) {
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.idSeccion = idSeccion;
+        this.listaPaquetes = listaPaquetes;
     }
 
+    
     public String getNombre() {
         return nombre;
     }
@@ -43,6 +45,16 @@ public class Seccion {
     public void setIdSeccion(int idSeccion) {
         this.idSeccion = idSeccion;
     }
+
+    public List<Paquete> getListaPaquetes() {
+        return listaPaquetes;
+    }
+
+    public void setListaPaquetes(List<Paquete> listaPaquetes) {
+        this.listaPaquetes = listaPaquetes;
+    }
+
+    
     
     public void añadirPaquete(Paquete paquete){
         listaPaquetes.add(paquete);

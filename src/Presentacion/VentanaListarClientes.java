@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 import logica.clases.Cliente;
 import logica.fabrica.Fabrica;
 import logica.interfaces.IEnvio;
-import Presentacion.crearEnvio;
+import Presentacion.CrearEnvio;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 
@@ -45,7 +45,7 @@ public class VentanaListarClientes extends javax.swing.JFrame {
         botonSeleccionar = new javax.swing.JButton();
         botonVolverClienteE = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("LISTA DE CLIENTES:");
 
@@ -121,9 +121,9 @@ public class VentanaListarClientes extends javax.swing.JFrame {
         if (tablaClientesE.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(null, "No ha seleccionado ningun cliente", "ERROR AL SELECCIONAR CLIENTE EMISOR", JOptionPane.WARNING_MESSAGE);
         } else {
-                crearEnvio.campoCedulaE.setText(tablaClientesE.getValueAt(tablaClientesE.getSelectedRow(), 0).toString());
-                crearEnvio.campoNombreE.setText(tablaClientesE.getValueAt(tablaClientesE.getSelectedRow(), 1).toString());
-                crearEnvio.campoApellidoE.setText(tablaClientesE.getValueAt(tablaClientesE.getSelectedRow(), 2).toString());
+                CrearEnvio.campoCedulaE.setText(tablaClientesE.getValueAt(tablaClientesE.getSelectedRow(), 0).toString());
+                CrearEnvio.campoNombreE.setText(tablaClientesE.getValueAt(tablaClientesE.getSelectedRow(), 1).toString());
+                CrearEnvio.campoApellidoE.setText(tablaClientesE.getValueAt(tablaClientesE.getSelectedRow(), 2).toString());
                 this.setVisible(false);
         }
         
@@ -172,7 +172,7 @@ public class VentanaListarClientes extends javax.swing.JFrame {
     //LISTAR OBJETOS DE TIPO CLIENTE
     private void cargarTablaClientesE() {
 
-        ArrayList<Cliente> listaClientesE = this.iEnvio.listarClientesEmisor();
+        ArrayList<Cliente> listaClientesE = this.iEnvio.listarClientes();
 
         DefaultTableModel modeloTablaClienteE = (DefaultTableModel) this.tablaClientesE.getModel();
         for (Cliente clienteE : listaClientesE) {

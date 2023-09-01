@@ -31,7 +31,7 @@ public class ServicioCliente {
     public ArrayList<Cliente> obtenerCliente(){
          ArrayList<Cliente> resultado = new ArrayList<Cliente>();
         try {
-                
+             
             PreparedStatement query = conexion.prepareStatement("SELECT * FROM Cliente");
             ResultSet resultadoDeLaQuery = query.executeQuery();
             while(resultadoDeLaQuery.next()) {

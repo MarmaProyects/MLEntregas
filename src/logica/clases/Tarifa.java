@@ -18,6 +18,7 @@ public class Tarifa {
         this.nombre = nombre;
         this.idTarifa = idTarifa;
     }
+    
 
     public float getPrecio() {
         return precio;
