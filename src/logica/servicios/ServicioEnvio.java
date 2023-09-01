@@ -233,7 +233,7 @@ public class ServicioEnvio {
 
 
     public ArrayList<Cliente> listarClientes() {
-        ArrayList listaCE = new ArrayList();
+        ArrayList<Cliente> listaCE = new ArrayList<Cliente>();
 
         try {
             PreparedStatement queryListarClientesE = conexion.prepareStatement("SELECT * FROM cliente");
@@ -298,7 +298,7 @@ public class ServicioEnvio {
 
     public ArrayList<Tarifa> obtenerTarifasEspeciales() {
 
-        ArrayList listaTEspeciales = new ArrayList();
+        ArrayList<Tarifa> listaTEspeciales = new ArrayList<Tarifa>();
 
         try {
             PreparedStatement queryListarTarifasEsp = conexion.prepareStatement("SELECT * FROM tarifa WHERE id > 3;");
