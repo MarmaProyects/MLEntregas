@@ -107,7 +107,7 @@
                               <EmptySpace pref="59" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jButton1" linkSize="5" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="jButton2" linkSize="5" alignment="0" min="-2" pref="202" max="-2" attributes="0"/>
+                                  <Component id="verEnvioButton" linkSize="5" alignment="0" min="-2" pref="202" max="-2" attributes="0"/>
                                   <Component id="jButton3" linkSize="5" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -133,7 +133,7 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jButton1" linkSize="6" min="-2" pref="70" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jButton2" linkSize="6" min="-2" pref="70" max="-2" attributes="0"/>
+                      <Component id="verEnvioButton" linkSize="6" min="-2" pref="70" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jButton3" linkSize="6" min="-2" pref="70" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -157,17 +157,17 @@
                 <Property name="text" type="java.lang.String" value="CREAR ENV&#xcd;O"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="verEnvioButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="VER ENV&#xcd;OS"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="verEnvioButtonActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="VER PAQUETRES EN SECCIONES"/>
+                <Property name="text" type="java.lang.String" value="VER PAQUETES EN SECCIONES"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jButton10">
@@ -195,7 +195,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace pref="59" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jButton11" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Component id="crearClienteButton" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                                   <Component id="jButton12" alignment="0" min="-2" pref="202" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -217,7 +217,7 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jButton11" min="-2" pref="70" max="-2" attributes="0"/>
+                      <Component id="crearClienteButton" min="-2" pref="70" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jButton12" min="-2" pref="70" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -238,10 +238,13 @@
                 <Property name="text" type="java.lang.String" value="ADMINISTRAC&#xcd;ON"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton11">
+            <Component class="javax.swing.JButton" name="crearClienteButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="CREAR CLIENTE"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="crearClienteButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton12">
               <Properties>
@@ -276,36 +279,36 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace pref="59" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="buttonAux2" alignment="1" min="-2" pref="202" max="-2" attributes="0"/>
-                          <Component id="jButton21" alignment="1" min="-2" pref="202" max="-2" attributes="0"/>
+                          <Component id="crearLocalidadesButton" alignment="1" min="-2" pref="202" max="-2" attributes="0"/>
+                          <Component id="crearSeccionesButton" alignment="1" min="-2" pref="202" max="-2" attributes="0"/>
                           <Component id="buttonAux" alignment="1" min="-2" pref="202" max="-2" attributes="0"/>
                           <Component id="jButton19" alignment="1" min="-2" pref="202" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="59" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="10" max="32767" attributes="0"/>
+                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonAux" min="-2" pref="70" max="-2" attributes="0"/>
                       <EmptySpace pref="13" max="32767" attributes="0"/>
-                      <Component id="jButton21" min="-2" pref="70" max="-2" attributes="0"/>
+                      <Component id="crearSeccionesButton" min="-2" pref="70" max="-2" attributes="0"/>
                       <EmptySpace pref="13" max="32767" attributes="0"/>
                       <Component id="jButton19" min="-2" pref="70" max="-2" attributes="0"/>
                       <EmptySpace pref="15" max="32767" attributes="0"/>
-                      <Component id="buttonAux2" min="-2" pref="70" max="-2" attributes="0"/>
+                      <Component id="crearLocalidadesButton" min="-2" pref="70" max="-2" attributes="0"/>
                       <EmptySpace pref="11" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -333,17 +336,20 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAuxActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton21">
+            <Component class="javax.swing.JButton" name="crearSeccionesButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="CREAR SECCIONES"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="crearSeccionesButtonActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="buttonAux2">
+            <Component class="javax.swing.JButton" name="crearLocalidadesButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="CREAR LOCALIDADES"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAux2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="crearLocalidadesButtonActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

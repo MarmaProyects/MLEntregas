@@ -4,41 +4,57 @@
  */
 package BaseDeDatos;
 
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
+
 /**
  *
  * @author leo
  */
 public class Conexion {
-    
-    
-    
+
+    private static final String PROPERTIES_FILE = "database.properties";
     private static Conexion instancia;
     private Connection connection;
-    
+    private Properties properties;
 
     public Conexion() {
+        properties = new Properties();
+        try {
+            FileInputStream input = new FileInputStream(PROPERTIES_FILE);
+            properties.load(input);
+            input.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-    
-   //JDBC
-    
+
     public Connection getConexion() {
         if (connection == null) {
-            String host = "localhost";
-            String port = "3306";
-            String db = "mlentregas";
-            String user = "root";
-            String password = "";
             try {
-                connection = (Connection) DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + db, user, password);
+                connection = (Connection) DriverManager.getConnection(getUrl(), getUser(), getPassword());
             } catch (SQLException e) {
                 System.out.println("Error: " + e);
             }
         }
         return connection;
     }
-    
+
+    public String getUrl() {
+        return properties.getProperty("db.url");
+    }
+
+    public String getUser() {
+        return properties.getProperty("db.user");
+    }
+
+    public String getPassword() {
+        return properties.getProperty("db.password");
+    }
     
 }
