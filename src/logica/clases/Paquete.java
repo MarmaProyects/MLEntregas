@@ -80,5 +80,5 @@ public class Paquete {
     public void setNombreSeccion(String nombreSeccion) {
         this.nombreSeccion = nombreSeccion;
     }
-        
+    
 }

@@ -19,7 +19,6 @@ public class Cliente {
         this.telefono = telefono;
     }
 
-
     public int getCedula() {
         return cedula;
     }
@@ -51,5 +50,9 @@ public class Cliente {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+  
+
+   
     
 }

@@ -10,11 +10,14 @@ import logica.clases.Seccion;
 import logica.interfaces.IProximidad;
 import logica.servicios.servicioLocalidad;
 
+
+
 /**
  *
  * @author MarmaduX
  */
 public class ControladorLocalidad implements IProximidad {
+
     private static ControladorLocalidad instance;
     private servicioLocalidad servicioLocalidad;
 
@@ -29,34 +32,34 @@ public class ControladorLocalidad implements IProximidad {
         return instance;
     }
 
-    public void agregarLocalidad(String nombre, int codigoPostal) {
-            this.servicioLocalidad.insertarLocalidad(nombre, codigoPostal);
+    public void agregarUnaLocalidad(String nombre, int codigoPostal) {
+        this.servicioLocalidad.insertarLocalidad(nombre, codigoPostal);
     }
-    
-    public ArrayList<Localidad> obtenerLocalidades() {
-        return this.servicioLocalidad.obtenerLocalidades();
+
+    public ArrayList<Localidad> obtenerLasLocalidades() {
+        return this.servicioLocalidad.obtenerLasLocalidades();
     }
-    
-    public Boolean verificarExisteLocalidadNueva(String nombre, int codigoPostal){
+
+    public Boolean verificarSiExisteLocalidadNueva(String nombre, int codigoPostal) {
         Boolean resultado = false;
-        ArrayList<Localidad> localidades = this.servicioLocalidad.obtenerLocalidades();
-        for(Localidad localidad:localidades){
-            if (localidad.getZona().equals(nombre) && localidad.getCodigoPostal() == codigoPostal) {
+        ArrayList<Localidad> localidades = this.servicioLocalidad.obtenerLasLocalidades();
+        for (Localidad localidad : localidades) {
+            if (localidad.getNombre().equals(nombre) && localidad.getCodigoPostal() == codigoPostal) {
+
                 resultado = true;
                 break;
             }
         }
         return resultado;
     }
-    
 
     @Override
-    public void agregarSeccion(String nombre, String localidad) {
+    public void agregarUnaSeccion(String nombre, String localidad) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public ArrayList<Seccion> obtenerSecciones() {
+    public ArrayList<Seccion> obtenerLasSecciones() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -74,4 +77,10 @@ public class ControladorLocalidad implements IProximidad {
     public boolean editarSeccionSeleccionada(int idSeccion, String nombre, int idLocalidad) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    @Override
+    public Seccion buscarUnaSeccion(int idSeccion) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

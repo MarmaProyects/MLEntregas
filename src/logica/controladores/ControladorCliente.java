@@ -16,19 +16,19 @@ import logica.servicios.ServicioCliente;
  */
 public class ControladorCliente implements IAdministracion {
     private static ControladorCliente instance;
-    private ServicioCliente ServicioCliente;
+    private ServicioCliente servicioCliente;
 
     public ControladorCliente() {
-        this.ServicioCliente = new ServicioCliente();
+        this.servicioCliente = new ServicioCliente();
     }
     
     public void agregarCliente(int cedula, String nombre ,String apellido, int telefono) {
-            this.ServicioCliente.insertarCliente(cedula, nombre, apellido, telefono);
+            this.servicioCliente.insertarCliente(cedula, nombre, apellido, telefono);
     }
     
     public Boolean verificarExisteClienteNuevo(int cedula){
         Boolean resultado = false;
-        ArrayList<Cliente> clientes = this.ServicioCliente.obtenerCliente();
+        ArrayList<Cliente> clientes = this.servicioCliente.obtenerCliente();
         for(Cliente cliente:clientes){
             if (cliente.getCedula() == cedula) {
                 resultado = true;
@@ -48,7 +48,7 @@ public class ControladorCliente implements IAdministracion {
     
 
     @Override
-    public void crearTarifa(String nombre, float precioBase) {
+    public void crearUnaTarifa(String nombre, float precioBase) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

@@ -21,7 +21,7 @@ import logica.interfaces.IProximidad;
  */
 public class ServicioSeccion {
 
-    private Connection conexion = new Conexion().getConexion();
+    private Connection conexion = new Conexion().getConnection();
     private IProximidad IPR;
 
     public ArrayList<Seccion> obtenerListaSeccion() {
@@ -42,7 +42,7 @@ public class ServicioSeccion {
         return resultado;
     }
 
-    public void agregarSeccion(String nombre, String localidad) {
+    public void agregarUnaSeccion(String nombre, String localidad) {
 
         this.IPR = Fabrica.getInstancia().getControladorLocalidad();
         if (localidad.equals(" ")) {
@@ -53,10 +53,10 @@ public class ServicioSeccion {
                 System.out.println("Error: " + e);
             }
         } else {
-            ArrayList<Localidad> localidades = this.IPR.obtenerLocalidades();
+            ArrayList<Localidad> localidades = this.IPR.obtenerLasLocalidades();
             int idLocalidad = 0;
             for (Localidad loc : localidades) {
-                if (loc.getZona().equals(localidad)) {
+                if (loc.getNombre().equals(localidad)) {
                     idLocalidad = loc.getIdLocalidad();
                     break;
                 }
@@ -121,5 +121,43 @@ public class ServicioSeccion {
             System.err.println(e);
             return false;
         }
+    }
+    
+    public ArrayList<Seccion> obtenerLasSecciones(){
+         ArrayList<Seccion> resultado = new ArrayList<Seccion>();
+        try {
+                
+            PreparedStatement query = conexion.prepareStatement("SELECT * FROM seccion");
+            ResultSet resultadoDeLaQuery = query.executeQuery();
+            while(resultadoDeLaQuery.next()) {
+                int id = resultadoDeLaQuery.getInt("id");
+                int idLocalidad = resultadoDeLaQuery.getInt("idLocalidad");
+                String nombre = resultadoDeLaQuery.getString("nombre");
+                int cantidad = resultadoDeLaQuery.getInt("cantidad");
+                resultado.add(new Seccion(nombre, cantidad, id, null));
+            }
+                } catch (SQLException e) {
+                System.out.println("Error: " + e);
+            }
+        
+        return resultado;
+    }
+    
+    
+    public int obtenerIdSeccion_Paquete(int idPaquete){
+        int resultado = 0;
+        try {   
+            PreparedStatement query = conexion.prepareStatement("SELECT * FROM seccion_paquete");
+            ResultSet resultadoDeLaQuery = query.executeQuery();
+            while(resultadoDeLaQuery.next()) {
+                if (idPaquete == resultadoDeLaQuery.getInt("id")) {
+                    resultado = resultadoDeLaQuery.getInt("id");
+                    break;
+                }
+            }
+                } catch (SQLException e) {
+                System.out.println("Error: " + e);
+            }
+        return resultado;
     }
 }

@@ -13,14 +13,22 @@ import logica.interfaces.IAdministracion;
  * @author MarmaduX
  */
 public class CrearTarifa extends javax.swing.JFrame {
-     private IAdministracion IA;
+
+    private IAdministracion IA;
+    private CrearEnvio crearEnvio = null;
 
     /**
      * Creates new form CrearTarifa
      */
     public CrearTarifa() {
-        initComponents();        
+        initComponents();
         this.IA = Fabrica.getInstancia().getControladorTarifa();
+    }
+
+    public CrearTarifa(CrearEnvio envio) {
+        initComponents();
+        this.IA = Fabrica.getInstancia().getControladorTarifa();
+        this.crearEnvio = envio;
     }
 
     /**
@@ -38,7 +46,7 @@ public class CrearTarifa extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         TextNombre = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         TextPrecio.setText("Ingrese el precio");
         TextPrecio.addContainerListener(new java.awt.event.ContainerAdapter() {
@@ -139,31 +147,31 @@ public class CrearTarifa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TextPrecioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextPrecioFocusGained
-        if(TextPrecio.getText().equals("Ingrese el precio")){
+        if (TextPrecio.getText().equals("Ingrese el precio")) {
             TextPrecio.setText(null);
             TextPrecio.requestFocus();
         }
     }//GEN-LAST:event_TextPrecioFocusGained
 
     private void TextPrecioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextPrecioFocusLost
-        if(TextPrecio.getText().length()==0) {
+        if (TextPrecio.getText().length() == 0) {
             TextPrecio.setText("Ingrese el precio");
         }
     }//GEN-LAST:event_TextPrecioFocusLost
-    
+
     private void TextPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextPrecioActionPerformed
-        
+
     }//GEN-LAST:event_TextPrecioActionPerformed
 
     private void TextNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextNombreFocusGained
-        if(TextNombre.getText().equals("Ingrese el nombre")){
+        if (TextNombre.getText().equals("Ingrese el nombre")) {
             TextNombre.setText(null);
             TextNombre.requestFocus();
-        } 
+        }
     }//GEN-LAST:event_TextNombreFocusGained
 
     private void TextNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextNombreFocusLost
-        if(TextNombre.getText().length()==0) {
+        if (TextNombre.getText().length() == 0) {
             TextNombre.setText("Ingrese el nombre");
         }
     }//GEN-LAST:event_TextNombreFocusLost
@@ -180,13 +188,18 @@ public class CrearTarifa extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String nombreText = TextNombre.getText().trim();
-        if(TextNombre.getText().equals("Ingrese el nombre") || TextPrecio.getText().equals("Ingrese el precio") || nombreText.isEmpty() ){ 
+        if (TextNombre.getText().equals("Ingrese el nombre") || TextPrecio.getText().equals("Ingrese el precio") || nombreText.isEmpty()) {
             JOptionPane.showMessageDialog(null, "El nombre y el precio no pueden ser vacios", "Error", JOptionPane.ERROR_MESSAGE);
-        }else{
-            this.IA.crearTarifa(TextNombre.getText().trim(), Float.parseFloat(TextPrecio.getText()));
-            ListaTarifas listaTarifas = new ListaTarifas();
-            this.setVisible(false);
-            listaTarifas.setVisible(true);
+        } else {
+            this.IA.crearUnaTarifa(TextNombre.getText().trim(), Float.parseFloat(TextPrecio.getText()));
+            if (crearEnvio != null) {
+                this.dispose();
+                this.crearEnvio.actualizarTarifasEspeciales();
+            } else {
+                ListaTarifas listaTarifas = new ListaTarifas();
+                this.setVisible(false);
+                listaTarifas.setVisible(true);
+            }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -204,7 +217,7 @@ public class CrearTarifa extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_TextPrecioKeyTyped
-    
+
     /**
      * @param args the command line arguments
      */

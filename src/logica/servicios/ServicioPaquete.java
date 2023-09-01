@@ -11,6 +11,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import logica.clases.Paquete;
+import logica.clases.Seccion;
+import logica.fabrica.Fabrica;
+import logica.interfaces.IProximidad;
 import logica.interfaces.IEnvio;
 
 /**
@@ -64,5 +67,31 @@ public class ServicioPaquete {
         } catch (SQLException e) {
             System.err.println(e);
         }
+    
+    
+    public ArrayList<Paquete> obtenerPaquetes(){
+         ArrayList<Paquete> resultado = new ArrayList<Paquete>();
+        try {
+                
+            PreparedStatement query = conexion.prepareStatement("SELECT * FROM paquete");
+            ResultSet resultadoDeLaQuery = query.executeQuery();
+            while(resultadoDeLaQuery.next()) {
+                int id = resultadoDeLaQuery.getInt("id");
+                String descripcion = resultadoDeLaQuery.getString("descripcion");
+                float peso = resultadoDeLaQuery.getFloat("peso");
+                Boolean esFragil = resultadoDeLaQuery.getBoolean("esFragil");
+                Boolean esEspecial = resultadoDeLaQuery.getBoolean("esEspecial");
+                //obtenerSeccion dos consultas, consulta en seccion_paquete para obtener idSeccion, y luego obtener el nombre con la segunda consulta
+                ServicioSeccion ServicioSeccion = new ServicioSeccion();
+                int idSeccion = ServicioSeccion.obtenerIdSeccion_Paquete(id);
+                IProximidad IP = Fabrica.getInstancia().getControladorSeccion();
+                Seccion nombreSeccion = IP.buscarUnaSeccion(idSeccion);
+               // resultado.add(new Paquete(id, descripcion, peso, esFragil, esEspecial, nombreSeccion.getNombre()));
+            }
+                } catch (SQLException e) {
+                System.out.println("Error: " + e);
+            }
+        
+        return resultado;
     }
 }

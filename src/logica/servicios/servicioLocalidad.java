@@ -18,7 +18,7 @@ import logica.clases.Localidad;
  */
 public class servicioLocalidad {
 
-    private Connection conexion = new Conexion().getConexion();
+    private Connection conexion = new Conexion().getConnection();
 
     public void insertarLocalidad(String nombreLocalidad, int codigoPostal) {
         try {
@@ -29,7 +29,7 @@ public class servicioLocalidad {
         }
     }
     
-    public ArrayList<Localidad> obtenerLocalidades(){
+    public ArrayList<Localidad> obtenerLasLocalidades(){
          ArrayList<Localidad> resultado = new ArrayList<Localidad>();
         try {
                 

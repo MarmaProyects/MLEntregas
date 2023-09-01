@@ -4,33 +4,41 @@
  */
 package Presentacion;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import logica.fabrica.Fabrica;
 import logica.interfaces.IAdministracion;
+import Presentacion.CrearEnvio;
 
 /**
  *
  * @author leo
  */
 public class CrearCliente extends javax.swing.JFrame {
+
     private IAdministracion IA;
+
     /**
      * Creates new form CrearCliente
      */
     public CrearCliente() {
-        this.IA = Fabrica.getInstancia().getControladorCliente();
         initComponents();
+        this.IA = Fabrica.getInstancia().getControladorCliente();
+        this.setLocationRelativeTo(null);
+        this.setTitle("Crear Cliente");
+        this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Images/logo.png")).getImage());
+        this.setResizable(false);
     }
-    
-    public void llamarAlertaDatosFaltantes(){
+
+    public void llamarAlertaDatosFaltantes() {
         JOptionPane.showMessageDialog(null, "Algún dato de los campos no ha sido ingresado", "Error", JOptionPane.ERROR_MESSAGE);
     }
-    
-    public void llamarAlertaClienteCreado(){
+
+    public void llamarAlertaClienteCreado() {
         JOptionPane.showMessageDialog(null, "Cliente creado exitosamente", "Creación exitosa", JOptionPane.INFORMATION_MESSAGE);
     }
-    
-    public void llamarAlertaClienteExistente(){
+
+    public void llamarAlertaClienteExistente() {
         JOptionPane.showMessageDialog(null, "Ya existe un cliente con esa CI en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
     }
 
@@ -45,13 +53,19 @@ public class CrearCliente extends javax.swing.JFrame {
 
         TextFieldNombre = new javax.swing.JTextField();
         TituloCrearUsuario = new javax.swing.JLabel();
-        TextFieldCedula = new javax.swing.JTextField();
+        BotonConfirmar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        volverButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        TituloCrearUsuario1 = new javax.swing.JLabel();
         TextFieldNombre1 = new javax.swing.JTextField();
         TextFieldApellido = new javax.swing.JTextField();
         TextFieldTelefono = new javax.swing.JTextField();
-        BotonConfirmar1 = new javax.swing.JButton();
-        BotonVolver = new javax.swing.JButton();
-        TituloCrearUsuario1 = new javax.swing.JLabel();
+        TextFieldCedula = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         TextFieldNombre.setText("Nombre");
         TextFieldNombre.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -70,27 +84,37 @@ public class CrearCliente extends javax.swing.JFrame {
 
         TituloCrearUsuario.setText("Crear usuario");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(406, 329));
 
-        TextFieldCedula.setText("Cédula");
-        TextFieldCedula.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                TextFieldCedulaFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                TextFieldCedulaFocusLost(evt);
-            }
-        });
-        TextFieldCedula.addActionListener(new java.awt.event.ActionListener() {
+        BotonConfirmar.setText("Confirmar");
+        BotonConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextFieldCedulaActionPerformed(evt);
+                BotonConfirmarActionPerformed(evt);
             }
         });
-        TextFieldCedula.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                TextFieldCedulaKeyTyped(evt);
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo-sm-extra.png"))); // NOI18N
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel2MousePressed(evt);
             }
         });
+
+        volverButton.setText("Volver");
+        volverButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverButtonActionPerformed(evt);
+            }
+        });
+
+        TituloCrearUsuario1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        TituloCrearUsuario1.setText("Crear usuario");
 
         TextFieldNombre1.setText("Nombre");
         TextFieldNombre1.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -142,84 +166,123 @@ public class CrearCliente extends javax.swing.JFrame {
             }
         });
 
-        BotonConfirmar1.setText("Confirmar");
-        BotonConfirmar1.addActionListener(new java.awt.event.ActionListener() {
+        TextFieldCedula.setText("Cédula");
+        TextFieldCedula.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                TextFieldCedulaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                TextFieldCedulaFocusLost(evt);
+            }
+        });
+        TextFieldCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonConfirmar1ActionPerformed(evt);
+                TextFieldCedulaActionPerformed(evt);
+            }
+        });
+        TextFieldCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextFieldCedulaKeyTyped(evt);
             }
         });
 
-        BotonVolver.setText("Volver");
-        BotonVolver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonVolverActionPerformed(evt);
-            }
-        });
+        jLabel1.setText("Cédula:");
 
-        TituloCrearUsuario1.setText("Crear usuario");
+        jLabel3.setText("Nombre:");
+
+        jLabel4.setText("Apellido:");
+
+        jLabel5.setText("Teléfono:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(TituloCrearUsuario1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(45, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TextFieldNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TextFieldCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TextFieldApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(46, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(TituloCrearUsuario1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextFieldCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextFieldNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextFieldApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(15, 15, 15))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(120, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(TextFieldCedula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(TituloCrearUsuario1)))
-                        .addContainerGap(120, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TextFieldNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TextFieldApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(70, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(BotonVolver))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addComponent(BotonConfirmar1)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BotonConfirmar))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 65, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(BotonVolver)
-                .addGap(20, 20, 20)
-                .addComponent(TituloCrearUsuario1)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(TextFieldCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(TextFieldNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(TextFieldApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(TextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BotonConfirmar1)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(volverButton)
+                    .addComponent(BotonConfirmar))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void TextFieldCedulaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldCedulaFocusGained
-        if(TextFieldCedula.getText().trim().equals("Cédula")){
+        if (TextFieldCedula.getText().trim().equals("Cédula")) {
             TextFieldCedula.setText(null);
             TextFieldCedula.requestFocus();
         }
     }//GEN-LAST:event_TextFieldCedulaFocusGained
 
     private void TextFieldCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldCedulaFocusLost
-        if(TextFieldCedula.getText().trim().length()==0) {
+        if (TextFieldCedula.getText().trim().length() == 0) {
             TextFieldCedula.setText("Cédula");
         }
     }//GEN-LAST:event_TextFieldCedulaFocusLost
@@ -229,14 +292,14 @@ public class CrearCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_TextFieldCedulaActionPerformed
 
     private void TextFieldNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldNombreFocusGained
-        if(TextFieldNombre.getText().trim().equals("Nombre")){
+        if (TextFieldNombre.getText().trim().equals("Nombre")) {
             TextFieldNombre.setText(null);
             TextFieldNombre.requestFocus();
         }
     }//GEN-LAST:event_TextFieldNombreFocusGained
 
     private void TextFieldNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldNombreFocusLost
-        if(TextFieldNombre.getText().trim().length()==0) {
+        if (TextFieldNombre.getText().trim().length() == 0) {
             TextFieldNombre.setText("Nombre");
         }
     }//GEN-LAST:event_TextFieldNombreFocusLost
@@ -246,14 +309,14 @@ public class CrearCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_TextFieldNombreActionPerformed
 
     private void TextFieldNombre1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldNombre1FocusGained
-        if(TextFieldNombre1.getText().trim().equals("Nombre")){
+        if (TextFieldNombre1.getText().trim().equals("Nombre")) {
             TextFieldNombre1.setText(null);
             TextFieldNombre1.requestFocus();
         }
     }//GEN-LAST:event_TextFieldNombre1FocusGained
 
     private void TextFieldNombre1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldNombre1FocusLost
-        if(TextFieldNombre1.getText().trim().length()==0) {
+        if (TextFieldNombre1.getText().trim().length() == 0) {
             TextFieldNombre1.setText("Nombre");
         }
     }//GEN-LAST:event_TextFieldNombre1FocusLost
@@ -263,14 +326,14 @@ public class CrearCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_TextFieldNombre1ActionPerformed
 
     private void TextFieldApellidoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldApellidoFocusGained
-        if(TextFieldApellido.getText().trim().equals("Apellido")){
+        if (TextFieldApellido.getText().trim().equals("Apellido")) {
             TextFieldApellido.setText(null);
             TextFieldApellido.requestFocus();
         }
     }//GEN-LAST:event_TextFieldApellidoFocusGained
 
     private void TextFieldApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldApellidoFocusLost
-        if(TextFieldApellido.getText().trim().length()==0) {
+        if (TextFieldApellido.getText().trim().length() == 0) {
             TextFieldApellido.setText("Apellido");
         }
     }//GEN-LAST:event_TextFieldApellidoFocusLost
@@ -280,14 +343,14 @@ public class CrearCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_TextFieldApellidoActionPerformed
 
     private void TextFieldTelefonoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldTelefonoFocusGained
-        if(TextFieldTelefono.getText().trim().equals("Teléfono")){
+        if (TextFieldTelefono.getText().trim().equals("Teléfono")) {
             TextFieldTelefono.setText(null);
             TextFieldTelefono.requestFocus();
         }
     }//GEN-LAST:event_TextFieldTelefonoFocusGained
 
     private void TextFieldTelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldTelefonoFocusLost
-        if(TextFieldTelefono.getText().trim().length()==0) {
+        if (TextFieldTelefono.getText().trim().length() == 0) {
             TextFieldTelefono.setText("Teléfono");
         }
     }//GEN-LAST:event_TextFieldTelefonoFocusLost
@@ -296,29 +359,24 @@ public class CrearCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TextFieldTelefonoActionPerformed
 
-    private void BotonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonVolverActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BotonVolverActionPerformed
-
-    private void BotonConfirmar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonConfirmar1ActionPerformed
-       String verificaCedula = this.TextFieldCedula.getText().trim();
-       String nombre = this.TextFieldNombre1.getText().trim();
-       String apellido = this.TextFieldApellido.getText().trim();
-       String verificaTelefono = this.TextFieldTelefono.getText().trim();
-       if (verificaCedula.equals("Cédula") || nombre.equals("Nombre") || apellido.equals("Apellido") || verificaTelefono.equals("Teléfono")) {
-           llamarAlertaDatosFaltantes();
-           return;
-       }
-       int cedula = Integer.parseInt(this.TextFieldCedula.getText().trim());
-       int telefono = Integer.parseInt(this.TextFieldTelefono.getText().trim());
-       if (this.IA.verificarExisteClienteNuevo(cedula) != true){
+    private void BotonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonConfirmarActionPerformed
+        String verificaCedula = this.TextFieldCedula.getText().trim();
+        String nombre = this.TextFieldNombre1.getText().trim();
+        String apellido = this.TextFieldApellido.getText().trim();
+        String verificaTelefono = this.TextFieldTelefono.getText().trim();
+        if (verificaCedula.equals("Cédula") || nombre.equals("Nombre") || apellido.equals("Apellido") || verificaTelefono.equals("Teléfono")) {
+            llamarAlertaDatosFaltantes();
+            return;
+        }
+        int cedula = Integer.parseInt(this.TextFieldCedula.getText().trim());
+        int telefono = Integer.parseInt(this.TextFieldTelefono.getText().trim());
+        if (this.IA.verificarExisteClienteNuevo(cedula) != true) {
             this.IA.agregarCliente(cedula, nombre, apellido, telefono);
             llamarAlertaClienteCreado();
+        } else {
+            llamarAlertaClienteExistente();
         }
-       else {
-           llamarAlertaClienteExistente();
-       }
-    }//GEN-LAST:event_BotonConfirmar1ActionPerformed
+    }//GEN-LAST:event_BotonConfirmarActionPerformed
 
     private void TextFieldCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextFieldCedulaKeyTyped
         int key = evt.getKeyChar();
@@ -339,10 +397,22 @@ public class CrearCliente extends javax.swing.JFrame {
             evt.consume();
         }
 
-        if (TextFieldTelefono.getText().trim().length() == 15) {
+        if (TextFieldTelefono.getText().trim().length() == 9) {
             evt.consume();
         }
     }//GEN-LAST:event_TextFieldTelefonoKeyTyped
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
+
+    }//GEN-LAST:event_jLabel2MousePressed
+
+    private void volverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtonActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_volverButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -380,8 +450,7 @@ public class CrearCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonConfirmar1;
-    private javax.swing.JButton BotonVolver;
+    private javax.swing.JButton BotonConfirmar;
     private javax.swing.JTextField TextFieldApellido;
     private javax.swing.JTextField TextFieldCedula;
     private javax.swing.JTextField TextFieldNombre;
@@ -389,5 +458,12 @@ public class CrearCliente extends javax.swing.JFrame {
     private javax.swing.JTextField TextFieldTelefono;
     private javax.swing.JLabel TituloCrearUsuario;
     private javax.swing.JLabel TituloCrearUsuario1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton volverButton;
     // End of variables declaration//GEN-END:variables
 }

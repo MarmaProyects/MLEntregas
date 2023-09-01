@@ -26,3 +26,4 @@ replay_pid*
 /build/
 /dist/
 /MLEntregas/nbproject/private/
+database.properties

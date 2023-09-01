@@ -74,8 +74,8 @@ public class Seccion {
     public void setListaPaquetes(List<Paquete> listaPaquetes) {
         this.listaPaquetes = listaPaquetes;
     }
-
-    public void añadirPaquete(Paquete paquete) {
+    
+    public void añadirPaquete(Paquete paquete){
         listaPaquetes.add(paquete);
     }
 
