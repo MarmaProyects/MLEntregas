@@ -4,20 +4,9 @@
  */
 package mlentregas;
 
-import BaseDeDatos.Conexion;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import Presentacion.Home;
+import com.formdev.flatlaf.FlatDarkLaf;
 import java.util.logging.Logger;
-import logica.clases.Cliente;
-import logica.clases.Direccion;
-import logica.clases.Envio;
-import logica.clases.Estado;
-import logica.clases.Paquete;
-import logica.clases.Tarifa;
-import logica.dataTypes.TipoEstado;
 
 /**
  *
@@ -29,8 +18,12 @@ public class MLEntregas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        // TODO code application logic here
-        Connection conexion = new Conexion().getConexion();
+        try{
+           FlatDarkLaf.setup();
+        } catch(Exception ex){
+            Logger.getLogger("Error:" + ex);
+        }
+        Home home = new Home();  
+        home.setVisible(true);
     }
 }

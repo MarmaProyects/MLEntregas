@@ -47,4 +47,19 @@ public class ControladorTarifa implements IAdministracion {
     public Boolean verificarExisteClienteNuevo(int cedula) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public boolean eliminarTarifaSeleccionada(int id) {
+        return this.servicioTarifa.eliminarTarifa(id);
+    }
+
+    @Override
+    public Tarifa traerTarifaSeleccionada(int id) {
+        return this.servicioTarifa.traerTarifa(id);
+    }
+
+    @Override
+    public boolean editarTarifaSeleccionada(int id, String nombre, float precio) {
+        return this.servicioTarifa.editarTarifa(id, nombre, precio);
+    }
 }
