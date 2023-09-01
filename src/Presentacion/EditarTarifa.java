@@ -30,7 +30,7 @@ public class EditarTarifa extends javax.swing.JFrame {
             this.tarifa = this.IA.traerTarifaSeleccionada(id);
             this.nombreField.setText(tarifa.getNombre());
             this.costoField.setText(String.valueOf(tarifa.getPrecio()));
-        }
+        } 
     }
 
     /**
