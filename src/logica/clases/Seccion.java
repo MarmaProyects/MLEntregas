@@ -21,12 +21,6 @@ public class Seccion {
         this.listaPaquetes = listaPaquetes;
     }
 
-    public Seccion(String nombre, int cantidad, int idSeccion) {
-        this.nombre = nombre;
-        this.cantidad = cantidad;
-        this.idSeccion = idSeccion;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -58,6 +52,8 @@ public class Seccion {
     public void setListaPaquetes(List<Paquete> listaPaquetes) {
         this.listaPaquetes = listaPaquetes;
     }
+
+    
     
     public void añadirPaquete(Paquete paquete){
         listaPaquetes.add(paquete);

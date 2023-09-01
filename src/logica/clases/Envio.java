@@ -32,14 +32,6 @@ public class Envio {
         this.estados = estados;
     }
 
-    public Pago getPago() {
-        return pago;
-    }
-
-    public void setPago(Pago pago) {
-        this.pago = pago;
-    }
-
     public int getIdEnvio() {
         return idEnvio;
     }
@@ -96,13 +88,23 @@ public class Envio {
         this.clienteReceptor = clienteReceptor;
     }
 
+    public Pago getPago() {
+        return pago;
+    }
+
+    public void setPago(Pago pago) {
+        this.pago = pago;
+    }
+
     public ArrayList<Estado> getEstados() {
         return estados;
     }
 
     public void setEstados(ArrayList<Estado> estados) {
-        this.estados = estados; 
+        this.estados = estados;
     }
+    
+    
     
     public void añadirEstado(Estado estado){
         this.estados.add(estado);

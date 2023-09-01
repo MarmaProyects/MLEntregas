@@ -6,12 +6,49 @@ package logica.interfaces;
 
 import java.util.ArrayList;
 import logica.clases.Envio;
+import logica.clases.Cliente;
+import logica.clases.Direccion;
+import logica.clases.Localidad;
+import logica.clases.Seccion;
+import logica.clases.Tarifa;
 
 /**
  *
  * @author MarmaduX
  */
 public interface IEnvio {
-    public abstract ArrayList<Envio> listaDeEnvios() ;
+
+    public abstract ArrayList<Envio> listaDeEnvios();
+
     public abstract Envio verDetallesDelEnvio(int idEnvio);
+
+    public abstract int crearPaquete(String desc, float peso, int fragil, int tipo);
+
+    public abstract int crearDireccion(String calle, String calle2, int puerta, String apartamento);
+
+    public abstract ArrayList<Localidad> listarLocalidades();
+
+    public abstract ArrayList<Seccion> listarSecciones();
+
+    public abstract void conexionSeccion_Paquete(int idPaquete, int idSeccion);
+
+    public ArrayList<Cliente> listarClientes();
+
+    public abstract Cliente traerCliente(int cedula);
+
+    public abstract Direccion traerDireccionSucursal();
+
+    public abstract ArrayList<Tarifa> obtenerTarifasEspeciales();
+
+    public abstract Localidad traerIdLocalidadSucursal();
+
+    public abstract void conexionLocalidad_Direccion(int idLocalidad, int idDireccion);
+
+    public int crearEnvio(int idPaquete, int idTarifa, int idDireOrigen, int idDireDestino, int idPago);
+
+    public void conexionEnvio_Cliente(int idEnvio, int cedulaCliente, String tipoEntrega);
+
+    public void conexionEnvio_Estado(int idEnvio, int idEstado);
+
+    public int crearEstado(int idEnvio, String tipo, String comentario);
 }

@@ -19,7 +19,7 @@ import logica.clases.Tarifa;
  */
 public class ServicioTarifa {
 
-    private Connection conexion = new Conexion().getConexion();
+    private Connection conexion = new Conexion().getConnection();
 
     public void crearLaTarifa(String nombre, float precioBase) {
         try {

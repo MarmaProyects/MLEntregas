@@ -20,7 +20,7 @@ import logica.interfaces.IProximidad;
  * @author leo
  */
 public class ServicioPaquete {
-    private Connection conexion = new Conexion().getConexion();
+    private Connection conexion = new Conexion().getConnection();
     
     
     public ArrayList<Paquete> obtenerPaquetes(){
@@ -39,7 +39,7 @@ public class ServicioPaquete {
                 ServicioSeccion ServicioSeccion = new ServicioSeccion();
                 int idSeccion = ServicioSeccion.obtenerIdSeccion_Paquete(id);
                 IProximidad IP = Fabrica.getInstancia().getControladorSeccion();
-                Seccion nombreSeccion = IP.buscarSeccion(idSeccion);
+                Seccion nombreSeccion = IP.buscarUnaSeccion(idSeccion);
                // resultado.add(new Paquete(id, descripcion, peso, esFragil, esEspecial, nombreSeccion.getNombre()));
             }
                 } catch (SQLException e) {

@@ -272,7 +272,7 @@ public class FormCrearLocalidad extends javax.swing.JFrame {
             return;
         }
         int codigoPostal = Integer.parseInt(this.TextFieldCodigoPostal.getText().trim());
-        if (this.IP.verificarExisteLocalidadNueva(nombre, codigoPostal) != true) {
+        if (this.IP.verificarSiExisteLocalidadNueva(nombre, codigoPostal) != true) {
             this.insertarNuevaLocalidad(nombre, codigoPostal);
             llamarAlertaLocalidadCreada();
         } else {
@@ -343,7 +343,7 @@ public class FormCrearLocalidad extends javax.swing.JFrame {
     }
 
     private void insertarNuevaLocalidad(String nombre, int codigoPostal) {
-        this.IP.agregarLocalidad(nombre, codigoPostal);
+        this.IP.agregarUnaLocalidad(nombre, codigoPostal);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
