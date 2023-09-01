@@ -23,22 +23,6 @@ public class Paquete {
         this.idPaquete = idPaquete;
         this.nombreSeccion = nombreSeccion;
     }
-    
-    public int getIdPaquete() {
-        return idPaquete;
-    }
-
-    public void setIdPaquete(int idPaquete) {
-        this.idPaquete = idPaquete;
-    }
-
-    public String getNombreSeccion() {
-        return nombreSeccion;
-    }
-
-    public void setNombreSeccion(String nombreSeccion) {
-        this.nombreSeccion = nombreSeccion;
-    }
 
     public String getDescripcion() {
         return descripcion;
@@ -71,5 +55,21 @@ public class Paquete {
     public void setEsEspecial(boolean esEspecial) {
         this.esEspecial = esEspecial;
     }
-        
+
+    public int getIdPaquete() {
+        return idPaquete;
+    }
+
+    public void setIdPaquete(int idPaquete) {
+        this.idPaquete = idPaquete;
+    }
+
+    public String getNombreSeccion() {
+        return nombreSeccion;
+    }
+
+    public void setNombreSeccion(String nombreSeccion) {
+        this.nombreSeccion = nombreSeccion;
+    }
+    
 }

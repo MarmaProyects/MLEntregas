@@ -22,7 +22,7 @@ import logica.interfaces.IProximidad;
  */
 public class CrearSeccion extends javax.swing.JFrame {
 
-    Connection conexion = new Conexion().getConexion();
+    Connection conexion = new Conexion().getConnection();
     private IProximidad IPR;
     ArrayList<String> listaLocalidad = new ArrayList<String>();
     ArrayList<Seccion> listaSeccion = new ArrayList<Seccion>();
@@ -208,14 +208,14 @@ public class CrearSeccion extends javax.swing.JFrame {
         String nombre = nombreField.getText().trim();
         String localidad = jComboBox1.getSelectedItem().toString();
         if (!nombre.equals("")) {
-            ArrayList<Seccion> listaSec = this.IPR.obtenerSecciones();
+            ArrayList<Seccion> listaSec = this.IPR.obtenerLasSecciones();
             for (Seccion sec : listaSec) {
                 if (sec.getNombre().equals(nombre)) {
                     JOptionPane.showMessageDialog(null, "El nombre ya existe en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
             }
-            this.IPR.agregarSeccion(nombre, localidad);
+            this.IPR.agregarUnaSeccion(nombre, localidad);
             JOptionPane.showMessageDialog(null, "Sección creada exitosamente", "Creación exitosa", JOptionPane.INFORMATION_MESSAGE);
         }
         else {

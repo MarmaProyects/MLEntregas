@@ -190,7 +190,7 @@ public class CrearTarifa extends javax.swing.JFrame {
         if (TextNombre.getText().equals("Ingrese el nombre") || TextPrecio.getText().equals("Ingrese el precio") || nombreText.isEmpty()) {
             JOptionPane.showMessageDialog(null, "El nombre y el precio no pueden ser vacios", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            this.IA.crearTarifa(TextNombre.getText().trim(), Float.parseFloat(TextPrecio.getText()));
+            this.IA.crearUnaTarifa(TextNombre.getText().trim(), Float.parseFloat(TextPrecio.getText()));
             if (crearEnvio != null) {
                 this.dispose();
                 this.crearEnvio.actualizarTarifasEspeciales();

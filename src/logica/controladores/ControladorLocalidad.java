@@ -32,15 +32,15 @@ public class ControladorLocalidad implements IProximidad {
         return instance;
     }
 
-    public void agregarLocalidad(String nombre, int codigoPostal) {
+    public void agregarUnaLocalidad(String nombre, int codigoPostal) {
         this.servicioLocalidad.insertarLocalidad(nombre, codigoPostal);
     }
 
-    public ArrayList<Localidad> obtenerLocalidades() {
+    public ArrayList<Localidad> obtenerLasLocalidades() {
         return this.servicioLocalidad.obtenerLasLocalidades();
     }
 
-    public Boolean verificarExisteLocalidadNueva(String nombre, int codigoPostal) {
+    public Boolean verificarSiExisteLocalidadNueva(String nombre, int codigoPostal) {
         Boolean resultado = false;
         ArrayList<Localidad> localidades = this.servicioLocalidad.obtenerLasLocalidades();
         for (Localidad localidad : localidades) {
@@ -54,17 +54,17 @@ public class ControladorLocalidad implements IProximidad {
     }
 
     @Override
-    public void agregarSeccion(String nombre, String localidad) {
+    public void agregarUnaSeccion(String nombre, String localidad) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public ArrayList<Seccion> obtenerSecciones() {
+    public ArrayList<Seccion> obtenerLasSecciones() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Seccion buscarSeccion(int idSeccion) {
+    public Seccion buscarUnaSeccion(int idSeccion) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

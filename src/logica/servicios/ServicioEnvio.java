@@ -11,16 +11,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import logica.clases.Envio;
-import logica.clases.Estado;
+import java.util.logging.Logger;
 import logica.clases.Cliente;
 import logica.clases.Direccion;
+import logica.clases.Envio;
+import logica.clases.Estado;
 import logica.clases.Localidad;
 import logica.clases.Paquete;
 import logica.clases.Seccion;
 import logica.clases.Tarifa;
 import logica.dataTypes.TipoEstado;
-import java.util.logging.Logger;
 
 /**
  *
@@ -28,7 +28,8 @@ import java.util.logging.Logger;
  */
 public class ServicioEnvio {
 
-    private Connection conexion = new Conexion().getConexion();
+    private Connection conexion = new Conexion().getConnection();
+    private Object queryTraerDireccionS;
 
     public ArrayList<Envio> listarEnvios() {
         Cliente cliente;
@@ -132,7 +133,7 @@ public class ServicioEnvio {
         return resultado;
     }
 
-    public int crearPaquete(String desc, float peso, int fragil, int tipo) {
+    public int crearUnPaquete(String desc, float peso, int fragil, int tipo) {
         int idGenerado = 0;
         try {
             PreparedStatement queryGuardarPaquete = conexion.prepareStatement(""
@@ -154,7 +155,7 @@ public class ServicioEnvio {
         return idGenerado;
     }
 
-    public int crearDireccion(String calle, String calle2, int puerta, String apartamento) {
+    public int crearUnaDireccion(String calle, String calle2, int puerta, String apartamento) {
         int idDireccion = 0;
         try {
             PreparedStatement queryGuardarDireccion = conexion.prepareStatement(""
@@ -175,7 +176,7 @@ public class ServicioEnvio {
         return idDireccion;
     }
 
-    public ArrayList<Localidad> listarLocalidades() {
+    public ArrayList<Localidad> listarLasLocalidades() {
 
         ArrayList<Localidad> listaLocalidades = new ArrayList<Localidad>();
 
@@ -197,7 +198,7 @@ public class ServicioEnvio {
     }
 
 
-    public ArrayList<Seccion> listarSecciones() {
+    public ArrayList<Seccion> listarLasSecciones() {
 
         ArrayList<Seccion> listaSecciones = new ArrayList<Seccion>();
 
@@ -218,7 +219,7 @@ public class ServicioEnvio {
         return listaSecciones;
     }
 
-    public void conexionSeccion_Paquete(int idPaquete, int idSeccion) {
+    public void crearSeccion_Paquete(int idPaquete, int idSeccion) {
 
         try {
             PreparedStatement queryconexionS_P = conexion.prepareStatement("INSERT INTO seccion_paquete (idSeccion, idPaquete) VALUES (?,?)");
@@ -232,7 +233,7 @@ public class ServicioEnvio {
 
 
 
-    public ArrayList<Cliente> listarClientes() {
+    public ArrayList<Cliente> listarLosClientes() {
         ArrayList<Cliente> listaCE = new ArrayList<Cliente>();
 
         try {
@@ -254,7 +255,7 @@ public class ServicioEnvio {
         return listaCE;
     }
 
-    public Cliente traerCliente(int cedula) {
+    public Cliente traerUnCliente(int cedula) {
 
         Cliente cliente = null;
         try {
@@ -276,7 +277,7 @@ public class ServicioEnvio {
         return cliente;
     }
 
-    public Direccion traerDireccionSucursal() {
+    public Direccion traerUnaDireccionSucursal() {
 
         Direccion dire = null;
 
@@ -296,7 +297,7 @@ public class ServicioEnvio {
         return dire;
     }
 
-    public ArrayList<Tarifa> obtenerTarifasEspeciales() {
+    public ArrayList<Tarifa> obtenerLasTarifasEspeciales() {
 
         ArrayList<Tarifa> listaTEspeciales = new ArrayList<Tarifa>();
 
@@ -316,7 +317,7 @@ public class ServicioEnvio {
         return listaTEspeciales;
     }
 
-    public Localidad traerIdLocalidadSucursal() {
+    public Localidad traerLocalidadSucursal() {
         Localidad locali = null;
         try {
             PreparedStatement queryTraerLocalidadS = conexion.prepareStatement("SELECT * FROM localidad WHERE nombre= 'Barrio Este';");
@@ -333,7 +334,7 @@ public class ServicioEnvio {
         return locali;
     }
 
-    public void conexionLocalidad_Direccion(int idLocalidad, int idDireccion) {
+    public void crearLocalidad_Direccion(int idLocalidad, int idDireccion) {
 
         try {
             PreparedStatement queryconexionL_D = conexion.prepareStatement("INSERT INTO localidad_direccion (idLocalidad, idDireccion) VALUES (?,?)");
@@ -346,7 +347,7 @@ public class ServicioEnvio {
         }
     }
 
-    public int crearEnvio(int idPaquete, int idTarifa, int idDireOrigen, int idDireDestino, int idPago) {
+    public int crearUnEnvio(int idPaquete, int idTarifa, int idDireOrigen, int idDireDestino, int idPago) {
         int idEnvio = 0;
         try {
             PreparedStatement queryCrearEnvio = conexion.prepareStatement(""
@@ -370,7 +371,7 @@ public class ServicioEnvio {
         return idEnvio;
     }
 
-    public int crearEstado(int idEnvio, String tipo, String comentario) {
+    public int crearUnEstado(int idEnvio, String tipo, String comentario) {
         int idEstado = 0;
         try {
             PreparedStatement queryCrearEstado = conexion.prepareStatement(" INSERT INTO estado (tipo, comentario) VALUES (?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
@@ -384,11 +385,11 @@ public class ServicioEnvio {
         } catch (Exception e) {
             Logger.getLogger("Error en registrar el estado" + e);
         }
-        this.conexionEnvio_Estado(idEnvio, idEstado);
+        this.crearEnvio_Estado(idEnvio, idEstado);
         return idEstado;
     }
 
-    public void conexionEnvio_Cliente(int idEnvio, int cedulaCliente, String tipoEntrega) {
+    public void crearEnvio_Cliente(int idEnvio, int cedulaCliente, String tipoEntrega) {
         try {
             PreparedStatement queryconexionE_C = conexion.prepareStatement("INSERT INTO envio_cliente (idEnvio, cedulaCliente, tipoEntrega) VALUES (?,?,?)");
             queryconexionE_C.setInt(1, idEnvio);
@@ -402,7 +403,7 @@ public class ServicioEnvio {
 
     }
 
-    public void conexionEnvio_Estado(int idEnvio, int idEstado) {
+    public void crearEnvio_Estado(int idEnvio, int idEstado) {
         try {
             PreparedStatement queryconexionE_E = conexion.prepareStatement("INSERT INTO envio_estado (idEnvio, idEstado) VALUES (?,?)");
             queryconexionE_E.setInt(1, idEnvio);

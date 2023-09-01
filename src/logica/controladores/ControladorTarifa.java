@@ -29,7 +29,7 @@ public class ControladorTarifa implements IAdministracion {
     } 
 
     @Override
-    public void crearTarifa(String nombre, float precioBase) {
+    public void crearUnaTarifa(String nombre, float precioBase) {
         this.servicioTarifa.crearLaTarifa(nombre, precioBase);
     }
 

@@ -34,7 +34,7 @@ public class Conexion {
         }
     }
 
-    public Connection getConexion() {
+    public Connection getConnection() {
         if (connection == null) {
             try {
                 connection = (Connection) DriverManager.getConnection(getUrl(), getUser(), getPassword());

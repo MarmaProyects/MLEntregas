@@ -26,7 +26,7 @@ public class CrearEnvio extends javax.swing.JFrame {
     /**
      * Creates new form CrearEnvio
      */
-    private Connection connection = new Conexion().getConexion();
+    private Connection connection = new Conexion().getConnection();
     private IEnvio iEnvio; //CREO EL OBJETO INTERFAZ
     private IAdministracion iAdmin;
     private ArrayList<Seccion> listaSecciones = null;

@@ -21,7 +21,7 @@ import logica.interfaces.IProximidad;
  */
 public class ServicioSeccion {
 
-    private Connection conexion = new Conexion().getConexion();
+    private Connection conexion = new Conexion().getConnection();
     private IProximidad IPR;
 
     public ArrayList<Seccion> obtenerListaSeccion() {
@@ -51,7 +51,7 @@ public class ServicioSeccion {
                 System.out.println("Error: " + e);
             }
         } else {
-            ArrayList<Localidad> localidades = this.IPR.obtenerLocalidades();
+            ArrayList<Localidad> localidades = this.IPR.obtenerLasLocalidades();
             int idLocalidad = 0;
             for (Localidad loc : localidades) {
                 if (loc.getNombre().equals(localidad)) {

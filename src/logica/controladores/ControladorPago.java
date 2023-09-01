@@ -26,7 +26,7 @@ public class ControladorPago implements IAdministracion {
     }
 
     @Override
-    public void crearTarifa(String nombre, float precioBase) {
+    public void crearUnaTarifa(String nombre, float precioBase) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

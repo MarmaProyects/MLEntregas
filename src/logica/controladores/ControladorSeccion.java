@@ -15,6 +15,7 @@ import logica.servicios.ServicioSeccion;
  * @author MarmaduX
  */
 public class ControladorSeccion implements IProximidad {
+
     private static ControladorSeccion instance;
     private ServicioSeccion ServicioSeccion;
 
@@ -22,46 +23,44 @@ public class ControladorSeccion implements IProximidad {
         this.ServicioSeccion = new ServicioSeccion();
     }
 
-    public Seccion buscarSeccion(int idSeccion){
-        ArrayList<Seccion> Secciones = this.ServicioSeccion.obtenerLasSecciones();
-        Seccion resultado = null;
-        for (Seccion seccion:Secciones) {
-            if(idSeccion == seccion.getIdSeccion()) {
-                resultado = seccion;
-            }
-        }
-        return resultado;
-    }
-    
     public static ControladorSeccion getInstancia() {
         if (instance == null) {
             instance = new ControladorSeccion();
         }
         return instance;
     }
-    
-    
 
-    public void agregarSeccion(String nombre, String localidad) {
+    public Seccion buscarUnaSeccion(int idSeccion) {
+        ArrayList<Seccion> Secciones = this.ServicioSeccion.obtenerLasSecciones();
+        Seccion resultado = null;
+        for (Seccion seccion : Secciones) {
+            if (idSeccion == seccion.getIdSeccion()) {
+                resultado = seccion;
+            }
+        }
+        return resultado;
+    }
+
+    public void agregarUnaSeccion(String nombre, String localidad) {
         this.ServicioSeccion.agregarUnaSeccion(nombre, localidad);
     }
-    
-    public ArrayList<Seccion> obtenerSecciones(){
+
+    public ArrayList<Seccion> obtenerLasSecciones() {
         return this.ServicioSeccion.obtenerListaSeccion();
     }
-    
+
     @Override
-    public void agregarLocalidad(String nombre, int codigoPostal) {
+    public void agregarUnaLocalidad(String nombre, int codigoPostal) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Boolean verificarExisteLocalidadNueva(String nombre, int codigoPostal) {
+    public ArrayList<Localidad> obtenerLasLocalidades() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public ArrayList<Localidad> obtenerLocalidades() {
+    public Boolean verificarSiExisteLocalidadNueva(String nombre, int codigoPostal) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

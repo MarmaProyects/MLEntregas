@@ -21,7 +21,6 @@ public class Seccion {
         this.listaPaquetes = listaPaquetes;
     }
 
-    
     public String getNombre() {
         return nombre;
     }

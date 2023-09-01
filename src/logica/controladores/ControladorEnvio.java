@@ -44,67 +44,67 @@ public class ControladorEnvio implements IEnvio {
     }
 
     public int crearPaquete(String desc, float peso, int fragil, int tipo) {
-        return this.servicioEnvio.crearPaquete(desc, peso, fragil, tipo);
+        return this.servicioEnvio.crearUnPaquete(desc, peso, fragil, tipo);
 
     }
 
     public int crearDireccion(String calle, String calle2, int puerta, String apartamento) {
-        return this.servicioEnvio.crearDireccion(calle, calle2, puerta, apartamento);
+        return this.servicioEnvio.crearUnaDireccion(calle, calle2, puerta, apartamento);
 
     }
 
     public ArrayList<Localidad> listarLocalidades() {
-        return this.servicioEnvio.listarLocalidades();
+        return this.servicioEnvio.listarLasLocalidades();
 
     }
 
     public ArrayList<Seccion> listarSecciones() {
-        return this.servicioEnvio.listarSecciones();
+        return this.servicioEnvio.listarLasSecciones();
 
     }
 
     public void conexionSeccion_Paquete(int idPaquete, int idSeccion) {
-        this.servicioEnvio.conexionSeccion_Paquete(idPaquete, idSeccion);
+        this.servicioEnvio.crearSeccion_Paquete(idPaquete, idSeccion);
     }
 
     public ArrayList<Cliente> listarClientes() {
-        return this.servicioEnvio.listarClientes();
+        return this.servicioEnvio.listarLosClientes();
     }
 
     public Cliente traerCliente(int cedula) {
-        return this.servicioEnvio.traerCliente(cedula);
+        return this.servicioEnvio.traerUnCliente(cedula);
     }
 
     public Direccion traerDireccionSucursal() {
-        return this.servicioEnvio.traerDireccionSucursal();
+        return this.servicioEnvio.traerUnaDireccionSucursal();
     }
 
     public ArrayList<Tarifa> obtenerTarifasEspeciales() {
-        return this.servicioEnvio.obtenerTarifasEspeciales();
+        return this.servicioEnvio.obtenerLasTarifasEspeciales();
     }
 
     public Localidad traerIdLocalidadSucursal() {
-        return this.servicioEnvio.traerIdLocalidadSucursal();
+        return this.servicioEnvio.traerLocalidadSucursal();
     }
 
     public void conexionLocalidad_Direccion(int idLocalidad, int idDireccion) {
-        this.servicioEnvio.conexionLocalidad_Direccion(idLocalidad, idDireccion);
+        this.servicioEnvio.crearLocalidad_Direccion(idLocalidad, idDireccion);
     }
 
     public int crearEnvio(int idPaquete, int idTarifa, int idDireOrigen, int idDireDestino, int idPago) {
-        return this.servicioEnvio.crearEnvio(idPaquete, idTarifa, idDireOrigen, idDireDestino, idPago);
+        return this.servicioEnvio.crearUnEnvio(idPaquete, idTarifa, idDireOrigen, idDireDestino, idPago);
     }
 
     public void conexionEnvio_Cliente(int idEnvio, int cedulaCliente, String tipoEntrega) {
-        this.servicioEnvio.conexionEnvio_Cliente(idEnvio, cedulaCliente, tipoEntrega);
+        this.servicioEnvio.crearEnvio_Cliente(idEnvio, cedulaCliente, tipoEntrega);
     }
 
     public void conexionEnvio_Estado(int idEnvio, int idEstado) {
-        this.servicioEnvio.conexionEnvio_Estado(idEnvio, idEstado);
+        this.servicioEnvio.crearEnvio_Estado(idEnvio, idEstado);
     }
 
     public int crearEstado(int idEnvio, String tipo, String comentario) {
-        return this.servicioEnvio.crearEstado(idEnvio, tipo, comentario);
+        return this.servicioEnvio.crearUnEstado(idEnvio, tipo, comentario);
     }
 
 }
