@@ -92,7 +92,7 @@ public class ListaTarifas extends javax.swing.JFrame {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, true
+                true, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {

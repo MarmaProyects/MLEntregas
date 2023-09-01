@@ -4,8 +4,9 @@
  */
 package mlentregas;
 
-import BaseDeDatos.Conexion;
-import java.sql.Connection;
+import Presentacion.Home;
+import com.formdev.flatlaf.FlatDarkLaf;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,8 +18,12 @@ public class MLEntregas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        Connection conexion = new Conexion().getConexion();
-
+        try{
+           FlatDarkLaf.setup();
+        } catch(Exception ex){
+            Logger.getLogger("Error:" + ex);
+        }
+        Home home = new Home();  
+        home.setVisible(true);
     }
 }
