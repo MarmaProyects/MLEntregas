@@ -27,12 +27,14 @@ public class ServicioSeccion {
     public ArrayList<Seccion> obtenerListaSeccion() {
         ArrayList<Seccion> resultado = new ArrayList<Seccion>();
         try {
-            PreparedStatement query = conexion.prepareStatement("SELECT * FROM seccion");
+            PreparedStatement query = conexion.prepareStatement("SELECT id, nombre, cantidad, COALESCE(idLocalidad, '-1') AS idLocalidad FROM seccion");
             ResultSet resultadoDeLaQuery = query.executeQuery();
             while (resultadoDeLaQuery.next()) {
                 String nombre = resultadoDeLaQuery.getString("nombre");
                 int cantidad = Integer.parseInt(resultadoDeLaQuery.getString("cantidad"));
-                resultado.add(new Seccion(nombre, cantidad));
+                int id = resultadoDeLaQuery.getInt("id");
+                int idLocalidad = resultadoDeLaQuery.getInt("idLocalidad");
+                resultado.add(new Seccion(nombre, cantidad, id, idLocalidad));
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e);
@@ -65,6 +67,59 @@ public class ServicioSeccion {
             } catch (SQLException e) {
                 System.out.println("Error: " + e);
             }
+        }
+    }
+
+    public boolean eliminarUnaSeccion(int id) {
+        boolean seccion_paquete = false;
+        try {
+            PreparedStatement querySeccion_paquete = conexion.prepareStatement("SELECT FROM `seccion_paquete` WHERE idSeccion = " + id);
+            ResultSet resultado_seccion_paquete = querySeccion_paquete.executeQuery();
+            if(resultado_seccion_paquete.next()) {
+                seccion_paquete = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+        }
+
+        if (seccion_paquete == false) {
+            try {
+                PreparedStatement query = conexion.prepareStatement("DELETE FROM `seccion` WHERE id = " + id);
+                int rowsAffected = query.executeUpdate();
+                return rowsAffected > 0;
+            } catch (SQLException e) {
+                System.out.println("Error: " + e);
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public Seccion traerSeccion(int idSeccion) {
+        Seccion seccion = null;
+        try {
+            PreparedStatement queryTraer = conexion.prepareStatement("SELECT * FROM `seccion` WHERE id = " + idSeccion);
+            ResultSet seccionExtraida = queryTraer.executeQuery();
+            if (seccionExtraida.next()) {
+                String nombre = seccionExtraida.getString("nombre");
+                int idLocalidad = seccionExtraida.getInt("idLocalidad");
+                int cantidad = seccionExtraida.getInt("cantidad");
+                seccion = new Seccion(nombre, cantidad, idSeccion, idLocalidad);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+        }
+        return seccion;
+    }
+    
+    public boolean editarSeccion(int idSeccion, String nombre, int idLocalidad) {
+        try {
+            PreparedStatement query = conexion.prepareStatement("UPDATE `seccion` SET `nombre` = '" + nombre + "',`idLocalidad`='" + idLocalidad + "' WHERE `id` = '" + idSeccion + "'");
+            int rowsAffected = query.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
         }
     }
 }

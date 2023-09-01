@@ -15,9 +15,10 @@ import logica.servicios.ServicioSeccion;
  * @author MarmaduX
  */
 public class ControladorSeccion implements IProximidad {
+
     private static ControladorSeccion instance;
     private ServicioSeccion servicio;
-    
+
     public ControladorSeccion() {
         this.servicio = new ServicioSeccion();
     }
@@ -32,11 +33,15 @@ public class ControladorSeccion implements IProximidad {
     public void agregarSeccion(String nombre, String localidad) {
         this.servicio.agregarSeccion(nombre, localidad);
     }
-    
-    public ArrayList<Seccion> obtenerSecciones(){
+
+    public ArrayList<Seccion> obtenerSecciones() {
         return this.servicio.obtenerListaSeccion();
     }
-    
+
+    public boolean eliminarSeccion(int id) {
+        return this.servicio.eliminarUnaSeccion(id);
+    }
+
     @Override
     public void agregarLocalidad(String nombre, int codigoPostal) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -50,6 +55,15 @@ public class ControladorSeccion implements IProximidad {
     @Override
     public ArrayList<Localidad> obtenerLocalidades() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Seccion traerSeccionSeleccionada(int id) {
+        return this.servicio.traerSeccion(id);
+    }
+
+
+    public boolean editarSeccionSeleccionada(int idSeccion, String nombre, int idLocalidad) {
+        return this.servicio.editarSeccion(idSeccion, nombre, idLocalidad);
     }
 
 }

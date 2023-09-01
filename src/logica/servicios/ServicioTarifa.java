@@ -33,12 +33,10 @@ public class ServicioTarifa {
     public Tarifa traerTarifa(int idTarifa) {
         Tarifa tarifa = null;
         try {
-            System.err.println(idTarifa);
             PreparedStatement queryTraer = conexion.prepareStatement("SELECT *  FROM `tarifa` WHERE id = " + idTarifa);
             ResultSet tarifaExtraida = queryTraer.executeQuery();
             if(tarifaExtraida.next()){
                 String nombre = tarifaExtraida.getString("nombre");
-                System.err.println(nombre);
                 float precioBase = tarifaExtraida.getFloat("precioBase");
                 int id = tarifaExtraida.getInt("id");
                 tarifa = new Tarifa(precioBase, nombre, id);
