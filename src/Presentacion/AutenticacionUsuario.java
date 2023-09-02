@@ -20,6 +20,7 @@ public class AutenticacionUsuario extends javax.swing.JFrame {
      */
     public AutenticacionUsuario() {
         initComponents();
+        this.setResizable(false);
     }
 
     /**
@@ -121,7 +122,7 @@ public class AutenticacionUsuario extends javax.swing.JFrame {
     private void campoCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoCodigoKeyTyped
         int key = evt.getKeyChar();
 
-        if (!Character.isDigit(key) || campoCodigo.getText().length() >= 8) {
+        if (!Character.isDigit(key) || campoCodigo.getText().length() >= 4) {
             evt.consume();
         }
     }//GEN-LAST:event_campoCodigoKeyTyped
