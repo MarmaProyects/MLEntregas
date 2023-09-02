@@ -24,6 +24,15 @@ public class Paquete {
         this.nombreSeccion = nombreSeccion;
     }
 
+    public Paquete(String descripcion, float peso, boolean esFragil, boolean esEspecial, int idPaquete) {
+        this.descripcion = descripcion;
+        this.peso = peso;
+        this.esFragil = esFragil;
+        this.esEspecial = esEspecial;
+        this.idPaquete = idPaquete;
+    }
+    
+
     public String getDescripcion() {
         return descripcion;
     }

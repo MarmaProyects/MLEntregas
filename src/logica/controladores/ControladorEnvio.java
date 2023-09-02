@@ -6,6 +6,7 @@ package logica.controladores;
 
 import java.util.ArrayList;
 import logica.clases.Envio;
+import logica.clases.Paquete;
 import logica.clases.Cliente;
 import logica.clases.Direccion;
 import logica.clases.Localidad;
@@ -43,7 +44,16 @@ public class ControladorEnvio implements IEnvio {
         return this.servicioEnvio.listarEnvios();
     }
 
-    public int crearPaquete(String desc, float peso, int fragil, int tipo) {
+    @Override
+    public ArrayList<Paquete> listarPaquetesPorSeccion(int idSeccion) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void moverPaqueteASeccion(int idPaquete, int idSeccionAMover) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+      public int crearPaquete(String desc, float peso, int fragil, int tipo) {
         return this.servicioEnvio.crearUnPaquete(desc, peso, fragil, tipo);
 
     }

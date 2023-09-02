@@ -84,6 +84,7 @@ public class CrearTarifa extends javax.swing.JFrame {
         jLabel1.setText("Crear tarifa");
 
         jButton1.setText("Cancelar");
+        jButton1.setPreferredSize(new java.awt.Dimension(84, 23));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -138,7 +139,7 @@ public class CrearTarifa extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(62, Short.MAX_VALUE))
         );
 

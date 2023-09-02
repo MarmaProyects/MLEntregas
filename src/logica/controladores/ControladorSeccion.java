@@ -17,10 +17,10 @@ import logica.servicios.ServicioSeccion;
 public class ControladorSeccion implements IProximidad {
 
     private static ControladorSeccion instance;
-    private ServicioSeccion ServicioSeccion;
+    private ServicioSeccion servicioSeccion;
 
     public ControladorSeccion() {
-        this.ServicioSeccion = new ServicioSeccion();
+        this.servicioSeccion = new ServicioSeccion();
     }
 
     public static ControladorSeccion getInstancia() {
@@ -31,7 +31,7 @@ public class ControladorSeccion implements IProximidad {
     }
 
     public Seccion buscarUnaSeccion(int idSeccion) {
-        ArrayList<Seccion> Secciones = this.ServicioSeccion.obtenerLasSecciones();
+        ArrayList<Seccion> Secciones = this.servicioSeccion.obtenerLasSecciones();
         Seccion resultado = null;
         for (Seccion seccion : Secciones) {
             if (idSeccion == seccion.getIdSeccion()) {
@@ -41,12 +41,16 @@ public class ControladorSeccion implements IProximidad {
         return resultado;
     }
 
+    public boolean eliminarSeccion(int id) {
+        return this.servicioSeccion.eliminarUnaSeccion(id);
+    }
+
     public void agregarUnaSeccion(String nombre, String localidad) {
-        this.ServicioSeccion.agregarUnaSeccion(nombre, localidad);
+        this.servicioSeccion.agregarUnaSeccion(nombre, localidad);
     }
 
     public ArrayList<Seccion> obtenerLasSecciones() {
-        return this.ServicioSeccion.obtenerListaSeccion();
+        return this.servicioSeccion.obtenerListaSeccion();
     }
 
     @Override
@@ -62,6 +66,14 @@ public class ControladorSeccion implements IProximidad {
     @Override
     public Boolean verificarSiExisteLocalidadNueva(String nombre, int codigoPostal) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Seccion traerSeccionSeleccionada(int id) {
+        return this.servicioSeccion.traerSeccion(id);
+    }
+
+    public boolean editarSeccionSeleccionada(int idSeccion, String nombre, int idLocalidad) {
+        return this.servicioSeccion.editarSeccion(idSeccion, nombre, idLocalidad);
     }
 
 }

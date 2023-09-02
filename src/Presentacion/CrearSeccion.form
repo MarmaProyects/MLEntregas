@@ -89,7 +89,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="buttonCrear">
       <Properties>
-        <Property name="text" type="java.lang.String" value="CREAR"/>
+        <Property name="text" type="java.lang.String" value="Crear"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCrearActionPerformed"/>
@@ -169,6 +169,7 @@
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="nombreFieldFocusGained"/>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="nombreFieldFocusLost"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nombreFieldKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">

@@ -6,6 +6,7 @@ package logica.controladores;
 
 import java.util.ArrayList;
 import logica.clases.Envio;
+import logica.clases.Paquete;
 import logica.clases.Cliente;
 import logica.clases.Direccion;
 import logica.clases.Localidad;
@@ -18,6 +19,7 @@ import logica.interfaces.IEnvio;
  * @author MarmaduX
  */
 public class ControladorDireccion implements IEnvio {
+
     private static ControladorDireccion instance;
 
     public ControladorDireccion() {
@@ -36,11 +38,19 @@ public class ControladorDireccion implements IEnvio {
     }
 
     @Override
+    public ArrayList<Paquete> listarPaquetesPorSeccion(int idSeccion) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public Envio verDetallesDelEnvio(int idEnvio) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
+    public void moverPaqueteASeccion(int idPaquete, int idSeccionAMover) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public int crearPaquete(String desc, float peso, int fragil, int tipo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -114,7 +124,4 @@ public class ControladorDireccion implements IEnvio {
     public int crearEstado(int idEnvio, String tipo, String comentario) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
-   
-
 }

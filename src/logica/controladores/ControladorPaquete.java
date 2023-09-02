@@ -6,12 +6,14 @@ package logica.controladores;
 
 import java.util.ArrayList;
 import logica.clases.Envio;
+import logica.clases.Paquete;
 import logica.clases.Cliente;
 import logica.clases.Direccion;
 import logica.clases.Localidad;
 import logica.clases.Seccion;
 import logica.clases.Tarifa;
 import logica.interfaces.IEnvio;
+import logica.servicios.ServicioPaquete;
 
 /**
  *
@@ -19,8 +21,10 @@ import logica.interfaces.IEnvio;
  */
 public class ControladorPaquete implements IEnvio {
     private static ControladorPaquete instance;
-
+    private ServicioPaquete servicioPaq;
+    
     public ControladorPaquete() {
+        this.servicioPaq = new ServicioPaquete();
     }
 
     public static ControladorPaquete getInstancia() {
@@ -110,6 +114,13 @@ public class ControladorPaquete implements IEnvio {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    public ArrayList<Paquete> listarPaquetesPorSeccion(int idSeccion) {
+        return this.servicioPaq.obtenerListaPaquetesPorSeccion(idSeccion);
+    }
+
+    public void moverPaqueteASeccion(int idPaquete, int idSeccionAMover) {
+        this.servicioPaq.moverPaquteDeSeccion(idPaquete, idSeccionAMover);
+    }
     @Override
     public Envio verDetallesDelEnvio(int idEnvio) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

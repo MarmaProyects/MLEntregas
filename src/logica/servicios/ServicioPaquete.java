@@ -14,22 +14,68 @@ import logica.clases.Paquete;
 import logica.clases.Seccion;
 import logica.fabrica.Fabrica;
 import logica.interfaces.IProximidad;
+import logica.interfaces.IEnvio;
 
 /**
  *
- * @author leo
+ * @author franc
  */
 public class ServicioPaquete {
+
     private Connection conexion = new Conexion().getConnection();
-    
-    
-    public ArrayList<Paquete> obtenerPaquetes(){
-         ArrayList<Paquete> resultado = new ArrayList<Paquete>();
+    private IEnvio IE;
+
+    public ArrayList<Paquete> obtenerListaPaquetesPorSeccion(int idSeccion) {
+        ArrayList<Paquete> paquetes = new ArrayList<Paquete>();
+        ArrayList<Integer> idDePaquetes = new ArrayList<Integer>();
         try {
-                
+            PreparedStatement querySeccion_paquete = conexion.prepareStatement("SELECT * FROM seccion_paquete WHERE idSeccion = " + idSeccion);
+            ResultSet resultadoQuerySeccion_paquete = querySeccion_paquete.executeQuery();
+            while (resultadoQuerySeccion_paquete.next()) {
+                int idPaquete = resultadoQuerySeccion_paquete.getInt("idPaquete");
+                idDePaquetes.add(idPaquete);
+            }
+            for (int idPaquete : idDePaquetes) {
+                try {
+                    PreparedStatement query = conexion.prepareStatement("SELECT id, peso, esFragil, esEspecial, COALESCE(descripcion, ' ') AS descripcion"
+                            + " FROM `paquete` WHERE id = " + idPaquete);
+                    ResultSet resultadoDeLaQuery = query.executeQuery();
+                    while (resultadoDeLaQuery.next()) {
+                        int id = resultadoDeLaQuery.getInt("id");
+                        String descripcion = resultadoDeLaQuery.getString("descripcion");
+                        float peso = resultadoDeLaQuery.getFloat("peso");
+                        boolean esFragil = resultadoDeLaQuery.getBoolean("esFragil");
+                        boolean esEspecial = resultadoDeLaQuery.getBoolean("esEspecial");
+                        paquetes.add(new Paquete(descripcion, peso, esFragil, esEspecial, idPaquete));
+                    }
+                } catch (SQLException ex) {
+                    System.err.println(ex);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+        }
+        return paquetes;
+    }
+
+    public void moverPaquteDeSeccion(int idPaquete, int idSeccionAMover) {
+        try {
+            PreparedStatement queryDelete = conexion.prepareStatement("DELETE FROM seccion_paquete WHERE idPaquete = " + idPaquete);
+            queryDelete.executeUpdate();
+            PreparedStatement queryInsert = conexion.prepareStatement("INSERT INTO seccion_paquete VALUES (" + idSeccionAMover + "," + idPaquete + ")");
+            queryInsert.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+    }
+
+    public ArrayList<Paquete> obtenerPaquetes() {
+        ArrayList<Paquete> resultado = new ArrayList<Paquete>();
+        try {
+
             PreparedStatement query = conexion.prepareStatement("SELECT * FROM paquete");
             ResultSet resultadoDeLaQuery = query.executeQuery();
-            while(resultadoDeLaQuery.next()) {
+            while (resultadoDeLaQuery.next()) {
                 int id = resultadoDeLaQuery.getInt("id");
                 String descripcion = resultadoDeLaQuery.getString("descripcion");
                 float peso = resultadoDeLaQuery.getFloat("peso");
@@ -40,12 +86,12 @@ public class ServicioPaquete {
                 int idSeccion = ServicioSeccion.obtenerIdSeccion_Paquete(id);
                 IProximidad IP = Fabrica.getInstancia().getControladorSeccion();
                 Seccion nombreSeccion = IP.buscarUnaSeccion(idSeccion);
-               // resultado.add(new Paquete(id, descripcion, peso, esFragil, esEspecial, nombreSeccion.getNombre()));
+                // resultado.add(new Paquete(id, descripcion, peso, esFragil, esEspecial, nombreSeccion.getNombre()));
             }
-                } catch (SQLException e) {
-                System.out.println("Error: " + e);
-            }
-        
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+        }
+
         return resultado;
     }
 }

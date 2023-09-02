@@ -6,6 +6,7 @@ package logica.interfaces;
 
 import java.util.ArrayList;
 import logica.clases.Envio;
+import logica.clases.Paquete;
 import logica.clases.Cliente;
 import logica.clases.Direccion;
 import logica.clases.Localidad;
@@ -17,6 +18,9 @@ import logica.clases.Tarifa;
  * @author MarmaduX
  */
 public interface IEnvio {
+    public abstract ArrayList<Paquete> listarPaquetesPorSeccion(int idSeccion);
+  
+    public abstract void moverPaqueteASeccion(int idPaquete, int idSeccionAMover);
 
     public abstract ArrayList<Envio> listaDeEnvios();
 

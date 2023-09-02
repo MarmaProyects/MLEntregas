@@ -1,4 +1,4 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
@@ -30,7 +30,9 @@ public class EditarTarifa extends javax.swing.JFrame {
             this.tarifa = this.IA.traerTarifaSeleccionada(id);
             this.nombreField.setText(tarifa.getNombre());
             this.costoField.setText(String.valueOf(tarifa.getPrecio()));
-        } 
+        } else {
+            this.editButton.setVisible(false);
+        }
     }
 
     /**

@@ -38,8 +38,8 @@ public class CrearSeccion extends javax.swing.JFrame {
         this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Images/logo.png")).getImage());
         this.IPR = Fabrica.getInstancia().getControladorSeccion();
         this.obtenerListaLocalidad();
-        
-        jComboBox1.addItem(" "); 
+
+        jComboBox1.addItem(" ");
         for (String res : listaLocalidad) {
             jComboBox1.addItem(res);
         }
@@ -79,7 +79,7 @@ public class CrearSeccion extends javax.swing.JFrame {
         jLabel1.setText("Crear Seccion");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        buttonCrear.setText("CREAR");
+        buttonCrear.setText("Crear");
         buttonCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCrearActionPerformed(evt);
@@ -114,6 +114,11 @@ public class CrearSeccion extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 nombreFieldFocusLost(evt);
+            }
+        });
+        nombreField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombreFieldKeyTyped(evt);
             }
         });
 
@@ -200,29 +205,31 @@ public class CrearSeccion extends javax.swing.JFrame {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void buttonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCrearActionPerformed
         // TODO add your handling code here:
-        String nombre = nombreField.getText().trim();
-        String localidad = jComboBox1.getSelectedItem().toString();
-        if (!nombre.equals("")) {
+        if (!nombreField.getText().trim().equals("")) {
+            boolean nombreExiste = false;
             ArrayList<Seccion> listaSec = this.IPR.obtenerLasSecciones();
             for (Seccion sec : listaSec) {
-                if (sec.getNombre().equals(nombre)) {
-                    JOptionPane.showMessageDialog(null, "El nombre ya existe en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
+                if (sec.getNombre().equals(nombreField.getText().trim())) {
+                    nombreExiste = true;
                 }
             }
-            this.IPR.agregarUnaSeccion(nombre, localidad);
-            JOptionPane.showMessageDialog(null, "Sección creada exitosamente", "Creación exitosa", JOptionPane.INFORMATION_MESSAGE);
-        }
-        else {
+            if (!nombreExiste) {
+                this.IPR.agregarUnaSeccion(nombreField.getText().trim(), jComboBox1.getSelectedItem().toString());
+                this.nombreField.setText("");
+                this.jComboBox1.setSelectedItem(" ");
+                JOptionPane.showMessageDialog(null, "Sección creada exitosamente", "Creación exitosa", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "El nombre ya existe en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "Ingrese un nombre", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
-        
+
     }//GEN-LAST:event_buttonCrearActionPerformed
 
     private void nombreFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreFieldFocusGained
@@ -236,6 +243,24 @@ public class CrearSeccion extends javax.swing.JFrame {
         this.requestFocusInWindow();
     }//GEN-LAST:event_formWindowGainedFocus
 
+    private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
+        // TODO add your handling code here:
+        ListarSecciones listarSec = new ListarSecciones();
+        listarSec.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_cancelarButtonActionPerformed
+
+    private void nombreFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreFieldKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        if (key == '-') {
+            evt.consume();
+        }
+        if (nombreField.getText().trim().length() >= 30) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_nombreFieldKeyTyped
+
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
 
     }//GEN-LAST:event_jLabel4MouseClicked
@@ -245,9 +270,11 @@ public class CrearSeccion extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel4MousePressed
 
     private void volverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtonActionPerformed
-        this.setVisible(false);
+        this.dispose();
+        ListarSecciones listarSec = new ListarSecciones();
+        listarSec.setVisible(true);
     }//GEN-LAST:event_volverButtonActionPerformed
-    
+
     private ArrayList<String> obtenerListaLocalidad() {
         try {
             PreparedStatement query = conexion.prepareStatement("SELECT nombre FROM localidad");
@@ -258,7 +285,7 @@ public class CrearSeccion extends javax.swing.JFrame {
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e);
-        }        
+        }
         return listaLocalidad;
     }
 
@@ -289,14 +316,12 @@ public class CrearSeccion extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CrearSeccion().setVisible(true);
             }
         });
-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
