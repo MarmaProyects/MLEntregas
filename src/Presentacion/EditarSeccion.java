@@ -42,25 +42,25 @@ public class EditarSeccion extends javax.swing.JFrame {
             this.nombreField.setText(seccion.getNombre());
             this.localidadComboBox.setSelectedIndex(seccion.getIdLocalidad() - 1);
             this.localidadSelect = seccion.getIdLocalidad() - 1;
+            this.secciones = this.fb.getControladorSeccion().obtenerLasSecciones();
+            ArrayList<Localidad> localidades = this.fb.getControladorLocalidad().obtenerLasLocalidades();
+            this.comboBoxSecciones.addItem(" ");
+            for (Seccion sec : secciones) {
+                if (sec.getIdLocalidad() != -1) {
+                    for (Localidad loc : localidades) {
+                        if (sec.getIdLocalidad() == loc.getIdLocalidad()) {
+                            this.comboBoxSecciones.addItem(sec.getNombre() + " - " + loc.getNombre());
+                            break;
+                        }
+                    }
+                } else {
+                    this.comboBoxSecciones.addItem(sec.getNombre());
+                }
+            }
+            this.cargarDatosSeccion();
         } else {
             this.editButton.setVisible(false);
         }
-        this.secciones = this.fb.getControladorSeccion().obtenerLasSecciones();
-        ArrayList<Localidad> localidades = this.fb.getControladorLocalidad().obtenerLasLocalidades();
-        this.comboBoxSecciones.addItem(" ");
-        for (Seccion sec : secciones) {
-            if (sec.getIdLocalidad() != -1) {
-                for (Localidad loc : localidades) {
-                    if (sec.getIdLocalidad() == loc.getIdLocalidad()) {
-                        this.comboBoxSecciones.addItem(sec.getNombre() + " - " + loc.getNombre());
-                        break;
-                    }
-                }
-            } else {
-                this.comboBoxSecciones.addItem(sec.getNombre());
-            }
-        }
-        this.cargarDatosSeccion();
     }
 
     /**
@@ -97,6 +97,7 @@ public class EditarSeccion extends javax.swing.JFrame {
         jLabel3.setText("Localidad:");
 
         nombreField.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        nombreField.setMaximumSize(new java.awt.Dimension(64, 26));
         nombreField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 nombreFieldKeyTyped(evt);
@@ -193,10 +194,10 @@ public class EditarSeccion extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(21, 21, 21)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(nombreField)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nombreField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(localidadComboBox, 0, 118, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(volverButton)
@@ -214,9 +215,9 @@ public class EditarSeccion extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(volverButton)
                     .addComponent(jLabel1))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
                     .addComponent(nombreField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -232,7 +233,7 @@ public class EditarSeccion extends javax.swing.JFrame {
                         .addGap(131, 131, 131)
                         .addComponent(moverPaqueteButton))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {editButton, moverPaqueteButton, volverButton});
@@ -309,7 +310,7 @@ public class EditarSeccion extends javax.swing.JFrame {
         if (key == '-') {
             evt.consume();
         }
-        if (nombreField.getText().trim().length() == 50) {
+        if (nombreField.getText().trim().length() >= 30) {
             evt.consume();
         }
     }//GEN-LAST:event_nombreFieldKeyTyped
