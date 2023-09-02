@@ -34,21 +34,16 @@ public class AutenticacionUsuario extends javax.swing.JFrame {
 
         labelSesion = new javax.swing.JLabel();
         labelCodigo = new javax.swing.JLabel();
-        campoCodigo = new javax.swing.JTextField();
         botonIniciarSesion = new javax.swing.JButton();
+        campoCodigopwd = new javax.swing.JPasswordField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        labelSesion.setFont(new java.awt.Font("Checkpoint Charlie", 0, 24)); // NOI18N
         labelSesion.setText("INICIO DE SESION");
 
         labelCodigo.setText("Codigo:");
-
-        campoCodigo.setToolTipText("");
-        campoCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                campoCodigoKeyTyped(evt);
-            }
-        });
 
         botonIniciarSesion.setText("Iniciar Sesion");
         botonIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
@@ -57,42 +52,59 @@ public class AutenticacionUsuario extends javax.swing.JFrame {
             }
         });
 
+        campoCodigopwd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoCodigopwdKeyTyped(evt);
+            }
+        });
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo-sm.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(96, Short.MAX_VALUE)
-                .addComponent(labelCodigo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap(91, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelSesion))
-                .addGap(121, 121, 121))
+                    .addComponent(labelSesion)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(131, 131, 131))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(labelCodigo)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(campoCodigopwd, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(126, 126, 126))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(botonIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(20, 20, 20)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(31, 31, 31)
                 .addComponent(labelSesion)
-                .addGap(94, 94, 94)
+                .addGap(46, 46, 46)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelCodigo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                .addComponent(botonIniciarSesion)
-                .addGap(39, 39, 39))
+                    .addComponent(labelCodigo)
+                    .addComponent(campoCodigopwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(botonIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarSesionActionPerformed
-        if (campoCodigo.getText().isBlank()) {
+        if (campoCodigopwd.getPassword().toString().isBlank()) {
             JOptionPane.showMessageDialog(null, "No ingresó ningun codigo", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            int codigoIngresado = Integer.parseInt(campoCodigo.getText());
+            int codigoIngresado = Integer.parseInt(new String(campoCodigopwd.getPassword()));
             AutenticacionU aUsuario = new AutenticacionU();
             boolean iguales = aUsuario.verificarAutenticacionUsuario(codigoIngresado);
             if (iguales) {
@@ -101,19 +113,19 @@ public class AutenticacionUsuario extends javax.swing.JFrame {
                 this.setVisible(false);
             } else {
                 JOptionPane.showMessageDialog(null, "El codigo ingresado no es correcto", "Error", JOptionPane.ERROR_MESSAGE);
-                campoCodigo.setText("");
+                campoCodigopwd.setText("");
             }
 
         }
     }//GEN-LAST:event_botonIniciarSesionActionPerformed
 
-    private void campoCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoCodigoKeyTyped
-        int key = evt.getKeyChar();
+    private void campoCodigopwdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoCodigopwdKeyTyped
+         int key = evt.getKeyChar();
 
-        if (!Character.isDigit(key) || campoCodigo.getText().length() >= 4) {
+        if (!Character.isDigit(key) || campoCodigopwd.getPassword().length>= 4) {
             evt.consume();
         }
-    }//GEN-LAST:event_campoCodigoKeyTyped
+    }//GEN-LAST:event_campoCodigopwdKeyTyped
 
     /**
      * @param args the command line arguments
@@ -152,7 +164,8 @@ public class AutenticacionUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonIniciarSesion;
-    private javax.swing.JTextField campoCodigo;
+    private javax.swing.JPasswordField campoCodigopwd;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelCodigo;
     private javax.swing.JLabel labelSesion;
     // End of variables declaration//GEN-END:variables
