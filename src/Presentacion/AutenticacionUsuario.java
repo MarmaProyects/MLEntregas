@@ -36,7 +36,7 @@ public class AutenticacionUsuario extends javax.swing.JFrame {
         labelCodigo = new javax.swing.JLabel();
         botonIniciarSesion = new javax.swing.JButton();
         campoCodigopwd = new javax.swing.JPasswordField();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,7 +58,7 @@ public class AutenticacionUsuario extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo-sm.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/candadoMLmd.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,29 +70,30 @@ public class AutenticacionUsuario extends javax.swing.JFrame {
                     .addComponent(labelSesion)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(131, 131, 131))
+                            .addComponent(botonIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(20, 20, 20))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(labelCodigo)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(campoCodigopwd, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(126, 126, 126))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(botonIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(20, 20, 20)))))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(31, 31, 31)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap()))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(labelSesion)
-                .addGap(46, 46, 46)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelCodigo)
                     .addComponent(campoCodigopwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
                 .addComponent(botonIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
@@ -101,7 +102,7 @@ public class AutenticacionUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarSesionActionPerformed
-        if (campoCodigopwd.getPassword().toString().isBlank()) {
+        if (campoCodigopwd.getPassword().length == 0) {
             JOptionPane.showMessageDialog(null, "No ingresó ningun codigo", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             int codigoIngresado = Integer.parseInt(new String(campoCodigopwd.getPassword()));
@@ -165,7 +166,7 @@ public class AutenticacionUsuario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonIniciarSesion;
     private javax.swing.JPasswordField campoCodigopwd;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel labelCodigo;
     private javax.swing.JLabel labelSesion;
     // End of variables declaration//GEN-END:variables
