@@ -4,6 +4,11 @@
  */
 package Presentacion;
 
+import Autenticacion.AutenticacionU;
+import java.util.Properties;
+import javax.swing.JOptionPane;
+import Presentacion.Home;
+
 /**
  *
  * @author Angelo
@@ -38,6 +43,13 @@ public class AutenticacionUsuario extends javax.swing.JFrame {
 
         labelCodigo.setText("Codigo:");
 
+        campoCodigo.setToolTipText("");
+        campoCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoCodigoKeyTyped(evt);
+            }
+        });
+
         botonCrearCodigo.setText("Crear Codigo");
 
         botonIniciarSesion.setText("Iniciar Sesion");
@@ -52,19 +64,21 @@ public class AutenticacionUsuario extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(96, Short.MAX_VALUE)
-                .addComponent(labelCodigo)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(botonCrearCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelCodigo)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(campoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelSesion))
-                .addGap(121, 121, 121))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(botonCrearCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botonIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
+                    .addComponent(labelSesion)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addComponent(botonIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,8 +100,31 @@ public class AutenticacionUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarSesionActionPerformed
-        
+        if (campoCodigo.getText().isBlank()) {
+            JOptionPane.showMessageDialog(null, "No ingresó ningun codigo", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            int codigoIngresado = Integer.parseInt(campoCodigo.getText());
+            AutenticacionU aUsuario = new AutenticacionU();
+            boolean iguales = aUsuario.verificarAutenticacionUsuario(codigoIngresado);
+            if (iguales) {
+                Home home = new Home();
+                home.setVisible(true);
+                this.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(null, "El codigo ingresado no es correcto", "Error", JOptionPane.ERROR_MESSAGE);
+                campoCodigo.setText("");
+            }
+
+        }
     }//GEN-LAST:event_botonIniciarSesionActionPerformed
+
+    private void campoCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoCodigoKeyTyped
+        int key = evt.getKeyChar();
+
+        if (!Character.isDigit(key) || campoCodigo.getText().length() >= 8) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_campoCodigoKeyTyped
 
     /**
      * @param args the command line arguments

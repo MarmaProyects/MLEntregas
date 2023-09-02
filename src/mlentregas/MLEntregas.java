@@ -4,7 +4,7 @@
  */
 package mlentregas;
 
-import Presentacion.Home;
+import Presentacion.AutenticacionUsuario;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.util.logging.Logger;
 
@@ -23,7 +23,8 @@ public class MLEntregas {
         } catch(Exception ex){
             Logger.getLogger("Error:" + ex);
         }
-        Home home = new Home();  
-        home.setVisible(true);
+        AutenticacionUsuario autenticacion = new AutenticacionUsuario();
+        autenticacion.setVisible(true);
+        
     }
 }
