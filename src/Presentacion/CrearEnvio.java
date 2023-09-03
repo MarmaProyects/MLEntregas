@@ -890,7 +890,9 @@ public class CrearEnvio extends javax.swing.JFrame {
             boolean tipoEntrega;
             int fragil = this.checkBoxFragil.isSelected() ? 1 : 0;
             int especial = this.checkboxEspecial.isSelected() ? 1 : 0;
-
+            if(especial==1){
+                idTarifa = this.obtenerIdTarifaEspecial();
+            }
             int idP = this.iE.crearPaquete(campoDescPaquete.getText(), Float.parseFloat(campoPesoPaquete.getText()), fragil, especial);
             if (this.validacionCamposVacios()) {
                 idDireccionDestino = this.iE.crearDireccion(campoCalleDireccion.getText(), campoCalle2Direccion.getText(),
@@ -916,7 +918,6 @@ public class CrearEnvio extends javax.swing.JFrame {
             //ENVIO
 
             int idEnvio = this.iE.crearEnvio(idP, idTarifa, idDireccionOrigen, idDireccionDestino, -1);
-            System.out.println(" " + idTarifa);
 
 //----------CLIENTES-----------------------------------------------------------------------------------------------------------------------------------------------------------------
             if (!this.iA.verificarExisteClienteNuevo(Integer.parseInt(campoCedulaE.getText()))) {
@@ -938,6 +939,10 @@ public class CrearEnvio extends javax.swing.JFrame {
             this.setVisible(false);
             Home home = new Home();
             home.setVisible(true);
+        } else if (!this.validacionTarifas()){
+            JOptionPane.showMessageDialog(null, "Falta seleccionar la tarifa", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (!this.validacionSecciones()){
+            JOptionPane.showMessageDialog(null, "Falta seleccionar la seccion", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (!this.validacionCamposVacios()) {
             JOptionPane.showMessageDialog(null, "Para registrar el envio tiene que completar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
@@ -1091,7 +1096,8 @@ public class CrearEnvio extends javax.swing.JFrame {
 
     private boolean validacionCamposVacios() {
         return this.validacionCamposDireccionD() && this.validacionCamposDireccionO()
-                && this.validacionCamposClienteE() && this.validacionCamposClienteR() && !this.campoPesoPaquete.getText().isBlank();
+                && this.validacionCamposClienteE() && this.validacionCamposClienteR() && !this.campoPesoPaquete.getText().isBlank() 
+                && this.validacionTarifas()&& this.validacionSecciones();
     }
 
     private boolean validacionCamposDireccionD() {
@@ -1115,6 +1121,14 @@ public class CrearEnvio extends javax.swing.JFrame {
 
     private boolean validacionDeClientes() {
         return !(this.campoCedulaE.getText().equals(this.campoCedulaR.getText()));
+    }
+    
+    private boolean validacionTarifas() {
+        return this.comboTarifasEspeciales.getSelectedItem() != null;
+    }
+    
+    private boolean validacionSecciones() {
+        return this.comboSecciones.getSelectedItem() != null;
     }
 
     private void botonCrearTarifaEspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearTarifaEspActionPerformed
@@ -1177,8 +1191,7 @@ public class CrearEnvio extends javax.swing.JFrame {
     }//GEN-LAST:event_campoCedulaRActionPerformed
 
     private void comboTarifasEspecialesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_comboTarifasEspecialesFocusLost
-        // TODO add your handling code here:
-        idTarifa = this.obtenerIdTarifaEspecial();
+       
     }//GEN-LAST:event_comboTarifasEspecialesFocusLost
 
     private void campoNombreRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNombreRActionPerformed
