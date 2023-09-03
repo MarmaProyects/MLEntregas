@@ -48,4 +48,29 @@ public class ServicioCliente {
 
         return resultado;
     }
+
+    public Cliente traerCliente(int cedula) {
+
+        Cliente cliente = null;
+
+        try {
+            PreparedStatement queryTraerCliente = conexion.prepareStatement("SELECT * FROM cliente WHERE cedula= " + cedula);
+            ResultSet resultadoCliente = queryTraerCliente.executeQuery();
+            if (resultadoCliente.next()) {
+                int ced = resultadoCliente.getInt("cedula");
+                String nom = resultadoCliente.getString("nombre");
+                String ape = resultadoCliente.getString("apellido");
+                int tel = resultadoCliente.getInt("telefono");
+                cliente = new Cliente(ced, nom, ape, tel);
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return cliente;
+    }
+    
+    public void editarCliente(String nombre, String apellido, String telefono){
+    
+    
+    }
 }

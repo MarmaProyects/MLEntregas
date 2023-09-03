@@ -15,21 +15,22 @@ import logica.servicios.ServicioCliente;
  * @author MarmaduX
  */
 public class ControladorCliente implements IAdministracion {
+
     private static ControladorCliente instance;
     private ServicioCliente servicioCliente;
 
     public ControladorCliente() {
         this.servicioCliente = new ServicioCliente();
     }
-    
-    public void agregarCliente(int cedula, String nombre ,String apellido, int telefono) {
-            this.servicioCliente.insertarCliente(cedula, nombre, apellido, telefono);
+
+    public void agregarCliente(int cedula, String nombre, String apellido, int telefono) {
+        this.servicioCliente.insertarCliente(cedula, nombre, apellido, telefono);
     }
-    
-    public Boolean verificarExisteClienteNuevo(int cedula){
+
+    public Boolean verificarExisteClienteNuevo(int cedula) {
         Boolean resultado = false;
         ArrayList<Cliente> clientes = this.servicioCliente.obtenerCliente();
-        for(Cliente cliente:clientes){
+        for (Cliente cliente : clientes) {
             if (cliente.getCedula() == cedula) {
                 resultado = true;
                 break;
@@ -44,8 +45,6 @@ public class ControladorCliente implements IAdministracion {
         }
         return instance;
     }
-    
-    
 
     @Override
     public void crearUnaTarifa(String nombre, float precioBase) {
@@ -70,5 +69,9 @@ public class ControladorCliente implements IAdministracion {
     @Override
     public boolean editarTarifaSeleccionada(int id, String nombre, float precio) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Cliente traerClienteSeleccionado(int cedula) {
+        return this.servicioCliente.traerCliente(cedula);
     }
 }
