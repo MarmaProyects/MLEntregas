@@ -29,27 +29,20 @@ public class AutenticacionU {
 
     public boolean verificarAutenticacionUsuario(int code) {
         properties = new Properties();
-        int codigoAsignado = 0;
+        int codigoAsignado = -1;
         try {
             FileInputStream input = new FileInputStream(PROPERTIES_FILE);
             properties.load(input);
             input.close();
-            //properties.setProperty("codigo", "12");
-            //properties.store(new FileWriter("database.properties"), "Datos Actualizados!");
-            //System.err.println(properties.getProperty("codigo"));
-            codigoAsignado = Integer.parseInt(properties.getProperty("codigo"));
-            System.out.println("codigo ingresado " + code);
-            System.out.println("codigo correcto " + codigoAsignado);
-            if (code == codigoAsignado) {
-                return true;
-            } else {
-                return false;
+            if (properties.getProperty("codigo") != null) {
+                codigoAsignado = Integer.parseInt(properties.getProperty("codigo"));
             }
+            return (code == codigoAsignado);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return true;
+        return false;
     }
 
     public void setCodigo(String codigo) {
