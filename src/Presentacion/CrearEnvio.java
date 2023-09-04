@@ -4,8 +4,6 @@
  */
 package Presentacion;
 
-import BaseDeDatos.Conexion;
-import java.sql.Connection;
 import java.util.ArrayList;
 import logica.clases.Cliente;
 import logica.clases.Localidad;
