@@ -76,6 +76,7 @@ public class ServicioCliente {
             PreparedStatement queryEditarCliente = conexion.prepareStatement("UPDATE cliente SET nombre= '" + nombre + "',"
                     + " apellido= '" + apellido + "', telefono= '" + telefono + "' WHERE cedula= '" + cedula + "'");
             queryEditarCliente.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se editó el cliente correctamente");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e + "No se logró actualizar los datos");
         }

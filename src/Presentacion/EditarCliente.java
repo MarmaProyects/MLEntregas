@@ -20,10 +20,12 @@ public class EditarCliente extends javax.swing.JFrame {
 
     public EditarCliente(int cedula) {
         initComponents();
+        campoNombre.requestFocus();
         this.IA = Fabrica.getInstancia().getControladorCliente();
         this.cliente = this.IA.traerClienteSeleccionado(cedula);
         this.cedula = cliente.getCedula();
         if (cedula != -1) {
+            this.campoCedula.setText(String.valueOf(cliente.getCedula()));
             this.campoNombre.setText(cliente.getNombre());
             this.campoApellido.setText(cliente.getApellido());
             this.campoTelefono.setText(cliente.getTelefono());
@@ -50,6 +52,8 @@ public class EditarCliente extends javax.swing.JFrame {
         campoTelefono = new javax.swing.JTextField();
         botonVolver = new javax.swing.JButton();
         botonEditar = new javax.swing.JButton();
+        labelCedula = new javax.swing.JLabel();
+        campoCedula = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -75,6 +79,10 @@ public class EditarCliente extends javax.swing.JFrame {
             }
         });
 
+        labelCedula.setText("Cedula:");
+
+        campoCedula.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,15 +95,18 @@ public class EditarCliente extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(78, 78, 78)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(labelNombre)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(labelTelefono)
-                                .addComponent(jLabel1)))
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(labelCedula)
+                                .addComponent(labelNombre)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(campoNombre)
                             .addComponent(campoApellido)
-                            .addComponent(campoTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))))
+                            .addComponent(campoTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                            .addComponent(campoCedula))))
                 .addContainerGap(116, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
@@ -109,7 +120,11 @@ public class EditarCliente extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(labelCliente)
-                .addGap(64, 64, 64)
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelCedula)
+                    .addComponent(campoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNombre)
                     .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -121,7 +136,7 @@ public class EditarCliente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTelefono)
                     .addComponent(campoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonVolver)
                     .addComponent(botonEditar))
@@ -178,9 +193,11 @@ public class EditarCliente extends javax.swing.JFrame {
     private javax.swing.JButton botonEditar;
     private javax.swing.JButton botonVolver;
     private javax.swing.JTextField campoApellido;
+    private javax.swing.JTextField campoCedula;
     private javax.swing.JTextField campoNombre;
     private javax.swing.JTextField campoTelefono;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel labelCedula;
     private javax.swing.JLabel labelCliente;
     private javax.swing.JLabel labelNombre;
     private javax.swing.JLabel labelTelefono;
