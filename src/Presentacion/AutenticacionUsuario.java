@@ -5,9 +5,7 @@
 package Presentacion;
 
 import Autenticacion.AutenticacionU;
-import java.util.Properties;
 import javax.swing.JOptionPane;
-import Presentacion.Home;
 
 /**
  *

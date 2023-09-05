@@ -4,17 +4,8 @@
  */
 package Autenticacion;
 
-import BaseDeDatos.Conexion;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.sql.Connection;
 import java.util.Properties;
-import java.sql.DriverManager;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,8 +14,6 @@ import javax.swing.JOptionPane;
 public class AutenticacionU {
 
     private static final String PROPERTIES_FILE = "database.properties";
-    private static Conexion instancia;
-    private Connection connection;
     private Properties properties;
 
     public boolean verificarAutenticacionUsuario(int code) {
