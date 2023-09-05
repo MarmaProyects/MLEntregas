@@ -9,6 +9,7 @@ import logica.clases.Envio;
 import logica.clases.Paquete;
 import logica.clases.Cliente;
 import logica.clases.Direccion;
+import logica.clases.Estado;
 import logica.clases.Localidad;
 import logica.clases.Seccion;
 import logica.clases.Tarifa;
@@ -55,4 +56,6 @@ public interface IEnvio {
     public void conexionEnvio_Estado(int idEnvio, int idEstado);
 
     public int crearEstado(int idEnvio, String tipo, String comentario);
+    
+    public abstract Estado obtenerElEstado(int idEstado, int idEnvio);
 }
