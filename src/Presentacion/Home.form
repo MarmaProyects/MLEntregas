@@ -282,17 +282,15 @@
                   <Group type="102" attributes="0">
                       <EmptySpace pref="59" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="crearLocalidadesButton" alignment="1" min="-2" pref="202" max="-2" attributes="0"/>
-                          <Component id="crearSeccionesButton" alignment="1" min="-2" pref="202" max="-2" attributes="0"/>
-                          <Component id="buttonAux" alignment="1" min="-2" pref="202" max="-2" attributes="0"/>
-                          <Component id="jButton19" alignment="1" min="-2" pref="202" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                              <Component id="crearLocalidadesButton" alignment="1" min="-2" pref="202" max="-2" attributes="0"/>
+                              <Component id="crearSeccionesButton" alignment="1" min="-2" pref="202" max="-2" attributes="0"/>
+                              <Component id="buttonAux" alignment="1" min="-2" pref="202" max="-2" attributes="0"/>
+                              <Component id="jButton19" alignment="1" min="-2" pref="202" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="59" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
