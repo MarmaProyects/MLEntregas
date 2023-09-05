@@ -4,7 +4,6 @@
  */
 package Presentacion;
 
-
 import logica.clases.Cliente;
 import logica.fabrica.Fabrica;
 import logica.interfaces.IAdministracion;
@@ -18,18 +17,18 @@ public class EditarCliente extends javax.swing.JFrame {
     private IAdministracion IA;
     private int cedula;
     private Cliente cliente = null;
-    
+
     public EditarCliente(int cedula) {
         initComponents();
         this.IA = Fabrica.getInstancia().getControladorCliente();
-        this.cedula = cedula;
-        if(cedula != -1){
         this.cliente = this.IA.traerClienteSeleccionado(cedula);
-        this.campoNombre.setText(cliente.getNombre());
-        this.campoApellido.setText(cliente.getApellido());
-        this.campoTelefono.setText(cliente.getTelefono());
-        }else{
-        this.botonEditar.setVisible(false);
+        this.cedula = cliente.getCedula();
+        if (cedula != -1) {
+            this.campoNombre.setText(cliente.getNombre());
+            this.campoApellido.setText(cliente.getApellido());
+            this.campoTelefono.setText(cliente.getTelefono());
+        } else {
+            this.botonEditar.setVisible(false);
         }
     }
 
@@ -70,6 +69,11 @@ public class EditarCliente extends javax.swing.JFrame {
         });
 
         botonEditar.setText("Editar");
+        botonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEditarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,6 +134,10 @@ public class EditarCliente extends javax.swing.JFrame {
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonVolverActionPerformed
+
+    private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
+        this.IA.editarClienteSeleccionado(this.cedula, campoNombre.getText().trim(), campoApellido.getText().trim(), Integer.parseInt(campoTelefono.getText().trim()));
+    }//GEN-LAST:event_botonEditarActionPerformed
 
     /**
      * @param args the command line arguments

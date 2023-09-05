@@ -74,4 +74,8 @@ public class ControladorCliente implements IAdministracion {
     public Cliente traerClienteSeleccionado(int cedula) {
         return this.servicioCliente.traerCliente(cedula);
     }
+
+    public void editarClienteSeleccionado(int cedula, String nombre, String apellido, int telefono) {
+        this.servicioCliente.editarCliente(cedula, nombre, apellido, telefono);
+    }
 }

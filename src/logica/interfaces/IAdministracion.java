@@ -29,4 +29,6 @@ public interface IAdministracion {
     public abstract boolean editarTarifaSeleccionada(int id, String nombre, float precio);
 
     public abstract Cliente traerClienteSeleccionado(int cedula);
+
+    public abstract void editarClienteSeleccionado(int cedula, String nombre, String apellido, int telefono);
 }

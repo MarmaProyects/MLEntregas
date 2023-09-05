@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import logica.clases.Cliente;
 
 /**
@@ -60,17 +61,23 @@ public class ServicioCliente {
                 int ced = resultadoCliente.getInt("cedula");
                 String nom = resultadoCliente.getString("nombre");
                 String ape = resultadoCliente.getString("apellido");
-                int tel = resultadoCliente.getInt("telefono");
+                int t = resultadoCliente.getInt("telefono");
+                String tel = String.valueOf(t);
                 cliente = new Cliente(ced, nom, ape, tel);
             }
         } catch (Exception e) {
-            System.out.println("Error: " + e);
+            JOptionPane.showMessageDialog(null, e + "Error traer cliente:");
         }
         return cliente;
     }
-    
-    public void editarCliente(String nombre, String apellido, String telefono){
-    
-    
+
+    public void editarCliente(int cedula, String nombre, String apellido, int telefono) {
+        try {
+            PreparedStatement queryEditarCliente = conexion.prepareStatement("UPDATE cliente SET nombre= '" + nombre + "',"
+                    + " apellido= '" + apellido + "', telefono= '" + telefono + "' WHERE cedula= '" + cedula + "'");
+            queryEditarCliente.executeUpdate();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e + "No se logró actualizar los datos");
+        }
     }
 }

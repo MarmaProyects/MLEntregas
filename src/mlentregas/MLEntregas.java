@@ -4,6 +4,7 @@
  */
 package mlentregas;
 
+import Presentacion.EditarCliente;
 import Presentacion.Home;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.util.logging.Logger;
@@ -23,7 +24,10 @@ public class MLEntregas {
         } catch(Exception ex){
             Logger.getLogger("Error:" + ex);
         }
-        Home home = new Home();  
-        home.setVisible(true);
+        //Home home = new Home();  
+        //home.setVisible(true);
+        EditarCliente editar = new EditarCliente(50548173);
+        editar.setVisible(true);
+        
     }
 }

@@ -5,6 +5,7 @@
 package logica.controladores;
 
 import java.util.ArrayList;
+import logica.clases.Cliente;
 import logica.clases.Tarifa;
 import logica.interfaces.IAdministracion;
 import logica.servicios.ServicioTarifa;
@@ -61,5 +62,15 @@ public class ControladorTarifa implements IAdministracion {
     @Override
     public boolean editarTarifaSeleccionada(int id, String nombre, float precio) {
         return this.servicioTarifa.editarTarifa(id, nombre, precio);
+    }
+
+    @Override
+    public Cliente traerClienteSeleccionado(int cedula) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void editarClienteSeleccionado(int cedula, String nombre, String apellido, int telefono) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
