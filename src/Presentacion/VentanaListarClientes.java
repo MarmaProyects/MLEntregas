@@ -118,14 +118,6 @@ public class VentanaListarClientes extends javax.swing.JFrame {
     private void botonSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSeleccionarActionPerformed
         // TODO add your handling code here:
         
-        if (tablaClientesE.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(null, "No ha seleccionado ningun cliente", "ERROR AL SELECCIONAR CLIENTE EMISOR", JOptionPane.WARNING_MESSAGE);
-        } else {
-                CrearEnvio.campoCedulaE.setText(tablaClientesE.getValueAt(tablaClientesE.getSelectedRow(), 0).toString());
-                CrearEnvio.campoNombreE.setText(tablaClientesE.getValueAt(tablaClientesE.getSelectedRow(), 1).toString());
-                CrearEnvio.campoApellidoE.setText(tablaClientesE.getValueAt(tablaClientesE.getSelectedRow(), 2).toString());
-                this.setVisible(false);
-        }
         
     }//GEN-LAST:event_botonSeleccionarActionPerformed
 

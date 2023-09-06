@@ -106,7 +106,7 @@
                           <Group type="102" attributes="0">
                               <EmptySpace pref="59" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jButton1" linkSize="5" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Component id="buttonCrearEnvio" linkSize="5" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                                   <Component id="verEnvioButton" linkSize="5" alignment="0" min="-2" pref="202" max="-2" attributes="0"/>
                                   <Component id="jButton3" linkSize="5" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -131,7 +131,7 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jButton1" linkSize="6" min="-2" pref="70" max="-2" attributes="0"/>
+                      <Component id="buttonCrearEnvio" linkSize="6" min="-2" pref="70" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="verEnvioButton" linkSize="6" min="-2" pref="70" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -152,10 +152,13 @@
                 <Property name="text" type="java.lang.String" value="ENV&#xcd;O"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="buttonCrearEnvio">
               <Properties>
                 <Property name="text" type="java.lang.String" value="CREAR ENV&#xcd;O"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCrearEnvioActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="verEnvioButton">
               <Properties>
@@ -282,17 +285,15 @@
                   <Group type="102" attributes="0">
                       <EmptySpace pref="59" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="crearLocalidadesButton" alignment="1" min="-2" pref="202" max="-2" attributes="0"/>
-                          <Component id="crearSeccionesButton" alignment="1" min="-2" pref="202" max="-2" attributes="0"/>
-                          <Component id="buttonAux" alignment="1" min="-2" pref="202" max="-2" attributes="0"/>
-                          <Component id="jButton19" alignment="1" min="-2" pref="202" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                              <Component id="crearLocalidadesButton" alignment="1" min="-2" pref="202" max="-2" attributes="0"/>
+                              <Component id="crearSeccionesButton" alignment="1" min="-2" pref="202" max="-2" attributes="0"/>
+                              <Component id="buttonAux" alignment="1" min="-2" pref="202" max="-2" attributes="0"/>
+                              <Component id="jButton19" alignment="1" min="-2" pref="202" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="59" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

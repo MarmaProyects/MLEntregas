@@ -4,8 +4,11 @@
  */
 package Presentacion;
 
-import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import logica.clases.Envio;
+import logica.clases.Estado;
+import logica.dataTypes.TipoEstado;
 import logica.fabrica.Fabrica;
 import logica.interfaces.IEnvio;
 
@@ -14,53 +17,82 @@ import logica.interfaces.IEnvio;
  * @author leo
  */
 public class VerDetallesEnvio extends javax.swing.JFrame {
+
     private IEnvio IE;
+    int idEnvio;
 
     /**
      * Creates new form VerDetallesEnvio
      */
     public VerDetallesEnvio(int id) {
+        this.idEnvio = id;
         initComponents();
         this.IE = Fabrica.getInstancia().getControladorEnvio();
         AccederDetallesEnvio(id);
     }
 
-    public void AccederDetallesEnvio(int idEnvio){
-        Envio envio = IE.verDetallesDelEnvio(idEnvio);
-        this.jTextFieldIDEnvio.setText(Integer.toString(envio.getIdEnvio()));
-        this.jTextFieldIDPaquete.setText(Integer.toString(envio.getPaquete().getIdPaquete()));
-        this.jTextAreaDescripcion.setText(envio.getPaquete().getDescripcion());
-        this.jTextFieldTarifa.setText(envio.getTarifa().getNombre());
-        this.jTextFieldCIEmisor.setText(Integer.toString(envio.getClienteEmisor().getCedula()));
-        this.jTextFieldNombreEmisor.setText(envio.getClienteEmisor().getNombre());
-        this.jTextFieldNombreReceptor.setText(envio.getClienteReceptor().getNombre());
-        this.jTextFieldCIReceptor.setText(Integer.toString(envio.getClienteReceptor().getCedula()));
-        this.jTextFieldCalle1Emisor.setText(envio.getDireccionOrigen().getCalle());
-        this.jTextFieldCalle2Emisor.setText(envio.getDireccionOrigen().getSegunda_calle());
-        this.jTextFieldApartamentoEmisor.setText(envio.getDireccionOrigen().getDatos_adicionales());
-        this.jTextFieldNroPuertaEmisor.setText(Integer.toString(envio.getDireccionOrigen().getNro_puerta()));
-        this.jTextFieldCalle1Receptor.setText(envio.getDireccionDestino().getCalle());
-        this.jTextFieldCalle2Receptor.setText(envio.getDireccionDestino().getSegunda_calle());
-        this.jTextFieldApartamentoReceptor.setText(envio.getDireccionDestino().getDatos_adicionales());
-        this.jTextFieldNroPuertaReceptor.setText(Integer.toString(envio.getDireccionDestino().getNro_puerta()));
-        //deshabilitar
-        this.jTextFieldIDEnvio.setEditable(false);
-        this.jTextFieldIDPaquete.setEditable(false);
-        this.jTextAreaDescripcion.setEditable(false);
-        this.jTextFieldTarifa.setEditable(false);
-        this.jTextFieldCIEmisor.setEditable(false);
-        this.jTextFieldNombreEmisor.setEditable(false);
-        this.jTextFieldNombreReceptor.setEditable(false);
-        this.jTextFieldCIReceptor.setEditable(false);
-        this.jTextFieldCalle1Emisor.setEditable(false);
-        this.jTextFieldCalle2Emisor.setEditable(false);
-        this.jTextFieldApartamentoEmisor.setEditable(false);
-        this.jTextFieldNroPuertaEmisor.setEditable(false);
-        this.jTextFieldCalle1Receptor.setEditable(false);
-        this.jTextFieldCalle2Receptor.setEditable(false);
-        this.jTextFieldApartamentoReceptor.setEditable(false);
-        this.jTextFieldNroPuertaReceptor.setEditable(false);
+    public void llamarAlertaEnvioConfirmado() {
+        JOptionPane.showMessageDialog(null, "Envio confirmado", "Confirmación exitosa", JOptionPane.INFORMATION_MESSAGE);
     }
+
+    public void llamarAlertaEstadoNoEncontrado() {
+        JOptionPane.showMessageDialog(null, "Estado no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void llamarAlertaEstadoYaConfirmado() {
+        JOptionPane.showMessageDialog(null, "El envío ya está confirmado", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void AccederDetallesEnvio(int idEnvio) {
+        Envio envio = IE.verDetallesDelEnvio(idEnvio);
+        ArrayList<Estado> estados = envio.getEstados();
+        int idUltimo = 0;
+        for (Estado estado : estados) {
+            if (estado.getIdEstado() > idUltimo) {
+                idUltimo = estado.getIdEstado();
+            }
+        }
+        Estado estadoFinal = Fabrica.getInstancia().getControladorEstado().obtenerElEstado(idUltimo, idEnvio);
+        if (estadoFinal != null) {
+            this.jComboBoxEstados.addItem(estadoFinal.getTipo().getEstado());
+            this.jTextFieldIDEnvio.setText(Integer.toString(envio.getIdEnvio()));
+            this.jTextFieldIDPaquete.setText(Integer.toString(envio.getPaquete().getIdPaquete()));
+            this.jTextAreaDescripcion.setText(envio.getPaquete().getDescripcion());
+            this.jTextFieldTarifa.setText(envio.getTarifa().getNombre());
+            this.jTextFieldCIEmisor.setText(Integer.toString(envio.getClienteEmisor().getCedula()));
+            this.jTextFieldNombreEmisor.setText(envio.getClienteEmisor().getNombre());
+            this.jTextFieldNombreReceptor.setText(envio.getClienteReceptor().getNombre());
+            this.jTextFieldCIReceptor.setText(Integer.toString(envio.getClienteReceptor().getCedula()));
+            this.jTextFieldCalle1Emisor.setText(envio.getDireccionOrigen().getCalle());
+            this.jTextFieldCalle2Emisor.setText(envio.getDireccionOrigen().getSegunda_calle());
+            this.jTextFieldApartamentoEmisor.setText(envio.getDireccionOrigen().getDatos_adicionales());
+            this.jTextFieldNroPuertaEmisor.setText(Integer.toString(envio.getDireccionOrigen().getNro_puerta()));
+            this.jTextFieldCalle1Receptor.setText(envio.getDireccionDestino().getCalle());
+            this.jTextFieldCalle2Receptor.setText(envio.getDireccionDestino().getSegunda_calle());
+            this.jTextFieldApartamentoReceptor.setText(envio.getDireccionDestino().getDatos_adicionales());
+            this.jTextFieldNroPuertaReceptor.setText(Integer.toString(envio.getDireccionDestino().getNro_puerta()));
+            //deshabilitar
+            this.jTextFieldIDEnvio.setEditable(false);
+            this.jTextFieldIDPaquete.setEditable(false);
+            this.jTextAreaDescripcion.setEditable(false);
+            this.jTextFieldTarifa.setEditable(false);
+            this.jTextFieldCIEmisor.setEditable(false);
+            this.jTextFieldNombreEmisor.setEditable(false);
+            this.jTextFieldNombreReceptor.setEditable(false);
+            this.jTextFieldCIReceptor.setEditable(false);
+            this.jTextFieldCalle1Emisor.setEditable(false);
+            this.jTextFieldCalle2Emisor.setEditable(false);
+            this.jTextFieldApartamentoEmisor.setEditable(false);
+            this.jTextFieldNroPuertaEmisor.setEditable(false);
+            this.jTextFieldCalle1Receptor.setEditable(false);
+            this.jTextFieldCalle2Receptor.setEditable(false);
+            this.jTextFieldApartamentoReceptor.setEditable(false);
+            this.jTextFieldNroPuertaReceptor.setEditable(false);
+        } else {
+            llamarAlertaEstadoNoEncontrado();
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -84,6 +116,8 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         jButtonEditarEnvio = new javax.swing.JButton();
         jButtonConfirmarEnvio = new javax.swing.JButton();
         jButtonEliminarEnvio1 = new javax.swing.JButton();
+        jComboBoxEstados = new javax.swing.JComboBox<>();
+        jLabelEstado = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabelEmisor = new javax.swing.JLabel();
         jLabelNombreEmisor = new javax.swing.JLabel();
@@ -174,63 +208,89 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         jButtonEliminarEnvio1.setBackground(new java.awt.Color(255, 102, 102));
         jButtonEliminarEnvio1.setText("Eliminar envío");
 
+        jComboBoxEstados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxEstadosActionPerformed(evt);
+            }
+        });
+
+        jLabelEstado.setText("Estado");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelIDEnvio)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelDescripcionEnvio)
-                        .addGap(1, 1, 1))
-                    .addComponent(jLabelIDDelPaquete)
-                    .addComponent(jLabelTarifa))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jTextFieldIDEnvio)
-                    .addComponent(jTextFieldIDPaquete)
-                    .addComponent(jTextFieldTarifa))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonEditarEnvio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonConfirmarEnvio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonEliminarEnvio1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabelDescripcionEnvio)
+                                        .addGap(1, 1, 1))
+                                    .addComponent(jLabelIDDelPaquete)
+                                    .addComponent(jLabelTarifa))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane1)
+                                    .addComponent(jTextFieldIDPaquete)
+                                    .addComponent(jTextFieldTarifa)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabelIDEnvio)
+                                    .addComponent(jLabelEstado))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboBoxEstados, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldIDEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonEditarEnvio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonEliminarEnvio1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonConfirmarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(60, 60, 60))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldIDEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelIDEnvio))
-                        .addGap(33, 33, 33)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelIDDelPaquete)
-                            .addComponent(jTextFieldIDPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabelIDEnvio)
+                            .addComponent(jTextFieldIDEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBoxEstados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelEstado))
+                        .addGap(2, 2, 2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jButtonConfirmarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(19, 19, 19)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jButtonEditarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(jButtonEliminarEnvio1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(47, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelIDDelPaquete)
+                            .addComponent(jTextFieldIDPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldTarifa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelTarifa))
                         .addGap(24, 24, 24)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelDescripcionEnvio)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonEditarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonEliminarEnvio1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21))))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -572,7 +632,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldApartamentoReceptorActionPerformed
 
     private void jTextFieldNroPuertaReceptorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNroPuertaReceptorActionPerformed
-        
+
     }//GEN-LAST:event_jTextFieldNroPuertaReceptorActionPerformed
 
     private void jButtonEditarEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarEnvioActionPerformed
@@ -580,8 +640,27 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEditarEnvioActionPerformed
 
     private void jButtonConfirmarEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarEnvioActionPerformed
-        // TODO add your handling code here:
+        Envio envio = IE.verDetallesDelEnvio(idEnvio);
+        ArrayList<Estado> estados = envio.getEstados();
+        Boolean existeEstado = false;
+        for (Estado estado : estados) {
+            if (estado.getTipo() == TipoEstado.Entregado) {
+                existeEstado = true;
+            }
+        }
+        if (existeEstado == false) {
+            this.IE.crearEstado(idEnvio, "Entregado", "Paquete entregado");
+            llamarAlertaEnvioConfirmado();
+            this.jComboBoxEstados.removeAllItems();
+            this.jComboBoxEstados.addItem("Entregado");
+        } else {
+            llamarAlertaEstadoYaConfirmado();
+        }
     }//GEN-LAST:event_jButtonConfirmarEnvioActionPerformed
+
+    private void jComboBoxEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEstadosActionPerformed
+
+    }//GEN-LAST:event_jComboBoxEstadosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -623,6 +702,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
     private javax.swing.JButton jButtonConfirmarEnvio;
     private javax.swing.JButton jButtonEditarEnvio;
     private javax.swing.JButton jButtonEliminarEnvio1;
+    private javax.swing.JComboBox<String> jComboBoxEstados;
     private javax.swing.JLabel jLabelApartamentoEmisor;
     private javax.swing.JLabel jLabelApartamentoReceptor;
     private javax.swing.JLabel jLabelCIEmisor;
@@ -633,6 +713,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCalle2Receptor;
     private javax.swing.JLabel jLabelDescripcionEnvio;
     private javax.swing.JLabel jLabelEmisor;
+    private javax.swing.JLabel jLabelEstado;
     private javax.swing.JLabel jLabelIDDelPaquete;
     private javax.swing.JLabel jLabelIDEnvio;
     private javax.swing.JLabel jLabelNombreEmisor;
