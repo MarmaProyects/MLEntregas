@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 import logica.clases.Cliente;
 
 /**
@@ -25,7 +26,7 @@ public class ServicioCliente {
             PreparedStatement query = conexion.prepareStatement("INSERT INTO `cliente` (`cedula`,`nombre`, `apellido`,`telefono`) VALUES ('" + cedula + "','" + nombre + "', '" + apellido + "', '" + telefono + "');");
             query.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Error: " + e);
+            Logger.getLogger("Error: " + e);
         }
     }
 
@@ -43,9 +44,41 @@ public class ServicioCliente {
                 resultado.add(new Cliente(ci, nombre, apellido, Integer.toString(telefono)));
             }
         } catch (SQLException e) {
-            System.out.println("Error: " + e);
+            Logger.getLogger("Error: " + e);
         }
 
         return resultado;
+    }
+
+    public Cliente traerCliente(int cedula) {
+
+        Cliente cliente = null;
+
+        try {
+            PreparedStatement queryTraerCliente = conexion.prepareStatement("SELECT * FROM cliente WHERE cedula= " + cedula);
+            ResultSet resultadoCliente = queryTraerCliente.executeQuery();
+            if (resultadoCliente.next()) {
+                int ced = resultadoCliente.getInt("cedula");
+                String nom = resultadoCliente.getString("nombre");
+                String ape = resultadoCliente.getString("apellido");
+                int t = resultadoCliente.getInt("telefono");
+                String tel = String.valueOf(t);
+                cliente = new Cliente(ced, nom, ape, tel);
+            }
+        } catch (Exception e) {
+            Logger.getLogger("Error traer cliente: " + e);
+        }
+        return cliente;
+    }
+
+    public void editarCliente(int cedula, String nombre, String apellido, int telefono) {
+        try {
+            PreparedStatement queryEditarCliente = conexion.prepareStatement("UPDATE cliente SET nombre= '" + nombre + "',"
+                    + " apellido= '" + apellido + "', telefono= '" + telefono + "' WHERE cedula= '" + cedula + "'");
+            queryEditarCliente.executeUpdate();
+            Logger.getLogger("Se editó el cliente correctamente");
+        } catch (Exception e) {
+            Logger.getLogger("No se logró actualizar los datos: " + e);
+        }
     }
 }
