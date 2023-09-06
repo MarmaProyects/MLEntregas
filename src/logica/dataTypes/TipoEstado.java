@@ -12,7 +12,8 @@ public enum TipoEstado {
     Entregado("Entregado"), 
     EnCamino("En camino"), 
     Preparando("En preparación"), 
-    ListoParaRetirar("Listo para entregar");
+    ListoParaRetirar("Listo para entregar"),
+    Cancelado("Cancelado");
     
     private final String estado;
 
