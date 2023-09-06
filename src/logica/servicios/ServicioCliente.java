@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import logica.clases.Cliente;
 
 /**
@@ -27,7 +26,7 @@ public class ServicioCliente {
             PreparedStatement query = conexion.prepareStatement("INSERT INTO `cliente` (`cedula`,`nombre`, `apellido`,`telefono`) VALUES ('" + cedula + "','" + nombre + "', '" + apellido + "', '" + telefono + "');");
             query.executeUpdate();
         } catch (SQLException e) {
-            Logger.getLogger("Error");
+            Logger.getLogger("Error: " + e);
         }
     }
 
@@ -45,7 +44,7 @@ public class ServicioCliente {
                 resultado.add(new Cliente(ci, nombre, apellido, Integer.toString(telefono)));
             }
         } catch (SQLException e) {
-            Logger.getLogger("Error");
+            Logger.getLogger("Error: " + e);
         }
 
         return resultado;
@@ -67,7 +66,7 @@ public class ServicioCliente {
                 cliente = new Cliente(ced, nom, ape, tel);
             }
         } catch (Exception e) {
-            Logger.getLogger("Error traer cliente");
+            Logger.getLogger("Error traer cliente: " + e);
         }
         return cliente;
     }
@@ -79,7 +78,7 @@ public class ServicioCliente {
             queryEditarCliente.executeUpdate();
             Logger.getLogger("Se editó el cliente correctamente");
         } catch (Exception e) {
-            Logger.getLogger("No se logró actualizar los datos");
+            Logger.getLogger("No se logró actualizar los datos: " + e);
         }
     }
 }
