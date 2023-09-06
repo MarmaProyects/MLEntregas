@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import logica.clases.Cliente;
 
@@ -26,7 +27,7 @@ public class ServicioCliente {
             PreparedStatement query = conexion.prepareStatement("INSERT INTO `cliente` (`cedula`,`nombre`, `apellido`,`telefono`) VALUES ('" + cedula + "','" + nombre + "', '" + apellido + "', '" + telefono + "');");
             query.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Error: " + e);
+            Logger.getLogger("Error");
         }
     }
 
@@ -44,7 +45,7 @@ public class ServicioCliente {
                 resultado.add(new Cliente(ci, nombre, apellido, Integer.toString(telefono)));
             }
         } catch (SQLException e) {
-            System.out.println("Error: " + e);
+            Logger.getLogger("Error");
         }
 
         return resultado;
@@ -66,7 +67,7 @@ public class ServicioCliente {
                 cliente = new Cliente(ced, nom, ape, tel);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e + "Error traer cliente:");
+            Logger.getLogger("Error traer cliente");
         }
         return cliente;
     }
@@ -76,9 +77,9 @@ public class ServicioCliente {
             PreparedStatement queryEditarCliente = conexion.prepareStatement("UPDATE cliente SET nombre= '" + nombre + "',"
                     + " apellido= '" + apellido + "', telefono= '" + telefono + "' WHERE cedula= '" + cedula + "'");
             queryEditarCliente.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Se editó el cliente correctamente");
+            Logger.getLogger("Se editó el cliente correctamente");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e + "No se logró actualizar los datos");
+            Logger.getLogger("No se logró actualizar los datos");
         }
     }
 }
