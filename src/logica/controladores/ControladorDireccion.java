@@ -9,6 +9,7 @@ import logica.clases.Envio;
 import logica.clases.Paquete;
 import logica.clases.Cliente;
 import logica.clases.Direccion;
+import logica.clases.Estado;
 import logica.clases.Localidad;
 import logica.clases.Seccion;
 import logica.clases.Tarifa;
@@ -122,6 +123,11 @@ public class ControladorDireccion implements IEnvio {
 
     @Override
     public int crearEstado(int idEnvio, String tipo, String comentario) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Estado obtenerElEstado(int idEstado, int idEnvio) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

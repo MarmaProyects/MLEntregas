@@ -9,10 +9,12 @@ import logica.clases.Envio;
 import logica.clases.Paquete;
 import logica.clases.Cliente;
 import logica.clases.Direccion;
+import logica.clases.Estado;
 import logica.clases.Localidad;
 import logica.clases.Seccion;
 import logica.clases.Tarifa;
 import logica.interfaces.IEnvio;
+import logica.servicios.ServicioEstado;
 
 /**
  *
@@ -21,8 +23,10 @@ import logica.interfaces.IEnvio;
 public class ControladorEstado implements IEnvio {
 
     private static ControladorEstado instance;
+    private ServicioEstado servicioEstado;
 
     public ControladorEstado() {
+        this.servicioEstado = new ServicioEstado();
     }
 
     public static ControladorEstado getInstancia() {
@@ -30,6 +34,11 @@ public class ControladorEstado implements IEnvio {
             instance = new ControladorEstado();
         }
         return instance;
+    }
+    
+    public Estado obtenerElEstado(int idEstado, int idEnvio){
+        Estado estado = this.servicioEstado.obtenerEstado(idEstado, idEnvio);
+        return estado;
     }
 
     @Override
@@ -125,5 +134,4 @@ public class ControladorEstado implements IEnvio {
     public int crearPaquete(String desc, float peso, int fragil, int tipo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
 }
