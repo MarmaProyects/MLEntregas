@@ -26,7 +26,7 @@ public class MLEntregas {
         }
         //Home home = new Home();  
         //home.setVisible(true);
-        EditarCliente editar = new EditarCliente(50548173);
+        EditarCliente editar = new EditarCliente(55555556);
         editar.setVisible(true);
         
     }

@@ -23,15 +23,16 @@ public class EditarCliente extends javax.swing.JFrame {
         campoNombre.requestFocus();
         this.IA = Fabrica.getInstancia().getControladorCliente();
         this.cliente = this.IA.traerClienteSeleccionado(cedula);
-        this.cedula = cliente.getCedula();
-        if (cedula != -1) {
+        if (cliente != null) {
+            this.cedula = cliente.getCedula();
             this.campoCedula.setText(String.valueOf(cliente.getCedula()));
             this.campoNombre.setText(cliente.getNombre());
             this.campoApellido.setText(cliente.getApellido());
             this.campoTelefono.setText(cliente.getTelefono());
         } else {
-            this.botonEditar.setVisible(false);
+            this.botonEditar.setEnabled(false);
         }
+
     }
 
     /**
