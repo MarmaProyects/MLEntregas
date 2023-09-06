@@ -200,6 +200,11 @@ public class Home extends javax.swing.JFrame {
         jLabel11.setText("PROXIMIDAD");
 
         jButton19.setText("VER LOCALIDADES");
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
 
         buttonAux.setText("VER SECCIONES");
         buttonAux.addActionListener(new java.awt.event.ActionListener() {
@@ -329,7 +334,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_verEnvioButtonActionPerformed
 
     private void crearLocalidadesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearLocalidadesButtonActionPerformed
-        FormCrearLocalidad formCrearLocalidad = new FormCrearLocalidad();
+        CrearLocalidad formCrearLocalidad = new CrearLocalidad();
         formCrearLocalidad.setVisible(true);
     }//GEN-LAST:event_crearLocalidadesButtonActionPerformed
 
@@ -348,6 +353,12 @@ public class Home extends javax.swing.JFrame {
         crearEnvio.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_buttonCrearEnvioActionPerformed
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        ListarLocalidades listarlocalidades = new ListarLocalidades();
+        listarlocalidades.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton19ActionPerformed
 
     /**
      * @param args the command line arguments
