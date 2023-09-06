@@ -7,7 +7,6 @@ package mlentregas;
 import Presentacion.AutenticacionUsuario;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.util.logging.Logger;
-import logica.servicios.ServicioEstado;
 
 /**
  *

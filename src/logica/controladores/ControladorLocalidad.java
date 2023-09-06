@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import logica.clases.Localidad;
 import logica.clases.Seccion;
 import logica.interfaces.IProximidad;
-import logica.servicios.servicioLocalidad;
+import logica.servicios.ServicioLocalidad;
 
 
 
@@ -19,10 +19,10 @@ import logica.servicios.servicioLocalidad;
 public class ControladorLocalidad implements IProximidad {
 
     private static ControladorLocalidad instance;
-    private servicioLocalidad servicioLocalidad;
+    private ServicioLocalidad servicioLocalidad;
 
     public ControladorLocalidad() {
-        this.servicioLocalidad = new servicioLocalidad();
+        this.servicioLocalidad = new ServicioLocalidad();
     }
 
     public static ControladorLocalidad getInstancia() {

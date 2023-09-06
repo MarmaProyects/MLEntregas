@@ -16,7 +16,7 @@ import logica.clases.Localidad;
  *
  * @author leo
  */
-public class servicioLocalidad {
+public class ServicioLocalidad {
 
     private Connection conexion = new Conexion().getConnection();
 
@@ -47,5 +47,6 @@ public class servicioLocalidad {
         
         return resultado;
     }
+    
 
 }
