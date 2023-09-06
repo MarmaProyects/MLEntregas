@@ -672,7 +672,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         ArrayList<Estado> estados = envio.getEstados();
         Boolean existeEstado = false;
         for (Estado estado : estados) {
-            if (estado.getTipo() == TipoEstado.Cancelado) {
+            if (estado.getTipo() == TipoEstado.Cancelado || estado.getTipo() == TipoEstado.Entregado) {
                 existeEstado = true;
             }
         }
@@ -682,7 +682,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             this.jComboBoxEstados.addItem("Cancelado");
             JOptionPane.showMessageDialog(null, "El envío fue cancelado", "Success", JOptionPane.DEFAULT_OPTION);
         } else {
-            JOptionPane.showMessageDialog(null, "Error al cancelar el envio", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El envio ya fue Cancelado/Entregado", "Error", JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_jButtonEliminarEnvio1ActionPerformed
