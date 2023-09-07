@@ -6,6 +6,7 @@ package Presentacion;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import logica.clases.Direccion;
 import logica.clases.Envio;
 import logica.clases.Estado;
 import logica.dataTypes.TipoEstado;
@@ -19,16 +20,22 @@ import logica.interfaces.IEnvio;
 public class VerDetallesEnvio extends javax.swing.JFrame {
 
     private IEnvio IE;
-    int idEnvio;
+    private Fabrica fb;
+    private ListaEnvios listEnvios;
+    private int idEnvio;
+    private int idPaquete;
 
     /**
      * Creates new form VerDetallesEnvio
      */
-    public VerDetallesEnvio(int id) {
+    public VerDetallesEnvio(int id, ListaEnvios listEnv) {
         this.idEnvio = id;
         initComponents();
-        this.IE = Fabrica.getInstancia().getControladorEnvio();
+        this.fb = Fabrica.getInstancia();
+        this.IE = fb.getControladorEnvio();
+        this.listEnvios = listEnv;
         AccederDetallesEnvio(id);
+        labelModoEdición.setVisible(false);
     }
 
     public void llamarAlertaEnvioConfirmado() {
@@ -45,6 +52,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
 
     public void AccederDetallesEnvio(int idEnvio) {
         Envio envio = IE.verDetallesDelEnvio(idEnvio);
+        idPaquete = envio.getPaquete().getIdPaquete();
         ArrayList<Estado> estados = envio.getEstados();
         int idUltimo = 0;
         for (Estado estado : estados) {
@@ -57,7 +65,6 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             this.jComboBoxEstados.addItem(estadoFinal.getTipo().getEstado());
             this.jTextFieldIDEnvio.setText(Integer.toString(envio.getIdEnvio()));
             this.jTextFieldIDPaquete.setText(Integer.toString(envio.getPaquete().getIdPaquete()));
-            this.jTextAreaDescripcion.setText(envio.getPaquete().getDescripcion());
             this.jTextFieldTarifa.setText(envio.getTarifa().getNombre());
             this.jTextFieldCIEmisor.setText(Integer.toString(envio.getClienteEmisor().getCedula()));
             this.jTextFieldNombreEmisor.setText(envio.getClienteEmisor().getNombre());
@@ -74,7 +81,6 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             //deshabilitar
             this.jTextFieldIDEnvio.setEditable(false);
             this.jTextFieldIDPaquete.setEditable(false);
-            this.jTextAreaDescripcion.setEditable(false);
             this.jTextFieldTarifa.setEditable(false);
             this.jTextFieldCIEmisor.setEditable(false);
             this.jTextFieldNombreEmisor.setEditable(false);
@@ -88,6 +94,12 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             this.jTextFieldCalle2Receptor.setEditable(false);
             this.jTextFieldApartamentoReceptor.setEditable(false);
             this.jTextFieldNroPuertaReceptor.setEditable(false);
+            if (estadoFinal.getTipo().getEstado().equals("Cancelado")) {
+                this.buttonConfirmarEnvio.setEnabled(false);
+                this.buttonCancelarEnvio.setEnabled(false);
+                this.jButtonEditarEnvio.setEnabled(false);
+                this.jButtonEditarPaquete.setEnabled(false);
+            }
         } else {
             llamarAlertaEstadoNoEncontrado();
         }
@@ -106,18 +118,16 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jTextFieldIDPaquete = new javax.swing.JTextField();
         jLabelIDDelPaquete = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextAreaDescripcion = new javax.swing.JTextArea();
-        jLabelDescripcionEnvio = new javax.swing.JLabel();
         jLabelTarifa = new javax.swing.JLabel();
         jTextFieldIDEnvio = new javax.swing.JTextField();
         jLabelIDEnvio = new javax.swing.JLabel();
         jTextFieldTarifa = new javax.swing.JTextField();
         jButtonEditarEnvio = new javax.swing.JButton();
-        jButtonConfirmarEnvio = new javax.swing.JButton();
-        jButtonEliminarEnvio1 = new javax.swing.JButton();
+        buttonConfirmarEnvio = new javax.swing.JButton();
+        buttonCancelarEnvio = new javax.swing.JButton();
         jComboBoxEstados = new javax.swing.JComboBox<>();
         jLabelEstado = new javax.swing.JLabel();
+        jButtonEditarPaquete = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabelEmisor = new javax.swing.JLabel();
         jLabelNombreEmisor = new javax.swing.JLabel();
@@ -146,6 +156,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         jTextFieldNombreReceptor = new javax.swing.JTextField();
         jTextFieldCalle1Receptor = new javax.swing.JTextField();
         jTextFieldApartamentoReceptor = new javax.swing.JTextField();
+        labelModoEdición = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -165,12 +176,6 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
 
         jLabelIDDelPaquete.setText("ID del paquete");
 
-        jTextAreaDescripcion.setColumns(20);
-        jTextAreaDescripcion.setRows(5);
-        jScrollPane1.setViewportView(jTextAreaDescripcion);
-
-        jLabelDescripcionEnvio.setText("Descripción ");
-
         jLabelTarifa.setText("Tarifa");
 
         jTextFieldIDEnvio.setText("-");
@@ -180,7 +185,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             }
         });
 
-        jLabelIDEnvio.setText("ID");
+        jLabelIDEnvio.setText("Precio");
 
         jTextFieldTarifa.setText("-");
         jTextFieldTarifa.addActionListener(new java.awt.event.ActionListener() {
@@ -190,6 +195,8 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         });
 
         jButtonEditarEnvio.setBackground(new java.awt.Color(0, 102, 255));
+        jButtonEditarEnvio.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        jButtonEditarEnvio.setForeground(new java.awt.Color(0, 0, 0));
         jButtonEditarEnvio.setText("Editar envío");
         jButtonEditarEnvio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -197,19 +204,23 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             }
         });
 
-        jButtonConfirmarEnvio.setBackground(new java.awt.Color(153, 255, 102));
-        jButtonConfirmarEnvio.setText("Confirmar envío");
-        jButtonConfirmarEnvio.addActionListener(new java.awt.event.ActionListener() {
+        buttonConfirmarEnvio.setBackground(new java.awt.Color(153, 255, 102));
+        buttonConfirmarEnvio.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        buttonConfirmarEnvio.setForeground(new java.awt.Color(0, 0, 0));
+        buttonConfirmarEnvio.setText("Confirmar envío");
+        buttonConfirmarEnvio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonConfirmarEnvioActionPerformed(evt);
+                buttonConfirmarEnvioActionPerformed(evt);
             }
         });
 
-        jButtonEliminarEnvio1.setBackground(new java.awt.Color(255, 102, 102));
-        jButtonEliminarEnvio1.setText("Cancelar envío");
-        jButtonEliminarEnvio1.addActionListener(new java.awt.event.ActionListener() {
+        buttonCancelarEnvio.setBackground(new java.awt.Color(255, 102, 102));
+        buttonCancelarEnvio.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        buttonCancelarEnvio.setForeground(new java.awt.Color(0, 0, 0));
+        buttonCancelarEnvio.setText("Cancelar envío");
+        buttonCancelarEnvio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEliminarEnvio1ActionPerformed(evt);
+                buttonCancelarEnvioActionPerformed(evt);
             }
         });
 
@@ -221,82 +232,83 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
 
         jLabelEstado.setText("Estado");
 
+        jButtonEditarPaquete.setBackground(new java.awt.Color(0, 204, 204));
+        jButtonEditarPaquete.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        jButtonEditarPaquete.setForeground(new java.awt.Color(0, 0, 0));
+        jButtonEditarPaquete.setText("Editar paquete");
+        jButtonEditarPaquete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarPaqueteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabelDescripcionEnvio)
-                                        .addGap(1, 1, 1))
-                                    .addComponent(jLabelIDDelPaquete)
-                                    .addComponent(jLabelTarifa))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jScrollPane1)
-                                    .addComponent(jTextFieldIDPaquete)
-                                    .addComponent(jTextFieldTarifa)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(47, 47, 47)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabelIDEnvio)
-                                    .addComponent(jLabelEstado))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBoxEstados, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldIDEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonEditarEnvio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonEliminarEnvio1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonConfirmarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(60, 60, 60))
+                    .addComponent(jLabelIDEnvio)
+                    .addComponent(jLabelEstado))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxEstados, 0, 187, Short.MAX_VALUE)
+                    .addComponent(jTextFieldIDEnvio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabelIDDelPaquete)
+                    .addComponent(jLabelTarifa))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldIDPaquete, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                    .addComponent(jTextFieldTarifa))
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(buttonConfirmarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(buttonCancelarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonEditarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonEditarPaquete)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonEditarEnvio, jButtonEditarPaquete});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(17, 17, 17)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelIDEnvio)
                             .addComponent(jTextFieldIDEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(21, 21, 21)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBoxEstados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelEstado))
-                        .addGap(2, 2, 2))
+                            .addComponent(jLabelEstado)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jButtonConfirmarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jButtonEditarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(jButtonEliminarEnvio1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(47, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelIDDelPaquete)
                             .addComponent(jTextFieldIDPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(19, 19, 19)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldTarifa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelTarifa))
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelDescripcionEnvio)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21))))
+                            .addComponent(jLabelTarifa))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonConfirmarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonCancelarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonEditarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonEditarPaquete))
+                .addGap(37, 37, 37))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonEditarEnvio, jButtonEditarPaquete});
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -330,11 +342,21 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                 jTextFieldCalle1EmisorActionPerformed(evt);
             }
         });
+        jTextFieldCalle1Emisor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldCalle1EmisorKeyTyped(evt);
+            }
+        });
 
         jTextFieldApartamentoEmisor.setText("-");
         jTextFieldApartamentoEmisor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldApartamentoEmisorActionPerformed(evt);
+            }
+        });
+        jTextFieldApartamentoEmisor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldApartamentoEmisorKeyTyped(evt);
             }
         });
 
@@ -344,11 +366,21 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                 jTextFieldCalle2EmisorActionPerformed(evt);
             }
         });
+        jTextFieldCalle2Emisor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldCalle2EmisorKeyTyped(evt);
+            }
+        });
 
         jTextFieldNroPuertaEmisor.setText("-");
         jTextFieldNroPuertaEmisor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldNroPuertaEmisorActionPerformed(evt);
+            }
+        });
+        jTextFieldNroPuertaEmisor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldNroPuertaEmisorKeyTyped(evt);
             }
         });
 
@@ -418,7 +450,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextFieldCIEmisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabelCIEmisor)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -433,6 +465,11 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                 jTextFieldCalle2ReceptorActionPerformed(evt);
             }
         });
+        jTextFieldCalle2Receptor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldCalle2ReceptorKeyTyped(evt);
+            }
+        });
 
         jLabelCalle2Receptor.setText("Calle 2");
 
@@ -442,6 +479,11 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         jTextFieldNroPuertaReceptor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldNroPuertaReceptorActionPerformed(evt);
+            }
+        });
+        jTextFieldNroPuertaReceptor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldNroPuertaReceptorKeyTyped(evt);
             }
         });
 
@@ -469,6 +511,11 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         jTextFieldCalle1Receptor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldCalle1ReceptorActionPerformed(evt);
+            }
+        });
+        jTextFieldCalle1Receptor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldCalle1ReceptorKeyTyped(evt);
             }
         });
 
@@ -545,30 +592,40 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        labelModoEdición.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        labelModoEdición.setText("Modo edición");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(210, 210, 210)
+                        .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(262, 262, 262)
+                        .addComponent(labelModoEdición)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 8, Short.MAX_VALUE))
+                .addGap(0, 4, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(4, 4, 4)
+                .addComponent(labelModoEdición)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -642,55 +699,213 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
 
     private void jButtonEditarEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarEnvioActionPerformed
         // TODO add your handling code here:
+        jButtonEditarEnvio.setEnabled(false);
+        labelModoEdición.setVisible(true);
+        buttonCancelarEnvio.setText("Cancelar edición");
+        buttonConfirmarEnvio.setText("Confirmar edición");
+        //this.jTextAreaDescripcion.setEditable(true);
+        this.jTextFieldCalle1Emisor.setEditable(true);
+        this.jTextFieldCalle1Receptor.setEditable(true);
+        this.jTextFieldCalle2Emisor.setEditable(true);
+        this.jTextFieldCalle2Receptor.setEditable(true);
+        this.jTextFieldApartamentoEmisor.setEditable(true);
+        this.jTextFieldApartamentoReceptor.setEditable(true);
+        this.jTextFieldNroPuertaEmisor.setEditable(true);
+        this.jTextFieldNroPuertaReceptor.setEditable(true);
+        if (jComboBoxEstados.getSelectedItem().toString().equals("En preparación")) {
+            jComboBoxEstados.addItem("En camino");
+            jComboBoxEstados.addItem("Listo para entregar");
+        } else if (jComboBoxEstados.getSelectedItem().toString().equals("Listo para retirar")) {
+            jComboBoxEstados.addItem("En camino");
+        }
     }//GEN-LAST:event_jButtonEditarEnvioActionPerformed
 
-    private void jButtonConfirmarEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarEnvioActionPerformed
-        Envio envio = IE.verDetallesDelEnvio(idEnvio);
-        ArrayList<Estado> estados = envio.getEstados();
-        Boolean existeEstado = false;
-        for (Estado estado : estados) {
-            if (estado.getTipo() == TipoEstado.Entregado) {
-                existeEstado = true;
+    private void buttonConfirmarEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarEnvioActionPerformed
+        if (!labelModoEdición.isVisible()) {
+            Envio envio = IE.verDetallesDelEnvio(idEnvio);
+            ArrayList<Estado> estados = envio.getEstados();
+            Boolean existeEstado = false;
+            for (Estado estado : estados) {
+                if (estado.getTipo() == TipoEstado.Entregado) {
+                    existeEstado = true;
+                }
             }
-        }
-        if (existeEstado == false) {
-            this.IE.crearEstado(idEnvio, "Entregado", "Paquete entregado");
-            llamarAlertaEnvioConfirmado();
-            this.jComboBoxEstados.removeAllItems();
-            this.jComboBoxEstados.addItem("Entregado");
+            if (existeEstado == false) {
+                int opt = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea cancelar el envío?",
+                        "Cancelar envío", JOptionPane.YES_NO_OPTION);
+                if (opt == 0) {
+                    this.IE.crearEstado(idEnvio, "Entregado", "Paquete entregado");
+                    llamarAlertaEnvioConfirmado();
+                    this.jComboBoxEstados.removeAllItems();
+                    this.jComboBoxEstados.addItem("Entregado");
+                }
+            } else {
+                llamarAlertaEstadoYaConfirmado();
+            }
         } else {
-            llamarAlertaEstadoYaConfirmado();
+            if (this.jTextFieldCalle1Emisor.getText().trim().equals(this.jTextFieldCalle1Receptor.getText().trim())
+                    && this.jTextFieldNroPuertaEmisor.getText().trim().equals(this.jTextFieldNroPuertaReceptor.getText().trim())) {
+                JOptionPane.showMessageDialog(null, "Las calles y números de puerta no pueden ser iguales", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                Envio envio = IE.verDetallesDelEnvio(idEnvio);
+                //Se edita la dirección origen
+                Direccion dirOrigen = this.fb.getControladorDireccion().traerDireccion(envio.getDireccionOrigen().getIdDireccion());
+                this.fb.getControladorDireccion().editarDireccion(dirOrigen.getIdDireccion(), this.jTextFieldCalle1Emisor.getText().trim(),
+                        this.jTextFieldCalle2Emisor.getText().trim(), this.jTextFieldApartamentoEmisor.getText().trim(),
+                        Integer.parseInt(this.jTextFieldNroPuertaEmisor.getText().trim()));
+                //Se edita la dirección destino
+                Direccion dirDestino = this.fb.getControladorDireccion().traerDireccion(envio.getDireccionDestino().getIdDireccion());
+                this.fb.getControladorDireccion().editarDireccion(dirDestino.getIdDireccion(), this.jTextFieldCalle1Receptor.getText().trim(),
+                        this.jTextFieldCalle2Receptor.getText().trim(), this.jTextFieldApartamentoReceptor.getText().trim(),
+                        Integer.parseInt(this.jTextFieldNroPuertaReceptor.getText().trim()));
+                //Se crea el estado nuevo
+                ArrayList<Estado> estados = envio.getEstados();
+                int idUltimo = 0;
+                for (Estado estado : estados) {
+                    if (estado.getIdEstado() > idUltimo) {
+                        idUltimo = estado.getIdEstado();
+                    }
+                }
+                Estado estadoFinal = Fabrica.getInstancia().getControladorEstado().obtenerElEstado(idUltimo, idEnvio);
+
+                if (!estadoFinal.getTipo().toString().equals(jComboBoxEstados.getSelectedItem().toString())) {
+                    String estadoNuevo = jComboBoxEstados.getSelectedItem().toString().equals("Listo para entregar") ? "ListoParaRetirar" : "EnCamino";
+                    this.IE.crearEstado(idEnvio, estadoNuevo, "");
+                }
+                String comboBoxItem = jComboBoxEstados.getSelectedItem().toString();
+                this.jComboBoxEstados.removeAllItems();
+                this.jComboBoxEstados.addItem(comboBoxItem);
+
+                JOptionPane.showMessageDialog(null, "Edición confirmada", "Edición exitosa", JOptionPane.INFORMATION_MESSAGE);
+                jButtonEditarEnvio.setEnabled(true);
+                labelModoEdición.setVisible(false);
+                buttonCancelarEnvio.setText("Cancelar envío");
+                buttonConfirmarEnvio.setText("Confirmar envío");
+                this.jComboBoxEstados.removeAllItems();
+                this.AccederDetallesEnvio(idEnvio);
+            }
+
         }
-    }//GEN-LAST:event_jButtonConfirmarEnvioActionPerformed
+        this.listEnvios.actualizarListaDeEnvios();
+
+    }//GEN-LAST:event_buttonConfirmarEnvioActionPerformed
 
     private void jComboBoxEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEstadosActionPerformed
 
     }//GEN-LAST:event_jComboBoxEstadosActionPerformed
 
-    private void jButtonEliminarEnvio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarEnvio1ActionPerformed
-        Envio envio = IE.verDetallesDelEnvio(idEnvio);
-        ArrayList<Estado> estados = envio.getEstados();
-        Boolean existeEstado = false;
-        for (Estado estado : estados) {
-            if (estado.getTipo() == TipoEstado.Cancelado || estado.getTipo() == TipoEstado.Entregado) {
-                existeEstado = true;
+    private void buttonCancelarEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarEnvioActionPerformed
+        if (!labelModoEdición.isVisible()) {
+            Envio envio = IE.verDetallesDelEnvio(idEnvio);
+            ArrayList<Estado> estados = envio.getEstados();
+            Boolean existeEstado = false;
+            for (Estado estado : estados) {
+                if (estado.getTipo() == TipoEstado.Cancelado || estado.getTipo() == TipoEstado.Entregado || estado.getTipo() == TipoEstado.ListoParaRetirar) {
+                    existeEstado = true;
+                }
             }
-        }
-        if (existeEstado == false) {
-            this.IE.crearEstado(idEnvio, "Cancelado", "Paquete cancelado");
-            this.jComboBoxEstados.removeAllItems();
-            this.jComboBoxEstados.addItem("Cancelado");
-            JOptionPane.showMessageDialog(null, "El envío fue cancelado", "Success", JOptionPane.DEFAULT_OPTION);
+            if (existeEstado == false) {
+                int opt = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea cancelar el envío?",
+                        "Cancelar envío", JOptionPane.YES_NO_OPTION);
+                if (opt == 0) {
+                    this.IE.crearEstado(idEnvio, "Cancelado", "Paquete cancelado");
+                    this.jComboBoxEstados.removeAllItems();
+                    this.jComboBoxEstados.addItem("Cancelado");
+                    JOptionPane.showMessageDialog(null, "El envío fue cancelado", "Success", JOptionPane.DEFAULT_OPTION);
+                    this.listEnvios.actualizarListaDeEnvios();
+                    this.buttonConfirmarEnvio.setEnabled(false);
+                    this.buttonCancelarEnvio.setEnabled(false);
+                    this.jButtonEditarEnvio.setEnabled(false);
+                    this.jButtonEditarPaquete.setEnabled(false);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "El envio ya fue Cancelado/Entregado", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "El envio ya fue Cancelado/Entregado", "Error", JOptionPane.ERROR_MESSAGE);
+            jButtonEditarEnvio.setEnabled(true);
+            labelModoEdición.setVisible(false);
+            buttonCancelarEnvio.setText("Cancelar envío");
+            buttonConfirmarEnvio.setText("Confirmar envío");
+            this.jComboBoxEstados.removeAllItems();
+            this.AccederDetallesEnvio(idEnvio);
         }
-        
-    }//GEN-LAST:event_jButtonEliminarEnvio1ActionPerformed
+
+
+    }//GEN-LAST:event_buttonCancelarEnvioActionPerformed
+
+    private void jTextFieldCalle1EmisorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCalle1EmisorKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        if (jTextFieldCalle1Emisor.getText().length() >= 40) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldCalle1EmisorKeyTyped
+
+    private void jTextFieldCalle2EmisorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCalle2EmisorKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        if (jTextFieldCalle2Emisor.getText().length() >= 40) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldCalle2EmisorKeyTyped
+
+    private void jTextFieldApartamentoEmisorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldApartamentoEmisorKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        if (jTextFieldApartamentoEmisor.getText().length() >= 20) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldApartamentoEmisorKeyTyped
+
+    private void jTextFieldNroPuertaEmisorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNroPuertaEmisorKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        if (!Character.isDigit(key)) {
+            evt.consume();
+        }
+        if (jTextFieldNroPuertaEmisor.getText().length() >= 11) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldNroPuertaEmisorKeyTyped
+
+    private void jTextFieldCalle1ReceptorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCalle1ReceptorKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        if (jTextFieldCalle1Receptor.getText().length() >= 40) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldCalle1ReceptorKeyTyped
+
+    private void jTextFieldCalle2ReceptorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCalle2ReceptorKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        if (jTextFieldCalle2Receptor.getText().length() >= 40) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldCalle2ReceptorKeyTyped
+
+    private void jButtonEditarPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarPaqueteActionPerformed
+        // TODO add your handling code here:
+        Envio envio = IE.verDetallesDelEnvio(idEnvio);
+        EditarPaquete editPaquete = new EditarPaquete(idPaquete, envio, listEnvios);
+        editPaquete.setVisible(true);
+    }//GEN-LAST:event_jButtonEditarPaqueteActionPerformed
+
+    private void jTextFieldNroPuertaReceptorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNroPuertaReceptorKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        if (!Character.isDigit(key)) {
+            evt.consume();
+        }
+        if (jTextFieldNroPuertaReceptor.getText().length() >= 11) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldNroPuertaReceptorKeyTyped
 
     /**
      * @param args the command line arguments
      */
-    public static void main(int id) {
+    public static void main(int id, ListaEnvios listEnv) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -717,16 +932,17 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VerDetallesEnvio(id).setVisible(true);
+                new VerDetallesEnvio(id, listEnv).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Titulo;
-    private javax.swing.JButton jButtonConfirmarEnvio;
+    private javax.swing.JButton buttonCancelarEnvio;
+    private javax.swing.JButton buttonConfirmarEnvio;
     private javax.swing.JButton jButtonEditarEnvio;
-    private javax.swing.JButton jButtonEliminarEnvio1;
+    private javax.swing.JButton jButtonEditarPaquete;
     private javax.swing.JComboBox<String> jComboBoxEstados;
     private javax.swing.JLabel jLabelApartamentoEmisor;
     private javax.swing.JLabel jLabelApartamentoReceptor;
@@ -736,7 +952,6 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCalle1Receptor;
     private javax.swing.JLabel jLabelCalle2Emisor;
     private javax.swing.JLabel jLabelCalle2Receptor;
-    private javax.swing.JLabel jLabelDescripcionEnvio;
     private javax.swing.JLabel jLabelEmisor;
     private javax.swing.JLabel jLabelEstado;
     private javax.swing.JLabel jLabelIDDelPaquete;
@@ -750,8 +965,6 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextAreaDescripcion;
     private javax.swing.JTextField jTextFieldApartamentoEmisor;
     private javax.swing.JTextField jTextFieldApartamentoReceptor;
     private javax.swing.JTextField jTextFieldCIEmisor;
@@ -767,5 +980,6 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldNroPuertaEmisor;
     private javax.swing.JTextField jTextFieldNroPuertaReceptor;
     private javax.swing.JTextField jTextFieldTarifa;
+    private javax.swing.JLabel labelModoEdición;
     // End of variables declaration//GEN-END:variables
 }

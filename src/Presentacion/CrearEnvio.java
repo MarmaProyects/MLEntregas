@@ -102,10 +102,9 @@ public class CrearEnvio extends javax.swing.JFrame {
             return 1;
         } else if (pesoPaquete > 5 && pesoPaquete <= 10) {
             return 2;
-        } else if (pesoPaquete > 10 && pesoPaquete <= 15) {
+        } else {
             return 3;
         }
-        return 0;
     }
 
     private void insertarLocalidadDireccion(int idDireccion, String nombreLocalidad) {
@@ -1038,7 +1037,6 @@ public class CrearEnvio extends javax.swing.JFrame {
         // TODO add your handling code here:
         //METODO PARA NO ACEPTAR LA ENTRADA DE LETRAS
         int key = evt.getKeyChar();
-
         if (!Character.isDigit(key) || campoPuertaDireccionO.getText().length() >= 11) {
             evt.consume();
         }
@@ -1048,7 +1046,6 @@ public class CrearEnvio extends javax.swing.JFrame {
         // TODO add your handling code here:
         //METODO PARA NO ACEPTAR LA ENTRADA DE LETRAS
         int key = evt.getKeyChar();
-
         if (!Character.isDigit(key) || campoPuertaDireccion.getText().length() >= 11) {
             evt.consume();
         }
@@ -1056,7 +1053,6 @@ public class CrearEnvio extends javax.swing.JFrame {
 
     private void campoCedulaEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoCedulaEKeyTyped
         int key = evt.getKeyChar();
-
         if (!Character.isDigit(key) || campoCedulaE.getText().length() >= 8) {
             evt.consume();
         }
@@ -1066,7 +1062,6 @@ public class CrearEnvio extends javax.swing.JFrame {
         // TODO add your handling code here:
         //METODO PARA NO ACEPTAR LA ENTRADA DE LETRAS
         int key = evt.getKeyChar();
-
         if (!Character.isDigit(key) || campoCedulaR.getText().length() >= 8) {
             evt.consume();
         }
@@ -1116,13 +1111,13 @@ public class CrearEnvio extends javax.swing.JFrame {
         return !this.campoCedulaE.getText().isBlank() && !this.campoNombreE.getText().isBlank()
                 && !this.campoApellidoE.getText().isBlank() && !this.campoTelefonoE.getText().isBlank();
     }
-
+    
     private boolean validacionDeClientes() {
         return !(this.campoCedulaE.getText().equals(this.campoCedulaR.getText()));
     }
     
     private boolean validacionTarifas() {
-        return this.comboTarifasEspeciales.getSelectedItem() != null;
+        return this.idTarifa != 0;
     }
     
     private boolean validacionSecciones() {

@@ -184,7 +184,7 @@ public class ListaEnvios extends javax.swing.JFrame {
         int row = this.tableEnvio.getSelectedRow();
         if (row != -1) {
             int id = Integer.parseInt(this.tableEnvio.getValueAt(row, 0).toString());
-            VerDetallesEnvio accedeDetalles = new VerDetallesEnvio(id);
+            VerDetallesEnvio accedeDetalles = new VerDetallesEnvio(id, this);
             accedeDetalles.setVisible(true);
         } else {
             llamarAlertaNoSeleccionado();
@@ -262,6 +262,16 @@ public class ListaEnvios extends javax.swing.JFrame {
         }
     }
 
+    public void actualizarListaDeEnvios() {
+        DefaultTableModel model = (DefaultTableModel) tableEnvio.getModel();
+        int i = tableEnvio.getRowCount();
+        while (i != 0) {
+            model.removeRow(0);
+            i--;
+        }
+        this.cargarTodasLosEnvios();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton VerDetallesEnvio;
     private javax.swing.JLabel jLabel1;

@@ -16,7 +16,7 @@ import logica.interfaces.IProximidad;
 public class CrearLocalidad extends javax.swing.JFrame {
 
     private IProximidad IP;
-
+    
     /**
      * Creates new form FormCrearLocalidad
      */
