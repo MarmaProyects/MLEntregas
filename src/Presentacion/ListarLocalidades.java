@@ -35,9 +35,9 @@ public class ListarLocalidades extends javax.swing.JFrame {
         this.cargarTodasLasLocalidades();
         ITableActionEvent event = new ITableActionEvent(){
 
-            @Override
             public void onEdit(int id) {
-                
+                EditarLocalidad editar = new EditarLocalidad(id);
+                editar.setVisible(true);
             }
 
             @Override
@@ -73,7 +73,6 @@ public class ListarLocalidades extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1098, 700));
-        setPreferredSize(new java.awt.Dimension(1098, 700));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Listado de Localidades");

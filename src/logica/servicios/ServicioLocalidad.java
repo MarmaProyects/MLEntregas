@@ -29,6 +29,15 @@ public class ServicioLocalidad {
         }
     }
     
+    public void editarLocalidad(int IdLocalidad, String nombreLocalidad, int CodigoPostal){
+        try {
+            PreparedStatement query = conexion.prepareStatement("UPDATE `localidad` SET `nombre` = '" + nombreLocalidad + "', `codigoPostal` = '" + CodigoPostal + "' WHERE `localidad`.`id` = " + IdLocalidad + ";");
+            query.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+        }
+    }
+    
     public ArrayList<Localidad> obtenerLasLocalidades(){
          ArrayList<Localidad> resultado = new ArrayList<Localidad>();
         try {
