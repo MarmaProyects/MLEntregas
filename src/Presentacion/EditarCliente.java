@@ -29,7 +29,7 @@ public class EditarCliente extends javax.swing.JFrame {
             this.campoCedula.setText(String.valueOf(cliente.getCedula()));
             this.campoNombre.setText(cliente.getNombre());
             this.campoApellido.setText(cliente.getApellido());
-            this.campoTelefono.setText(0 + cliente.getTelefono());
+            this.campoTelefono.setText(cliente.getTelefono());
         } else {
             this.botonEditar.setEnabled(false);
         }
@@ -80,6 +80,11 @@ public class EditarCliente extends javax.swing.JFrame {
 
         labelTelefono.setText("Teléfono:");
 
+        campoTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoTelefonoActionPerformed(evt);
+            }
+        });
         campoTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 campoTelefonoKeyTyped(evt);
@@ -176,12 +181,12 @@ public class EditarCliente extends javax.swing.JFrame {
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
         if (!campoNombre.getText().trim().equals("") && !campoApellido.getText().trim().equals("") && !campoTelefono.getText().trim().equals("")) {
-            if (campoTelefono.getText().trim().length() == 9) {
+            if (campoTelefono.getText().trim().length() <= 9) {
                 
                 this.IA.editarClienteSeleccionado(this.cedula, campoNombre.getText().trim(), campoApellido.getText().trim(), Integer.parseInt(campoTelefono.getText().trim()));
                 JOptionPane.showMessageDialog(null, "Cliente editado", "Edición exitosa", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, "El teléfono no cumple con ", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Demasiados digitos para el teléfono", "Error", JOptionPane.ERROR_MESSAGE);
             }
 
         } else {
@@ -213,6 +218,10 @@ public class EditarCliente extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_campoNombreKeyTyped
+
+    private void campoTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoTelefonoActionPerformed
 
     /**
      * @param args the command line arguments
