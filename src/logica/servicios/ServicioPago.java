@@ -21,7 +21,7 @@ public class ServicioPago {
         int idPago = 0;
         float tarPrecio = 0, locPrecio = 0;
         try {
-            PreparedStatement queryLocalidadTarifa = conexion.prepareStatement("SELECT l.precio AS LocPrecio, t.precio AS TarPrecio"
+            PreparedStatement queryLocalidadTarifa = conexion.prepareStatement("SELECT l.precio AS LocPrecio, t.precioBase AS TarPrecio"
                     + " FROM localidad AS l, tarifa AS t WHERE l.id="+ idLocalidad + " AND t.id=" + idTarifa);
             ResultSet resultadoqueryLocalidadTarifa = queryLocalidadTarifa.executeQuery();
             while(resultadoqueryLocalidadTarifa.next()) {

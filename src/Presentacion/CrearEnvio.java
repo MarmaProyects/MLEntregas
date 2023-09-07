@@ -28,6 +28,7 @@ public class CrearEnvio extends javax.swing.JFrame {
      */
     private final IEnvio iE;
     private final IAdministracion iA;
+    private final IAdministracion iAP;
     private ArrayList<Seccion> listaSecciones = null;
     private ArrayList<Localidad> listaLocalidades = null;
     private ArrayList<Tarifa> listaTarifasEsp = null;
@@ -44,6 +45,7 @@ public class CrearEnvio extends javax.swing.JFrame {
         checkboxEspecial.setVisible(false);
         this.iE = Fabrica.getInstancia().getControladorEnvio();
         this.iA = Fabrica.getInstancia().getControladorCliente();
+        this.iAP = Fabrica.getInstancia().getControladorPago();
         listaLocalidades = this.iE.listarLocalidades();
         this.cargarListaLocalidades();
         listaSecciones = this.iE.listarSecciones();
@@ -1220,7 +1222,7 @@ public class CrearEnvio extends javax.swing.JFrame {
             this.insertarSeccionPaquete(idP);
             this.insertarLocalidadDireccion(idDireccionDestino, comboLocalidadDestino.getSelectedItem().toString());
             //Crear pago
-            int idPago = this.iA.crearPago(this.idTarifa, obtenerLocalidad(this.comboLocalidadDestino.getSelectedItem().toString()));
+            int idPago = this.iAP.crearPago(this.idTarifa, obtenerLocalidad(this.comboLocalidadDestino.getSelectedItem().toString()));
             //ENVIO
             int idEnvio = this.iE.crearEnvio(idP, idTarifa, idDireccionOrigen, idDireccionDestino, idPago);
             //CLIENTES
@@ -1429,7 +1431,7 @@ public class CrearEnvio extends javax.swing.JFrame {
     }
 
     private boolean validacionTarifas() {
-        return this.comboTarifasEspeciales.getSelectedItem() != null;
+        return this.idTarifa != 0;
     }
 
     private boolean validacionSecciones() {
@@ -1465,26 +1467,7 @@ public class CrearEnvio extends javax.swing.JFrame {
     }//GEN-LAST:event_checkboxEspecialActionPerformed
 
     private void campoPesoPaqueteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoPesoPaqueteFocusLost
-        if (!campoPesoPaquete.getText().isBlank()) {
-            float peso = Float.parseFloat(campoPesoPaquete.getText());
-            if (checkboxEspecial.isSelected() && peso > 15) {
-                this.labelTipo.setVisible(true);
-                this.checkboxEspecial.setVisible(true);
-                this.checkboxEspecial.setSelected(true);
-                this.checkboxEspecial.setEnabled(false);
-                this.botonCrearTarifaEsp.setVisible(true);
-                this.comboTarifasEspeciales.setVisible(true);
-                this.labelTarifasEspeciales.setVisible(true);
-            } else {
-                this.labelTipo.setVisible(false);
-                this.checkboxEspecial.setVisible(false);
-                this.checkboxEspecial.doClick();
-                this.botonCrearTarifaEsp.setVisible(false);
-                this.labelTarifasEspeciales.setVisible(false);
-                this.comboTarifasEspeciales.setVisible(false);
-                this.idTarifa = this.obtenerIdTarifasNormales(peso);
-            }
-        }
+
     }//GEN-LAST:event_campoPesoPaqueteFocusLost
 
     private void comboLocalidadDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLocalidadDestinoActionPerformed
@@ -1518,24 +1501,6 @@ public class CrearEnvio extends javax.swing.JFrame {
     }//GEN-LAST:event_checkBoxFragilActionPerformed
 
     private void campoPesoPaqueteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoPesoPaqueteKeyPressed
-
-        if (!campoPesoPaquete.getText().isBlank()) {
-            float peso = Float.parseFloat(campoPesoPaquete.getText());
-            if (checkboxEspecial.isSelected() && peso > 15) {
-                labelTipo.setVisible(true);
-                checkboxEspecial.setVisible(true);
-                checkboxEspecial.setSelected(true);
-                this.checkboxEspecial.setEnabled(false);
-            } else {
-                labelTipo.setVisible(false);
-                checkboxEspecial.setVisible(false);
-                checkboxEspecial.doClick();
-                botonCrearTarifaEsp.setVisible(false);
-                labelTarifasEspeciales.setVisible(false);
-                comboTarifasEspeciales.setVisible(false);
-                idTarifa = this.obtenerIdTarifasNormales(peso);
-            }
-        }
     }//GEN-LAST:event_campoPesoPaqueteKeyPressed
 
     private void campoPesoPaqueteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoPesoPaqueteKeyReleased
