@@ -113,18 +113,18 @@ public class CrearEnvio extends javax.swing.JFrame {
         }
         return 0;
     }
-
-    private void insertarLocalidadDireccion(int idDireccion, String nombreLocalidad) {
-        int idLocalidad = 0;
-
-//BUSCA LA LOCALIDAD SELECCIONADA EN LA LISTA DE OBJETOS LOCALIDAD
+    
+    private int obtenerLocalidad(String nombrelocalidad){
         for (Localidad localidad : listaLocalidades) {
-            if (nombreLocalidad.equals(localidad.getNombre())) {
-                idLocalidad = localidad.getIdLocalidad();
-                break;
+            if (nombrelocalidad.equals(localidad.getNombre())) {
+                return localidad.getIdLocalidad();
             }
         }
-
+        return 0;
+    }
+    
+    private void insertarLocalidadDireccion(int idDireccion, String nombreLocalidad) {
+        int idLocalidad = obtenerLocalidad(nombreLocalidad);
         this.iE.conexionLocalidad_Direccion(idLocalidad, idDireccion);
     }
 
@@ -1194,9 +1194,7 @@ public class CrearEnvio extends javax.swing.JFrame {
     private void botonCrearEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearEnvioActionPerformed
         if (this.validacionCamposVacios() && this.validacionDeClientes()) {
 
-            int idSeccion = 0, idLocalidadDestino = 0, idLocalidadOrigen = 0,
-                    idDireccionOrigen = 0, idDireccionDestino = 0;
-            boolean tipoEntrega;
+            int idDireccionOrigen, idDireccionDestino = 0;
             int fragil = this.checkBoxFragil.isSelected() ? 1 : 0;
             int especial = this.checkboxEspecial.isSelected() ? 1 : 0;
             if (especial == 1) {
@@ -1207,28 +1205,25 @@ public class CrearEnvio extends javax.swing.JFrame {
                 idDireccionDestino = this.iE.crearDireccion(campoCalleDireccion.getText(), campoCalle2Direccion.getText(),
                         Integer.parseInt(campoPuertaDireccion.getText()), campoApartDireccion.getText());
             }
-            //IDLOCALIDADDESTINO
-//----------CREACION DE LA DIRECCION SUCURSAL-----------------------------------------------------------------------------------------------
 
-            if (checkSucursal.isSelected()) {
+            if (checkSucursal.isSelected()) { //Se toma la sucursal
                 Direccion sucursal = this.iE.traerDireccionSucursal();
                 idDireccionOrigen = sucursal.getIdDireccion();
             } else {
-//------CREACION DE LA DIRECCION ORIGEN-----------------------------------------------------------------------------------------------------
+                //CREACION DE LA DIRECCION ORIGEN
                 idDireccionOrigen = this.iE.crearDireccion(campoCalleDireccionO.getText(), campoCalle2DireccionO.getText(),
                         Integer.parseInt(campoPuertaDireccionO.getText()), campoApartDireccionO.getText());
                 this.insertarLocalidadDireccion(idDireccionOrigen, comboLocalidadOrigen.getSelectedItem().toString());
             }
-//----------------SECCION-PAQUETE------------------------------------------------------------------------------------------
+            
+            //SECCION-PAQUETE
             this.insertarSeccionPaquete(idP);
-//-----------------------------------------------------------------------------------------------------------------------------
             this.insertarLocalidadDireccion(idDireccionDestino, comboLocalidadDestino.getSelectedItem().toString());
-//----------------------------------------------------------------------------------------------------------------------------
+            //Crear pago
+            int idPago = this.iA.crearPago(this.idTarifa, obtenerLocalidad(this.comboLocalidadDestino.getSelectedItem().toString()));
             //ENVIO
-
-            int idEnvio = this.iE.crearEnvio(idP, idTarifa, idDireccionOrigen, idDireccionDestino, -1);
-
-//----------CLIENTES-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+            int idEnvio = this.iE.crearEnvio(idP, idTarifa, idDireccionOrigen, idDireccionDestino, idPago);
+            //CLIENTES
             if (!this.iA.verificarExisteClienteNuevo(Integer.parseInt(campoCedulaE.getText()))) {
                 this.iA.agregarCliente(Integer.parseInt(campoCedulaE.getText()), campoNombreE.getText(),
                         campoApellidoE.getText(), Integer.parseInt(campoTelefonoE.getText()));
@@ -1238,10 +1233,10 @@ public class CrearEnvio extends javax.swing.JFrame {
                         campoNombreR.getText(), campoApellidoR.getText(),
                         Integer.parseInt(campoTelefonoR.getText().trim()));
             }
-//-----CONEXION ENVIO Y CLIENTE------------------------------------------------------------------------------------
+            //CONEXION ENVIO Y CLIENTE
             this.iE.conexionEnvio_Cliente(idEnvio, Integer.parseInt(campoCedulaE.getText()), "Envio");
             this.iE.conexionEnvio_Cliente(idEnvio, Integer.parseInt(campoCedulaR.getText()), "Recibe");
-//---CONEXION ENVIO Y ESTADO-------------------------------------------------------------------------------------
+            //CONEXION ENVIO Y ESTADO
             this.iE.crearEstado(idEnvio, "Preparando", "Creacion del envio");
 
             JOptionPane.showMessageDialog(null, "El envio fue ingresado con éxito", "Success", JOptionPane.DEFAULT_OPTION);
