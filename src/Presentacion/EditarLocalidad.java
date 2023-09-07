@@ -187,7 +187,7 @@ public class EditarLocalidad extends javax.swing.JFrame {
             if (this.campoCodigoPostal.getText().trim().length() >= 5) {
                 this.IP.editarLaLocalidad(this.idDeLocalidad, this.campoNombre.getText(), Integer.parseInt(this.campoCodigoPostal.getText()));
                 llamarAlertaLocalidadEditada();
-                listaLoc.actualizarTablaLocalidades();
+                listaLoc.actualizarTablaLocalidades();  
             } else {
                 llamarAlertaCodigoPostalIncompleto();
             }

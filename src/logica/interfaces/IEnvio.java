@@ -28,8 +28,16 @@ public interface IEnvio {
     public abstract Envio verDetallesDelEnvio(int idEnvio);
 
     public abstract int crearPaquete(String desc, float peso, int fragil, int tipo);
+    
+    public abstract void editarPaquete(int idPaquete, float peso, String descripcion, int esFragil, int esEspecial);
+    
+    public abstract Paquete traerPaquete(int idPaquete);
 
     public abstract int crearDireccion(String calle, String calle2, int puerta, String apartamento);
+    
+    public abstract void editarDireccion(int idDireccion, String calle1, String calle2, String apartamento,  int nroPuerta);
+    
+    public abstract Direccion traerDireccion(int idDireccion);
 
     public abstract ArrayList<Localidad> listarLocalidades();
 
@@ -50,6 +58,8 @@ public interface IEnvio {
     public abstract void conexionLocalidad_Direccion(int idLocalidad, int idDireccion);
 
     public int crearEnvio(int idPaquete, int idTarifa, int idDireOrigen, int idDireDestino, int idPago);
+    
+    public abstract void editarEnvio(int idEnvio, int idTarifa, int idDirOrigen, int idDirDestino, int idPago);
 
     public void conexionEnvio_Cliente(int idEnvio, int cedulaCliente, String tipoEntrega);
 

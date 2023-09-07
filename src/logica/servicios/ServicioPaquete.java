@@ -5,6 +5,7 @@
 package logica.servicios;
 
 import BaseDeDatos.Conexion;
+import java.util.logging.Logger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -89,9 +90,40 @@ public class ServicioPaquete {
                 // resultado.add(new Paquete(id, descripcion, peso, esFragil, esEspecial, nombreSeccion.getNombre()));
             }
         } catch (SQLException e) {
-            System.out.println("Error: " + e);
+            Logger.getLogger("Error: " +e);
         }
 
         return resultado;
+    }
+    
+    public Paquete traerUnPaquete(int idPaquete) {
+        Paquete paqueteRes = null;
+        try {
+            PreparedStatement queryTraerPaquete = conexion.prepareStatement("SELECT * FROM paquete WHERE id = " + idPaquete);
+            ResultSet paqueteResultSet = queryTraerPaquete.executeQuery();
+            if (paqueteResultSet.next()) {
+                paqueteRes = new Paquete(paqueteResultSet.getString("descripcion"),
+                        paqueteResultSet.getFloat("peso"),
+                        paqueteResultSet.getBoolean("esFragil"),
+                        paqueteResultSet.getBoolean("esEspecial"), idPaquete);
+            }
+        } catch (SQLException e) {
+            Logger.getLogger("Error al obtener el paquete. " + e.getMessage());
+        }
+        return paqueteRes;
+    }
+    
+    public void editarUnPaquete(int idPaquete, float peso, String descripcion, int esFragil, int esEspecial) {
+        try {
+            PreparedStatement queryEditarDireccion = conexion.prepareStatement("UPDATE  paquete SET peso = ?, descripcion = ?, esFragil = ? , esEspecial = ? "
+                    + "WHERE id = " + idPaquete);
+            queryEditarDireccion.setFloat(1, peso);
+            queryEditarDireccion.setString(2, descripcion);
+            queryEditarDireccion.setInt(3, esFragil);
+            queryEditarDireccion.setInt(4, esEspecial);
+            queryEditarDireccion.executeUpdate();
+        } catch (SQLException e) {
+            Logger.getLogger("Error: " +e);
+        }
     }
 }

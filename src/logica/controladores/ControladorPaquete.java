@@ -35,6 +35,18 @@ public class ControladorPaquete implements IEnvio {
         return instance;
     }
 
+    public Paquete traerPaquete(int idPaquete) {
+        return this.servicioPaq.traerUnPaquete(idPaquete);
+    }
+    
+    public void editarPaquete(int idPaquete, float peso, String descripcion, int esFragil, int esEspecial) {
+        this.servicioPaq.editarUnPaquete(idPaquete, peso, descripcion, esFragil, esEspecial);
+    }
+    
+    public ArrayList<Paquete> listarPaquetesPorSeccion(int idSeccion) {
+        return this.servicioPaq.obtenerListaPaquetesPorSeccion(idSeccion);
+    }
+    
     @Override
     public int crearPaquete(String desc, float peso, int fragil, int tipo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -115,10 +127,6 @@ public class ControladorPaquete implements IEnvio {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public ArrayList<Paquete> listarPaquetesPorSeccion(int idSeccion) {
-        return this.servicioPaq.obtenerListaPaquetesPorSeccion(idSeccion);
-    }
-
     public void moverPaqueteASeccion(int idPaquete, int idSeccionAMover) {
         this.servicioPaq.moverPaquteDeSeccion(idPaquete, idSeccionAMover);
     }
@@ -131,5 +139,19 @@ public class ControladorPaquete implements IEnvio {
     public Estado obtenerElEstado(int idEstado, int idEnvio) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
+    @Override
+    public void editarDireccion(int idDireccion, String calle1, String calle2, String apartamento, int nroPuerta) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Direccion traerDireccion(int idDireccion) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void editarEnvio(int idEnvio, int idTarifa, int idDirOrigen, int idDirDestino, int idPago) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
