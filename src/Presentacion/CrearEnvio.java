@@ -5,6 +5,7 @@
 package Presentacion;
 
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import logica.clases.Cliente;
 import logica.clases.Localidad;
 import logica.clases.Seccion;
@@ -32,13 +33,13 @@ public class CrearEnvio extends javax.swing.JFrame {
     private ArrayList<Tarifa> listaTarifasEsp = null;
     private int idTarifa = 0;
 
-    public void actualizarTarifasEspeciales() {
-        this.limpiarTarifasEspeciales();
-        this.cargarListaTarifasEspeciales();
-    }
-
     public CrearEnvio() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle("MLEntregas");
+        this.setLocationRelativeTo(null);
+        this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Images/logo.png")).getImage());
+        this.setResizable(false);
         labelTipo.setVisible(false);
         checkboxEspecial.setVisible(false);
         this.iE = Fabrica.getInstancia().getControladorEnvio();
@@ -52,6 +53,11 @@ public class CrearEnvio extends javax.swing.JFrame {
         botonCrearTarifaEsp.setVisible(false);
         labelTarifasEspeciales.setVisible(false);
         comboTarifasEspeciales.setVisible(false);
+    }
+
+    public void actualizarTarifasEspeciales() {
+        this.limpiarTarifasEspeciales();
+        this.cargarListaTarifasEspeciales();
     }
 
     //LISTAR OBJETOS DE TIPO SECCION
@@ -144,70 +150,102 @@ public class CrearEnvio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        scrollPanelGeneral = new javax.swing.JScrollPane();
+        panelGeneral = new javax.swing.JPanel();
         labelTitle = new javax.swing.JLabel();
         botonCrearEnvio = new javax.swing.JButton();
         panelPaquete = new javax.swing.JPanel();
+        panelFragil = new javax.swing.JPanel();
+        labelFragil = new javax.swing.JLabel();
+        checkBoxFragil = new javax.swing.JCheckBox();
+        jPanel9 = new javax.swing.JPanel();
+        labelPeso = new javax.swing.JLabel();
+        campoPesoPaquete = new javax.swing.JTextField();
+        jPanel10 = new javax.swing.JPanel();
         scrollPaneDescrp = new javax.swing.JScrollPane();
         campoDescPaquete = new javax.swing.JTextArea();
-        labelDesc = new javax.swing.JLabel();
-        campoPesoPaquete = new javax.swing.JTextField();
-        labelPeso = new javax.swing.JLabel();
-        comboSecciones = new javax.swing.JComboBox<>();
+        jPanel6 = new javax.swing.JPanel();
         labelSecciones = new javax.swing.JLabel();
-        botonCrearTarifaEsp = new javax.swing.JButton();
+        comboSecciones = new javax.swing.JComboBox<>();
+        jPanel11 = new javax.swing.JPanel();
         labelTarifasEspeciales = new javax.swing.JLabel();
         comboTarifasEspeciales = new javax.swing.JComboBox<>();
-        panelFragil = new javax.swing.JPanel();
-        checkBoxFragil = new javax.swing.JCheckBox();
-        labelFragil = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        checkboxEspecial = new javax.swing.JCheckBox();
+        jPanel2 = new javax.swing.JPanel();
+        botonCrearTarifaEsp = new javax.swing.JButton();
         labelTipo = new javax.swing.JLabel();
+        checkboxEspecial = new javax.swing.JCheckBox();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         panelDireccionDestino = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        labelLocalidadD = new javax.swing.JLabel();
+        comboLocalidadDestino = new javax.swing.JComboBox<>();
+        jPanel8 = new javax.swing.JPanel();
         labelCalleD = new javax.swing.JLabel();
         campoCalleDireccion = new javax.swing.JTextField();
-        labelCalle2D = new javax.swing.JLabel();
         campoCalle2Direccion = new javax.swing.JTextField();
-        campoPuertaDireccion = new javax.swing.JTextField();
-        campoApartDireccion = new javax.swing.JTextField();
-        labelApartD = new javax.swing.JLabel();
+        labelCalle2D = new javax.swing.JLabel();
+        jPanel12 = new javax.swing.JPanel();
         labelPuertaD = new javax.swing.JLabel();
-        comboLocalidadDestino = new javax.swing.JComboBox<>();
-        labelLocalidadD = new javax.swing.JLabel();
-        panelClienteEmisor = new javax.swing.JPanel();
-        campoCedulaE = new javax.swing.JTextField();
-        labelCedulaE = new javax.swing.JLabel();
-        labelNombree = new javax.swing.JLabel();
-        campoNombreE = new javax.swing.JTextField();
-        campoApellidoE = new javax.swing.JTextField();
-        labelApellidoE = new javax.swing.JLabel();
-        labelTelefonoE = new javax.swing.JLabel();
-        campoTelefonoE = new javax.swing.JTextField();
-        panelClienteReceptor = new javax.swing.JPanel();
-        labelCedulaR = new javax.swing.JLabel();
-        campoCedulaR = new javax.swing.JTextField();
-        labelNombreR = new javax.swing.JLabel();
-        campoNombreR = new javax.swing.JTextField();
-        labelApellidoR = new javax.swing.JLabel();
-        campoApellidoR = new javax.swing.JTextField();
-        labelTelefonoR = new javax.swing.JLabel();
-        campoTelefonoR = new javax.swing.JTextField();
+        labelApartD = new javax.swing.JLabel();
+        campoApartDireccion = new javax.swing.JTextField();
+        campoPuertaDireccion = new javax.swing.JTextField();
+        jPanel13 = new javax.swing.JPanel();
+        labelApartD1 = new javax.swing.JLabel();
+        checkSucursal = new javax.swing.JCheckBox();
         panelDireccionOrigen = new javax.swing.JPanel();
-        labelCalleO = new javax.swing.JLabel();
-        campoCalleDireccionO = new javax.swing.JTextField();
-        labelCalle2O = new javax.swing.JLabel();
-        campoCalle2DireccionO = new javax.swing.JTextField();
-        labelPuertaO = new javax.swing.JLabel();
-        campoPuertaDireccionO = new javax.swing.JTextField();
+        jPanel17 = new javax.swing.JPanel();
         labelApartO = new javax.swing.JLabel();
         campoApartDireccionO = new javax.swing.JTextField();
+        jPanel15 = new javax.swing.JPanel();
+        labelCalle2O = new javax.swing.JLabel();
+        campoCalle2DireccionO = new javax.swing.JTextField();
+        jPanel16 = new javax.swing.JPanel();
+        labelPuertaO = new javax.swing.JLabel();
+        campoPuertaDireccionO = new javax.swing.JTextField();
+        jPanel14 = new javax.swing.JPanel();
+        campoCalleDireccionO = new javax.swing.JTextField();
+        labelCalleO = new javax.swing.JLabel();
+        jPanel18 = new javax.swing.JPanel();
         labelLocalidadO = new javax.swing.JLabel();
         comboLocalidadOrigen = new javax.swing.JComboBox<>();
-        panelOrigenEnvio = new javax.swing.JPanel();
-        checkSucursal = new javax.swing.JCheckBox();
         botonCancelarEnvio = new javax.swing.JButton();
+        panelClienteReceptor = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        labelApellidoR = new javax.swing.JLabel();
+        labelNombreR = new javax.swing.JLabel();
+        labelCedulaR = new javax.swing.JLabel();
+        labelTelefonoR = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        campoCedulaR = new javax.swing.JTextField();
+        campoNombreR = new javax.swing.JTextField();
+        campoApellidoR = new javax.swing.JTextField();
+        campoTelefonoR = new javax.swing.JTextField();
+        panelClienteEmisor = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        labelApellidoR1 = new javax.swing.JLabel();
+        labelNombreR1 = new javax.swing.JLabel();
+        labelCedulaR1 = new javax.swing.JLabel();
+        labelTelefonoR1 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        campoCedulaE = new javax.swing.JTextField();
+        campoNombreE = new javax.swing.JTextField();
+        campoApellidoE = new javax.swing.JTextField();
+        campoTelefonoE = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1098, 700));
+        setMinimumSize(null);
+        setPreferredSize(new java.awt.Dimension(1098, 700));
+
+        scrollPanelGeneral.setBorder(null);
+        scrollPanelGeneral.setMaximumSize(null);
+        scrollPanelGeneral.setMinimumSize(new java.awt.Dimension(1100, 580));
+        scrollPanelGeneral.setName(""); // NOI18N
+
+        panelGeneral.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        panelGeneral.setMaximumSize(new java.awt.Dimension(0, 0));
+        panelGeneral.setMinimumSize(new java.awt.Dimension(0, 0));
+        panelGeneral.setPreferredSize(new java.awt.Dimension(985, 900));
 
         labelTitle.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         labelTitle.setText("CREAR ENVIO");
@@ -221,11 +259,36 @@ public class CrearEnvio extends javax.swing.JFrame {
 
         panelPaquete.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "DATOS DEL PAQUETE:"));
 
-        campoDescPaquete.setColumns(20);
-        campoDescPaquete.setRows(5);
-        scrollPaneDescrp.setViewportView(campoDescPaquete);
+        labelFragil.setText("Fragil:");
 
-        labelDesc.setText("Descripción:");
+        checkBoxFragil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBoxFragilActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelFragilLayout = new javax.swing.GroupLayout(panelFragil);
+        panelFragil.setLayout(panelFragilLayout);
+        panelFragilLayout.setHorizontalGroup(
+            panelFragilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelFragilLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelFragil)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(checkBoxFragil)
+                .addContainerGap())
+        );
+        panelFragilLayout.setVerticalGroup(
+            panelFragilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelFragilLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelFragilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(checkBoxFragil)
+                    .addComponent(labelFragil))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        labelPeso.setText("Peso:");
 
         campoPesoPaquete.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -249,7 +312,48 @@ public class CrearEnvio extends javax.swing.JFrame {
             }
         });
 
-        labelPeso.setText("Peso:");
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelPeso)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
+                .addComponent(campoPesoPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelPeso)
+                    .addComponent(campoPesoPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descripción:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
+
+        campoDescPaquete.setColumns(20);
+        campoDescPaquete.setRows(5);
+        scrollPaneDescrp.setViewportView(campoDescPaquete);
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scrollPaneDescrp)
+                .addContainerGap())
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(scrollPaneDescrp, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+        );
+
+        labelSecciones.setText("Secciones:");
 
         comboSecciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,14 +361,26 @@ public class CrearEnvio extends javax.swing.JFrame {
             }
         });
 
-        labelSecciones.setText("Secciones:");
-
-        botonCrearTarifaEsp.setText("Crear Tarifa Especial");
-        botonCrearTarifaEsp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCrearTarifaEspActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelSecciones)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(comboSecciones, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelSecciones)
+                    .addComponent(comboSecciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12))
+        );
 
         labelTarifasEspeciales.setText("Tarifas Especiales:");
 
@@ -290,34 +406,35 @@ public class CrearEnvio extends javax.swing.JFrame {
             }
         });
 
-        checkBoxFragil.addActionListener(new java.awt.event.ActionListener() {
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelTarifasEspeciales)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(comboTarifasEspeciales, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboTarifasEspeciales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelTarifasEspeciales))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        botonCrearTarifaEsp.setText("Crear Tarifa Especial");
+        botonCrearTarifaEsp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkBoxFragilActionPerformed(evt);
+                botonCrearTarifaEspActionPerformed(evt);
             }
         });
 
-        labelFragil.setText("Fragil:");
-
-        javax.swing.GroupLayout panelFragilLayout = new javax.swing.GroupLayout(panelFragil);
-        panelFragil.setLayout(panelFragilLayout);
-        panelFragilLayout.setHorizontalGroup(
-            panelFragilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFragilLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelFragil)
-                .addGap(18, 18, 18)
-                .addComponent(checkBoxFragil)
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
-        panelFragilLayout.setVerticalGroup(
-            panelFragilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFragilLayout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addGroup(panelFragilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelFragil)
-                    .addComponent(checkBoxFragil))
-                .addContainerGap())
-        );
+        labelTipo.setText("Especial: ");
 
         checkboxEspecial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -325,25 +442,27 @@ public class CrearEnvio extends javax.swing.JFrame {
             }
         });
 
-        labelTipo.setText("Especial: ");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(labelTipo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(checkboxEspecial))
+                .addGap(18, 18, 18)
+                .addComponent(checkboxEspecial)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonCrearTarifaEsp, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelTipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(checkboxEspecial, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonCrearTarifaEsp)
+                    .addComponent(checkboxEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -355,91 +474,45 @@ public class CrearEnvio extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelPaqueteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPaqueteLayout.createSequentialGroup()
-                        .addComponent(panelFragil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPaqueteLayout.createSequentialGroup()
-                        .addGap(0, 19, Short.MAX_VALUE)
                         .addGroup(panelPaqueteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelPaqueteLayout.createSequentialGroup()
-                                .addComponent(labelPeso)
-                                .addGap(26, 26, 26)
-                                .addComponent(campoPesoPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelPaqueteLayout.createSequentialGroup()
-                                .addComponent(labelDesc)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(scrollPaneDescrp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(34, 34, 34))
+                            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
                     .addGroup(panelPaqueteLayout.createSequentialGroup()
-                        .addGroup(panelPaqueteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelPaqueteLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(labelTarifasEspeciales)
-                                .addGap(18, 18, 18)
-                                .addComponent(comboTarifasEspeciales, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelPaqueteLayout.createSequentialGroup()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(63, 63, 63)
-                                .addComponent(botonCrearTarifaEsp, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(panelPaqueteLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(labelSecciones)
-                .addGap(18, 18, 18)
-                .addComponent(comboSecciones, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelPaqueteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panelFragil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         panelPaqueteLayout.setVerticalGroup(
             panelPaqueteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPaqueteLayout.createSequentialGroup()
-                .addGroup(panelPaqueteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelPaqueteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelPaqueteLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(scrollPaneDescrp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelPaqueteLayout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(labelDesc)))
-                .addGap(18, 18, 18)
-                .addGroup(panelPaqueteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelPeso)
-                    .addComponent(campoPesoPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addComponent(panelFragil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(panelPaqueteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonCrearTarifaEsp))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelPaqueteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelTarifasEspeciales)
-                    .addComponent(comboTarifasEspeciales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelPaqueteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelSecciones)
-                    .addComponent(comboSecciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelPaqueteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panelFragil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12))
+                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panelDireccionDestino.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "DIRECCION DE DESTINO:"));
 
-        labelCalleD.setText("Calle:");
-
-        labelCalle2D.setText("Calle 2:");
-
-        campoCalle2Direccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoCalle2DireccionActionPerformed(evt);
-            }
-        });
-
-        campoPuertaDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                campoPuertaDireccionKeyTyped(evt);
-            }
-        });
-
-        labelApartD.setText("Apartamento:");
-
-        labelPuertaD.setText("N° Puerta:");
+        labelLocalidadD.setText("Localidad:");
 
         comboLocalidadDestino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -447,7 +520,133 @@ public class CrearEnvio extends javax.swing.JFrame {
             }
         });
 
-        labelLocalidadD.setText("Localidad:");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelLocalidadD)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(comboLocalidadDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboLocalidadDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelLocalidadD))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        labelCalleD.setText("Calle:");
+
+        campoCalle2Direccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoCalle2DireccionActionPerformed(evt);
+            }
+        });
+
+        labelCalle2D.setText("Calle 2:");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelCalleD)
+                    .addComponent(labelCalle2D))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(campoCalleDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                    .addComponent(campoCalle2Direccion))
+                .addContainerGap())
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoCalleDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelCalleD))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelCalle2D)
+                    .addComponent(campoCalle2Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        labelPuertaD.setText("N° Puerta:");
+
+        labelApartD.setText("Apartamento:");
+
+        campoPuertaDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoPuertaDireccionKeyTyped(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelApartD)
+                    .addComponent(labelPuertaD))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(campoPuertaDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                    .addComponent(campoApartDireccion))
+                .addContainerGap())
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoPuertaDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelPuertaD))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelApartD)
+                    .addComponent(campoApartDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5))
+        );
+
+        labelApartD1.setText("Sucursal:");
+
+        checkSucursal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkSucursalActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelApartD1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(checkSucursal)
+                .addContainerGap())
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(checkSucursal)
+                    .addComponent(labelApartD1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout panelDireccionDestinoLayout = new javax.swing.GroupLayout(panelDireccionDestino);
         panelDireccionDestino.setLayout(panelDireccionDestinoLayout);
@@ -455,144 +654,250 @@ public class CrearEnvio extends javax.swing.JFrame {
             panelDireccionDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDireccionDestinoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelDireccionDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelDireccionDestinoLayout.createSequentialGroup()
-                        .addGroup(panelDireccionDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(panelDireccionDestinoLayout.createSequentialGroup()
-                                .addComponent(labelCalleD)
-                                .addGap(18, 18, 18)
-                                .addComponent(campoCalleDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelDireccionDestinoLayout.createSequentialGroup()
-                                .addComponent(labelCalle2D)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(campoCalle2Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(88, 88, 88)
-                        .addGroup(panelDireccionDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelApartD)
-                            .addComponent(labelPuertaD))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelDireccionDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoPuertaDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoApartDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelDireccionDestinoLayout.createSequentialGroup()
-                        .addComponent(labelLocalidadD)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboLocalidadDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(107, 107, 107)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelDireccionDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelDireccionDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         panelDireccionDestinoLayout.setVerticalGroup(
             panelDireccionDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDireccionDestinoLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(panelDireccionDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelCalleD)
-                    .addComponent(campoCalleDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelPuertaD)
-                    .addComponent(campoPuertaDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(panelDireccionDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelDireccionDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(labelApartD)
-                        .addComponent(campoApartDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelDireccionDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(labelCalle2D)
-                        .addComponent(campoCalle2Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(panelDireccionDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelLocalidadD)
-                    .addComponent(comboLocalidadDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(11, Short.MAX_VALUE))
-        );
-
-        panelClienteEmisor.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "CLIENTE EMISOR:"));
-
-        campoCedulaE.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                campoCedulaEFocusLost(evt);
-            }
-        });
-        campoCedulaE.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoCedulaEActionPerformed(evt);
-            }
-        });
-        campoCedulaE.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                campoCedulaEKeyTyped(evt);
-            }
-        });
-
-        labelCedulaE.setText("Cedula:");
-
-        labelNombree.setText("Nombre:");
-
-        labelApellidoE.setText("Apellido:");
-
-        labelTelefonoE.setText("Teléfono:");
-
-        campoTelefonoE.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTelefonoEActionPerformed(evt);
-            }
-        });
-        campoTelefonoE.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                campoTelefonoEKeyTyped(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelClienteEmisorLayout = new javax.swing.GroupLayout(panelClienteEmisor);
-        panelClienteEmisor.setLayout(panelClienteEmisorLayout);
-        panelClienteEmisorLayout.setHorizontalGroup(
-            panelClienteEmisorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelClienteEmisorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelClienteEmisorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(panelClienteEmisorLayout.createSequentialGroup()
-                        .addComponent(labelApellidoE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoApellidoE))
-                    .addGroup(panelClienteEmisorLayout.createSequentialGroup()
-                        .addComponent(labelNombree)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoNombreE))
-                    .addGroup(panelClienteEmisorLayout.createSequentialGroup()
-                        .addComponent(labelTelefonoE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoTelefonoE, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelClienteEmisorLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(labelCedulaE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoCedulaE, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addGroup(panelDireccionDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelDireccionDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
-        panelClienteEmisorLayout.setVerticalGroup(
-            panelClienteEmisorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelClienteEmisorLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(panelClienteEmisorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelCedulaE)
-                    .addComponent(campoCedulaE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(panelClienteEmisorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelNombree)
-                    .addComponent(campoNombreE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelClienteEmisorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelApellidoE)
-                    .addComponent(campoApellidoE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelClienteEmisorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelTelefonoE)
-                    .addComponent(campoTelefonoE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+
+        panelDireccionOrigen.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "DIRECCION DE ORIGEN:"));
+
+        labelApartO.setText("Apartamento:");
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelApartO)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
+                .addComponent(campoApartDireccionO, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoApartDireccionO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelApartO))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        labelCalle2O.setText("Calle 2:");
+
+        campoCalle2DireccionO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoCalle2DireccionOActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelCalle2O)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(campoCalle2DireccionO, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelCalle2O)
+                    .addComponent(campoCalle2DireccionO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        labelPuertaO.setText("N° Puerta:");
+
+        campoPuertaDireccionO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoPuertaDireccionOActionPerformed(evt);
+            }
+        });
+        campoPuertaDireccionO.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoPuertaDireccionOKeyTyped(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelPuertaO)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(campoPuertaDireccionO, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoPuertaDireccionO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelPuertaO))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        campoCalleDireccionO.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                campoCalleDireccionOFocusGained(evt);
+            }
+        });
+        campoCalleDireccionO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoCalleDireccionOActionPerformed(evt);
+            }
+        });
+
+        labelCalleO.setText("Calle:");
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelCalleO)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(campoCalleDireccionO, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoCalleDireccionO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelCalleO))
+                .addContainerGap())
+        );
+
+        labelLocalidadO.setText("Localidad:");
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelLocalidadO, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(comboLocalidadOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboLocalidadOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelLocalidadO))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout panelDireccionOrigenLayout = new javax.swing.GroupLayout(panelDireccionOrigen);
+        panelDireccionOrigen.setLayout(panelDireccionOrigenLayout);
+        panelDireccionOrigenLayout.setHorizontalGroup(
+            panelDireccionOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelDireccionOrigenLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelDireccionOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelDireccionOrigenLayout.createSequentialGroup()
+                        .addGroup(panelDireccionOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelDireccionOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        panelDireccionOrigenLayout.setVerticalGroup(
+            panelDireccionOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelDireccionOrigenLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelDireccionOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelDireccionOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        botonCancelarEnvio.setText("CANCELAR");
+        botonCancelarEnvio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarEnvioActionPerformed(evt);
+            }
+        });
 
         panelClienteReceptor.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "CLIENTE RECEPTOR:"));
 
+        labelApellidoR.setText("Apellido:");
+
+        labelNombreR.setText("Nombre:");
+
         labelCedulaR.setText("Cedula:");
+
+        labelTelefonoR.setText("Teléfono:");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelApellidoR)
+                    .addComponent(labelNombreR)
+                    .addComponent(labelCedulaR)
+                    .addComponent(labelTelefonoR))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelCedulaR)
+                .addGap(18, 18, 18)
+                .addComponent(labelNombreR)
+                .addGap(18, 18, 18)
+                .addComponent(labelApellidoR)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelTelefonoR)
+                .addGap(14, 14, 14))
+        );
 
         campoCedulaR.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -610,17 +915,11 @@ public class CrearEnvio extends javax.swing.JFrame {
             }
         });
 
-        labelNombreR.setText("Nombre:");
-
         campoNombreR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoNombreRActionPerformed(evt);
             }
         });
-
-        labelApellidoR.setText("Apellido:");
-
-        labelTelefonoR.setText("Teléfono:");
 
         campoTelefonoR.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -628,249 +927,221 @@ public class CrearEnvio extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(campoCedulaR, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                    .addComponent(campoNombreR)
+                    .addComponent(campoApellidoR)
+                    .addComponent(campoTelefonoR))
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(campoCedulaR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campoNombreR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campoApellidoR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campoTelefonoR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout panelClienteReceptorLayout = new javax.swing.GroupLayout(panelClienteReceptor);
         panelClienteReceptor.setLayout(panelClienteReceptorLayout);
         panelClienteReceptorLayout.setHorizontalGroup(
             panelClienteReceptorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelClienteReceptorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelClienteReceptorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(panelClienteReceptorLayout.createSequentialGroup()
-                        .addComponent(labelCedulaR)
-                        .addGap(18, 18, 18)
-                        .addComponent(campoCedulaR, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelClienteReceptorLayout.createSequentialGroup()
-                        .addGroup(panelClienteReceptorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(labelApellidoR)
-                            .addComponent(labelNombreR))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelClienteReceptorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoApellidoR, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoNombreR, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelClienteReceptorLayout.createSequentialGroup()
-                        .addComponent(labelTelefonoR)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(campoTelefonoR)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         panelClienteReceptorLayout.setVerticalGroup(
             panelClienteReceptorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelClienteReceptorLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(panelClienteReceptorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelCedulaR)
-                    .addComponent(campoCedulaR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(panelClienteReceptorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelClienteReceptorLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(panelClienteReceptorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelNombreR)
-                            .addComponent(campoNombreR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelClienteReceptorLayout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addGroup(panelClienteReceptorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoApellidoR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelApellidoR))))
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        panelClienteEmisor.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "CLIENTE EMISOR:"));
+
+        labelApellidoR1.setText("Apellido:");
+
+        labelNombreR1.setText("Nombre:");
+
+        labelCedulaR1.setText("Cedula:");
+
+        labelTelefonoR1.setText("Teléfono:");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelTelefonoR1)
+                    .addComponent(labelApellidoR1)
+                    .addComponent(labelNombreR1)
+                    .addComponent(labelCedulaR1))
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelCedulaR1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(labelNombreR1)
+                .addGap(18, 18, 18)
+                .addComponent(labelApellidoR1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelClienteReceptorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoTelefonoR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelTelefonoR))
+                .addComponent(labelTelefonoR1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panelDireccionOrigen.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "DIRECCION DE ORIGEN:"));
-
-        labelCalleO.setText("Calle:");
-
-        campoCalleDireccionO.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                campoCalleDireccionOFocusGained(evt);
+        campoCedulaE.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                campoCedulaEFocusLost(evt);
             }
         });
-        campoCalleDireccionO.addActionListener(new java.awt.event.ActionListener() {
+        campoCedulaE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoCalleDireccionOActionPerformed(evt);
+                campoCedulaEActionPerformed(evt);
             }
         });
-
-        labelCalle2O.setText("Calle 2:");
-
-        campoCalle2DireccionO.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoCalle2DireccionOActionPerformed(evt);
-            }
-        });
-
-        labelPuertaO.setText("N° Puerta:");
-
-        campoPuertaDireccionO.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoPuertaDireccionOActionPerformed(evt);
-            }
-        });
-        campoPuertaDireccionO.addKeyListener(new java.awt.event.KeyAdapter() {
+        campoCedulaE.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                campoPuertaDireccionOKeyTyped(evt);
+                campoCedulaEKeyTyped(evt);
             }
         });
 
-        labelApartO.setText("Apartamento:");
+        campoTelefonoE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoTelefonoEActionPerformed(evt);
+            }
+        });
+        campoTelefonoE.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoTelefonoEKeyTyped(evt);
+            }
+        });
 
-        labelLocalidadO.setText("Localidad:");
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(campoCedulaE, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                    .addComponent(campoNombreE)
+                    .addComponent(campoApellidoE)
+                    .addComponent(campoTelefonoE))
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(campoCedulaE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campoNombreE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campoApellidoE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campoTelefonoE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
-        javax.swing.GroupLayout panelDireccionOrigenLayout = new javax.swing.GroupLayout(panelDireccionOrigen);
-        panelDireccionOrigen.setLayout(panelDireccionOrigenLayout);
-        panelDireccionOrigenLayout.setHorizontalGroup(
-            panelDireccionOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelDireccionOrigenLayout.createSequentialGroup()
-                .addGroup(panelDireccionOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelDireccionOrigenLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(panelDireccionOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(panelDireccionOrigenLayout.createSequentialGroup()
-                                .addComponent(labelCalleO)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(campoCalleDireccionO, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelDireccionOrigenLayout.createSequentialGroup()
-                                .addComponent(labelCalle2O)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoCalle2DireccionO)))
-                        .addGap(42, 42, 42)
-                        .addGroup(panelDireccionOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelPuertaO)
-                            .addComponent(labelApartO))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelDireccionOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(campoPuertaDireccionO)
-                            .addComponent(campoApartDireccionO, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelDireccionOrigenLayout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addComponent(labelLocalidadO, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboLocalidadOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        javax.swing.GroupLayout panelClienteEmisorLayout = new javax.swing.GroupLayout(panelClienteEmisor);
+        panelClienteEmisor.setLayout(panelClienteEmisorLayout);
+        panelClienteEmisorLayout.setHorizontalGroup(
+            panelClienteEmisorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelClienteEmisorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        panelClienteEmisorLayout.setVerticalGroup(
+            panelClienteEmisorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelClienteEmisorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout panelGeneralLayout = new javax.swing.GroupLayout(panelGeneral);
+        panelGeneral.setLayout(panelGeneralLayout);
+        panelGeneralLayout.setHorizontalGroup(
+            panelGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelGeneralLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelGeneralLayout.createSequentialGroup()
+                        .addComponent(panelClienteReceptor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
+                        .addComponent(panelClienteEmisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGeneralLayout.createSequentialGroup()
+                        .addComponent(botonCancelarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonCrearEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(panelPaquete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelDireccionDestino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelDireccionOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGeneralLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        panelDireccionOrigenLayout.setVerticalGroup(
-            panelDireccionOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelDireccionOrigenLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(panelDireccionOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelDireccionOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panelDireccionOrigenLayout.createSequentialGroup()
-                            .addComponent(labelPuertaO)
-                            .addGap(31, 31, 31)
-                            .addComponent(labelApartO))
-                        .addGroup(panelDireccionOrigenLayout.createSequentialGroup()
-                            .addGroup(panelDireccionOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(labelCalleO)
-                                .addComponent(campoCalleDireccionO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(23, 23, 23)
-                            .addGroup(panelDireccionOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(labelCalle2O)
-                                .addComponent(campoCalle2DireccionO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(panelDireccionOrigenLayout.createSequentialGroup()
-                        .addComponent(campoPuertaDireccionO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(campoApartDireccionO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addGroup(panelDireccionOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelLocalidadO)
-                    .addComponent(comboLocalidadOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9))
+        panelGeneralLayout.setVerticalGroup(
+            panelGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelGeneralLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panelClienteReceptor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelClienteEmisor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelDireccionDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelDireccionOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonCancelarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonCrearEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panelOrigenEnvio.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "ORIGEN DE ENVIO:"));
-
-        checkSucursal.setText("Sucursal");
-        checkSucursal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkSucursalActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelOrigenEnvioLayout = new javax.swing.GroupLayout(panelOrigenEnvio);
-        panelOrigenEnvio.setLayout(panelOrigenEnvioLayout);
-        panelOrigenEnvioLayout.setHorizontalGroup(
-            panelOrigenEnvioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelOrigenEnvioLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(checkSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
-        );
-        panelOrigenEnvioLayout.setVerticalGroup(
-            panelOrigenEnvioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelOrigenEnvioLayout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addComponent(checkSucursal)
-                .addGap(15, 15, 15))
-        );
-
-        botonCancelarEnvio.setText("CANCELAR");
-        botonCancelarEnvio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCancelarEnvioActionPerformed(evt);
-            }
-        });
+        scrollPanelGeneral.setViewportView(panelGeneral);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(380, 380, 380)
-                        .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(panelClienteEmisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33)
-                                .addComponent(panelClienteReceptor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(panelPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(panelDireccionDestino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(panelDireccionOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(panelOrigenEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(62, 62, 62)
-                                .addComponent(botonCancelarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonCrearEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(13, 13, 13)))))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(scrollPanelGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 1078, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(panelPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(panelClienteReceptor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(panelClienteEmisor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(panelDireccionDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(panelOrigenEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(panelDireccionOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(botonCancelarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonCrearEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(scrollPanelGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE))
         );
 
         pack();
@@ -888,7 +1159,7 @@ public class CrearEnvio extends javax.swing.JFrame {
             boolean tipoEntrega;
             int fragil = this.checkBoxFragil.isSelected() ? 1 : 0;
             int especial = this.checkboxEspecial.isSelected() ? 1 : 0;
-            if(especial==1){
+            if (especial == 1) {
                 idTarifa = this.obtenerIdTarifaEspecial();
             }
             int idP = this.iE.crearPaquete(campoDescPaquete.getText(), Float.parseFloat(campoPesoPaquete.getText()), fragil, especial);
@@ -937,9 +1208,9 @@ public class CrearEnvio extends javax.swing.JFrame {
             this.setVisible(false);
             Home home = new Home();
             home.setVisible(true);
-        } else if (!this.validacionTarifas()){
+        } else if (!this.validacionTarifas()) {
             JOptionPane.showMessageDialog(null, "Falta seleccionar la tarifa", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (!this.validacionSecciones()){
+        } else if (!this.validacionSecciones()) {
             JOptionPane.showMessageDialog(null, "Falta seleccionar la seccion", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (!this.validacionCamposVacios()) {
             JOptionPane.showMessageDialog(null, "Para registrar el envio tiene que completar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
@@ -1094,8 +1365,8 @@ public class CrearEnvio extends javax.swing.JFrame {
 
     private boolean validacionCamposVacios() {
         return this.validacionCamposDireccionD() && this.validacionCamposDireccionO()
-                && this.validacionCamposClienteE() && this.validacionCamposClienteR() && !this.campoPesoPaquete.getText().isBlank() 
-                && this.validacionTarifas()&& this.validacionSecciones();
+                && this.validacionCamposClienteE() && this.validacionCamposClienteR() && !this.campoPesoPaquete.getText().isBlank()
+                && this.validacionTarifas() && this.validacionSecciones();
     }
 
     private boolean validacionCamposDireccionD() {
@@ -1120,11 +1391,11 @@ public class CrearEnvio extends javax.swing.JFrame {
     private boolean validacionDeClientes() {
         return !(this.campoCedulaE.getText().equals(this.campoCedulaR.getText()));
     }
-    
+
     private boolean validacionTarifas() {
         return this.comboTarifasEspeciales.getSelectedItem() != null;
     }
-    
+
     private boolean validacionSecciones() {
         return this.comboSecciones.getSelectedItem() != null;
     }
@@ -1189,7 +1460,7 @@ public class CrearEnvio extends javax.swing.JFrame {
     }//GEN-LAST:event_campoCedulaRActionPerformed
 
     private void comboTarifasEspecialesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_comboTarifasEspecialesFocusLost
-       
+
     }//GEN-LAST:event_comboTarifasEspecialesFocusLost
 
     private void campoNombreRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNombreRActionPerformed
@@ -1329,30 +1600,48 @@ public class CrearEnvio extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboLocalidadOrigen;
     private javax.swing.JComboBox<String> comboSecciones;
     private javax.swing.JComboBox<String> comboTarifasEspeciales;
+    private javax.swing.Box.Filler filler1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel labelApartD;
+    private javax.swing.JLabel labelApartD1;
     private javax.swing.JLabel labelApartO;
-    private javax.swing.JLabel labelApellidoE;
     private javax.swing.JLabel labelApellidoR;
+    private javax.swing.JLabel labelApellidoR1;
     private javax.swing.JLabel labelCalle2D;
     private javax.swing.JLabel labelCalle2O;
     private javax.swing.JLabel labelCalleD;
     private javax.swing.JLabel labelCalleO;
-    private javax.swing.JLabel labelCedulaE;
     private javax.swing.JLabel labelCedulaR;
-    private javax.swing.JLabel labelDesc;
+    private javax.swing.JLabel labelCedulaR1;
     private javax.swing.JLabel labelFragil;
     private javax.swing.JLabel labelLocalidadD;
     private javax.swing.JLabel labelLocalidadO;
     private javax.swing.JLabel labelNombreR;
-    private javax.swing.JLabel labelNombree;
+    private javax.swing.JLabel labelNombreR1;
     private javax.swing.JLabel labelPeso;
     private javax.swing.JLabel labelPuertaD;
     private javax.swing.JLabel labelPuertaO;
     private javax.swing.JLabel labelSecciones;
     private javax.swing.JLabel labelTarifasEspeciales;
-    private javax.swing.JLabel labelTelefonoE;
     private javax.swing.JLabel labelTelefonoR;
+    private javax.swing.JLabel labelTelefonoR1;
     private javax.swing.JLabel labelTipo;
     private javax.swing.JLabel labelTitle;
     private javax.swing.JPanel panelClienteEmisor;
@@ -1360,8 +1649,9 @@ public class CrearEnvio extends javax.swing.JFrame {
     private javax.swing.JPanel panelDireccionDestino;
     private javax.swing.JPanel panelDireccionOrigen;
     private javax.swing.JPanel panelFragil;
-    private javax.swing.JPanel panelOrigenEnvio;
+    private javax.swing.JPanel panelGeneral;
     private javax.swing.JPanel panelPaquete;
     private javax.swing.JScrollPane scrollPaneDescrp;
+    private javax.swing.JScrollPane scrollPanelGeneral;
     // End of variables declaration//GEN-END:variables
 }
