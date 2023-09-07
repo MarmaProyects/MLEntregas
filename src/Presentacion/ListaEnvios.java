@@ -255,7 +255,7 @@ public class ListaEnvios extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) this.tableEnvio.getModel();
         for (Envio envio : listaDeEnvios) {
             estado = envio.getEstados().get(envio.getEstados().size() - 1).getTipo().getEstado();
-            fecha = envio.getEstados().get(0).getFecha().toString();
+            fecha = envio.getEstados().get(0).getFecha().toString();          
             Object[] row = {envio.getIdEnvio(), envio.getClienteEmisor().getNombre() + " " + envio.getClienteEmisor().getApellido(), estado, envio.getPaquete().getDescripcion(), fecha};
             modelo.addRow(row);
 

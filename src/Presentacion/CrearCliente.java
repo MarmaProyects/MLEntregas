@@ -114,7 +114,7 @@ public class CrearCliente extends javax.swing.JFrame {
         });
 
         TituloCrearUsuario1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        TituloCrearUsuario1.setText("Crear usuario");
+        TituloCrearUsuario1.setText("Crear cliente");
 
         TextFieldNombre1.setText("Nombre");
         TextFieldNombre1.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -167,6 +167,7 @@ public class CrearCliente extends javax.swing.JFrame {
         });
 
         TextFieldCedula.setText("Cédula");
+        TextFieldCedula.setToolTipText("Ingrese cédula sin punto ni guión");
         TextFieldCedula.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 TextFieldCedulaFocusGained(evt);
@@ -198,11 +199,7 @@ public class CrearCliente extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(TituloCrearUsuario1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(45, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
@@ -216,6 +213,10 @@ public class CrearCliente extends javax.swing.JFrame {
                     .addComponent(TextFieldCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TextFieldApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(46, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(TituloCrearUsuario1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
