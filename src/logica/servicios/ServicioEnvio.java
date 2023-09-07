@@ -354,11 +354,12 @@ public class ServicioEnvio {
         try {
             PreparedStatement queryCrearEnvio = conexion.prepareStatement(""
                     + "INSERT INTO envio (idPaquete, idTarifa, idDireccionOrigen,"
-                    + " idDireccionDestino) VALUES (?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+                    + " idDireccionDestino, idPago) VALUES (?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
             queryCrearEnvio.setInt(1, idPaquete);
             queryCrearEnvio.setInt(2, idTarifa);
             queryCrearEnvio.setInt(3, idDireOrigen);
             queryCrearEnvio.setInt(4, idDireDestino);
+            queryCrearEnvio.setInt(5, idPago);
             queryCrearEnvio.executeUpdate();
             // OBTENGO EL ID GENERADO 
             ResultSet idE = queryCrearEnvio.getGeneratedKeys();
