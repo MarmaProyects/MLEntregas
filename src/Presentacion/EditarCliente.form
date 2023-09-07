@@ -86,7 +86,7 @@
                   <Component id="labelTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="campoTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="27" max="32767" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="botonVolver" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="botonEditar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -99,6 +99,9 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="labelCliente">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI Light" size="18" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="CLIENTE"/>
       </Properties>
     </Component>
@@ -108,6 +111,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="campoNombre">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="campoNombreKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
@@ -115,6 +121,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="campoApellido">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="campoApellidoKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelTelefono">
       <Properties>
@@ -122,6 +131,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="campoTelefono">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="campoTelefonoKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botonVolver">
       <Properties>

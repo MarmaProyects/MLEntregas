@@ -412,6 +412,8 @@ public class CrearCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MousePressed
 
     private void volverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtonActionPerformed
+        ListarClientes listCli = new ListarClientes();
+        listCli.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_volverButtonActionPerformed
 
