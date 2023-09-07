@@ -19,13 +19,15 @@ public class EditarLocalidad extends javax.swing.JFrame {
     private IProximidad IP;
     int idDeLocalidad, codigoPostalLocalidad;
     String nombreLocalidad;
+    private ListarLocalidades listaLoc = null;
 
     /**
      * Creates new form EditarLocalidad
      */
-    public EditarLocalidad(int idLocalidad) {
+    public EditarLocalidad(int idLocalidad, ListarLocalidades listLoc) {
         initComponents();
         this.idDeLocalidad = idLocalidad;
+        this.listaLoc = listLoc;
         this.IP = Fabrica.getInstancia().getControladorLocalidad();
         Localidad localidad = null;
         ArrayList<Localidad> localidades = IP.obtenerLasLocalidades();
@@ -185,6 +187,7 @@ public class EditarLocalidad extends javax.swing.JFrame {
             if (this.campoCodigoPostal.getText().trim().length() >= 5) {
                 this.IP.editarLaLocalidad(this.idDeLocalidad, this.campoNombre.getText(), Integer.parseInt(this.campoCodigoPostal.getText()));
                 llamarAlertaLocalidadEditada();
+                listaLoc.actualizarTablaLocalidades();
             } else {
                 llamarAlertaCodigoPostalIncompleto();
             }
@@ -215,16 +218,13 @@ public class EditarLocalidad extends javax.swing.JFrame {
     private void campoNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoNombreKeyTyped
         int key = evt.getKeyChar();
 
-        if (campoNombre.getText().trim().length() >= 30) {
+        if (campoNombre.getText().length() >= 30) {
             evt.consume();
         }
     }//GEN-LAST:event_campoNombreKeyTyped
 
     private void campoNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNombreFocusGained
-        if (campoNombre.getText().trim().equals(this.nombreLocalidad)) {
-            campoNombre.setText(null);
-            campoNombre.requestFocus();
-        }
+        
     }//GEN-LAST:event_campoNombreFocusGained
 
     private void campoNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNombreFocusLost
@@ -240,16 +240,13 @@ public class EditarLocalidad extends javax.swing.JFrame {
     }//GEN-LAST:event_campoCodigoPostalFocusLost
 
     private void campoCodigoPostalFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoCodigoPostalFocusGained
-        if (campoCodigoPostal.getText().trim().equals(String.valueOf(this.codigoPostalLocalidad))) {
-            campoCodigoPostal.setText(null);
-            campoCodigoPostal.requestFocus();
-        }
+        
     }//GEN-LAST:event_campoCodigoPostalFocusGained
 
     /**
      * @param args the command line arguments
      */
-    public static void main(int idLocalidad) {
+    public static void main(int idLocalidad, ListarLocalidades listLoc) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -276,7 +273,7 @@ public class EditarLocalidad extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditarLocalidad(idLocalidad).setVisible(true);
+                new EditarLocalidad(idLocalidad, listLoc).setVisible(true);
             }
         });
     }
