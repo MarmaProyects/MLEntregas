@@ -5,6 +5,9 @@
 package Autenticacion;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Properties;
 
 /**
@@ -16,8 +19,18 @@ public class AutenticacionU {
     private static final String PROPERTIES_FILE = "database.properties";
     private Properties properties;
 
-    public boolean verificarAutenticacionUsuario(int code) {
+    public AutenticacionU() {
         properties = new Properties();
+        try {
+            FileInputStream input = new FileInputStream(PROPERTIES_FILE);
+            properties.load(input);
+            input.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean verificarAutenticacionUsuario(int code) {
         int codigoAsignado = -1;
         try {
             FileInputStream input = new FileInputStream(PROPERTIES_FILE);
@@ -34,8 +47,17 @@ public class AutenticacionU {
         return false;
     }
 
+    public String getCodigo() {
+        return properties.getProperty("codigo");
+    }
+
     public void setCodigo(String codigo) {
         properties.setProperty("codigo", codigo);
+        try (OutputStream outputStream = new FileOutputStream("database.properties")) {
+            properties.store(outputStream, "Codigo Guardado");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

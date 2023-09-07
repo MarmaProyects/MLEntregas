@@ -16,9 +16,36 @@ public class AutenticacionUsuario extends javax.swing.JFrame {
     /**
      * Creates new form AutenticacionUsuario
      */
+    private AutenticacionU aUsuario = new AutenticacionU();
+    private boolean tieneCodigo = false;
+
     public AutenticacionUsuario() {
         initComponents();
         this.setResizable(false);
+        if (aUsuario.getCodigo().equals("")) {
+            this.botonIniciarSesion.setText("Crear Codigo");
+        } else {
+            tieneCodigo = true;
+        }
+
+    }
+
+    public void crearCodigoInicial() {
+        if (!this.tieneCodigo && campoCodigopwd.getPassword().length != 0) {
+            String codigoI = new String(campoCodigopwd.getPassword());
+            if (codigoI.length() == 4) {
+                aUsuario.setCodigo(codigoI);
+                Home home = new Home();
+                home.setVisible(true);
+                this.setVisible(false);
+                tieneCodigo = true;
+            } else {
+                JOptionPane.showMessageDialog(null, "El codigo debe tener minimo 4 dígitos", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "No ha ingresado un codigo", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -30,11 +57,23 @@ public class AutenticacionUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        VCrearCodigo = new javax.swing.JFrame();
         labelSesion = new javax.swing.JLabel();
         labelCodigo = new javax.swing.JLabel();
         botonIniciarSesion = new javax.swing.JButton();
         campoCodigopwd = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
+
+        javax.swing.GroupLayout VCrearCodigoLayout = new javax.swing.GroupLayout(VCrearCodigo.getContentPane());
+        VCrearCodigo.getContentPane().setLayout(VCrearCodigoLayout);
+        VCrearCodigoLayout.setHorizontalGroup(
+            VCrearCodigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        VCrearCodigoLayout.setVerticalGroup(
+            VCrearCodigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,28 +139,31 @@ public class AutenticacionUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarSesionActionPerformed
-        if (campoCodigopwd.getPassword().length == 0) {
-            JOptionPane.showMessageDialog(null, "No ingresó ningun codigo", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            int codigoIngresado = Integer.parseInt(new String(campoCodigopwd.getPassword()));
-            AutenticacionU aUsuario = new AutenticacionU();
-            boolean iguales = aUsuario.verificarAutenticacionUsuario(codigoIngresado);
-            if (iguales) {
-                Home home = new Home();
-                home.setVisible(true);
-                this.setVisible(false);
+        if (this.tieneCodigo) {
+            if (campoCodigopwd.getPassword().length == 0) {
+                JOptionPane.showMessageDialog(null, "No ingresó ningun codigo", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, "El codigo ingresado no es correcto", "Error", JOptionPane.ERROR_MESSAGE);
-                campoCodigopwd.setText("");
-            }
+                int codigoIngresado = Integer.parseInt(new String(campoCodigopwd.getPassword()));
+                boolean iguales = aUsuario.verificarAutenticacionUsuario(codigoIngresado);
+                if (iguales) {
+                    Home home = new Home();
+                    home.setVisible(true);
+                    this.setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(null, "El codigo ingresado no es correcto", "Error", JOptionPane.ERROR_MESSAGE);
+                    campoCodigopwd.setText("");
+                }
 
+            }
+        }else{
+        this.crearCodigoInicial();
         }
     }//GEN-LAST:event_botonIniciarSesionActionPerformed
 
     private void campoCodigopwdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoCodigopwdKeyTyped
-         int key = evt.getKeyChar();
+        int key = evt.getKeyChar();
 
-        if (!Character.isDigit(key) || campoCodigopwd.getPassword().length>= 4) {
+        if (!Character.isDigit(key) || campoCodigopwd.getPassword().length >= 4) {
             evt.consume();
         }
     }//GEN-LAST:event_campoCodigopwdKeyTyped
@@ -162,6 +204,7 @@ public class AutenticacionUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFrame VCrearCodigo;
     private javax.swing.JButton botonIniciarSesion;
     private javax.swing.JPasswordField campoCodigopwd;
     private javax.swing.JLabel jLabel2;
