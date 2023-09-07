@@ -76,4 +76,9 @@ public class ControladorSeccion implements IProximidad {
         return this.servicioSeccion.editarSeccion(idSeccion, nombre, idLocalidad);
     }
 
+    @Override
+    public void editarLaLocalidad(int idLocalidad, String nombreLocalidad, int codigoPostal) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

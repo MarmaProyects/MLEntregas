@@ -19,39 +19,23 @@ import logica.interfaces.ITableActionEvent;
  * @author MarmaduX
  */
 public class ListarLocalidades extends javax.swing.JFrame {
-  
+
     private IProximidad IP;
+    private ListarLocalidades listarLoc = null;
 
     /**
      * Creates new form ListarLocalidades
      */
     public ListarLocalidades() {
         initComponents();
+        this.listarLoc = this;
         this.setLocationRelativeTo(null);
         this.setTitle("MLEntregas");
         this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Images/logo.png")).getImage());
         this.IP = Fabrica.getInstancia().getControladorLocalidad();
         this.setResizable(false);
         this.cargarTodasLasLocalidades();
-        ITableActionEvent event = new ITableActionEvent(){
 
-            @Override
-            public void onEdit(int id) {
-                
-            }
-
-            @Override
-            public void onDelete(int id, int row) {
-                
-            }
-
-            @Override
-            public void onView(int id) {
-                
-            }
-        };
-        this.tableTarifa.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
-        this.tableTarifa.getColumnModel().getColumn(3).setCellEditor(new TableActionCellEditor(event));
     }
 
     /**
@@ -69,11 +53,10 @@ public class ListarLocalidades extends javax.swing.JFrame {
         volverButton = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableTarifa = new javax.swing.JTable();
+        tableLocalidades = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1098, 700));
-        setPreferredSize(new java.awt.Dimension(1098, 700));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Listado de Localidades");
@@ -130,7 +113,7 @@ public class ListarLocalidades extends javax.swing.JFrame {
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton3, volverButton});
 
-        tableTarifa.setModel(new javax.swing.table.DefaultTableModel(
+        tableLocalidades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -153,14 +136,14 @@ public class ListarLocalidades extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tableTarifa.setRowHeight(30);
-        jScrollPane1.setViewportView(tableTarifa);
-        if (tableTarifa.getColumnModel().getColumnCount() > 0) {
-            tableTarifa.getColumnModel().getColumn(0).setMinWidth(0);
-            tableTarifa.getColumnModel().getColumn(0).setPreferredWidth(0);
-            tableTarifa.getColumnModel().getColumn(0).setMaxWidth(0);
-            tableTarifa.getColumnModel().getColumn(1).setResizable(false);
-            tableTarifa.getColumnModel().getColumn(3).setResizable(false);
+        tableLocalidades.setRowHeight(30);
+        jScrollPane1.setViewportView(tableLocalidades);
+        if (tableLocalidades.getColumnModel().getColumnCount() > 0) {
+            tableLocalidades.getColumnModel().getColumn(0).setMinWidth(0);
+            tableLocalidades.getColumnModel().getColumn(0).setPreferredWidth(0);
+            tableLocalidades.getColumnModel().getColumn(0).setMaxWidth(0);
+            tableLocalidades.getColumnModel().getColumn(1).setResizable(false);
+            tableLocalidades.getColumnModel().getColumn(3).setResizable(false);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -219,16 +202,44 @@ public class ListarLocalidades extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void cargarTodasLasLocalidades() {
+        ITableActionEvent event = new ITableActionEvent() {
+
+            public void onEdit(int id) {
+                EditarLocalidad editar = new EditarLocalidad(id, listarLoc);
+                editar.setVisible(true);
+            }
+
+            @Override
+            public void onDelete(int id, int row) {
+
+            }
+
+            @Override
+            public void onView(int id) {
+
+            }
+        };
+        this.tableLocalidades.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
+        this.tableLocalidades.getColumnModel().getColumn(3).setCellEditor(new TableActionCellEditor(event));
+
         ArrayList<Localidad> listaDeLocalidades = this.IP.obtenerLasLocalidades();
-
-        DefaultTableModel modelo = (DefaultTableModel) this.tableTarifa.getModel();
-
-        for (Localidad tarifa : listaDeLocalidades) {
-            Object[] row = {tarifa.getIdLocalidad(), tarifa.getNombre(), tarifa.getCodigoPostal()};
+        DefaultTableModel modelo = (DefaultTableModel) this.tableLocalidades.getModel();
+        for (Localidad localidad : listaDeLocalidades) {
+            Object[] row = {localidad.getIdLocalidad(), localidad.getNombre(), localidad.getCodigoPostal()};
             modelo.addRow(row);
         }
     }
-    
+
+    public void actualizarTablaLocalidades() {
+        DefaultTableModel model = (DefaultTableModel) tableLocalidades.getModel();
+        int i = tableLocalidades.getRowCount();
+        while (i != 0) {
+            model.removeRow(0);
+            i--;
+        }
+        this.cargarTodasLasLocalidades();
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -270,7 +281,7 @@ public class ListarLocalidades extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tableTarifa;
+    private javax.swing.JTable tableLocalidades;
     private javax.swing.JButton volverButton;
     // End of variables declaration//GEN-END:variables
 }

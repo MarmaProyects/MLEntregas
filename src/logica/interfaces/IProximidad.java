@@ -22,4 +22,5 @@ public interface IProximidad {
     public abstract ArrayList<Seccion> obtenerLasSecciones();
     public abstract Boolean verificarSiExisteLocalidadNueva(String nombre, int codigoPostal);
     public abstract Seccion buscarUnaSeccion(int idSeccion);
+    public abstract void editarLaLocalidad(int idLocalidad, String nombreLocalidad, int codigoPostal);
 }
