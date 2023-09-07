@@ -206,7 +206,12 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         });
 
         jButtonEliminarEnvio1.setBackground(new java.awt.Color(255, 102, 102));
-        jButtonEliminarEnvio1.setText("Eliminar envío");
+        jButtonEliminarEnvio1.setText("Cancelar envío");
+        jButtonEliminarEnvio1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarEnvio1ActionPerformed(evt);
+            }
+        });
 
         jComboBoxEstados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -661,6 +666,26 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
     private void jComboBoxEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEstadosActionPerformed
 
     }//GEN-LAST:event_jComboBoxEstadosActionPerformed
+
+    private void jButtonEliminarEnvio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarEnvio1ActionPerformed
+        Envio envio = IE.verDetallesDelEnvio(idEnvio);
+        ArrayList<Estado> estados = envio.getEstados();
+        Boolean existeEstado = false;
+        for (Estado estado : estados) {
+            if (estado.getTipo() == TipoEstado.Cancelado || estado.getTipo() == TipoEstado.Entregado) {
+                existeEstado = true;
+            }
+        }
+        if (existeEstado == false) {
+            this.IE.crearEstado(idEnvio, "Cancelado", "Paquete cancelado");
+            this.jComboBoxEstados.removeAllItems();
+            this.jComboBoxEstados.addItem("Cancelado");
+            JOptionPane.showMessageDialog(null, "El envío fue cancelado", "Success", JOptionPane.DEFAULT_OPTION);
+        } else {
+            JOptionPane.showMessageDialog(null, "El envio ya fue Cancelado/Entregado", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_jButtonEliminarEnvio1ActionPerformed
 
     /**
      * @param args the command line arguments
