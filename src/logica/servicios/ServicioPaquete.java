@@ -73,7 +73,6 @@ public class ServicioPaquete {
     public ArrayList<Paquete> obtenerPaquetes() {
         ArrayList<Paquete> resultado = new ArrayList<Paquete>();
         try {
-
             PreparedStatement query = conexion.prepareStatement("SELECT * FROM paquete");
             ResultSet resultadoDeLaQuery = query.executeQuery();
             while (resultadoDeLaQuery.next()) {

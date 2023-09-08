@@ -15,6 +15,7 @@ import logica.servicios.ServicioPago;
  * @author MarmaduX
  */
 public class ControladorPago implements IAdministracion {
+
     private static ControladorPago instance;
     private ServicioPago servicioPago;
 
@@ -76,5 +77,10 @@ public class ControladorPago implements IAdministracion {
 
     public int crearPago(int idTarifa, int idLocalidad) {
         return this.servicioPago.createPago(idTarifa, idLocalidad);
+    }
+
+    @Override
+    public ArrayList<Cliente> obtenerLosClientes() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

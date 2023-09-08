@@ -114,18 +114,23 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace pref="45" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="TextFieldTelefono" min="-2" pref="113" max="-2" attributes="0"/>
-                      <Component id="TextFieldNombre1" min="-2" pref="113" max="-2" attributes="0"/>
-                      <Component id="TextFieldCedula" min="-2" pref="113" max="-2" attributes="0"/>
-                      <Component id="TextFieldApellido" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                      <Component id="TituloCrearUsuario1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="TextFieldTelefono" min="-2" pref="113" max="-2" attributes="0"/>
+                              <Component id="TextFieldNombre1" min="-2" pref="113" max="-2" attributes="0"/>
+                              <Component id="TextFieldCedula" min="-2" pref="113" max="-2" attributes="0"/>
+                              <Component id="TextFieldApellido" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
                   <EmptySpace pref="46" max="32767" attributes="0"/>
               </Group>
