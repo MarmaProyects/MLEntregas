@@ -5,6 +5,7 @@
 package Presentacion;
 
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import logica.clases.Localidad;
 import logica.fabrica.Fabrica;
@@ -14,6 +15,7 @@ import logica.interfaces.IProximidad;
  *
  * @author leo
  */
+
 public class EditarLocalidad extends javax.swing.JFrame {
 
     private IProximidad IP;
@@ -26,6 +28,10 @@ public class EditarLocalidad extends javax.swing.JFrame {
      */
     public EditarLocalidad(int idLocalidad, ListarLocalidades listLoc) {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle("MLEntregas");
+        this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Images/logo.png")).getImage());
+        this.setResizable(false);
         this.idDeLocalidad = idLocalidad;
         this.listaLoc = listLoc;
         this.IP = Fabrica.getInstancia().getControladorLocalidad();
@@ -70,9 +76,11 @@ public class EditarLocalidad extends javax.swing.JFrame {
         jLabelCodigoPostal = new javax.swing.JLabel();
         jButtonConfirmar = new javax.swing.JButton();
         jButtonVolver = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelTitulo.setText("Editar Localidad");
 
         campoNombre.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -113,9 +121,9 @@ public class EditarLocalidad extends javax.swing.JFrame {
             }
         });
 
-        jLabelNombreLocalidad.setText("Nuevo nombre");
+        jLabelNombreLocalidad.setText("Nuevo nombre:");
 
-        jLabelCodigoPostal.setText("Código Postal");
+        jLabelCodigoPostal.setText("Código Postal:");
 
         jButtonConfirmar.setText("Confirmar");
         jButtonConfirmar.addActionListener(new java.awt.event.ActionListener() {
@@ -131,38 +139,54 @@ public class EditarLocalidad extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo-sm-extra.png"))); // NOI18N
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel2MousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelNombreLocalidad)
-                    .addComponent(jLabelCodigoPostal))
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoCodigoPostal, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonConfirmar))
-                .addGap(27, 27, 27))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 41, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonVolver)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabelNombreLocalidad)
+                                    .addComponent(jLabelCodigoPostal))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(campoCodigoPostal, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonConfirmar, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addGap(27, 27, 27))))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelTitulo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButtonVolver)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButtonVolver)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelTitulo)
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelNombreLocalidad))
@@ -170,9 +194,11 @@ public class EditarLocalidad extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoCodigoPostal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelCodigoPostal))
-                .addGap(26, 26, 26)
-                .addComponent(jButtonConfirmar)
-                .addGap(18, 18, 18))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonConfirmar)
+                    .addComponent(jButtonVolver))
+                .addGap(26, 26, 26))
         );
 
         pack();
@@ -188,6 +214,7 @@ public class EditarLocalidad extends javax.swing.JFrame {
                 this.IP.editarLaLocalidad(this.idDeLocalidad, this.campoNombre.getText(), Integer.parseInt(this.campoCodigoPostal.getText()));
                 llamarAlertaLocalidadEditada();
                 listaLoc.actualizarTablaLocalidades();  
+                this.dispose();
             } else {
                 llamarAlertaCodigoPostalIncompleto();
             }
@@ -243,6 +270,14 @@ public class EditarLocalidad extends javax.swing.JFrame {
         
     }//GEN-LAST:event_campoCodigoPostalFocusGained
 
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
+
+    }//GEN-LAST:event_jLabel2MousePressed
+
     /**
      * @param args the command line arguments
      */
@@ -283,6 +318,7 @@ public class EditarLocalidad extends javax.swing.JFrame {
     private javax.swing.JTextField campoNombre;
     private javax.swing.JButton jButtonConfirmar;
     private javax.swing.JButton jButtonVolver;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelCodigoPostal;
     private javax.swing.JLabel jLabelNombreLocalidad;
     private javax.swing.JLabel jLabelTitulo;
