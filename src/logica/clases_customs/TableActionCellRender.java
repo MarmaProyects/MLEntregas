@@ -7,6 +7,7 @@ package logica.clases_customs;
 import Presentacion.PanelAction;
 import java.awt.Color;
 import java.awt.Component;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -16,6 +17,10 @@ import javax.swing.table.DefaultTableCellRenderer;
  */
 public class TableActionCellRender extends DefaultTableCellRenderer {
 
+    public TableActionCellRender(){
+        setHorizontalAlignment(JLabel.CENTER);
+    }
+    
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         Component com = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);

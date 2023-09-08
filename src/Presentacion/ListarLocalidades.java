@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import logica.clases.Localidad;
+import logica.clases_customs.CenterRenderer;
 import logica.clases_customs.TableActionCellEditor;
 import logica.clases_customs.TableActionCellRender;
 import logica.fabrica.Fabrica;
@@ -197,7 +198,7 @@ public class ListarLocalidades extends javax.swing.JFrame {
     }//GEN-LAST:event_volverButtonActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        CrearLocalidad crearLocalidad = new CrearLocalidad();
+        CrearLocalidad crearLocalidad = new CrearLocalidad(this);
         crearLocalidad.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -221,6 +222,8 @@ public class ListarLocalidades extends javax.swing.JFrame {
         };
         this.tableLocalidades.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
         this.tableLocalidades.getColumnModel().getColumn(3).setCellEditor(new TableActionCellEditor(event));
+        this.tableLocalidades.getColumnModel().getColumn(1).setCellRenderer(new CenterRenderer());
+        this.tableLocalidades.getColumnModel().getColumn(2).setCellRenderer(new CenterRenderer());
 
         ArrayList<Localidad> listaDeLocalidades = this.IP.obtenerLasLocalidades();
         DefaultTableModel modelo = (DefaultTableModel) this.tableLocalidades.getModel();

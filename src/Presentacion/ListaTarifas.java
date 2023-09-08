@@ -7,10 +7,12 @@ package Presentacion;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import logica.clases_customs.TableActionCellRender;
 import logica.clases_customs.TableActionCellEditor;
 import logica.clases.Tarifa;
+import logica.clases_customs.CenterRenderer;
 import logica.fabrica.Fabrica;
 import logica.interfaces.IAdministracion;
 import logica.interfaces.ITableActionEvent;
@@ -24,25 +26,28 @@ import logica.interfaces.ITableActionEvent;
 public class ListaTarifas extends javax.swing.JFrame {
 
     private IAdministracion IA;
-
+    private ITableActionEvent event = null;
+    private DefaultTableCellRenderer centerRenderer = null;
+    private ListaTarifas listaTarifas = null;
     /**
      * Creates new form ListaTarifas
      */
     public ListaTarifas() {
-        initComponents();this.setTitle("MLEntregas");
+        initComponents();
         this.setLocationRelativeTo(null);
         this.setTitle("MLEntregas");
         this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Images/logo.png")).getImage());
         this.IA = Fabrica.getInstancia().getControladorTarifa();
         this.setResizable(false);
         this.cargarTodasLasTarifas();
-        ITableActionEvent event = new ITableActionEvent() {
+        this.centerRenderer = new CenterRenderer();
+        this.listaTarifas = this;
+        this.event = new ITableActionEvent() {
 
             @Override
             public void onEdit(int id) {
-                EditarTarifa editTarifa = new EditarTarifa(id);
+                EditarTarifa editTarifa = new EditarTarifa(id, listaTarifas);
                 editTarifa.setVisible(true);
-                setVisible(false);
             }
 
             @Override
@@ -61,13 +66,12 @@ public class ListaTarifas extends javax.swing.JFrame {
 
             @Override
             public void onView(int id) {
-                EditarTarifa editTarifa = new EditarTarifa(id);
+                EditarTarifa editTarifa = new EditarTarifa(id, listaTarifas);
                 editTarifa.setVisible(true);
-                setVisible(false);
             }
         };
         this.tableTarifa.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
-        this.tableTarifa.getColumnModel().getColumn(3).setCellEditor(new TableActionCellEditor(event));
+        this.tableTarifa.getColumnModel().getColumn(3).setCellEditor(new TableActionCellEditor(this.event));
     }
 
     /**
@@ -161,7 +165,7 @@ public class ListaTarifas extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 210, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3))
         );
 
@@ -184,38 +188,35 @@ public class ListaTarifas extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(25, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(25, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(388, 388, 388)
                 .addComponent(jLabel1)
+                .addContainerGap(439, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(29, 29, 29)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        CrearTarifa crearTarifa = new CrearTarifa();
-        this.setVisible(false);
+        CrearTarifa crearTarifa = new CrearTarifa(this);
         crearTarifa.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -279,6 +280,24 @@ public class ListaTarifas extends javax.swing.JFrame {
             Object[] row = {tarifa.getIdTarifa(), tarifa.getNombre(), tarifa.getPrecio()};
             modelo.addRow(row);
         }
+        this.tableTarifa.getColumnModel().getColumn(1).setCellRenderer(new CenterRenderer());
+        this.tableTarifa.getColumnModel().getColumn(2).setCellRenderer(new CenterRenderer());
+    }
+    
+    private void limpiarTabla(){
+        DefaultTableModel model = (DefaultTableModel) tableTarifa.getModel();
+        int i = tableTarifa.getRowCount();
+        while (i != 0) {
+            model.removeRow(0);
+            i--;
+        }
+    }
+    
+    public void actualizarTabla(){
+        this.limpiarTabla();
+        this.cargarTodasLasTarifas();
+        this.tableTarifa.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
+        this.tableTarifa.getColumnModel().getColumn(3).setCellEditor(new TableActionCellEditor(this.event));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

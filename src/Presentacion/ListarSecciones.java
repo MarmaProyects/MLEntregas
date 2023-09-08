@@ -5,10 +5,12 @@
 package Presentacion;
 
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import logica.clases.Localidad;
 import logica.clases.Seccion;
+import logica.clases_customs.CenterRenderer;
 import logica.clases_customs.TableActionCellEditor;
 import logica.clases_customs.TableActionCellRender;
 import logica.fabrica.Fabrica;
@@ -21,22 +23,26 @@ import logica.interfaces.ITableActionEvent;
 public class ListarSecciones extends javax.swing.JFrame {
 
     private Fabrica fb;
-
+    private ListarSecciones listarSecciones = null;
+    private ITableActionEvent event = null;
     /**
      * Creates new form ListarSecciones
      */
     public ListarSecciones() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle("MLEntregas");
+        this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Images/logo.png")).getImage());
         this.setResizable(false);
+        this.listarSecciones = this;
         this.fb = Fabrica.getInstancia();
         this.cargarListaSecciones();
-        ITableActionEvent event = new ITableActionEvent() {
+        event = new ITableActionEvent() {
 
             @Override
             public void onEdit(int id) {
-                EditarSeccion editSeccion = new EditarSeccion(id);
+                EditarSeccion editSeccion = new EditarSeccion(id, listarSecciones);
                 editSeccion.setVisible(true);
-                dispose();
             }
 
             @Override
@@ -73,17 +79,21 @@ public class ListarSecciones extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         crearSeccionButton = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaSecciones = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        volverButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
+        setMaximumSize(new java.awt.Dimension(1098, 700));
+        setMinimumSize(new java.awt.Dimension(1098, 700));
+        setPreferredSize(new java.awt.Dimension(1098, 700));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("SECCIONES");
 
-        crearSeccionButton.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        crearSeccionButton.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         crearSeccionButton.setText("Crear sección");
         crearSeccionButton.setPreferredSize(new java.awt.Dimension(93, 23));
         crearSeccionButton.addActionListener(new java.awt.event.ActionListener() {
@@ -91,8 +101,6 @@ public class ListarSecciones extends javax.swing.JFrame {
                 crearSeccionButtonActionPerformed(evt);
             }
         });
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         tablaSecciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -133,57 +141,90 @@ public class ListarSecciones extends javax.swing.JFrame {
             tablaSecciones.getColumnModel().getColumn(4).setPreferredWidth(12);
         }
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo-sm.png"))); // NOI18N
+        jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel5MousePressed(evt);
+            }
+        });
+
+        volverButton.setText("Volver");
+        volverButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(396, 396, 396)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(crearSeccionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(265, 265, 265))
+                .addContainerGap(144, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 810, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(crearSeccionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {crearSeccionButton, volverButton});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel1)
-                .addGap(20, 20, 20)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(crearSeccionButton, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(65, 65, 65)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(crearSeccionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {crearSeccionButton, volverButton});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void crearSeccionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearSeccionButtonActionPerformed
         // TODO add your handling code here:
-        CrearSeccion crearSeccion = new CrearSeccion();
+        CrearSeccion crearSeccion = new CrearSeccion(this);
         crearSeccion.setVisible(true);
-        dispose();
     }//GEN-LAST:event_crearSeccionButtonActionPerformed
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MousePressed
+        Home home = new Home();
+        home.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel5MousePressed
+
+    private void volverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtonActionPerformed
+        Home home = new Home();
+        home.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_volverButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -234,13 +275,29 @@ public class ListarSecciones extends javax.swing.JFrame {
             Object[] row = {sec.getIdSeccion(), sec.getNombre(), sec.getCantidad(), localidad};
             modelo.addRow(row);
         }
+        
+        this.tablaSecciones.getColumnModel().getColumn(1).setCellRenderer(new CenterRenderer());
+        this.tablaSecciones.getColumnModel().getColumn(2).setCellRenderer(new CenterRenderer());
+        this.tablaSecciones.getColumnModel().getColumn(3).setCellRenderer(new CenterRenderer());
+    }
+    public void actualizarTabla(){
+        DefaultTableModel model = (DefaultTableModel)  this.tablaSecciones.getModel();
+        int i = this.tablaSecciones.getRowCount();
+        while (i != 0) {
+            model.removeRow(0);
+            i--;
+        }
+        this.cargarListaSecciones();
+        this.tablaSecciones.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
+        this.tablaSecciones.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(event));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton crearSeccionButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaSecciones;
+    private javax.swing.JButton volverButton;
     // End of variables declaration//GEN-END:variables
 }

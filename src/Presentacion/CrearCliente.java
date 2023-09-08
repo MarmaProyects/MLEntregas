@@ -374,6 +374,10 @@ public class CrearCliente extends javax.swing.JFrame {
         if (this.IA.verificarExisteClienteNuevo(cedula) != true) {
             this.IA.agregarCliente(cedula, nombre, apellido, telefono);
             llamarAlertaClienteCreado();
+            this.TextFieldCedula.setText("Cédula"); 
+            this.TextFieldApellido.setText("Apellido"); 
+            this.TextFieldNombre1.setText("Nombre"); 
+            this.TextFieldTelefono.setText("Teléfono"); 
         } else {
             llamarAlertaClienteExistente();
         }
