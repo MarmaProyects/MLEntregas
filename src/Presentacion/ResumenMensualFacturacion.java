@@ -5,7 +5,6 @@
 package Presentacion;
 
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 import logica.clases.Envio;
 import logica.clases.Estado;
@@ -287,8 +286,6 @@ public class ResumenMensualFacturacion extends javax.swing.JFrame {
             Timestamp timestampFinal = new Timestamp(jDatefechaFinal.getCalendar().getTimeInMillis());
             DateFormat dateFormatFinal = new SimpleDateFormat("yyyy-MM-dd");
             this.fechafinal = dateFormatFinal.format(timestampFinal);
-            System.out.println("fecha inicio " + fechainicio);
-            System.out.println("fecha inicio " + fechafinal);
             this.listarPagos();
             this.actualizarListaDePagos();
             this.listarPagos();
