@@ -36,7 +36,7 @@ public class ListarPaquetesEnSecciones extends javax.swing.JFrame {
             ArrayList<Paquete> paquetes = this.fb.getControladorPaquete().listarPaquetesPorSeccion(seccion.getIdSeccion());
             DefaultTableModel modelo = (DefaultTableModel) this.tablaPaquetes.getModel();
             for (Paquete paq : paquetes) {
-                Object[] row = {paq.getIdPaquete(), paq.getDescripcion(), paq.getPeso(), seccion.getNombre()};
+                Object[] row = {paq.getIdPaquete(), paq.getPeso(), paq.getDescripcion(), seccion.getNombre()};
                 modelo.addRow(row);
             }
         }
@@ -64,7 +64,7 @@ public class ListarPaquetesEnSecciones extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Descripción", "Peso", "Seccion"
+                "Id", "Peso", "Descripción", "Seccion"
             }
         ) {
             Class[] types = new Class [] {
@@ -83,6 +83,14 @@ public class ListarPaquetesEnSecciones extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tablaPaquetes);
+        if (tablaPaquetes.getColumnModel().getColumnCount() > 0) {
+            tablaPaquetes.getColumnModel().getColumn(0).setResizable(false);
+            tablaPaquetes.getColumnModel().getColumn(0).setPreferredWidth(4);
+            tablaPaquetes.getColumnModel().getColumn(1).setResizable(false);
+            tablaPaquetes.getColumnModel().getColumn(1).setPreferredWidth(2);
+            tablaPaquetes.getColumnModel().getColumn(2).setPreferredWidth(150);
+            tablaPaquetes.getColumnModel().getColumn(3).setPreferredWidth(90);
+        }
 
         jButtonVolver.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jButtonVolver.setText("Volver");
@@ -101,16 +109,17 @@ public class ListarPaquetesEnSecciones extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -25,6 +25,7 @@ public class ListarSecciones extends javax.swing.JFrame {
     private Fabrica fb;
     private ListarSecciones listarSecciones = null;
     private ITableActionEvent event = null;
+
     /**
      * Creates new form ListarSecciones
      */
@@ -47,15 +48,19 @@ public class ListarSecciones extends javax.swing.JFrame {
 
             @Override
             public void onDelete(int id, int row) {
-                if (fb.getControladorSeccion().eliminarSeccion(id)) {
-                    JOptionPane.showMessageDialog(null, "La sección fue eliminada con exito", "Success", JOptionPane.DEFAULT_OPTION);
-                    if (tablaSecciones.isEditing()) {
-                        tablaSecciones.getCellEditor().stopCellEditing();
+                int opt = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar la sección?",
+                        "Eliminar sección", JOptionPane.YES_NO_OPTION);
+                if (opt == 0) {
+                    if (fb.getControladorSeccion().eliminarSeccion(id)) {
+                        JOptionPane.showMessageDialog(null, "La sección fue eliminada con exito", "Success", JOptionPane.DEFAULT_OPTION);
+                        if (tablaSecciones.isEditing()) {
+                            tablaSecciones.getCellEditor().stopCellEditing();
+                        }
+                        DefaultTableModel model = (DefaultTableModel) tablaSecciones.getModel();
+                        model.removeRow(row);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "La sección esta en uso por lo que no se puede eliminar", "Error", JOptionPane.ERROR_MESSAGE);
                     }
-                    DefaultTableModel model = (DefaultTableModel) tablaSecciones.getModel();
-                    model.removeRow(row);
-                } else {
-                    JOptionPane.showMessageDialog(null, "La sección esta en uso por lo que no se puede eliminar", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
 
@@ -278,13 +283,14 @@ public class ListarSecciones extends javax.swing.JFrame {
             Object[] row = {sec.getIdSeccion(), sec.getNombre(), sec.getCantidad(), localidad};
             modelo.addRow(row);
         }
-        
+
         this.tablaSecciones.getColumnModel().getColumn(1).setCellRenderer(new CenterRenderer());
         this.tablaSecciones.getColumnModel().getColumn(2).setCellRenderer(new CenterRenderer());
         this.tablaSecciones.getColumnModel().getColumn(3).setCellRenderer(new CenterRenderer());
     }
-    public void actualizarTabla(){
-        DefaultTableModel model = (DefaultTableModel)  this.tablaSecciones.getModel();
+
+    public void actualizarTabla() {
+        DefaultTableModel model = (DefaultTableModel) this.tablaSecciones.getModel();
         int i = this.tablaSecciones.getRowCount();
         while (i != 0) {
             model.removeRow(0);

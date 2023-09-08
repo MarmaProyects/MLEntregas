@@ -81,21 +81,21 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace pref="58" max="32767" attributes="0"/>
+                      <EmptySpace pref="56" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="panelClienteReceptor" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="49" max="32767" attributes="0"/>
+                              <EmptySpace pref="51" max="32767" attributes="0"/>
                               <Component id="panelClienteEmisor" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="botonCancelarEnvio" min="-2" pref="116" max="-2" attributes="0"/>
+                              <Component id="botonCancelarEnvio" linkSize="1" min="-2" pref="116" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="botonCrearEnvio" min="-2" pref="133" max="-2" attributes="0"/>
+                              <Component id="botonCrearEnvio" linkSize="1" min="-2" pref="133" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="panelPaquete" alignment="0" pref="951" max="32767" attributes="0"/>
-                          <Component id="panelDireccionDestino" alignment="0" pref="951" max="32767" attributes="0"/>
-                          <Component id="panelDireccionOrigen" alignment="0" pref="951" max="32767" attributes="0"/>
+                          <Component id="panelPaquete" alignment="0" max="32767" attributes="0"/>
+                          <Component id="panelDireccionDestino" alignment="0" max="32767" attributes="0"/>
+                          <Component id="panelDireccionOrigen" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="57" max="32767" attributes="0"/>
                   </Group>
@@ -109,25 +109,25 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace pref="17" max="32767" attributes="0"/>
+                      <EmptySpace pref="18" max="32767" attributes="0"/>
                       <Component id="labelTitle" min="-2" pref="38" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="panelPaquete" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="17" max="32767" attributes="0"/>
+                      <EmptySpace pref="18" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="panelClienteReceptor" pref="149" max="32767" attributes="0"/>
+                          <Component id="panelClienteReceptor" max="32767" attributes="0"/>
                           <Component id="panelClienteEmisor" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="17" max="32767" attributes="0"/>
+                      <EmptySpace pref="18" max="32767" attributes="0"/>
                       <Component id="panelDireccionDestino" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="17" max="32767" attributes="0"/>
+                      <EmptySpace pref="19" max="32767" attributes="0"/>
                       <Component id="panelDireccionOrigen" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="botonCancelarEnvio" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="botonCrearEnvio" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="botonCancelarEnvio" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="botonCrearEnvio" linkSize="2" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="19" max="32767" attributes="0"/>
+                      <EmptySpace pref="20" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -160,6 +160,7 @@
                       <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder/>
                       </Border>
+                      <Font PropertyName="font" name="Segoe UI Semibold" size="12" style="0"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -316,6 +317,7 @@
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder title="Descripci&#xf3;n:">
+                          <Font PropertyName="font" name="Segoe UI Semibold" size="12" style="0"/>
                           <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
                         </TitledBorder>
                       </Border>
@@ -329,15 +331,18 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="scrollPaneDescrp" pref="393" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="scrollPaneDescrp" alignment="0" pref="116" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="scrollPaneDescrp" pref="110" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -539,6 +544,7 @@
                       <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder/>
                       </Border>
+                      <Font PropertyName="font" name="Segoe UI Semibold" size="12" style="0"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -770,6 +776,7 @@
                       <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder/>
                       </Border>
+                      <Font PropertyName="font" name="Segoe UI Semibold" size="12" style="0"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -1155,6 +1162,7 @@
                       <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder/>
                       </Border>
+                      <Font PropertyName="font" name="Segoe UI Semibold" size="12" style="0"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -1169,7 +1177,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="142" max="32767" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1203,7 +1211,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="labelCedulaR" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="labelNombreR" min="-2" max="-2" attributes="0"/>
@@ -1211,7 +1219,7 @@
                               <Component id="labelApellidoR" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="labelTelefonoR" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1259,7 +1267,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="campoCedulaR" pref="213" max="32767" attributes="0"/>
+                                  <Component id="campoCedulaR" pref="343" max="32767" attributes="0"/>
                                   <Component id="campoNombreR" alignment="0" max="32767" attributes="0"/>
                                   <Component id="campoApellidoR" max="32767" attributes="0"/>
                                   <Component id="campoTelefonoR" alignment="0" max="32767" attributes="0"/>
@@ -1330,7 +1338,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="142" max="32767" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1367,13 +1375,13 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="labelCedulaR1" min="-2" pref="18" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="32767" attributes="0"/>
                               <Component id="labelNombreR1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="32767" attributes="0"/>
                               <Component id="labelApellidoR1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="32767" attributes="0"/>
                               <Component id="labelTelefonoR1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -1423,7 +1431,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="campoCedulaE" pref="213" max="32767" attributes="0"/>
+                                  <Component id="campoCedulaE" pref="343" max="32767" attributes="0"/>
                                   <Component id="campoNombreE" alignment="1" max="32767" attributes="0"/>
                                   <Component id="campoApellidoE" alignment="1" max="32767" attributes="0"/>
                                   <Component id="campoTelefonoE" alignment="1" max="32767" attributes="0"/>

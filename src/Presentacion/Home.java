@@ -346,7 +346,6 @@ public class Home extends javax.swing.JFrame {
     private void verEnvioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verEnvioButtonActionPerformed
         ListaEnvios listaEnvios = new ListaEnvios();
         listaEnvios.setVisible(true);
-        this.setVisible(false);
     }//GEN-LAST:event_verEnvioButtonActionPerformed
 
     private void crearLocalidadesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearLocalidadesButtonActionPerformed

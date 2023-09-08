@@ -59,7 +59,7 @@ public class ListaEnvios extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1098, 700));
 
-        tableEnvio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        tableEnvio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tableEnvio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

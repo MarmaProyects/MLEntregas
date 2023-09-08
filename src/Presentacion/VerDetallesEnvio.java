@@ -4,6 +4,7 @@
  */
 package Presentacion;
 
+import java.awt.FlowLayout;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import logica.clases.Direccion;
@@ -38,7 +39,6 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         this.IE = fb.getControladorEnvio();
         this.listEnvios = listEnv;
         AccederDetallesEnvio(id);
-        labelModoEdición.setVisible(false);
     }
 
     public void llamarAlertaEnvioConfirmado() {
@@ -117,7 +117,6 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Titulo = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jTextFieldIDPaquete = new javax.swing.JTextField();
         jLabelIDDelPaquete = new javax.swing.JLabel();
@@ -159,14 +158,10 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         jTextFieldNombreReceptor = new javax.swing.JTextField();
         jTextFieldCalle1Receptor = new javax.swing.JTextField();
         jTextFieldApartamentoReceptor = new javax.swing.JTextField();
-        labelModoEdición = new javax.swing.JLabel();
+        panelTitulo = new javax.swing.JPanel();
+        labelTitulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        Titulo.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
-        Titulo.setText("DETALLES DEL ENVÍO");
-        Titulo.setPreferredSize(new java.awt.Dimension(300, 300));
-        Titulo.setRequestFocusEnabled(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -431,7 +426,6 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabelEmisor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
@@ -604,11 +598,30 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldNroPuertaReceptor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelNroPuertaReceptor))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        labelModoEdición.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        labelModoEdición.setText("Modo edición");
+        labelTitulo.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        labelTitulo.setText("DETALLES DEL ENVÍO");
+        labelTitulo.setPreferredSize(new java.awt.Dimension(300, 300));
+        labelTitulo.setRequestFocusEnabled(false);
+
+        javax.swing.GroupLayout panelTituloLayout = new javax.swing.GroupLayout(panelTitulo);
+        panelTitulo.setLayout(panelTituloLayout);
+        panelTituloLayout.setHorizontalGroup(
+            panelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTituloLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelTituloLayout.setVerticalGroup(
+            panelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTituloLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -616,30 +629,23 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 4, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(267, 267, 267)
-                .addComponent(labelModoEdición)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 4, Short.MAX_VALUE))
+                    .addComponent(panelTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelModoEdición)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -714,7 +720,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
     private void jButtonEditarEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarEnvioActionPerformed
         // TODO add your handling code here:
         jButtonEditarEnvio.setEnabled(false);
-        labelModoEdición.setVisible(true);
+        labelTitulo.setText("    EDITAR ENVÍO");
         buttonCancelarEnvio.setText("Cancelar edición");
         buttonConfirmarEnvio.setText("Confirmar edición");
         //this.jTextAreaDescripcion.setEditable(true);
@@ -735,7 +741,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEditarEnvioActionPerformed
 
     private void buttonConfirmarEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarEnvioActionPerformed
-        if (!labelModoEdición.isVisible()) {
+        if (!labelTitulo.getText().equals("    EDITAR ENVÍO")) {
             Envio envio = IE.verDetallesDelEnvio(idEnvio);
             ArrayList<Estado> estados = envio.getEstados();
             Boolean existeEstado = false;
@@ -792,7 +798,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
 
                 JOptionPane.showMessageDialog(null, "Edición confirmada", "Edición exitosa", JOptionPane.INFORMATION_MESSAGE);
                 jButtonEditarEnvio.setEnabled(true);
-                labelModoEdición.setVisible(false);
+                labelTitulo.setText("DETALLES DEL ENVÍO");
                 buttonCancelarEnvio.setText("Cancelar envío");
                 buttonConfirmarEnvio.setText("Confirmar envío");
                 this.jComboBoxEstados.removeAllItems();
@@ -809,7 +815,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxEstadosActionPerformed
 
     private void buttonCancelarEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarEnvioActionPerformed
-        if (!labelModoEdición.isVisible()) {
+        if (!labelTitulo.getText().equals("    EDITAR ENVÍO")) {
             Envio envio = IE.verDetallesDelEnvio(idEnvio);
             ArrayList<Estado> estados = envio.getEstados();
             Boolean existeEstado = false;
@@ -837,7 +843,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             }
         } else {
             jButtonEditarEnvio.setEnabled(true);
-            labelModoEdición.setVisible(false);
+            labelTitulo.setText("DETALLES DEL ENVÍO");
             buttonCancelarEnvio.setText("Cancelar envío");
             buttonConfirmarEnvio.setText("Confirmar envío");
             this.jComboBoxEstados.removeAllItems();
@@ -952,7 +958,6 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Titulo;
     private javax.swing.JButton buttonCancelarEnvio;
     private javax.swing.JButton buttonConfirmarEnvio;
     private javax.swing.JButton jButtonEditarEnvio;
@@ -994,6 +999,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldNroPuertaEmisor;
     private javax.swing.JTextField jTextFieldNroPuertaReceptor;
     private javax.swing.JTextField jTextFieldTarifa;
-    private javax.swing.JLabel labelModoEdición;
+    private javax.swing.JLabel labelTitulo;
+    private javax.swing.JPanel panelTitulo;
     // End of variables declaration//GEN-END:variables
 }

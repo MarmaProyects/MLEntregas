@@ -355,7 +355,6 @@ public class EditarSeccion extends javax.swing.JFrame {
         }
         if (this.fb.getControladorSeccion().editarSeccionSeleccionada(seccion.getIdSeccion(), this.nombreField.getText().trim(), idLocalidad)) {
             JOptionPane.showMessageDialog(null, "La sección fue editada con exito", "Success", JOptionPane.DEFAULT_OPTION);
-            this.dispose();
             if (this.listarSecciones != null) {
                 this.listarSecciones.actualizarTabla();
             }
@@ -366,39 +365,44 @@ public class EditarSeccion extends javax.swing.JFrame {
 
     private void moverPaqueteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moverPaqueteButtonActionPerformed
         // TODO add your handling code here:
-        int row = this.tablaPaquetes.getSelectedRow();
-        int idSeccion = 0;
-        String sec = "";
-        String seccionSeleccionada = this.comboBoxSecciones.getSelectedItem().toString();
-        if (row != -1 && !seccionSeleccionada.equals(" ")) {
-            int idPaquete = Integer.parseInt(this.tablaPaquetes.getValueAt(row, 0).toString());
-            if (seccionSeleccionada.contains(" - ")) {
-                int indiceGuion = seccionSeleccionada.indexOf(" - ");
-                sec = seccionSeleccionada.substring(0, indiceGuion);
-            }
-            for (Seccion secc : this.secciones) {
-                if (secc.getNombre().equals(sec)) {
-                    idSeccion = secc.getIdSeccion();
-                    break;
+        int opt = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea mover el paquete?",
+                "Mover paquete", JOptionPane.YES_NO_OPTION);
+        if (opt == 0) {
+            int row = this.tablaPaquetes.getSelectedRow();
+            int idSeccion = 0;
+            String sec = "";
+            String seccionSeleccionada = this.comboBoxSecciones.getSelectedItem().toString();
+            if (row != -1 && !seccionSeleccionada.equals(" ")) {
+                int idPaquete = Integer.parseInt(this.tablaPaquetes.getValueAt(row, 0).toString());
+                if (seccionSeleccionada.contains(" - ")) {
+                    int indiceGuion = seccionSeleccionada.indexOf(" - ");
+                    sec = seccionSeleccionada.substring(0, indiceGuion);
+                } else {
+                    sec = seccionSeleccionada;
                 }
-            }
-            this.fb.getControladorPaquete().moverPaqueteASeccion(idPaquete, idSeccion);
-            DefaultTableModel model = (DefaultTableModel) tablaPaquetes.getModel();
-            model.removeRow(tablaPaquetes.getSelectedRow());
-            if (this.listarSecciones != null) {
-                this.listarSecciones.actualizarTabla();
-            }
-            JOptionPane.showMessageDialog(null, "El paquete fue movido con éxito", "Success", JOptionPane.DEFAULT_OPTION);
-        } else {
-            if (row == -1) {
-                JOptionPane.showMessageDialog(null, "Seleccione un paquete para poder moverlo", "Error", JOptionPane.ERROR_MESSAGE);
+                for (Seccion secc : this.secciones) {
+                    if (secc.getNombre().equals(sec)) {
+                        idSeccion = secc.getIdSeccion();
+                        break;
+                    }
+                }
+                this.fb.getControladorPaquete().moverPaqueteASeccion(idPaquete, idSeccion);
+                DefaultTableModel model = (DefaultTableModel) tablaPaquetes.getModel();
+                model.removeRow(tablaPaquetes.getSelectedRow());
+                if (this.listarSecciones != null) {
+                    this.listarSecciones.actualizarTabla();
+                }
+                JOptionPane.showMessageDialog(null, "El paquete fue movido con éxito", "Success", JOptionPane.DEFAULT_OPTION);
             } else {
-                if (seccionSeleccionada.equals(" ")) {
-                    JOptionPane.showMessageDialog(null, "Ingrese una sección a la cual mover el paquete", "Error", JOptionPane.ERROR_MESSAGE);
+                if (row == -1) {
+                    JOptionPane.showMessageDialog(null, "Seleccione un paquete para poder moverlo", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    if (seccionSeleccionada.equals(" ")) {
+                        JOptionPane.showMessageDialog(null, "Ingrese una sección a la cual mover el paquete", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         }
-
     }//GEN-LAST:event_moverPaqueteButtonActionPerformed
 
     private void nombreFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreFieldKeyTyped

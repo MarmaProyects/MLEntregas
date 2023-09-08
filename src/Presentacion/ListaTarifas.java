@@ -17,8 +17,6 @@ import logica.fabrica.Fabrica;
 import logica.interfaces.IAdministracion;
 import logica.interfaces.ITableActionEvent;
 
-
-
 /**
  *
  * @author MarmaduX
@@ -29,6 +27,7 @@ public class ListaTarifas extends javax.swing.JFrame {
     private ITableActionEvent event = null;
     private DefaultTableCellRenderer centerRenderer = null;
     private ListaTarifas listaTarifas = null;
+
     /**
      * Creates new form ListaTarifas
      */
@@ -52,16 +51,21 @@ public class ListaTarifas extends javax.swing.JFrame {
 
             @Override
             public void onDelete(int id, int row) {
-                if (IA.eliminarTarifaSeleccionada(id)) {
-                    JOptionPane.showMessageDialog(null, "La tarifa fue eliminada con exito", "Success", JOptionPane.DEFAULT_OPTION);
-                    if (tableTarifa.isEditing()) {
-                        tableTarifa.getCellEditor().stopCellEditing();
+                int opt = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar la tarifa?",
+                        "Eliminar tarifa", JOptionPane.YES_NO_OPTION);
+                if (opt == 0) {
+                    if (IA.eliminarTarifaSeleccionada(id)) {
+                        JOptionPane.showMessageDialog(null, "La tarifa fue eliminada con exito", "Success", JOptionPane.DEFAULT_OPTION);
+                        if (tableTarifa.isEditing()) {
+                            tableTarifa.getCellEditor().stopCellEditing();
+                        }
+                        DefaultTableModel model = (DefaultTableModel) tableTarifa.getModel();
+                        model.removeRow(row);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "La tarifa esta en uso por lo que no se puede eliminar", "Error", JOptionPane.ERROR_MESSAGE);
                     }
-                    DefaultTableModel model = (DefaultTableModel) tableTarifa.getModel();
-                    model.removeRow(row);
-                } else {
-                    JOptionPane.showMessageDialog(null, "La tarifa esta en uso por lo que no se puede eliminar", "Error", JOptionPane.ERROR_MESSAGE);
                 }
+
             }
 
             @Override
@@ -94,7 +98,7 @@ public class ListaTarifas extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1098, 700));
 
-        tableTarifa.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        tableTarifa.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tableTarifa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -191,15 +195,15 @@ public class ListaTarifas extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(66, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -210,7 +214,7 @@ public class ListaTarifas extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -288,8 +292,8 @@ public class ListaTarifas extends javax.swing.JFrame {
         this.tableTarifa.getColumnModel().getColumn(1).setCellRenderer(new CenterRenderer());
         this.tableTarifa.getColumnModel().getColumn(2).setCellRenderer(new CenterRenderer());
     }
-    
-    private void limpiarTabla(){
+
+    private void limpiarTabla() {
         DefaultTableModel model = (DefaultTableModel) tableTarifa.getModel();
         int i = tableTarifa.getRowCount();
         while (i != 0) {
@@ -297,8 +301,8 @@ public class ListaTarifas extends javax.swing.JFrame {
             i--;
         }
     }
-    
-    public void actualizarTabla(){
+
+    public void actualizarTabla() {
         this.limpiarTabla();
         this.cargarTodasLasTarifas();
         this.tableTarifa.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());

@@ -116,7 +116,7 @@ public class ListarLocalidades extends javax.swing.JFrame {
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton3, volverButton});
 
-        tableLocalidades.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        tableLocalidades.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tableLocalidades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
