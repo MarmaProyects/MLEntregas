@@ -64,7 +64,7 @@ public class ListarClientes extends javax.swing.JFrame {
         crearClienteButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         volverButton.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         volverButton.setText("Volver");
