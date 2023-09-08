@@ -53,9 +53,7 @@ public class CrearCliente extends javax.swing.JFrame {
 
         TextFieldNombre = new javax.swing.JTextField();
         TituloCrearUsuario = new javax.swing.JLabel();
-        BotonConfirmar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        volverButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         TituloCrearUsuario1 = new javax.swing.JLabel();
         TextFieldNombre1 = new javax.swing.JTextField();
@@ -66,6 +64,9 @@ public class CrearCliente extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        BotonConfirmar = new javax.swing.JButton();
+        volverButton = new javax.swing.JButton();
 
         TextFieldNombre.setText("Nombre");
         TextFieldNombre.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -87,13 +88,6 @@ public class CrearCliente extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(406, 329));
 
-        BotonConfirmar.setText("Confirmar");
-        BotonConfirmar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonConfirmarActionPerformed(evt);
-            }
-        });
-
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo-sm-extra.png"))); // NOI18N
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -106,17 +100,12 @@ public class CrearCliente extends javax.swing.JFrame {
             }
         });
 
-        volverButton.setText("Volver");
-        volverButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                volverButtonActionPerformed(evt);
-            }
-        });
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        TituloCrearUsuario1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        TituloCrearUsuario1.setText("Crear cliente");
+        TituloCrearUsuario1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        TituloCrearUsuario1.setText("CREAR CLIENTE");
+        jPanel1.add(TituloCrearUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
 
-        TextFieldNombre1.setText("Nombre");
         TextFieldNombre1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 TextFieldNombre1FocusGained(evt);
@@ -130,8 +119,8 @@ public class CrearCliente extends javax.swing.JFrame {
                 TextFieldNombre1ActionPerformed(evt);
             }
         });
+        jPanel1.add(TextFieldNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 113, -1));
 
-        TextFieldApellido.setText("Apellido");
         TextFieldApellido.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 TextFieldApellidoFocusGained(evt);
@@ -145,8 +134,8 @@ public class CrearCliente extends javax.swing.JFrame {
                 TextFieldApellidoActionPerformed(evt);
             }
         });
+        jPanel1.add(TextFieldApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 113, -1));
 
-        TextFieldTelefono.setText("Teléfono");
         TextFieldTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 TextFieldTelefonoFocusGained(evt);
@@ -165,8 +154,8 @@ public class CrearCliente extends javax.swing.JFrame {
                 TextFieldTelefonoKeyTyped(evt);
             }
         });
+        jPanel1.add(TextFieldTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 113, -1));
 
-        TextFieldCedula.setText("Cédula");
         TextFieldCedula.setToolTipText("Ingrese cédula sin punto ni guión");
         TextFieldCedula.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -186,60 +175,59 @@ public class CrearCliente extends javax.swing.JFrame {
                 TextFieldCedulaKeyTyped(evt);
             }
         });
+        jPanel1.add(TextFieldCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 113, -1));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel1.setText("Cédula:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel3.setText("Nombre:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel4.setText("Apellido:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, -1));
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel5.setText("Teléfono:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TextFieldNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TextFieldCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TextFieldApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(46, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(TituloCrearUsuario1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        BotonConfirmar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        BotonConfirmar.setText("Confirmar");
+        BotonConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonConfirmarActionPerformed(evt);
+            }
+        });
+
+        volverButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        volverButton.setText("Volver");
+        volverButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(71, Short.MAX_VALUE)
+                .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addComponent(BotonConfirmar)
+                .addContainerGap(72, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(TituloCrearUsuario1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TextFieldCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TextFieldNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TextFieldApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(15, 15, 15))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BotonConfirmar)
+                    .addComponent(volverButton))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -249,43 +237,31 @@ public class CrearCliente extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(70, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BotonConfirmar))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 65, Short.MAX_VALUE))
+                .addGap(74, 74, 74)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 74, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(volverButton)
-                    .addComponent(BotonConfirmar))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void TextFieldCedulaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldCedulaFocusGained
-        if (TextFieldCedula.getText().trim().equals("Cédula")) {
-            TextFieldCedula.setText(null);
-            TextFieldCedula.requestFocus();
-        }
+        
     }//GEN-LAST:event_TextFieldCedulaFocusGained
 
     private void TextFieldCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldCedulaFocusLost
-        if (TextFieldCedula.getText().trim().length() == 0) {
-            TextFieldCedula.setText("Cédula");
-        }
+        
     }//GEN-LAST:event_TextFieldCedulaFocusLost
 
     private void TextFieldCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldCedulaActionPerformed
@@ -293,16 +269,11 @@ public class CrearCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_TextFieldCedulaActionPerformed
 
     private void TextFieldNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldNombreFocusGained
-        if (TextFieldNombre.getText().trim().equals("Nombre")) {
-            TextFieldNombre.setText(null);
-            TextFieldNombre.requestFocus();
-        }
+        
     }//GEN-LAST:event_TextFieldNombreFocusGained
 
     private void TextFieldNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldNombreFocusLost
-        if (TextFieldNombre.getText().trim().length() == 0) {
-            TextFieldNombre.setText("Nombre");
-        }
+        
     }//GEN-LAST:event_TextFieldNombreFocusLost
 
     private void TextFieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldNombreActionPerformed
@@ -310,16 +281,11 @@ public class CrearCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_TextFieldNombreActionPerformed
 
     private void TextFieldNombre1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldNombre1FocusGained
-        if (TextFieldNombre1.getText().trim().equals("Nombre")) {
-            TextFieldNombre1.setText(null);
-            TextFieldNombre1.requestFocus();
-        }
+        
     }//GEN-LAST:event_TextFieldNombre1FocusGained
 
     private void TextFieldNombre1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldNombre1FocusLost
-        if (TextFieldNombre1.getText().trim().length() == 0) {
-            TextFieldNombre1.setText("Nombre");
-        }
+        
     }//GEN-LAST:event_TextFieldNombre1FocusLost
 
     private void TextFieldNombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldNombre1ActionPerformed
@@ -327,16 +293,11 @@ public class CrearCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_TextFieldNombre1ActionPerformed
 
     private void TextFieldApellidoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldApellidoFocusGained
-        if (TextFieldApellido.getText().trim().equals("Apellido")) {
-            TextFieldApellido.setText(null);
-            TextFieldApellido.requestFocus();
-        }
+        
     }//GEN-LAST:event_TextFieldApellidoFocusGained
 
     private void TextFieldApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldApellidoFocusLost
-        if (TextFieldApellido.getText().trim().length() == 0) {
-            TextFieldApellido.setText("Apellido");
-        }
+        
     }//GEN-LAST:event_TextFieldApellidoFocusLost
 
     private void TextFieldApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldApellidoActionPerformed
@@ -344,16 +305,11 @@ public class CrearCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_TextFieldApellidoActionPerformed
 
     private void TextFieldTelefonoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldTelefonoFocusGained
-        if (TextFieldTelefono.getText().trim().equals("Teléfono")) {
-            TextFieldTelefono.setText(null);
-            TextFieldTelefono.requestFocus();
-        }
+        
     }//GEN-LAST:event_TextFieldTelefonoFocusGained
 
     private void TextFieldTelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldTelefonoFocusLost
-        if (TextFieldTelefono.getText().trim().length() == 0) {
-            TextFieldTelefono.setText("Teléfono");
-        }
+        
     }//GEN-LAST:event_TextFieldTelefonoFocusLost
 
     private void TextFieldTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldTelefonoActionPerformed
@@ -412,7 +368,7 @@ public class CrearCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MousePressed
 
     private void volverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtonActionPerformed
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_volverButtonActionPerformed
 
     /**
@@ -465,6 +421,7 @@ public class CrearCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JButton volverButton;
     // End of variables declaration//GEN-END:variables
 }

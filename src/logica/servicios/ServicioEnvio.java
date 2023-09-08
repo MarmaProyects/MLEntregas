@@ -113,8 +113,8 @@ public class ServicioEnvio {
                 pago = new Pago(resListadoEnvios.getFloat("precio"), MetodoPago.valueOf(resListadoEnvios.getString("metodoPago")), resListadoEnvios.getTimestamp("fechaPago"), resListadoEnvios.getInt("idPago"));
                 listadoEnv.add(new Envio(resListadoEnvios.getInt("IdEnvio"), direccionD, direccionO, null, paquete, cliente, null, pago, estados));
             }
-        } catch (SQLException ex) {
-            Logger.getLogger("Error en la consulta de obtener los usuarios");
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
         }
         return listadoEnv;
     }
@@ -164,7 +164,7 @@ public class ServicioEnvio {
                 envioDetalles = new Envio(idEnvio, direccionDestino, direccionOrigen, tarifa, paquete, clienteEmisor, clienteReceptor, pago, estados);
             }
         } catch (SQLException ex) {
-            Logger.getLogger("Error en la consulta de obtener los usuarios");
+            LOGGER.severe("Error: " + ex);
         }
         return envioDetalles;
     }
@@ -186,7 +186,8 @@ public class ServicioEnvio {
                 //  resultado.add(new Object(int idEnvio, ));
             }
         } catch (SQLException e) {
-            System.out.println("Error: " + e);
+            LOGGER.severe("Error: " + e);
+
         }
 
         return resultado;
@@ -208,8 +209,8 @@ public class ServicioEnvio {
                 idGenerado = idPaquete.getInt(1);
             }
 
-        } catch (Exception e) {
-            Logger.getLogger("Error en crear Paquete" + e);
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
         }
         return idGenerado;
     }
@@ -229,8 +230,8 @@ public class ServicioEnvio {
             if (idD.next()) {
                 idDireccion = idD.getInt(1);
             }
-        } catch (Exception e) {
-            Logger.getLogger("Error en crear Direccion Destino" + e);
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
         }
         return idDireccion;
     }
@@ -249,9 +250,8 @@ public class ServicioEnvio {
                 listaLocalidades.add(new Localidad(nombre, codPostal, id));
             }
 
-        } catch (Exception e) {
-
-            Logger.getLogger("Error en obtener las localidades" + e);
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
         }
         return listaLocalidades;
     }
@@ -271,8 +271,8 @@ public class ServicioEnvio {
 
                 listaSecciones.add(new Seccion(nombre, cant, id, null));
             }
-        } catch (Exception e) {
-            Logger.getLogger("Error en obtener las secciones" + e);
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
         }
         return listaSecciones;
     }
@@ -284,8 +284,8 @@ public class ServicioEnvio {
             queryconexionS_P.setInt(1, idSeccion);
             queryconexionS_P.setInt(2, idPaquete);
             queryconexionS_P.executeUpdate();
-        } catch (Exception e) {
-            Logger.getLogger("Error en registrar la conexion SECCION Y PAQUETE" + e);
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
         }
     }
 
@@ -303,9 +303,8 @@ public class ServicioEnvio {
 
                 listaCE.add(new Cliente(cedula, nombre, apellido, telefono));
             }
-        } catch (Exception e) {
-
-            Logger.getLogger("Error en obtener los clientes" + e);
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
         }
 
         return listaCE;
@@ -325,10 +324,8 @@ public class ServicioEnvio {
 
             }
 
-        } catch (Exception e) {
-
-            Logger.getLogger("Error en obtener el cliente" + e);
-
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
         }
         return cliente;
     }
@@ -346,9 +343,8 @@ public class ServicioEnvio {
                         "", dirSucursal.getInt("nroPuerta"),
                         1, "", 60000);
             }
-        } catch (Exception e) {
-
-            Logger.getLogger("Error en obtener la direccion de sucursal" + e);
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
         }
         return dire;
     }
@@ -366,9 +362,8 @@ public class ServicioEnvio {
                 String nombre = listaTarifasEsp.getString("nombre");
                 listaTEspeciales.add(new Tarifa(precio, nombre, id));
             }
-        } catch (Exception e) {
-
-            Logger.getLogger("Error en obtener las tarifas" + e);
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
         }
         return listaTEspeciales;
     }
@@ -383,9 +378,8 @@ public class ServicioEnvio {
                         localiSucursal.getInt("codigoPostal"),
                         localiSucursal.getInt("id"));
             }
-        } catch (Exception e) {
-
-            Logger.getLogger("Error en obtener el id de sucursal" + e);
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
         }
         return locali;
     }
@@ -397,9 +391,8 @@ public class ServicioEnvio {
             queryconexionL_D.setInt(1, idLocalidad);
             queryconexionL_D.setInt(2, idDireccion);
             queryconexionL_D.executeUpdate();
-        } catch (Exception e) {
-
-            Logger.getLogger("Error en registrar la conexion LOCALIDAD y DIRECCION" + e);
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
         }
     }
 
@@ -421,9 +414,8 @@ public class ServicioEnvio {
                 idEnvio = idE.getInt(1);
             }
 
-        } catch (Exception e) {
-
-            Logger.getLogger("Error en registrar el Envio" + e);
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
         }
         return idEnvio;
     }
@@ -439,8 +431,8 @@ public class ServicioEnvio {
             if (resultadoEstado.next()) {
                 idEstado = resultadoEstado.getInt(1);
             }
-        } catch (Exception e) {
-            Logger.getLogger("Error en registrar el estado" + e);
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
         }
         this.crearEnvio_Estado(idEnvio, idEstado);
         return idEstado;
@@ -453,9 +445,8 @@ public class ServicioEnvio {
             queryconexionE_C.setInt(2, cedulaCliente);
             queryconexionE_C.setString(3, tipoEntrega);
             queryconexionE_C.executeUpdate();
-        } catch (Exception e) {
-
-            Logger.getLogger("Error en registrar la conexion ENVIO y CLIENTE" + e);
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
         }
 
     }
@@ -466,8 +457,8 @@ public class ServicioEnvio {
             queryconexionE_E.setInt(1, idEnvio);
             queryconexionE_E.setInt(2, idEstado);
             queryconexionE_E.executeUpdate();
-        } catch (Exception e) {
-            Logger.getLogger("Error en registrar la conexion ENVIO y ESTADO" + e);
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
         }
     }
 
@@ -481,7 +472,7 @@ public class ServicioEnvio {
             queryEditarDireccion.setInt(4, idPago);
             queryEditarDireccion.executeUpdate();
         } catch (SQLException e) {
-            Logger.getLogger("Error en update de envío: " + e.getMessage());
+            LOGGER.severe("Error: " + e);
         }
     }
 

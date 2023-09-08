@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import logica.clases.Localidad;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,13 +20,14 @@ import logica.clases.Localidad;
 public class ServicioLocalidad {
 
     private Connection conexion = new Conexion().getConnection();
+    private static final Logger LOGGER = Logger.getLogger(ServicioEnvio.class.getName());
 
     public void insertarLocalidad(String nombreLocalidad, int codigoPostal) {
         try {
             PreparedStatement query = conexion.prepareStatement("INSERT INTO `localidad` (`nombre`, `codigoPostal`) VALUES ('" + nombreLocalidad + "','" + codigoPostal + "');");
             query.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Error: " + e);
+            LOGGER.severe("Error: " + e);
         }
     }
     
@@ -34,7 +36,7 @@ public class ServicioLocalidad {
             PreparedStatement query = conexion.prepareStatement("UPDATE `localidad` SET `nombre` = '" + nombreLocalidad + "', `codigoPostal` = '" + CodigoPostal + "' WHERE `localidad`.`id` = " + IdLocalidad + ";");
             query.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Error: " + e);
+            LOGGER.severe("Error: " + e);
         }
     }
     
@@ -51,7 +53,7 @@ public class ServicioLocalidad {
                 resultado.add(new Localidad(nombre, codigoPostal, id));
             }
                 } catch (SQLException e) {
-                System.out.println("Error: " + e);
+                LOGGER.severe("Error: " + e);
             }
         
         return resultado;

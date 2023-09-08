@@ -22,9 +22,17 @@ public class ControladorCliente  implements IAdministracion {
     public ControladorCliente() {
         this.servicioCliente = new ServicioCliente();
     }
+    
+    public static ControladorCliente getInstancia() {
+        if (instance == null) {
+            instance = new ControladorCliente();
+        }       
+        return instance;
+    }    
+    
+    public void agregarCliente(int cedula, String nombre ,String apellido, int telefono) {
+            this.servicioCliente.insertarCliente(cedula, nombre, apellido, telefono);
 
-    public void agregarCliente(int cedula, String nombre, String apellido, int telefono) {
-        this.servicioCliente.insertarCliente(cedula, nombre, apellido, telefono);
     }
 
     public Boolean verificarExisteClienteNuevo(int cedula) {
@@ -39,11 +47,8 @@ public class ControladorCliente  implements IAdministracion {
         return resultado;
     }
 
-    public static ControladorCliente getInstancia() {
-        if (instance == null) {
-            instance = new ControladorCliente();
-        }
-        return instance;
+    public ArrayList<Cliente> obtenerLosClientes() {
+        return this.servicioCliente.obtenerCliente();
     }
 
     @Override

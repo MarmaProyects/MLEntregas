@@ -17,9 +17,10 @@ import logica.clases.Direccion;
  * @author leo
  */
 public class ServicioDireccion {
-    
+
     private Connection conexion = new Conexion().getConnection();
-    
+    private static final Logger LOGGER = Logger.getLogger(ServicioEnvio.class.getName());
+
     public void editarUnaDireccion(int idDireccion, String calle1, String calle2, int nroPuerta, String apartamento) {
         try {
             PreparedStatement queryEditarDireccion = conexion.prepareStatement("UPDATE direccion SET calle = ?, calle2 = ?, nroPuerta = ?, apartamento = ? "
@@ -30,23 +31,21 @@ public class ServicioDireccion {
             queryEditarDireccion.setString(4, apartamento);
             queryEditarDireccion.executeUpdate();
         } catch (SQLException e) {
-            System.err.println("Error " + e);
-            Logger.getLogger("Error: " + e);
+            LOGGER.severe("Error: " + e);
         }
     }
-    
+
     public Direccion traerDireccionPorId(int idDireccion) {
         Direccion direccionRes = null;
         try {
             PreparedStatement queryTraerDireccion = conexion.prepareStatement("SELECT * FROM direccion WHERE id = " + idDireccion);
             ResultSet direccionResultSet = queryTraerDireccion.executeQuery();
             if (direccionResultSet.next()) {
-                direccionRes = new Direccion( direccionResultSet.getString("calle"), direccionResultSet.getString("calle2"), 
+                direccionRes = new Direccion(direccionResultSet.getString("calle"), direccionResultSet.getString("calle2"),
                         direccionResultSet.getString("apartamento"), direccionResultSet.getInt("nroPuerta"), idDireccion, " ", 0);
             }
-        } catch (Exception e) {
-
-            Logger.getLogger("Error al traer dirección por id" + e);
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
         }
         return direccionRes;
     }

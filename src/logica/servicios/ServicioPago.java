@@ -20,6 +20,7 @@ import logica.clases.Envio;
 public class ServicioPago {
 
     private Connection conexion = new Conexion().getConnection();
+    private static final Logger LOGGER = Logger.getLogger(ServicioEnvio.class.getName());
 
     public int createPago(int idTarifa, int idLocalidad) {
         int idPago = 0;
@@ -43,7 +44,7 @@ public class ServicioPago {
                 idPago = idP.getInt(1);
             }
         } catch (SQLException e) {
-            Logger.getLogger("Error en crear Direccion Destino" + e.getMessage());
+            LOGGER.severe("Error: " + e);
         }
         return idPago;
     }

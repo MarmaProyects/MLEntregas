@@ -4,8 +4,6 @@
  */
 package mlentregas;
 
-import Presentacion.EditarCliente;
-import Presentacion.Home;
 import Presentacion.AutenticacionUsuario;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.util.logging.Logger;

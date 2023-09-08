@@ -2,7 +2,7 @@
 
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[1098, 700]"/>
     </Property>
@@ -26,18 +26,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
               <Component id="scrollPanelGeneral" min="-2" pref="1078" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="scrollPanelGeneral" pref="694" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+              <Component id="scrollPanelGeneral" min="-2" pref="884" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -48,6 +47,7 @@
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
         </Property>
+        <Property name="autoscrolls" type="boolean" value="true"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="null"/>
         </Property>
@@ -81,27 +81,27 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace pref="54" max="32767" attributes="0"/>
+                      <EmptySpace pref="56" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="panelClienteReceptor" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="54" max="32767" attributes="0"/>
+                              <EmptySpace pref="51" max="32767" attributes="0"/>
                               <Component id="panelClienteEmisor" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="botonCancelarEnvio" min="-2" pref="116" max="-2" attributes="0"/>
+                              <Component id="botonCancelarEnvio" linkSize="1" min="-2" pref="116" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="botonCrearEnvio" min="-2" pref="133" max="-2" attributes="0"/>
+                              <Component id="botonCrearEnvio" linkSize="1" min="-2" pref="133" max="-2" attributes="0"/>
                           </Group>
                           <Component id="panelPaquete" alignment="0" max="32767" attributes="0"/>
                           <Component id="panelDireccionDestino" alignment="0" max="32767" attributes="0"/>
                           <Component id="panelDireccionOrigen" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="56" max="32767" attributes="0"/>
+                      <EmptySpace pref="57" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="labelTitle" min="-2" pref="174" max="-2" attributes="0"/>
+                      <Component id="labelTitle" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -109,25 +109,25 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="18" max="32767" attributes="0"/>
                       <Component id="labelTitle" min="-2" pref="38" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="panelPaquete" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="18" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="panelClienteReceptor" max="32767" attributes="0"/>
                           <Component id="panelClienteEmisor" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="18" max="32767" attributes="0"/>
                       <Component id="panelDireccionDestino" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="19" max="32767" attributes="0"/>
                       <Component id="panelDireccionOrigen" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="botonCancelarEnvio" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
-                          <Component id="botonCrearEnvio" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
+                          <Component id="botonCancelarEnvio" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="botonCrearEnvio" linkSize="2" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="20" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -136,13 +136,16 @@
             <Component class="javax.swing.JLabel" name="labelTitle">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Dialog" size="24" style="0"/>
+                  <Font name="Segoe UI Semibold" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="CREAR ENVIO"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="botonCrearEnvio">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Semibold" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="CREAR ENVIO"/>
               </Properties>
               <Events>
@@ -157,30 +160,34 @@
                       <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder/>
                       </Border>
+                      <Font PropertyName="font" name="Segoe UI Semibold" size="12" style="0"/>
                     </TitledBorder>
                   </Border>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Semibold" size="12" style="0"/>
                 </Property>
               </Properties>
 
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jPanel11" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jPanel6" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jPanel2" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jPanel6" alignment="1" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jPanel9" max="32767" attributes="0"/>
                                       <Component id="panelFragil" max="32767" attributes="0"/>
+                                      <Component id="jPanel9" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="filler1" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="jPanel11" max="32767" attributes="0"/>
+                              <Component id="jPanel2" alignment="1" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -188,24 +195,26 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="jPanel9" min="-2" pref="35" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="panelFragil" min="-2" max="-2" attributes="0"/>
                                       <Component id="filler1" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="jPanel6" min="-2" pref="37" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jPanel6" min="-2" pref="37" max="-2" attributes="0"/>
-                          <EmptySpace pref="7" max="32767" attributes="0"/>
                           <Component id="jPanel11" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="7" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -221,7 +230,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="labelFragil" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="355" max="32767" attributes="0"/>
                               <Component id="checkBoxFragil" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -243,6 +252,9 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="labelFragil">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI Semibold" size="12" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Fragil:"/>
                       </Properties>
                     </Component>
@@ -261,7 +273,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="labelPeso" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="128" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="campoPesoPaquete" min="-2" pref="250" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -270,7 +282,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="7" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="labelPeso" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="campoPesoPaquete" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -283,6 +295,9 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="labelPeso">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI Semibold" size="12" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Peso:"/>
                       </Properties>
                     </Component>
@@ -302,9 +317,13 @@
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder title="Descripci&#xf3;n:">
+                          <Font PropertyName="font" name="Segoe UI Semibold" size="12" style="0"/>
                           <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
                         </TitledBorder>
                       </Border>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI Semibold" size="12" style="0"/>
                     </Property>
                   </Properties>
 
@@ -312,15 +331,18 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="scrollPaneDescrp" pref="393" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="scrollPaneDescrp" alignment="0" pref="73" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="scrollPaneDescrp" pref="110" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -348,10 +370,10 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace pref="7" max="32767" attributes="0"/>
                               <Component id="labelSecciones" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="comboSecciones" min="-2" pref="400" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="comboSecciones" min="-2" pref="256" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -372,6 +394,9 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="labelSecciones">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI Semibold" size="12" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Secciones:"/>
                       </Properties>
                     </Component>
@@ -399,7 +424,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="labelTarifasEspeciales" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="comboTarifasEspeciales" min="-2" pref="400" max="-2" attributes="0"/>
+                              <Component id="comboTarifasEspeciales" min="-2" pref="256" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -407,7 +432,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="comboTarifasEspeciales" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="labelTarifasEspeciales" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -420,6 +445,9 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="labelTarifasEspeciales">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI Semibold" size="12" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Tarifas Especiales:"/>
                       </Properties>
                     </Component>
@@ -450,10 +478,10 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="labelTipo" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="checkboxEspecial" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="botonCrearTarifaEsp" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="botonCrearTarifaEsp" min="-2" pref="255" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -464,8 +492,8 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="labelTipo" min="-2" pref="27" max="-2" attributes="0"/>
-                                  <Component id="botonCrearTarifaEsp" min="-2" max="-2" attributes="0"/>
                                   <Component id="checkboxEspecial" alignment="1" min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Component id="botonCrearTarifaEsp" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -483,6 +511,9 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="labelTipo">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI Semibold" size="12" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Especial: "/>
                       </Properties>
                     </Component>
@@ -513,8 +544,12 @@
                       <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder/>
                       </Border>
+                      <Font PropertyName="font" name="Segoe UI Semibold" size="12" style="0"/>
                     </TitledBorder>
                   </Border>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Semibold" size="12" style="0"/>
                 </Property>
               </Properties>
 
@@ -559,8 +594,8 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="labelLocalidadD" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="comboLocalidadDestino" min="-2" pref="430" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
+                              <Component id="comboLocalidadDestino" min="-2" pref="217" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -581,6 +616,9 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="labelLocalidadD">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI Semibold" size="12" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Localidad:"/>
                       </Properties>
                     </Component>
@@ -641,6 +679,9 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="labelCalleD">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI Semibold" size="12" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Calle:"/>
                       </Properties>
                     </Component>
@@ -653,6 +694,9 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="labelCalle2D">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI Semibold" size="12" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Calle 2:"/>
                       </Properties>
                     </Component>
@@ -699,11 +743,17 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="labelPuertaD">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI Semibold" size="12" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="N&#xb0; Puerta:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="labelApartD">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI Semibold" size="12" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Apartamento:"/>
                       </Properties>
                     </Component>
@@ -726,8 +776,12 @@
                       <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder/>
                       </Border>
+                      <Font PropertyName="font" name="Segoe UI Semibold" size="12" style="0"/>
                     </TitledBorder>
                   </Border>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Semibold" size="12" style="0"/>
                 </Property>
               </Properties>
 
@@ -767,7 +821,10 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jPanel16" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jPanel17" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jPanel13" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -818,6 +875,9 @@
                       <SubComponents>
                         <Component class="javax.swing.JLabel" name="labelPuertaO">
                           <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Segoe UI Semibold" size="12" style="0"/>
+                            </Property>
                             <Property name="text" type="java.lang.String" value="N&#xb0; Puerta:"/>
                           </Properties>
                         </Component>
@@ -837,7 +897,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="labelApartO" min="-2" pref="73" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="129" max="32767" attributes="0"/>
                                   <Component id="campoApartDireccionO" min="-2" pref="213" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
@@ -859,6 +919,9 @@
                       <SubComponents>
                         <Component class="javax.swing.JLabel" name="labelApartO">
                           <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Segoe UI Semibold" size="12" style="0"/>
+                            </Property>
                             <Property name="text" type="java.lang.String" value="Apartamento:"/>
                           </Properties>
                         </Component>
@@ -874,7 +937,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="labelApartD1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="355" max="32767" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="checkSucursal" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
@@ -896,6 +959,9 @@
                       <SubComponents>
                         <Component class="javax.swing.JLabel" name="labelApartD1">
                           <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Segoe UI Semibold" size="12" style="0"/>
+                            </Property>
                             <Property name="text" type="java.lang.String" value="Sucursal:"/>
                           </Properties>
                         </Component>
@@ -915,14 +981,9 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="jPanel15" max="32767" attributes="0"/>
-                                          <Component id="jPanel18" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
                                   <Component id="jPanel14" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jPanel15" max="32767" attributes="0"/>
+                                  <Component id="jPanel18" alignment="1" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -979,6 +1040,9 @@
                         </Component>
                         <Component class="javax.swing.JLabel" name="labelCalleO">
                           <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Segoe UI Semibold" size="12" style="0"/>
+                            </Property>
                             <Property name="text" type="java.lang.String" value="Calle:"/>
                           </Properties>
                         </Component>
@@ -1014,6 +1078,9 @@
                       <SubComponents>
                         <Component class="javax.swing.JLabel" name="labelCalle2O">
                           <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Segoe UI Semibold" size="12" style="0"/>
+                            </Property>
                             <Property name="text" type="java.lang.String" value="Calle 2:"/>
                           </Properties>
                         </Component>
@@ -1032,8 +1099,8 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="labelLocalidadO" min="-2" pref="69" max="-2" attributes="0"/>
-                                  <EmptySpace pref="136" max="32767" attributes="0"/>
-                                  <Component id="comboLocalidadOrigen" min="-2" pref="216" max="-2" attributes="0"/>
+                                  <EmptySpace pref="145" max="32767" attributes="0"/>
+                                  <Component id="comboLocalidadOrigen" min="-2" pref="213" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -1054,6 +1121,9 @@
                       <SubComponents>
                         <Component class="javax.swing.JLabel" name="labelLocalidadO">
                           <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Segoe UI Semibold" size="12" style="0"/>
+                            </Property>
                             <Property name="text" type="java.lang.String" value="Localidad:"/>
                           </Properties>
                         </Component>
@@ -1075,6 +1145,9 @@
             </Container>
             <Component class="javax.swing.JButton" name="botonCancelarEnvio">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Semibold" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="CANCELAR"/>
               </Properties>
               <Events>
@@ -1089,8 +1162,12 @@
                       <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder/>
                       </Border>
+                      <Font PropertyName="font" name="Segoe UI Semibold" size="12" style="0"/>
                     </TitledBorder>
                   </Border>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Semibold" size="12" style="0"/>
                 </Property>
               </Properties>
 
@@ -1100,7 +1177,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="142" max="32767" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1134,15 +1211,15 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="labelCedulaR" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="labelNombreR" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="labelApellidoR" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
+                              <Component id="labelCedulaR" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="labelNombreR" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="labelApellidoR" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="labelTelefonoR" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1150,21 +1227,33 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="labelApellidoR">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI Semibold" size="12" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Apellido:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="labelNombreR">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI Semibold" size="12" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Nombre:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="labelCedulaR">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI Semibold" size="12" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Cedula:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="labelTelefonoR">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI Semibold" size="12" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Tel&#xe9;fono:"/>
                       </Properties>
                     </Component>
@@ -1178,7 +1267,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="campoCedulaR" pref="213" max="32767" attributes="0"/>
+                                  <Component id="campoCedulaR" pref="343" max="32767" attributes="0"/>
                                   <Component id="campoNombreR" alignment="0" max="32767" attributes="0"/>
                                   <Component id="campoApellidoR" max="32767" attributes="0"/>
                                   <Component id="campoTelefonoR" alignment="0" max="32767" attributes="0"/>
@@ -1238,6 +1327,9 @@
                     </TitledBorder>
                   </Border>
                 </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Semibold" size="12" style="0"/>
+                </Property>
               </Properties>
 
               <Layout>
@@ -1246,7 +1338,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="142" max="32767" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1283,13 +1375,13 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="labelCedulaR1" min="-2" pref="18" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="32767" attributes="0"/>
                               <Component id="labelNombreR1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="32767" attributes="0"/>
                               <Component id="labelApellidoR1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="32767" attributes="0"/>
                               <Component id="labelTelefonoR1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -1299,21 +1391,33 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="labelApellidoR1">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI Semibold" size="12" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Apellido:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="labelNombreR1">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI Semibold" size="12" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Nombre:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="labelCedulaR1">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI Semibold" size="12" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Cedula:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="labelTelefonoR1">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI Semibold" size="12" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Tel&#xe9;fono:"/>
                       </Properties>
                     </Component>
@@ -1327,7 +1431,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="campoCedulaE" pref="213" max="32767" attributes="0"/>
+                                  <Component id="campoCedulaE" pref="343" max="32767" attributes="0"/>
                                   <Component id="campoNombreE" alignment="1" max="32767" attributes="0"/>
                                   <Component id="campoApellidoE" alignment="1" max="32767" attributes="0"/>
                                   <Component id="campoTelefonoE" alignment="1" max="32767" attributes="0"/>

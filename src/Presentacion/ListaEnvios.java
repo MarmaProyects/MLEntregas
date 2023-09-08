@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import logica.clases.Envio;
+import logica.clases_customs.CenterRenderer;
 import logica.fabrica.Fabrica;
 import logica.interfaces.IEnvio;
 
@@ -55,9 +56,10 @@ public class ListaEnvios extends javax.swing.JFrame {
         volverButton = new javax.swing.JButton();
         VerDetallesEnvio = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1098, 700));
 
+        tableEnvio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tableEnvio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -76,8 +78,8 @@ public class ListaEnvios extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tableEnvio);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Listado de envios");
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        jLabel1.setText("LISTADO DE ENVÍOS");
 
         jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -113,6 +115,7 @@ public class ListaEnvios extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        volverButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         volverButton.setText("Volver");
         volverButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,6 +123,7 @@ public class ListaEnvios extends javax.swing.JFrame {
             }
         });
 
+        VerDetallesEnvio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         VerDetallesEnvio.setText("Ver detalles");
         VerDetallesEnvio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,13 +172,13 @@ public class ListaEnvios extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -260,6 +264,12 @@ public class ListaEnvios extends javax.swing.JFrame {
             modelo.addRow(row);
 
         }
+        
+        this.tableEnvio.getColumnModel().getColumn(0).setCellRenderer(new CenterRenderer());
+        this.tableEnvio.getColumnModel().getColumn(1).setCellRenderer(new CenterRenderer());
+        this.tableEnvio.getColumnModel().getColumn(2).setCellRenderer(new CenterRenderer());
+        this.tableEnvio.getColumnModel().getColumn(3).setCellRenderer(new CenterRenderer());
+        this.tableEnvio.getColumnModel().getColumn(4).setCellRenderer(new CenterRenderer());
     }
 
     public void actualizarListaDeEnvios() {
