@@ -61,10 +61,11 @@ public class Home extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo-md.png"))); // NOI18N
         jLabel1.setToolTipText("");
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("ENVÍO");
 
+        buttonCrearEnvio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         buttonCrearEnvio.setText("CREAR ENVÍO");
         buttonCrearEnvio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,6 +73,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        verEnvioButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         verEnvioButton.setText("VER ENVÍOS");
         verEnvioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,13 +81,15 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("VER PAQUETES EN SECCIONES");
+        jButton3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jButton3.setText("VER PAQUETES");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
+        jButton10.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jButton10.setText("REGISTRAR PAGO DE ENVIO");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,9 +137,11 @@ public class Home extends javax.swing.JFrame {
 
         jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {buttonCrearEnvio, jButton10, jButton3, verEnvioButton});
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("ADMINISTRACÍON");
 
+        crearClienteButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         crearClienteButton.setText("CREAR CLIENTE");
         crearClienteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,6 +149,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        buttonListaTarifas.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         buttonListaTarifas.setText("LISTA DE TARIFAS");
         buttonListaTarifas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,8 +157,15 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        buttonVerClientes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         buttonVerClientes.setText("VER CLIENTES");
+        buttonVerClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonVerClientesActionPerformed(evt);
+            }
+        });
 
+        buttonFacturar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         buttonFacturar.setText("FACTURAR");
         buttonFacturar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,10 +205,11 @@ public class Home extends javax.swing.JFrame {
 
         jPanel7.setPreferredSize(new java.awt.Dimension(350, 375));
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("PROXIMIDAD");
 
+        buttonVerLocalidades.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         buttonVerLocalidades.setText("VER LOCALIDADES");
         buttonVerLocalidades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,6 +217,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        buttonVerSecciones.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         buttonVerSecciones.setText("VER SECCIONES");
         buttonVerSecciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,6 +225,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        crearSeccionesButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         crearSeccionesButton.setText("CREAR SECCIONES");
         crearSeccionesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,6 +233,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        crearLocalidadesButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         crearLocalidadesButton.setText("CREAR LOCALIDADES");
         crearLocalidadesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -328,7 +346,6 @@ public class Home extends javax.swing.JFrame {
     private void verEnvioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verEnvioButtonActionPerformed
         ListaEnvios listaEnvios = new ListaEnvios();
         listaEnvios.setVisible(true);
-        this.setVisible(false);
     }//GEN-LAST:event_verEnvioButtonActionPerformed
 
     private void crearLocalidadesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearLocalidadesButtonActionPerformed
@@ -349,7 +366,7 @@ public class Home extends javax.swing.JFrame {
     private void buttonCrearEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCrearEnvioActionPerformed
         CrearEnvio crearEnvio = new CrearEnvio();
         crearEnvio.setVisible(true);
-        this.setVisible(false);
+        //this.setVisible(false);
     }//GEN-LAST:event_buttonCrearEnvioActionPerformed
 
     private void buttonVerLocalidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVerLocalidadesActionPerformed
@@ -362,6 +379,12 @@ public class Home extends javax.swing.JFrame {
         ListarPaquetesEnSecciones listarPaquetesSecciones = new ListarPaquetesEnSecciones();
         listarPaquetesSecciones.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void buttonVerClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVerClientesActionPerformed
+        // TODO add your handling code here:
+        ListarClientes listCli = new ListarClientes();
+        listCli.setVisible(true);
+    }//GEN-LAST:event_buttonVerClientesActionPerformed
 
     /**
      * @param args the command line arguments

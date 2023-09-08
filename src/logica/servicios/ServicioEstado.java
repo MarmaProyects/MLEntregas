@@ -14,6 +14,7 @@ import logica.clases.Estado;
 import logica.dataTypes.TipoEstado;
 import logica.fabrica.Fabrica;
 import logica.interfaces.IEnvio;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,6 +23,7 @@ import logica.interfaces.IEnvio;
 public class ServicioEstado {
     private IEnvio IE;
     private Connection conexion = new Conexion().getConnection();
+    private static final Logger LOGGER = Logger.getLogger(ServicioEnvio.class.getName());
     
     public Estado obtenerEstado(int idEstado, int idEnvio){
         Estado estado = null;
@@ -39,7 +41,7 @@ public class ServicioEstado {
                             reslistadoEstados.getInt("id"));
                 }
                 } catch (SQLException e) {
-                System.out.println("Error: " + e);
+                LOGGER.severe("Error: " + e);
             }
         
         return estado;

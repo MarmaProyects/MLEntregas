@@ -42,11 +42,12 @@ public class EditarSeccion extends javax.swing.JFrame {
         if (id != -1) {
             this.seccion = this.fb.getControladorSeccion().traerSeccionSeleccionada(id);
             this.localidades = this.fb.getControladorLocalidad().obtenerLasLocalidades();
+            this.localidadComboBox.addItem(" ");
             for (Localidad loc : localidades) {
                 this.localidadComboBox.addItem(loc.getNombre());
             }
             this.nombreField.setText(seccion.getNombre());
-            this.localidadComboBox.setSelectedIndex(seccion.getIdLocalidad() - 1);
+            this.localidadComboBox.setSelectedIndex(seccion.getIdLocalidad());
             this.localidadSelect = seccion.getIdLocalidad() - 1;
             this.secciones = this.fb.getControladorSeccion().obtenerLasSecciones();
             ArrayList<Localidad> localidades = this.fb.getControladorLocalidad().obtenerLasLocalidades();
@@ -97,9 +98,9 @@ public class EditarSeccion extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(0, 0));
         setMinimumSize(null);
 
+        tablaPaquetes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         tablaPaquetes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -130,9 +131,9 @@ public class EditarSeccion extends javax.swing.JFrame {
             tablaPaquetes.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        localidadComboBox.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        localidadComboBox.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        nombreField.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        nombreField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         nombreField.setMaximumSize(new java.awt.Dimension(64, 26));
         nombreField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -140,10 +141,10 @@ public class EditarSeccion extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel2.setText("Nombre:");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel3.setText("Localidad:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -153,12 +154,8 @@ public class EditarSeccion extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(localidadComboBox, 0, 206, Short.MAX_VALUE)
@@ -172,21 +169,21 @@ public class EditarSeccion extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(nombreField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(localidadComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        comboBoxSecciones.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        comboBoxSecciones.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
         comboBoxSecciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxSeccionesActionPerformed(evt);
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel4.setText("Mover a:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -210,7 +207,7 @@ public class EditarSeccion extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        moverPaqueteButton.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        moverPaqueteButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         moverPaqueteButton.setText("Mover paquete");
         moverPaqueteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,7 +215,7 @@ public class EditarSeccion extends javax.swing.JFrame {
             }
         });
 
-        volverButton.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        volverButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         volverButton.setText("Volver");
         volverButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,7 +223,7 @@ public class EditarSeccion extends javax.swing.JFrame {
             }
         });
 
-        editButton.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        editButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         editButton.setText("Editar sección");
         editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -254,17 +251,15 @@ public class EditarSeccion extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(volverButton)
-                    .addComponent(moverPaqueteButton)
-                    .addComponent(editButton))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(moverPaqueteButton, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(editButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(volverButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        jPanel4Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {editButton, moverPaqueteButton, volverButton});
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        jLabel1.setText("Editar Sección");
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semilight", 1, 24)); // NOI18N
+        jLabel1.setText("EDITAR SECCIÓN");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -278,32 +273,30 @@ public class EditarSeccion extends javax.swing.JFrame {
                 .addGap(0, 43, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(202, 202, 202)
                 .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -352,16 +345,17 @@ public class EditarSeccion extends javax.swing.JFrame {
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         // TODO add your handling code here:
         int idLocalidad = 0;
-        for (Localidad loc : localidades) {
-            if (loc.getNombre().equals(localidadComboBox.getSelectedItem().toString())) {
-                idLocalidad = loc.getIdLocalidad();
-                break;
+        if (!this.localidadComboBox.getSelectedItem().toString().equals(" ")) {
+            for (Localidad loc : localidades) {
+                if (loc.getNombre().equals(localidadComboBox.getSelectedItem().toString())) {
+                    idLocalidad = loc.getIdLocalidad();
+                    break;
+                }
             }
         }
         if (this.fb.getControladorSeccion().editarSeccionSeleccionada(seccion.getIdSeccion(), this.nombreField.getText().trim(), idLocalidad)) {
             JOptionPane.showMessageDialog(null, "La sección fue editada con exito", "Success", JOptionPane.DEFAULT_OPTION);
-            this.dispose();
-            if(this.listarSecciones != null){
+            if (this.listarSecciones != null) {
                 this.listarSecciones.actualizarTabla();
             }
         } else {
@@ -371,33 +365,44 @@ public class EditarSeccion extends javax.swing.JFrame {
 
     private void moverPaqueteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moverPaqueteButtonActionPerformed
         // TODO add your handling code here:
-        int row = this.tablaPaquetes.getSelectedRow();
-        int idSeccion = 0;
-        String seccionSeleccionada = this.comboBoxSecciones.getSelectedItem().toString();
-        if (row != -1 && !seccionSeleccionada.equals(" ")) {
-            int idPaquete = Integer.parseInt(this.tablaPaquetes.getValueAt(row, 0).toString());
-            int indiceGuion = seccionSeleccionada.indexOf(" - ");
-            String sec = seccionSeleccionada.substring(0, indiceGuion);
-            for (Seccion secc : this.secciones) {
-                if (secc.getNombre().equals(sec)) {
-                    idSeccion = secc.getIdSeccion();
-                    break;
+        int opt = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea mover el paquete?",
+                "Mover paquete", JOptionPane.YES_NO_OPTION);
+        if (opt == 0) {
+            int row = this.tablaPaquetes.getSelectedRow();
+            int idSeccion = 0;
+            String sec = "";
+            String seccionSeleccionada = this.comboBoxSecciones.getSelectedItem().toString();
+            if (row != -1 && !seccionSeleccionada.equals(" ")) {
+                int idPaquete = Integer.parseInt(this.tablaPaquetes.getValueAt(row, 0).toString());
+                if (seccionSeleccionada.contains(" - ")) {
+                    int indiceGuion = seccionSeleccionada.indexOf(" - ");
+                    sec = seccionSeleccionada.substring(0, indiceGuion);
+                } else {
+                    sec = seccionSeleccionada;
                 }
-            }
-            this.fb.getControladorPaquete().moverPaqueteASeccion(idPaquete, idSeccion);
-            DefaultTableModel model = (DefaultTableModel) tablaPaquetes.getModel();
-            model.removeRow(tablaPaquetes.getSelectedRow());
-            JOptionPane.showMessageDialog(null, "El paquete fue movido con éxito", "Success", JOptionPane.DEFAULT_OPTION);
-        } else {
-            if (row == -1) {
-                JOptionPane.showMessageDialog(null, "Seleccione un paquete para poder moverlo", "Error", JOptionPane.ERROR_MESSAGE);
+                for (Seccion secc : this.secciones) {
+                    if (secc.getNombre().equals(sec)) {
+                        idSeccion = secc.getIdSeccion();
+                        break;
+                    }
+                }
+                this.fb.getControladorPaquete().moverPaqueteASeccion(idPaquete, idSeccion);
+                DefaultTableModel model = (DefaultTableModel) tablaPaquetes.getModel();
+                model.removeRow(tablaPaquetes.getSelectedRow());
+                if (this.listarSecciones != null) {
+                    this.listarSecciones.actualizarTabla();
+                }
+                JOptionPane.showMessageDialog(null, "El paquete fue movido con éxito", "Success", JOptionPane.DEFAULT_OPTION);
             } else {
-                if (seccionSeleccionada.equals(" ")) {
-                    JOptionPane.showMessageDialog(null, "Ingrese una sección a la cual mover el paquete", "Error", JOptionPane.ERROR_MESSAGE);
+                if (row == -1) {
+                    JOptionPane.showMessageDialog(null, "Seleccione un paquete para poder moverlo", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    if (seccionSeleccionada.equals(" ")) {
+                        JOptionPane.showMessageDialog(null, "Ingrese una sección a la cual mover el paquete", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         }
-
     }//GEN-LAST:event_moverPaqueteButtonActionPerformed
 
     private void nombreFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreFieldKeyTyped

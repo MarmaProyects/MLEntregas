@@ -59,6 +59,7 @@ public class ListaEnvios extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1098, 700));
 
+        tableEnvio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tableEnvio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -77,8 +78,8 @@ public class ListaEnvios extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tableEnvio);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Listado de envios");
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        jLabel1.setText("LISTADO DE ENVÍOS");
 
         jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -114,6 +115,7 @@ public class ListaEnvios extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        volverButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         volverButton.setText("Volver");
         volverButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,6 +123,7 @@ public class ListaEnvios extends javax.swing.JFrame {
             }
         });
 
+        VerDetallesEnvio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         VerDetallesEnvio.setText("Ver detalles");
         VerDetallesEnvio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

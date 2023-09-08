@@ -25,6 +25,7 @@ public class ServicioPaquete {
 
     private Connection conexion = new Conexion().getConnection();
     private IEnvio IE;
+    private static final Logger LOGGER = Logger.getLogger(ServicioEnvio.class.getName());
 
     public ArrayList<Paquete> obtenerListaPaquetesPorSeccion(int idSeccion) {
         ArrayList<Paquete> paquetes = new ArrayList<Paquete>();
@@ -50,11 +51,11 @@ public class ServicioPaquete {
                         paquetes.add(new Paquete(descripcion, peso, esFragil, esEspecial, idPaquete));
                     }
                 } catch (SQLException ex) {
-                    System.err.println(ex);
+                    LOGGER.severe("Error: " + ex);
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Error: " + e);
+            LOGGER.severe("Error: " + e);
         }
         return paquetes;
     }
@@ -66,7 +67,7 @@ public class ServicioPaquete {
             PreparedStatement queryInsert = conexion.prepareStatement("INSERT INTO seccion_paquete VALUES (" + idSeccionAMover + "," + idPaquete + ")");
             queryInsert.executeUpdate();
         } catch (SQLException e) {
-            System.err.println(e);
+            LOGGER.severe("Error: " + e);
         }
     }
 
@@ -89,7 +90,7 @@ public class ServicioPaquete {
                 // resultado.add(new Paquete(id, descripcion, peso, esFragil, esEspecial, nombreSeccion.getNombre()));
             }
         } catch (SQLException e) {
-            Logger.getLogger("Error: " +e);
+            LOGGER.severe("Error: " + e);
         }
 
         return resultado;
@@ -107,7 +108,7 @@ public class ServicioPaquete {
                         paqueteResultSet.getBoolean("esEspecial"), idPaquete);
             }
         } catch (SQLException e) {
-            Logger.getLogger("Error al obtener el paquete. " + e.getMessage());
+            LOGGER.severe("Error: " + e);
         }
         return paqueteRes;
     }
@@ -122,7 +123,7 @@ public class ServicioPaquete {
             queryEditarDireccion.setInt(4, esEspecial);
             queryEditarDireccion.executeUpdate();
         } catch (SQLException e) {
-            Logger.getLogger("Error: " +e);
+            LOGGER.severe("Error: " + e);
         }
     }
 }
