@@ -73,7 +73,7 @@ public class ServicioEnvio {
         return listadoEnv;
     }
     
-    public ArrayList<Envio> listarEnviosFecha() {
+    public ArrayList<Envio> listarEnviosFecha(String fechaInicio, String fechaFinal) {
         Cliente cliente;
         Paquete paquete;
         Direccion direccionD, direccionO;
@@ -86,7 +86,9 @@ public class ServicioEnvio {
                     + "DIRO.calle AS calleOrigen, DIRD.calle AS calleDestino, PAG.fechaPago AS fechaPago, PAG.precio AS precio, PAG.metodoPago AS metodoPago, PAG.id AS idPago"
                     + " FROM envio AS E, envio_cliente AS EC, cliente AS C, paquete AS P , direccion AS DIRO, direccion AS DIRD, pago AS PAG"
                     + " WHERE EC.idEnvio = E.id AND EC.cedulaCliente = C.cedula AND EC.tipoEntrega = 'Envio' "
-                    + "AND P.id = E.idPaquete AND E.idDireccionOrigen = DIRO.id AND E.idDireccionOrigen = DIRD.id AND E.id = PAG.id");
+                    + "AND P.id = E.idPaquete AND E.idDireccionOrigen = DIRO.id AND"
+                    + " E.idDireccionOrigen = DIRD.id AND E.id = PAG.id AND"
+                    + " PAG.fechaPago >= '"+ fechaInicio +" 00:00:00' AND PAG.fechaPago <= '"+ fechaFinal +" 23:59:59';");
             ResultSet resListadoEnvios = listadoEnvios.executeQuery();
             while (resListadoEnvios.next()) {
                 estados = new ArrayList<Estado>();

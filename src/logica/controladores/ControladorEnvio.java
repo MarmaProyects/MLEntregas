@@ -44,7 +44,7 @@ public class ControladorEnvio implements IEnvio {
     public ArrayList<Envio> listaDeEnvios() {
         return this.servicioEnvio.listarEnvios();
     }
-    
+
     public void editarEnvio(int idEnvio, int idTarifa, int idDirOrigen, int idDirDestino, int idPago) {
         this.servicioEnvio.editarUnEnvio(idEnvio, idTarifa, idDirOrigen, idDirDestino, idPago);
     }
@@ -146,6 +146,10 @@ public class ControladorEnvio implements IEnvio {
     @Override
     public Paquete traerPaquete(int idPaquete) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public ArrayList<Envio> listarEnviosFechaSeleccionadas(String fechaInicio, String fechaFinal) {
+        return this.servicioEnvio.listarEnviosFecha(fechaInicio, fechaFinal);
     }
 
 }
