@@ -9,12 +9,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Logger;
+import logica.clases.Envio;
+
 /**
  *
  * @author leo
  */
 public class ServicioPago {
+
     private Connection conexion = new Conexion().getConnection();
 
     public int createPago(int idTarifa, int idLocalidad) {
@@ -22,13 +26,13 @@ public class ServicioPago {
         float tarPrecio = 0, locPrecio = 0;
         try {
             PreparedStatement queryLocalidadTarifa = conexion.prepareStatement("SELECT l.precio AS LocPrecio, t.precioBase AS TarPrecio"
-                    + " FROM localidad AS l, tarifa AS t WHERE l.id="+ idLocalidad + " AND t.id=" + idTarifa);
+                    + " FROM localidad AS l, tarifa AS t WHERE l.id=" + idLocalidad + " AND t.id=" + idTarifa);
             ResultSet resultadoqueryLocalidadTarifa = queryLocalidadTarifa.executeQuery();
-            while(resultadoqueryLocalidadTarifa.next()) {
+            while (resultadoqueryLocalidadTarifa.next()) {
                 locPrecio = resultadoqueryLocalidadTarifa.getFloat("LocPrecio");
                 tarPrecio = resultadoqueryLocalidadTarifa.getFloat("TarPrecio");
             }
-            
+
             PreparedStatement queryCrearPago = conexion.prepareStatement(""
                     + "INSERT INTO pago (precio) "
                     + "VALUES (?)", PreparedStatement.RETURN_GENERATED_KEYS);
@@ -43,4 +47,5 @@ public class ServicioPago {
         }
         return idPago;
     }
+
 }

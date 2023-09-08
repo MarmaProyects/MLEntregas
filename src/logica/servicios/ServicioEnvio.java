@@ -21,6 +21,7 @@ import logica.clases.Pago;
 import logica.clases.Paquete;
 import logica.clases.Seccion;
 import logica.clases.Tarifa;
+import logica.dataTypes.MetodoPago;
 import logica.dataTypes.TipoEstado;
 
 /**
@@ -35,13 +36,17 @@ public class ServicioEnvio {
     public ArrayList<Envio> listarEnvios() {
         Cliente cliente;
         Paquete paquete;
+        Direccion direccionD, direccionO;
+        Pago pago;
         ArrayList<Estado> estados;
         ArrayList<Envio> listadoEnv = new ArrayList<Envio>();
         try {
             PreparedStatement listadoEnvios = conexion.prepareStatement("SELECT E.id as IdEnvio, C.cedula AS Cedula,"
-                    + " C.nombre AS Nombre, C.apellido AS Apellido, P.id AS IdPaquete, P.descripcion AS DescripcionPaquete"
-                    + " FROM envio AS E, envio_cliente AS EC, cliente AS C, paquete AS P "
-                    + " WHERE EC.idEnvio = E.id AND EC.cedulaCliente = C.cedula AND EC.tipoEntrega = 'Envio' AND P.id = E.idPaquete");
+                    + " C.nombre AS Nombre, C.apellido AS Apellido, P.id AS IdPaquete, P.descripcion AS DescripcionPaquete, "
+                    + "DIRO.calle AS calleOrigen, DIRD.calle AS calleDestino, PAG.fechaPago AS fechaPago, PAG.precio AS precio, PAG.metodoPago AS metodoPago, PAG.id AS idPago"
+                    + " FROM envio AS E, envio_cliente AS EC, cliente AS C, paquete AS P , direccion AS DIRO, direccion AS DIRD, pago AS PAG"
+                    + " WHERE EC.idEnvio = E.id AND EC.cedulaCliente = C.cedula AND EC.tipoEntrega = 'Envio' "
+                    + "AND P.id = E.idPaquete AND E.idDireccionOrigen = DIRO.id AND E.idDireccionOrigen = DIRD.id AND E.id = PAG.id");
             ResultSet resListadoEnvios = listadoEnvios.executeQuery();
             while (resListadoEnvios.next()) {
                 estados = new ArrayList<Estado>();
@@ -57,7 +62,50 @@ public class ServicioEnvio {
                 }
                 cliente = new Cliente(resListadoEnvios.getInt("Cedula"), resListadoEnvios.getString("Nombre"), resListadoEnvios.getString("Apellido"), null);
                 paquete = new Paquete(resListadoEnvios.getString("DescripcionPaquete"), 0, true, true, resListadoEnvios.getInt("IdPaquete"), null);
-                listadoEnv.add(new Envio(resListadoEnvios.getInt("IdEnvio"), null, null, null, paquete, cliente, null, null, estados));
+                direccionO = new Direccion(resListadoEnvios.getString("calleOrigen"), null, null, 0, 0, null, 0);
+                direccionD = new Direccion(resListadoEnvios.getString("calleDestino"), null, null, 0, 0, null, 0);
+                pago = new Pago(resListadoEnvios.getFloat("precio"), MetodoPago.valueOf(resListadoEnvios.getString("metodoPago")), resListadoEnvios.getTimestamp("fechaPago"), resListadoEnvios.getInt("idPago"));
+                listadoEnv.add(new Envio(resListadoEnvios.getInt("IdEnvio"), direccionD, direccionO, null, paquete, cliente, null, pago, estados));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger("Error en la consulta de obtener los usuarios");
+        }
+        return listadoEnv;
+    }
+    
+    public ArrayList<Envio> listarEnviosFecha() {
+        Cliente cliente;
+        Paquete paquete;
+        Direccion direccionD, direccionO;
+        Pago pago;
+        ArrayList<Estado> estados;
+        ArrayList<Envio> listadoEnv = new ArrayList<Envio>();
+        try {
+            PreparedStatement listadoEnvios = conexion.prepareStatement("SELECT E.id as IdEnvio, C.cedula AS Cedula,"
+                    + " C.nombre AS Nombre, C.apellido AS Apellido, P.id AS IdPaquete, P.descripcion AS DescripcionPaquete, "
+                    + "DIRO.calle AS calleOrigen, DIRD.calle AS calleDestino, PAG.fechaPago AS fechaPago, PAG.precio AS precio, PAG.metodoPago AS metodoPago, PAG.id AS idPago"
+                    + " FROM envio AS E, envio_cliente AS EC, cliente AS C, paquete AS P , direccion AS DIRO, direccion AS DIRD, pago AS PAG"
+                    + " WHERE EC.idEnvio = E.id AND EC.cedulaCliente = C.cedula AND EC.tipoEntrega = 'Envio' "
+                    + "AND P.id = E.idPaquete AND E.idDireccionOrigen = DIRO.id AND E.idDireccionOrigen = DIRD.id AND E.id = PAG.id");
+            ResultSet resListadoEnvios = listadoEnvios.executeQuery();
+            while (resListadoEnvios.next()) {
+                estados = new ArrayList<Estado>();
+                PreparedStatement listadoEstados = conexion.prepareStatement("SELECT E.* "
+                        + " FROM estado AS E, envio_estado AS EE "
+                        + " WHERE E.id = EE.idEstado AND EE.idEnvio =" + resListadoEnvios.getInt("IdEnvio"));
+                ResultSet reslistadoEstados = listadoEstados.executeQuery();
+                while (reslistadoEstados.next()) {
+                    estados.add(new Estado(reslistadoEstados.getString("comentario"),
+                            TipoEstado.valueOf(reslistadoEstados.getString("tipo")),
+                            reslistadoEstados.getTimestamp("fechaEstado"),
+                            reslistadoEstados.getInt("id")));
+                }
+                cliente = new Cliente(resListadoEnvios.getInt("Cedula"), resListadoEnvios.getString("Nombre"), resListadoEnvios.getString("Apellido"), null);
+                paquete = new Paquete(resListadoEnvios.getString("DescripcionPaquete"), 0, true, true, resListadoEnvios.getInt("IdPaquete"), null);
+                direccionO = new Direccion(resListadoEnvios.getString("calleOrigen"), null, null, 0, 0, null, 0);
+                direccionD = new Direccion(resListadoEnvios.getString("calleDestino"), null, null, 0, 0, null, 0);
+                pago = new Pago(resListadoEnvios.getFloat("precio"), MetodoPago.valueOf(resListadoEnvios.getString("metodoPago")), resListadoEnvios.getTimestamp("fechaPago"), resListadoEnvios.getInt("idPago"));
+                listadoEnv.add(new Envio(resListadoEnvios.getInt("IdEnvio"), direccionD, direccionO, null, paquete, cliente, null, pago, estados));
             }
         } catch (SQLException ex) {
             Logger.getLogger("Error en la consulta de obtener los usuarios");
@@ -416,7 +464,7 @@ public class ServicioEnvio {
             Logger.getLogger("Error en registrar la conexion ENVIO y ESTADO" + e);
         }
     }
-    
+
     public void editarUnEnvio(int idEnvio, int idTarifa, int idDirOrigen, int idDirDestino, int idPago) {
         try {
             PreparedStatement queryEditarDireccion = conexion.prepareStatement("UPDATE envio SET idTarifa = ?, idDireccionOrigen = ?, idDireccionDestino = ? , idPago = ? "
