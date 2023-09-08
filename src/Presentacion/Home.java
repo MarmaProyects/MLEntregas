@@ -80,6 +80,11 @@ public class Home extends javax.swing.JFrame {
         });
 
         jButton3.setText("VER PAQUETES EN SECCIONES");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton10.setText("REGISTRAR PAGO DE ENVIO");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -352,6 +357,11 @@ public class Home extends javax.swing.JFrame {
         listarlocalidades.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_buttonVerLocalidadesActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        ListarPaquetesEnSecciones listarPaquetesSecciones = new ListarPaquetesEnSecciones();
+        listarPaquetesSecciones.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -18,7 +18,9 @@ public interface IAdministracion {
 
     public abstract void crearUnaTarifa(String nombre, float precioBase);
 
-    public abstract void agregarCliente(int cedula, String nombre, String apellido, int telefono);
+    public abstract void agregarCliente(int cedula, String nombre ,String apellido, int telefono);
+    
+    public abstract ArrayList<Cliente> obtenerLosClientes();
 
     public abstract Boolean verificarExisteClienteNuevo(int cedula);
 
@@ -31,4 +33,6 @@ public interface IAdministracion {
     public abstract Cliente traerClienteSeleccionado(int cedula);
 
     public abstract void editarClienteSeleccionado(int cedula, String nombre, String apellido, int telefono);
+
+    public abstract int crearPago(int idTarifa, int obtenerLocalidad);
 }

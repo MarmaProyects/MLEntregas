@@ -14,7 +14,7 @@ import logica.servicios.ServicioCliente;
  *
  * @author MarmaduX
  */
-public class ControladorCliente implements IAdministracion {
+public class ControladorCliente  implements IAdministracion {
 
     private static ControladorCliente instance;
     private ServicioCliente servicioCliente;
@@ -22,9 +22,17 @@ public class ControladorCliente implements IAdministracion {
     public ControladorCliente() {
         this.servicioCliente = new ServicioCliente();
     }
+    
+    public static ControladorCliente getInstancia() {
+        if (instance == null) {
+            instance = new ControladorCliente();
+        }       
+        return instance;
+    }    
+    
+    public void agregarCliente(int cedula, String nombre ,String apellido, int telefono) {
+            this.servicioCliente.insertarCliente(cedula, nombre, apellido, telefono);
 
-    public void agregarCliente(int cedula, String nombre, String apellido, int telefono) {
-        this.servicioCliente.insertarCliente(cedula, nombre, apellido, telefono);
     }
 
     public Boolean verificarExisteClienteNuevo(int cedula) {
@@ -39,11 +47,8 @@ public class ControladorCliente implements IAdministracion {
         return resultado;
     }
 
-    public static ControladorCliente getInstancia() {
-        if (instance == null) {
-            instance = new ControladorCliente();
-        }
-        return instance;
+    public ArrayList<Cliente> obtenerLosClientes() {
+        return this.servicioCliente.obtenerCliente();
     }
 
     @Override
@@ -77,5 +82,10 @@ public class ControladorCliente implements IAdministracion {
 
     public void editarClienteSeleccionado(int cedula, String nombre, String apellido, int telefono) {
         this.servicioCliente.editarCliente(cedula, nombre, apellido, telefono);
+    }
+
+    @Override
+    public int crearPago(int idTarifa, int obtenerLocalidad) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

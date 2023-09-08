@@ -4,6 +4,7 @@
  */
 package Presentacion;
 
+import javax.swing.JOptionPane;
 import logica.clases.Cliente;
 import logica.fabrica.Fabrica;
 import logica.interfaces.IAdministracion;
@@ -58,13 +59,37 @@ public class EditarCliente extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        labelCliente.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         labelCliente.setText("CLIENTE");
 
         labelNombre.setText("Nombre:");
 
+        campoNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoNombreKeyTyped(evt);
+            }
+        });
+
         jLabel1.setText("Apellido:");
 
+        campoApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoApellidoKeyTyped(evt);
+            }
+        });
+
         labelTelefono.setText("Teléfono:");
+
+        campoTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoTelefonoActionPerformed(evt);
+            }
+        });
+        campoTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoTelefonoKeyTyped(evt);
+            }
+        });
 
         botonVolver.setText("Volver");
         botonVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -137,7 +162,7 @@ public class EditarCliente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTelefono)
                     .addComponent(campoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonVolver)
                     .addComponent(botonEditar))
@@ -149,11 +174,54 @@ public class EditarCliente extends javax.swing.JFrame {
 
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
         // TODO add your handling code here:
+        ListarClientes listCli = new ListarClientes();
+        listCli.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_botonVolverActionPerformed
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
-        this.IA.editarClienteSeleccionado(this.cedula, campoNombre.getText().trim(), campoApellido.getText().trim(), Integer.parseInt(campoTelefono.getText().trim()));
+        if (!campoNombre.getText().trim().equals("") && !campoApellido.getText().trim().equals("") && !campoTelefono.getText().trim().equals("")) {
+            if (campoTelefono.getText().trim().length() <= 9) {
+                
+                this.IA.editarClienteSeleccionado(this.cedula, campoNombre.getText().trim(), campoApellido.getText().trim(), Integer.parseInt(campoTelefono.getText().trim()));
+                JOptionPane.showMessageDialog(null, "Cliente editado", "Edición exitosa", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Demasiados digitos para el teléfono", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Algún campo no fue escrito", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_botonEditarActionPerformed
+
+    private void campoTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoTelefonoKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        if (!Character.isDigit(key) || campoTelefono.getText().trim().length() >= 9) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_campoTelefonoKeyTyped
+
+    private void campoApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoApellidoKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        if (campoApellido.getText().trim().length() >= 30) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_campoApellidoKeyTyped
+
+    private void campoNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoNombreKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        if (campoNombre.getText().trim().length() >= 30) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_campoNombreKeyTyped
+
+    private void campoTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoTelefonoActionPerformed
 
     /**
      * @param args the command line arguments

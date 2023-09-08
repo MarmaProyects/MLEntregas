@@ -8,15 +8,19 @@ import java.util.ArrayList;
 import logica.clases.Cliente;
 import logica.clases.Tarifa;
 import logica.interfaces.IAdministracion;
+import logica.servicios.ServicioPago;
 
 /**
  *
  * @author MarmaduX
  */
 public class ControladorPago implements IAdministracion {
+
     private static ControladorPago instance;
+    private ServicioPago servicioPago;
 
     public ControladorPago() {
+        this.servicioPago = new ServicioPago();
     }
 
     public static ControladorPago getInstancia() {
@@ -68,6 +72,15 @@ public class ControladorPago implements IAdministracion {
 
     @Override
     public void editarClienteSeleccionado(int cedula, String nombre, String apellido, int telefono) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public int crearPago(int idTarifa, int idLocalidad) {
+        return this.servicioPago.createPago(idTarifa, idLocalidad);
+    }
+
+    @Override
+    public ArrayList<Cliente> obtenerLosClientes() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

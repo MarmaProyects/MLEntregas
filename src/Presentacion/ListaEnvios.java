@@ -56,7 +56,7 @@ public class ListaEnvios extends javax.swing.JFrame {
         volverButton = new javax.swing.JButton();
         VerDetallesEnvio = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1098, 700));
 
         tableEnvio.setModel(new javax.swing.table.DefaultTableModel(
