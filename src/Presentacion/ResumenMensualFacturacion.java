@@ -23,7 +23,6 @@ public class ResumenMensualFacturacion extends javax.swing.JFrame {
 
     private IEnvio IE;
     private String fechainicio, fechafinal;
-    
 
     /**
      * Creates new form ResumenMensualFacturacion
@@ -46,24 +45,25 @@ public class ResumenMensualFacturacion extends javax.swing.JFrame {
             for (Estado estado : envio.getEstados()) {
                 if (estado.getIdEstado() > estadoFinal.getIdEstado()) {
                     estadoFinal = estado;
-                    montoTotal = envio.getPago().getPrecio() + montoTotal;
+
                 }
-                 
             }
+            montoTotal = envio.getPago().getPrecio() + montoTotal;
             Object[] row = {estadoFinal.getTipo(), envio.getPaquete().getDescripcion(), envio.getPago().getFecha(), envio.getPago().getPrecio(), envio.getPago().getPago()};
             modelo.addRow(row);
-            
+
         }
         campoTotal.setText(String.valueOf(montoTotal));
     }
 
-    public void actualizarListaDePagos() {
+    public void limpiaListaDePagos() {
         DefaultTableModel model = (DefaultTableModel) tablaFacturacion.getModel();
         int i = tablaFacturacion.getRowCount();
         while (i != 0) {
             model.removeRow(0);
             i--;
         }
+        
     }
 
     /**
@@ -286,9 +286,9 @@ public class ResumenMensualFacturacion extends javax.swing.JFrame {
             Timestamp timestampFinal = new Timestamp(jDatefechaFinal.getCalendar().getTimeInMillis());
             DateFormat dateFormatFinal = new SimpleDateFormat("yyyy-MM-dd");
             this.fechafinal = dateFormatFinal.format(timestampFinal);
+            this.limpiaListaDePagos();
             this.listarPagos();
-            this.actualizarListaDePagos();
-            this.listarPagos();
+            
 
         }
 

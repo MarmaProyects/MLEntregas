@@ -24,6 +24,7 @@ import logica.clases.Tarifa;
 import logica.dataTypes.MetodoPago;
 import logica.dataTypes.TipoEstado;
 
+
 /**
  *
  * @author MarmaduX
@@ -32,6 +33,7 @@ public class ServicioEnvio {
 
     private Connection conexion = new Conexion().getConnection();
     private Object queryTraerDireccionS;
+    private static final Logger LOGGER = Logger.getLogger(ServicioEnvio.class.getName());
 
     public ArrayList<Envio> listarEnvios() {
         Cliente cliente;
@@ -64,11 +66,12 @@ public class ServicioEnvio {
                 paquete = new Paquete(resListadoEnvios.getString("DescripcionPaquete"), 0, true, true, resListadoEnvios.getInt("IdPaquete"), null);
                 direccionO = new Direccion(resListadoEnvios.getString("calleOrigen"), null, null, 0, 0, null, 0);
                 direccionD = new Direccion(resListadoEnvios.getString("calleDestino"), null, null, 0, 0, null, 0);
-                pago = new Pago(resListadoEnvios.getFloat("precio"), MetodoPago.valueOf(resListadoEnvios.getString("metodoPago")), resListadoEnvios.getTimestamp("fechaPago"), resListadoEnvios.getInt("idPago"));
+                pago = new Pago(resListadoEnvios.getFloat("precio"), null, resListadoEnvios.getTimestamp("fechaPago"), resListadoEnvios.getInt("idPago"));
                 listadoEnv.add(new Envio(resListadoEnvios.getInt("IdEnvio"), direccionD, direccionO, null, paquete, cliente, null, pago, estados));
             }
         } catch (SQLException ex) {
-            Logger.getLogger("Error en la consulta de obtener los usuarios");
+            LOGGER.severe("Error en la consulta de obtener los usuarios"+ex);
+            
         }
         return listadoEnv;
     }
@@ -80,6 +83,7 @@ public class ServicioEnvio {
         Pago pago;
         ArrayList<Estado> estados;
         ArrayList<Envio> listadoEnv = new ArrayList<Envio>();
+        
         try {
             PreparedStatement listadoEnvios = conexion.prepareStatement("SELECT E.id as IdEnvio, C.cedula AS Cedula,"
                     + " C.nombre AS Nombre, C.apellido AS Apellido, P.id AS IdPaquete, P.descripcion AS DescripcionPaquete, "
