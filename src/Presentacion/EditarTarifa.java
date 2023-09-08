@@ -62,8 +62,10 @@ public class EditarTarifa extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel1.setText("Nombre:");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel2.setText("Costo:");
 
         costoField.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -72,9 +74,10 @@ public class EditarTarifa extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jLabel3.setText("Tarifa");
+        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        jLabel3.setText("EDITAR TARIFA");
 
+        editButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         editButton.setText("Editar");
         editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,6 +85,7 @@ public class EditarTarifa extends javax.swing.JFrame {
             }
         });
 
+        volverButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         volverButton.setText("Volver");
         volverButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,11 +120,11 @@ public class EditarTarifa extends javax.swing.JFrame {
                     .addComponent(nombreField))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(62, 62, 62)
+                .addContainerGap(67, Short.MAX_VALUE)
                 .addComponent(volverButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                 .addComponent(editButton)
-                .addGap(67, 67, 67))
+                .addContainerGap(67, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -135,7 +139,7 @@ public class EditarTarifa extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -145,11 +149,11 @@ public class EditarTarifa extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(costoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(46, 46, 46)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(editButton)
                     .addComponent(volverButton))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();

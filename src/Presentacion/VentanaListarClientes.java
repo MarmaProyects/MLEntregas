@@ -23,6 +23,9 @@ public class VentanaListarClientes extends javax.swing.JFrame {
 
     public VentanaListarClientes() {
         initComponents();
+        this.setTitle("MLEntregas");
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.iEnvio = Fabrica.getInstancia().getControladorEnvio();
         this.cargarTablaClientesE();
         this.limpiarTabla();
@@ -47,8 +50,10 @@ public class VentanaListarClientes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("LISTA DE CLIENTES:");
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        jLabel1.setText("LISTADO DE CLIENTES");
 
+        tablaClientesE.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         tablaClientesE.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -67,6 +72,7 @@ public class VentanaListarClientes extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaClientesE);
 
+        botonSeleccionar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         botonSeleccionar.setText("Seleccionar");
         botonSeleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,6 +80,7 @@ public class VentanaListarClientes extends javax.swing.JFrame {
             }
         });
 
+        botonVolverClienteE.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         botonVolverClienteE.setText("Volver");
         botonVolverClienteE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,30 +93,34 @@ public class VentanaListarClientes extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(botonVolverClienteE)
-                .addGap(182, 182, 182)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(111, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botonSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(75, 75, 75))
+                .addContainerGap(50, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(botonVolverClienteE, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {botonSeleccionar, botonVolverClienteE});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(botonVolverClienteE))
-                .addGap(49, 49, 49)
+                .addGap(28, 28, 28)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(botonSeleccionar)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonSeleccionar)
+                    .addComponent(botonVolverClienteE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();

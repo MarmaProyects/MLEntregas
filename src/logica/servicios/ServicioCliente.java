@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 import logica.clases.Cliente;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,13 +21,14 @@ import logica.clases.Cliente;
 public class ServicioCliente {
 
     private Connection conexion = new Conexion().getConnection();
+    private static final Logger LOGGER = Logger.getLogger(ServicioEnvio.class.getName());
 
     public void insertarCliente(int cedula, String nombre, String apellido, int telefono) {
         try {
             PreparedStatement query = conexion.prepareStatement("INSERT INTO `cliente` (`cedula`,`nombre`, `apellido`,`telefono`) VALUES ('" + cedula + "','" + nombre + "', '" + apellido + "', '" + telefono + "');");
             query.executeUpdate();
         } catch (SQLException e) {
-            Logger.getLogger("Error: " + e);
+            LOGGER.severe("Error: " + e);
         }
     }
 
@@ -44,7 +46,7 @@ public class ServicioCliente {
                 resultado.add(new Cliente(ci, nombre, apellido, Integer.toString(telefono)));
             }
         } catch (SQLException e) {
-            Logger.getLogger("Error: " + e);
+            LOGGER.severe("Error: " + e);
         }
 
         return resultado;
@@ -65,8 +67,8 @@ public class ServicioCliente {
                 String tel = String.valueOf(t);
                 cliente = new Cliente(ced, nom, ape, tel);
             }
-        } catch (Exception e) {
-            Logger.getLogger("Error traer cliente: " + e);
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
         }
         return cliente;
     }
@@ -76,9 +78,8 @@ public class ServicioCliente {
             PreparedStatement queryEditarCliente = conexion.prepareStatement("UPDATE cliente SET nombre= '" + nombre + "',"
                     + " apellido= '" + apellido + "', telefono= '" + telefono + "' WHERE cedula= '" + cedula + "'");
             queryEditarCliente.executeUpdate();
-            Logger.getLogger("Se editó el cliente correctamente");
-        } catch (Exception e) {
-            Logger.getLogger("No se logró actualizar los datos: " + e);
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
         }
     }
 }

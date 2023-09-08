@@ -23,6 +23,9 @@ public class ListarPaquetesEnSecciones extends javax.swing.JFrame {
      */
     public ListarPaquetesEnSecciones() {
         initComponents();
+        this.setTitle("MLEntregas");
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.fb = Fabrica.getInstancia();
         this.cargarDatosSeccion();
     }
@@ -51,9 +54,11 @@ public class ListarPaquetesEnSecciones extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaPaquetes = new javax.swing.JTable();
         jButtonVolver = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        tablaPaquetes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         tablaPaquetes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -79,6 +84,7 @@ public class ListarPaquetesEnSecciones extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaPaquetes);
 
+        jButtonVolver.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jButtonVolver.setText("Volver");
         jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,11 +92,21 @@ public class ListarPaquetesEnSecciones extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        jLabel1.setText("LISTADO DE PAQUETES");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -99,10 +115,13 @@ public class ListarPaquetesEnSecciones extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonVolver)
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -149,6 +168,7 @@ public class ListarPaquetesEnSecciones extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonVolver;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaPaquetes;
     // End of variables declaration//GEN-END:variables

@@ -5,12 +5,12 @@
 package logica.servicios;
 
 import BaseDeDatos.Conexion;
+import java.util.logging.Logger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import logica.clases.Localidad;
 import logica.clases.Seccion;
 import logica.fabrica.Fabrica;
@@ -24,6 +24,7 @@ public class ServicioSeccion {
 
     private Connection conexion = new Conexion().getConnection();
     private IProximidad IPR;
+    private static final Logger LOGGER = Logger.getLogger(ServicioEnvio.class.getName());
 
     public ArrayList<Seccion> obtenerListaSeccion() {
         ArrayList<Seccion> resultado = new ArrayList<Seccion>();
@@ -38,7 +39,7 @@ public class ServicioSeccion {
                 resultado.add(new Seccion(nombre, cantidad, id, idLocalidad));
             }
         } catch (SQLException e) {
-            System.out.println("Error: " + e);
+            LOGGER.severe("Error: " + e);
         }
         return resultado;
     }
@@ -51,7 +52,7 @@ public class ServicioSeccion {
                 PreparedStatement query = conexion.prepareStatement("INSERT INTO `seccion` (`nombre`, `cantidad`) VALUES ('" + nombre + "','0');");
                 query.executeUpdate();
             } catch (SQLException e) {
-                System.out.println("Error: " + e);
+                LOGGER.severe("Error: " + e);
             }
         } else {
             ArrayList<Localidad> localidades = this.IPR.obtenerLasLocalidades();
@@ -66,7 +67,7 @@ public class ServicioSeccion {
                 PreparedStatement query = conexion.prepareStatement("INSERT INTO `seccion` (`idLocalidad`,`nombre`, `cantidad`) VALUES ('" + idLocalidad + "','" + nombre + "','0');");
                 query.executeUpdate();
             } catch (SQLException e) {
-                System.out.println("Error: " + e);
+                LOGGER.severe("Error: " + e);
             }
         }
     }
@@ -80,7 +81,7 @@ public class ServicioSeccion {
                 seccion_paquete = true;
             }
         } catch (SQLException e) {
-            System.out.println("Error: " + e);
+            LOGGER.severe("Error: " + e);
         }
 
         if (!seccion_paquete) {
@@ -89,7 +90,7 @@ public class ServicioSeccion {
                 int rowsAffected = query.executeUpdate();
                 return rowsAffected > 0;
             } catch (SQLException e) {
-                System.out.println("Error: " + e);
+                LOGGER.severe("Error: " + e);
                 return false;
             }
         } else {
@@ -109,20 +110,32 @@ public class ServicioSeccion {
                 seccion = new Seccion(nombre, cantidad, idSeccion, idLocalidad);
             }
         } catch (SQLException e) {
-            System.out.println("Error: " + e);
+            LOGGER.severe("Error: " + e);
         }
         return seccion;
     }
 
     public boolean editarSeccion(int idSeccion, String nombre, int idLocalidad) {
-        try {
-            PreparedStatement query = conexion.prepareStatement("UPDATE `seccion` SET `nombre` = '" + nombre + "',`idLocalidad`='" + idLocalidad + "' WHERE `id` = '" + idSeccion + "'");
-            int rowsAffected = query.executeUpdate();
-            return rowsAffected > 0;
-        } catch (SQLException e) {
-            System.err.println(e);
-            return false;
+        if (idLocalidad == 0) {
+            try {
+                PreparedStatement query = conexion.prepareStatement("UPDATE `seccion` SET `nombre` = '" + nombre + "',`idLocalidad`= null" + " WHERE `id` = '" + idSeccion + "'");
+                int rowsAffected = query.executeUpdate();
+                return rowsAffected > 0;
+            } catch (SQLException e) {
+                LOGGER.severe("Error: " + e);
+                return false;
+            }
+        } else {
+            try {
+                PreparedStatement query = conexion.prepareStatement("UPDATE `seccion` SET `nombre` = '" + nombre + "',`idLocalidad`='" + idLocalidad + "' WHERE `id` = '" + idSeccion + "'");
+                int rowsAffected = query.executeUpdate();
+                return rowsAffected > 0;
+            } catch (SQLException e) {
+                LOGGER.severe("Error: " + e);
+                return false;
+            }
         }
+
     }
 
     public ArrayList<Seccion> obtenerLasSecciones() {
@@ -139,7 +152,7 @@ public class ServicioSeccion {
                 resultado.add(new Seccion(nombre, cantidad, id, null));
             }
         } catch (SQLException e) {
-            System.out.println("Error: " + e);
+            LOGGER.severe("Error: " + e);
         }
 
         return resultado;
@@ -157,7 +170,7 @@ public class ServicioSeccion {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Error: " + e);
+            LOGGER.severe("Error: " + e);
         }
         return resultado;
     }

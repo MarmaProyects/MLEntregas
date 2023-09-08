@@ -29,8 +29,11 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
      * Creates new form VerDetallesEnvio
      */
     public VerDetallesEnvio(int id, ListaEnvios listEnv) {
-        this.idEnvio = id;
         initComponents();
+        this.setTitle("MLEntregas");
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        this.idEnvio = id;
         this.fb = Fabrica.getInstancia();
         this.IE = fb.getControladorEnvio();
         this.listEnvios = listEnv;
@@ -160,8 +163,8 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        Titulo.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        Titulo.setText("Detalles del envio");
+        Titulo.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        Titulo.setText("DETALLES DEL ENVÍO");
         Titulo.setPreferredSize(new java.awt.Dimension(300, 300));
         Titulo.setRequestFocusEnabled(false);
 
@@ -174,8 +177,10 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             }
         });
 
+        jLabelIDDelPaquete.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabelIDDelPaquete.setText("ID del paquete");
 
+        jLabelTarifa.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabelTarifa.setText("Tarifa");
 
         jTextFieldIDEnvio.setText("-");
@@ -185,6 +190,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             }
         });
 
+        jLabelIDEnvio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabelIDEnvio.setText("Precio");
 
         jTextFieldTarifa.setText("-");
@@ -194,9 +200,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             }
         });
 
-        jButtonEditarEnvio.setBackground(new java.awt.Color(0, 102, 255));
         jButtonEditarEnvio.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
-        jButtonEditarEnvio.setForeground(new java.awt.Color(0, 0, 0));
         jButtonEditarEnvio.setText("Editar envío");
         jButtonEditarEnvio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,9 +208,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             }
         });
 
-        buttonConfirmarEnvio.setBackground(new java.awt.Color(153, 255, 102));
         buttonConfirmarEnvio.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
-        buttonConfirmarEnvio.setForeground(new java.awt.Color(0, 0, 0));
         buttonConfirmarEnvio.setText("Confirmar envío");
         buttonConfirmarEnvio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,9 +216,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             }
         });
 
-        buttonCancelarEnvio.setBackground(new java.awt.Color(255, 102, 102));
         buttonCancelarEnvio.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
-        buttonCancelarEnvio.setForeground(new java.awt.Color(0, 0, 0));
         buttonCancelarEnvio.setText("Cancelar envío");
         buttonCancelarEnvio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,11 +230,10 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             }
         });
 
+        jLabelEstado.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabelEstado.setText("Estado");
 
-        jButtonEditarPaquete.setBackground(new java.awt.Color(0, 204, 204));
         jButtonEditarPaquete.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
-        jButtonEditarPaquete.setForeground(new java.awt.Color(0, 0, 0));
         jButtonEditarPaquete.setText("Editar paquete");
         jButtonEditarPaquete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -299,27 +298,32 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldTarifa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelTarifa))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonConfirmarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonCancelarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonEditarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonEditarPaquete))
-                .addGap(37, 37, 37))
+                .addGap(20, 20, 20))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonEditarEnvio, jButtonEditarPaquete});
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jLabelEmisor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabelEmisor.setText("Emisor");
 
+        jLabelNombreEmisor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabelNombreEmisor.setText("Nombre");
 
+        jLabelCalle1Emisor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabelCalle1Emisor.setText("Calle 1");
 
+        jLabelApartamentoEmisor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabelApartamentoEmisor.setText("Apartamento");
 
+        jLabelNroPuertaEmisor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabelNroPuertaEmisor.setText("Nº Puerta");
 
         jTextFieldCIEmisor.setText("-");
@@ -384,8 +388,10 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             }
         });
 
+        jLabelCalle2Emisor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabelCalle2Emisor.setText("Calle 2");
 
+        jLabelCIEmisor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabelCIEmisor.setText("CI");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -416,7 +422,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldNroPuertaEmisor, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                             .addComponent(jTextFieldApartamentoEmisor))))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabelEmisor)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -425,6 +431,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabelEmisor)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
@@ -450,13 +457,15 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextFieldCIEmisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabelCIEmisor)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jLabelReceptor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabelReceptor.setText("Receptor");
 
+        jLabelCIReceptor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabelCIReceptor.setText("CI");
 
         jTextFieldCalle2Receptor.setText("-");
@@ -471,8 +480,10 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             }
         });
 
+        jLabelCalle2Receptor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabelCalle2Receptor.setText("Calle 2");
 
+        jLabelNombreReceptor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabelNombreReceptor.setText("Nombre");
 
         jTextFieldNroPuertaReceptor.setText("-");
@@ -487,10 +498,13 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             }
         });
 
+        jLabelCalle1Receptor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabelCalle1Receptor.setText("Calle 1");
 
+        jLabelApartamentoReceptor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabelApartamentoReceptor.setText("Apartamento");
 
+        jLabelNroPuertaReceptor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabelNroPuertaReceptor.setText("Nº Puerta");
 
         jTextFieldCIReceptor.setText("-");
@@ -536,7 +550,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                         .addGap(51, 51, 51)
                         .addComponent(jLabelCIReceptor)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextFieldCIReceptor, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldCIReceptor, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -553,11 +567,12 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                                 .addComponent(jLabelNroPuertaReceptor)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldCalle1Receptor, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldNombreReceptor, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldCalle2Receptor, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldApartamentoReceptor, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldNroPuertaReceptor, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTextFieldNroPuertaReceptor, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jTextFieldCalle1Receptor, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextFieldCalle2Receptor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))))
                     .addComponent(jLabelReceptor))
                 .addGap(0, 20, Short.MAX_VALUE))
         );
@@ -592,7 +607,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        labelModoEdición.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        labelModoEdición.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         labelModoEdición.setText("Modo edición");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -600,30 +615,29 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(210, 210, 210)
-                        .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(262, 262, 262)
-                        .addComponent(labelModoEdición)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 4, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(267, 267, 267)
+                .addComponent(labelModoEdición)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelModoEdición)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -731,8 +745,8 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                 }
             }
             if (existeEstado == false) {
-                int opt = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea cancelar el envío?",
-                        "Cancelar envío", JOptionPane.YES_NO_OPTION);
+                int opt = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea confirmar el envío?",
+                        "Confirmar envío", JOptionPane.YES_NO_OPTION);
                 if (opt == 0) {
                     this.IE.crearEstado(idEnvio, "Entregado", "Paquete entregado");
                     llamarAlertaEnvioConfirmado();

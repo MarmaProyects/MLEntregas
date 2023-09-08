@@ -86,14 +86,12 @@ public class ListarSecciones extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
-        setMaximumSize(new java.awt.Dimension(1098, 700));
         setMinimumSize(new java.awt.Dimension(1098, 700));
-        setPreferredSize(new java.awt.Dimension(1098, 700));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("SECCIONES");
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        jLabel1.setText("LISTADO DE SECCIONES");
 
-        crearSeccionButton.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        crearSeccionButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         crearSeccionButton.setText("Crear sección");
         crearSeccionButton.setPreferredSize(new java.awt.Dimension(93, 23));
         crearSeccionButton.addActionListener(new java.awt.event.ActionListener() {
@@ -102,6 +100,7 @@ public class ListarSecciones extends javax.swing.JFrame {
             }
         });
 
+        tablaSecciones.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tablaSecciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -153,6 +152,7 @@ public class ListarSecciones extends javax.swing.JFrame {
             }
         });
 
+        volverButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         volverButton.setText("Volver");
         volverButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,18 +167,18 @@ public class ListarSecciones extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(396, 396, 396)
+                .addGap(282, 282, 282)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(373, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(144, Short.MAX_VALUE)
+                .addContainerGap(99, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 810, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(crearSeccionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {crearSeccionButton, volverButton});
@@ -187,16 +187,19 @@ public class ListarSecciones extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(65, 65, 65)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(28, 28, 28)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(crearSeccionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {crearSeccionButton, volverButton});
@@ -264,9 +267,9 @@ public class ListarSecciones extends javax.swing.JFrame {
     private void cargarListaSecciones() {
         ArrayList<Seccion> listaDeSecciones = this.fb.getControladorSeccion().obtenerLasSecciones();
         ArrayList<Localidad> listaDeLocalidades = this.fb.getControladorLocalidad().obtenerLasLocalidades();
-        String localidad = "";
         DefaultTableModel modelo = (DefaultTableModel) this.tablaSecciones.getModel();
         for (Seccion sec : listaDeSecciones) {
+            String localidad = "";
             for (Localidad loc : listaDeLocalidades) {
                 if (sec.getIdLocalidad() == loc.getIdLocalidad()) {
                     localidad = loc.getNombre();

@@ -147,7 +147,7 @@
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI Light" size="24" style="1"/>
+                  <Font name="Segoe UI Semibold" size="24" style="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="ENV&#xcd;O"/>
@@ -155,6 +155,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="buttonCrearEnvio">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Semibold" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="CREAR ENV&#xcd;O"/>
               </Properties>
               <Events>
@@ -163,6 +166,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="verEnvioButton">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Semibold" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="VER ENV&#xcd;OS"/>
               </Properties>
               <Events>
@@ -171,7 +177,10 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButton3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="VER PAQUETES EN SECCIONES"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Semibold" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="VER PAQUETES"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
@@ -179,6 +188,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButton10">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Semibold" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="REGISTRAR PAGO DE ENVIO"/>
               </Properties>
               <Events>
@@ -227,13 +239,17 @@
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI Light" size="24" style="1"/>
+                  <Font name="Segoe UI Semibold" size="24" style="1"/>
                 </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="ADMINISTRAC&#xcd;ON"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="crearClienteButton">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Semibold" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="CREAR CLIENTE"/>
               </Properties>
               <Events>
@@ -242,6 +258,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="buttonListaTarifas">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Semibold" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="LISTA DE TARIFAS"/>
               </Properties>
               <Events>
@@ -250,11 +269,20 @@
             </Component>
             <Component class="javax.swing.JButton" name="buttonVerClientes">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Semibold" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="VER CLIENTES"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonVerClientesActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="buttonFacturar">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Semibold" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="FACTURAR"/>
               </Properties>
               <Events>
@@ -291,7 +319,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="crearSeccionesButton" min="-2" pref="70" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="buttonVerSecciones" min="-2" pref="70" max="-2" attributes="0"/>
@@ -308,7 +336,7 @@
             <Component class="javax.swing.JLabel" name="jLabel11">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI Light" size="24" style="1"/>
+                  <Font name="Segoe UI Semibold" size="24" style="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="PROXIMIDAD"/>
@@ -316,6 +344,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="buttonVerLocalidades">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Semibold" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="VER LOCALIDADES"/>
               </Properties>
               <Events>
@@ -324,6 +355,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="buttonVerSecciones">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Semibold" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="VER SECCIONES"/>
               </Properties>
               <Events>
@@ -332,6 +366,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="crearSeccionesButton">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Semibold" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="CREAR SECCIONES"/>
               </Properties>
               <Events>
@@ -340,6 +377,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="crearLocalidadesButton">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Semibold" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="CREAR LOCALIDADES"/>
               </Properties>
               <Events>

@@ -20,13 +20,14 @@ import logica.clases.Tarifa;
 public class ServicioTarifa {
 
     private Connection conexion = new Conexion().getConnection();
+    private static final Logger LOGGER = Logger.getLogger(ServicioEnvio.class.getName());
 
     public void crearLaTarifa(String nombre, float precioBase) {
         try {
             PreparedStatement query = conexion.prepareStatement("INSERT INTO `tarifa` (`nombre`, `precioBase`) VALUES ('" + nombre + "','" + precioBase + "');");
             query.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Error: " + e);
+            LOGGER.severe("Error: " + e);
         }
     }
     
@@ -42,7 +43,7 @@ public class ServicioTarifa {
                 tarifa = new Tarifa(precioBase, nombre, id);
             }
         } catch (SQLException e) {
-            System.out.println("Error: " + e);
+            LOGGER.severe("Error: " + e);
         }
         return tarifa;
     }
@@ -53,7 +54,7 @@ public class ServicioTarifa {
             int rowsAffected = query.executeUpdate();
             return rowsAffected > 0;
         } catch (SQLException e) {
-            System.out.println("Error: " + e);
+            LOGGER.severe("Error: " + e);
             return false;
         }
     }
@@ -64,7 +65,7 @@ public class ServicioTarifa {
             int rowsAffected = query.executeUpdate();
             return rowsAffected > 0;
         } catch (SQLException e) {
-            System.out.println("Error: " + e);
+            LOGGER.severe("Error: " + e);
             return false;
         }
     }
@@ -84,7 +85,7 @@ public class ServicioTarifa {
                 resultado.add(new Tarifa(precioBase, nombre, id));
             }
         } catch (SQLException ex) {
-            Logger.getLogger("Error en la consulta de obtener los usuarios");
+            LOGGER.severe("Error: " + ex);
         }
         return resultado;
     }
