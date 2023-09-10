@@ -19,6 +19,7 @@ import logica.clases.Tarifa;
  * @author MarmaduX
  */
 public interface IEnvio {
+
     public abstract ArrayList<Paquete> listarPaquetesPorSeccion(int idSeccion);
     public abstract void moverPaqueteASeccion(int idPaquete, int idSeccionAMover);
     public abstract ArrayList<Envio> listaDeEnvios();
@@ -44,4 +45,5 @@ public interface IEnvio {
     public abstract void conexionEnvio_Estado(int idEnvio, int idEstado);
     public abstract int crearEstado(int idEnvio, String tipo, String comentario); 
     public abstract Estado obtenerElEstado(int idEstado, int idEnvio);
+    public abstract ArrayList<Envio> listarEnviosFechaSeleccionadas(String fechaInicio, String fechaFinal);
 }
