@@ -227,7 +227,8 @@ public class ListarClientes extends javax.swing.JFrame {
         ArrayList<Cliente> listaCliente = this.fb.getControladorCliente().obtenerLosClientes();
         DefaultTableModel modelo = (DefaultTableModel) this.tablaClientes.getModel();
         for (Cliente client : listaCliente) {
-            Object[] row = {client.getCedula(), client.getNombre() + " " + client.getApellido(), client.getTelefono()};
+            int telefono = Integer.parseInt(client.getTelefono());
+            Object[] row = {String.format("%08d", client.getCedula()), client.getNombre() + " " + client.getApellido(), String.format("%09d", telefono)};
             modelo.addRow(row);
         }
     }

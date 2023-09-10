@@ -330,7 +330,9 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonVerSeccionesActionPerformed
 
     private void buttonFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFacturarActionPerformed
-        // TODO add your handling code here:
+        ResumenMensualFacturacion resumenMensualFacturacion = new ResumenMensualFacturacion();
+        resumenMensualFacturacion.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_buttonFacturarActionPerformed
 
     private void buttonListaTarifasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonListaTarifasActionPerformed
@@ -346,6 +348,7 @@ public class Home extends javax.swing.JFrame {
     private void verEnvioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verEnvioButtonActionPerformed
         ListaEnvios listaEnvios = new ListaEnvios();
         listaEnvios.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_verEnvioButtonActionPerformed
 
     private void crearLocalidadesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearLocalidadesButtonActionPerformed
@@ -366,6 +369,7 @@ public class Home extends javax.swing.JFrame {
     private void buttonCrearEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCrearEnvioActionPerformed
         CrearEnvio crearEnvio = new CrearEnvio();
         crearEnvio.setVisible(true);
+        this.setVisible(false);
         //this.setVisible(false);
     }//GEN-LAST:event_buttonCrearEnvioActionPerformed
 

@@ -788,7 +788,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                 }
                 Estado estadoFinal = Fabrica.getInstancia().getControladorEstado().obtenerElEstado(idUltimo, idEnvio);
 
-                if (!estadoFinal.getTipo().toString().equals(jComboBoxEstados.getSelectedItem().toString())) {
+                if (!estadoFinal.getTipo().getEstado().equals(jComboBoxEstados.getSelectedItem().toString())) {
                     String estadoNuevo = jComboBoxEstados.getSelectedItem().toString().equals("Listo para entregar") ? "ListoParaRetirar" : "EnCamino";
                     this.IE.crearEstado(idEnvio, estadoNuevo, "");
                 }

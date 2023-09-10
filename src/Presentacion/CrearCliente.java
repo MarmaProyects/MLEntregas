@@ -119,6 +119,11 @@ public class CrearCliente extends javax.swing.JFrame {
                 TextFieldNombre1ActionPerformed(evt);
             }
         });
+        TextFieldNombre1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextFieldNombre1KeyTyped(evt);
+            }
+        });
         jPanel1.add(TextFieldNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 113, -1));
 
         TextFieldApellido.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -132,6 +137,11 @@ public class CrearCliente extends javax.swing.JFrame {
         TextFieldApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TextFieldApellidoActionPerformed(evt);
+            }
+        });
+        TextFieldApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextFieldApellidoKeyTyped(evt);
             }
         });
         jPanel1.add(TextFieldApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 113, -1));
@@ -321,7 +331,7 @@ public class CrearCliente extends javax.swing.JFrame {
         String nombre = this.TextFieldNombre1.getText().trim();
         String apellido = this.TextFieldApellido.getText().trim();
         String verificaTelefono = this.TextFieldTelefono.getText().trim();
-        if (verificaCedula.equals("Cédula") || nombre.equals("Nombre") || apellido.equals("Apellido") || verificaTelefono.equals("Teléfono")) {
+        if (verificaCedula.isBlank() || nombre.isBlank() || apellido.isBlank() || verificaTelefono.isBlank()) {
             llamarAlertaDatosFaltantes();
             return;
         }
@@ -330,6 +340,11 @@ public class CrearCliente extends javax.swing.JFrame {
         if (this.IA.verificarExisteClienteNuevo(cedula) != true) {
             this.IA.agregarCliente(cedula, nombre, apellido, telefono);
             llamarAlertaClienteCreado();
+            this.TextFieldCedula.setText("");
+            this.TextFieldApellido.setText("");
+            this.TextFieldNombre.setText("");
+            this.TextFieldNombre1.setText("");
+            this.TextFieldTelefono.setText("");
         } else {
             llamarAlertaClienteExistente();
         }
@@ -370,6 +385,22 @@ public class CrearCliente extends javax.swing.JFrame {
     private void volverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_volverButtonActionPerformed
+
+    private void TextFieldNombre1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextFieldNombre1KeyTyped
+        int key = evt.getKeyChar();
+
+        if (TextFieldNombre1.getText().trim().length() == 30) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_TextFieldNombre1KeyTyped
+
+    private void TextFieldApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextFieldApellidoKeyTyped
+        int key = evt.getKeyChar();
+
+        if (TextFieldApellido.getText().trim().length() == 30) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_TextFieldApellidoKeyTyped
 
     /**
      * @param args the command line arguments

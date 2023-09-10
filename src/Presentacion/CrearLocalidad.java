@@ -135,6 +135,11 @@ public class CrearLocalidad extends javax.swing.JFrame {
                 TextFieldNombreLocalidadActionPerformed(evt);
             }
         });
+        TextFieldNombreLocalidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextFieldNombreLocalidadKeyTyped(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel2.setText("Nombre:");
@@ -238,29 +243,15 @@ public class CrearLocalidad extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TextFieldNombreLocalidadFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldNombreLocalidadFocusGained
-        if (TextFieldNombreLocalidad.getText().trim().equals("Nombre")) {
-            TextFieldNombreLocalidad.setText(null);
-            TextFieldNombreLocalidad.requestFocus();
-        }
     }//GEN-LAST:event_TextFieldNombreLocalidadFocusGained
 
     private void TextFieldCodigoPostalFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldCodigoPostalFocusGained
-        if (TextFieldCodigoPostal.getText().trim().equals("Código postal")) {
-            TextFieldCodigoPostal.setText(null);
-            TextFieldCodigoPostal.requestFocus();
-        }
     }//GEN-LAST:event_TextFieldCodigoPostalFocusGained
 
     private void TextFieldNombreLocalidadFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldNombreLocalidadFocusLost
-        if (TextFieldNombreLocalidad.getText().trim().length() == 0) {
-            TextFieldNombreLocalidad.setText("Nombre");
-        }
     }//GEN-LAST:event_TextFieldNombreLocalidadFocusLost
 
     private void TextFieldCodigoPostalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldCodigoPostalFocusLost
-        if (TextFieldCodigoPostal.getText().trim().length() == 0) {
-            TextFieldCodigoPostal.setText("Código postal");
-        }
     }//GEN-LAST:event_TextFieldCodigoPostalFocusLost
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
@@ -274,7 +265,7 @@ public class CrearLocalidad extends javax.swing.JFrame {
     private void botonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConfirmarActionPerformed
         String nombre = this.TextFieldNombreLocalidad.getText().trim();
         String verificaCodigo = this.TextFieldCodigoPostal.getText().trim();
-        if (nombre.equals("Nombre") || verificaCodigo.equals("Código postal")) {
+        if (nombre.isBlank() || verificaCodigo.isBlank()) {
             llamarAlertaDatosFaltantes();
             return;
         }
@@ -314,6 +305,14 @@ public class CrearLocalidad extends javax.swing.JFrame {
     private void volverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtonActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_volverButtonActionPerformed
+
+    private void TextFieldNombreLocalidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextFieldNombreLocalidadKeyTyped
+        int key = evt.getKeyChar();
+
+        if (TextFieldNombreLocalidad.getText().trim().length() == 30) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_TextFieldNombreLocalidadKeyTyped
 
     /**
      * @param args the command line arguments
