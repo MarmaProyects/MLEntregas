@@ -83,4 +83,8 @@ public class ControladorPago implements IAdministracion {
     public ArrayList<Cliente> obtenerLosClientes() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    public void pagarEnvio(int idPago, String metodo) {
+       this.servicioPago.pagarUnEnvio(idPago, metodo);
+    }
 }

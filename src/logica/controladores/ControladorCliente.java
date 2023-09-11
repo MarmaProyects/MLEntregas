@@ -88,4 +88,9 @@ public class ControladorCliente  implements IAdministracion {
     public int crearPago(int idTarifa, int obtenerLocalidad) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public void pagarEnvio(int idPago, String metodo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

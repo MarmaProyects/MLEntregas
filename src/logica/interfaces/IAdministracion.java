@@ -25,4 +25,5 @@ public interface IAdministracion {
     public abstract Cliente traerClienteSeleccionado(int cedula);
     public abstract void editarClienteSeleccionado(int cedula, String nombre, String apellido, int telefono);
     public abstract int crearPago(int idTarifa, int obtenerLocalidad);
+    public abstract void pagarEnvio(int idPago, String metodo);
 }
