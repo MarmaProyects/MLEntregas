@@ -100,7 +100,7 @@ public class ResumenMensualFacturacion extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabelIcon = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1098, 700));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
@@ -400,8 +400,9 @@ public class ResumenMensualFacturacion extends javax.swing.JFrame {
         int row = tablaFacturacion.getSelectedRow();
         if (row != -1) {
             int idEnvio = Integer.parseInt(this.tablaFacturacion.getValueAt(row, 0).toString());
-            VerDetallesEnvio verDetallesEnvioPago = new VerDetallesEnvio(idEnvio, null);
+            VerDetallesEnvio verDetallesEnvioPago = new VerDetallesEnvio(idEnvio, true);
             verDetallesEnvioPago.setVisible(true);
+            this.setVisible(false);
         } else {
             JOptionPane.showMessageDialog(null, "No se ha seleccionado ningún envio", "Error", JOptionPane.ERROR_MESSAGE);
         }
