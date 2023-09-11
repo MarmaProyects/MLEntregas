@@ -48,6 +48,16 @@ public class ListarPaquetesEnSecciones extends javax.swing.JFrame {
         this.tablaPaquetes.getColumnModel().getColumn(3).setCellRenderer(new CenterRenderer());
     }
 
+    public void actualizarDatosSeccion() {
+        DefaultTableModel model = (DefaultTableModel) tablaPaquetes.getModel();
+        int i = tablaPaquetes.getRowCount();
+        while (i != 0) {
+            model.removeRow(0);
+            i--;
+        }
+        this.cargarDatosSeccion();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -163,18 +173,19 @@ public class ListarPaquetesEnSecciones extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 115, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 116, Short.MAX_VALUE))
+                        .addGap(0, 110, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonVerSeccion, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(237, 237, 237)))))
+                                .addGap(589, 589, 589)
+                                .addComponent(botonVerSeccion, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 110, Short.MAX_VALUE)))
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {botonVerSeccion, jButtonVolver});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -186,13 +197,13 @@ public class ListarPaquetesEnSecciones extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonVerSeccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(10, 10, 10)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botonVerSeccion, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {botonVerSeccion, jButtonVolver});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -224,11 +235,11 @@ public class ListarPaquetesEnSecciones extends javax.swing.JFrame {
     private void botonVerSeccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerSeccionActionPerformed
         int row = tablaPaquetes.getSelectedRow();
         if (row != -1) {
-            int idSeccion = Integer.parseInt(this.tablaPaquetes.getValueAt(row, 5).toString());
-            EditarSeccion verSeccionSeleccionada = new EditarSeccion(idSeccion, null);
+            int idSeccion = Integer.parseInt(this.tablaPaquetes.getValueAt(row, 4).toString());
+            EditarSeccion verSeccionSeleccionada = new EditarSeccion(idSeccion, this);
+            verSeccionSeleccionada.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "No se ha seleccionado ningún paquete", "Error", JOptionPane.ERROR_MESSAGE);
-
         }
     }//GEN-LAST:event_botonVerSeccionActionPerformed
 

@@ -25,7 +25,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
     private ListaEnvios listEnvios;
     private int idEnvio;
     private int idPaquete;
-    private boolean vieneDeResumen = false;
+    private ResumenMensualFacturacion vieneDeResumen = null;
 
     /**
      * Creates new form VerDetallesEnvio
@@ -42,7 +42,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         AccederDetallesEnvio(id);
     }
 
-    public VerDetallesEnvio(int id, boolean deResumen) {
+    public VerDetallesEnvio(int id, ResumenMensualFacturacion deResumen) {
         initComponents();
         this.setTitle("MLEntregas");
         this.setLocationRelativeTo(null);
@@ -1012,9 +1012,8 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         if (this.listEnvios != null) {
             ListaEnvios listadoEnvios = new ListaEnvios();
             listadoEnvios.setVisible(true);
-        } else if (this.vieneDeResumen) {
-            ResumenMensualFacturacion resumen = new ResumenMensualFacturacion();
-            resumen.setVisible(true);
+        } else if (this.vieneDeResumen != null) {
+            vieneDeResumen.listarPagos();
         } else {
             Home home = new Home();
             home.setVisible(true);
