@@ -129,7 +129,7 @@ public class ServicioEnvio {
         ArrayList<Estado> estados;
         Envio envioDetalles = null;
         try {
-            PreparedStatement listadoEnvios = conexion.prepareStatement("SELECT DISTINCT E.id as IdEnvio, PG.id AS IdPago, T.id AS IdTarifa, T.nombre AS NombreTarifa, T.precioBase AS PrecioTarifa,"
+            PreparedStatement listadoEnvios = conexion.prepareStatement("SELECT DISTINCT E.id as IdEnvio, PG.id AS IdPago, PG.precio AS precio, T.id AS IdTarifa, T.nombre AS NombreTarifa, T.precioBase AS PrecioTarifa,"
                     + " C.cedula AS CedulaClienteEmisor,"
                     + " C2.cedula AS CedulaClienteReceptor, C.nombre AS NombreEmisor,C.apellido AS ApellidoEmisor,"
                     + " C2.nombre AS NombreReceptor, C2.apellido AS ApellidoReceptor, P.id AS IdPaquete,"
@@ -160,7 +160,7 @@ public class ServicioEnvio {
                 clienteEmisor = new Cliente(resListadoEnvios.getInt("CedulaClienteEmisor"), resListadoEnvios.getString("NombreEmisor"), resListadoEnvios.getString("ApellidoEmisor"), null);
                 clienteReceptor = new Cliente(resListadoEnvios.getInt("CedulaClienteReceptor"), resListadoEnvios.getString("NombreReceptor"), resListadoEnvios.getString("ApellidoReceptor"), null);
                 paquete = new Paquete(resListadoEnvios.getString("DescripcionPaquete"), 0, true, true, resListadoEnvios.getInt("IdPaquete"), null);
-                pago = new Pago(0, null, null, resListadoEnvios.getInt("IdPago"));
+                pago = new Pago(resListadoEnvios.getInt("precio"), null, null, resListadoEnvios.getInt("IdPago"));
                 tarifa = new Tarifa(resListadoEnvios.getInt("PrecioTarifa"), resListadoEnvios.getString("NombreTarifa"), resListadoEnvios.getInt("IdTarifa"));
                 envioDetalles = new Envio(idEnvio, direccionDestino, direccionOrigen, tarifa, paquete, clienteEmisor, clienteReceptor, pago, estados);
             }
