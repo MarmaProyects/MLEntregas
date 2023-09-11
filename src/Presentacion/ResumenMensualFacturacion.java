@@ -180,7 +180,7 @@ public class ResumenMensualFacturacion extends javax.swing.JFrame {
             tablaFacturacion.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        botonCargarPagos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        botonCargarPagos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         botonCargarPagos.setText("Cargar Envios");
         botonCargarPagos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,7 +188,7 @@ public class ResumenMensualFacturacion extends javax.swing.JFrame {
             }
         });
 
-        botonVolver.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        botonVolver.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         botonVolver.setText("Volver");
         botonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,7 +226,7 @@ public class ResumenMensualFacturacion extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        VerDetalles.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        VerDetalles.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         VerDetalles.setText("Ver Detalles");
         VerDetalles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

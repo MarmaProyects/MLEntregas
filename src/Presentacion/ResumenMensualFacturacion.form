@@ -289,7 +289,7 @@
             <Component class="javax.swing.JButton" name="botonCargarPagos">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI Semibold" size="12" style="0"/>
+                  <Font name="Segoe UI Semibold" size="14" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cargar Envios"/>
               </Properties>
@@ -300,7 +300,7 @@
             <Component class="javax.swing.JButton" name="botonVolver">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI Semibold" size="12" style="0"/>
+                  <Font name="Segoe UI Semibold" size="14" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Volver"/>
               </Properties>
@@ -354,7 +354,7 @@
             <Component class="javax.swing.JButton" name="VerDetalles">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI Semibold" size="12" style="0"/>
+                  <Font name="Segoe UI Semibold" size="14" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Ver Detalles"/>
               </Properties>
