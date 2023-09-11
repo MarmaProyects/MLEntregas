@@ -54,7 +54,7 @@ public class ResumenMensualFacturacion extends javax.swing.JFrame {
                 }
             }
             montoTotal = envio.getPago().getPrecio() + montoTotal;
-            Object[] row = {estadoFinal.getTipo(), envio.getPaquete().getDescripcion(), envio.getPago().getFecha(), envio.getPago().getPrecio(), envio.getPago().getPago(), envio.getIdEnvio()};
+            Object[] row = {envio.getIdEnvio(), estadoFinal.getTipo(), envio.getPaquete().getDescripcion(), envio.getPago().getFecha(), envio.getPago().getPrecio(), envio.getPago().getPago()};
             modelo.addRow(row);
 
         }
@@ -162,9 +162,16 @@ public class ResumenMensualFacturacion extends javax.swing.JFrame {
                 "id", "Estado", "Descripcion", "Fecha Pago", "Precio Pago", "Método Pago"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
