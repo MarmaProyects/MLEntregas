@@ -39,7 +39,7 @@ public class Home extends javax.swing.JFrame {
         buttonCrearEnvio = new javax.swing.JButton();
         verEnvioButton = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        jButtonEnviosSInPagar = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         crearClienteButton = new javax.swing.JButton();
@@ -89,11 +89,11 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        jButton10.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jButton10.setText("REGISTRAR PAGO DE ENVIO");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEnviosSInPagar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jButtonEnviosSInPagar.setText("ENVIOS SIN PAGAR");
+        jButtonEnviosSInPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                jButtonEnviosSInPagarActionPerformed(evt);
             }
         });
 
@@ -112,12 +112,12 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonEnviosSInPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
 
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {buttonCrearEnvio, jButton10, jButton3, verEnvioButton});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {buttonCrearEnvio, jButton3, jButtonEnviosSInPagar, verEnvioButton});
 
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,11 +131,11 @@ public class Home extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonEnviosSInPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 6, Short.MAX_VALUE))
         );
 
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {buttonCrearEnvio, jButton10, jButton3, verEnvioButton});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {buttonCrearEnvio, jButton3, jButtonEnviosSInPagar, verEnvioButton});
 
         jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -341,9 +341,11 @@ public class Home extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_buttonListaTarifasActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton10ActionPerformed
+    private void jButtonEnviosSInPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviosSInPagarActionPerformed
+        EnviosSinPagar enviosSinPagar = new EnviosSinPagar();
+        enviosSinPagar.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonEnviosSInPagarActionPerformed
 
     private void verEnvioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verEnvioButtonActionPerformed
         ListaEnvios listaEnvios = new ListaEnvios();
@@ -435,8 +437,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton crearClienteButton;
     private javax.swing.JButton crearLocalidadesButton;
     private javax.swing.JButton crearSeccionesButton;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonEnviosSInPagar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel7;

@@ -9,9 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Logger;
-import logica.clases.Envio;
 
 /**
  *
@@ -47,6 +45,16 @@ public class ServicioPago {
             LOGGER.severe("Error: " + e);
         }
         return idPago;
+    }
+    
+    public void pagarUnEnvio(int idPago, String metodo) {
+        try {
+            PreparedStatement queryLocalidadTarifa = conexion.prepareStatement("UPDATE pago SET metodoPago = '"
+                    + metodo + "', fechaPago = CURRENT_TIMESTAMP WHERE id = " + idPago);
+            queryLocalidadTarifa.executeUpdate();
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
+        }
     }
 
 }

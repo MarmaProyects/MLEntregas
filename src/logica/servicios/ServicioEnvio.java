@@ -24,7 +24,6 @@ import logica.clases.Tarifa;
 import logica.dataTypes.MetodoPago;
 import logica.dataTypes.TipoEstado;
 
-
 /**
  *
  * @author MarmaduX
@@ -40,6 +39,7 @@ public class ServicioEnvio {
         Paquete paquete;
         Direccion direccionD, direccionO;
         Pago pago;
+        MetodoPago metodoPago = null;
         ArrayList<Estado> estados;
         ArrayList<Envio> listadoEnv = new ArrayList<Envio>();
         try {
@@ -66,16 +66,17 @@ public class ServicioEnvio {
                 paquete = new Paquete(resListadoEnvios.getString("DescripcionPaquete"), 0, true, true, resListadoEnvios.getInt("IdPaquete"), null);
                 direccionO = new Direccion(resListadoEnvios.getString("calleOrigen"), null, null, 0, 0, null, 0);
                 direccionD = new Direccion(resListadoEnvios.getString("calleDestino"), null, null, 0, 0, null, 0);
-                pago = new Pago(resListadoEnvios.getFloat("precio"), null, resListadoEnvios.getTimestamp("fechaPago"), resListadoEnvios.getInt("idPago"));
+                metodoPago = resListadoEnvios.getString("metodoPago") != null ? MetodoPago.valueOf(resListadoEnvios.getString("metodoPago")) : null;
+                pago = new Pago(resListadoEnvios.getFloat("precio"), metodoPago, resListadoEnvios.getTimestamp("fechaPago"), resListadoEnvios.getInt("idPago"));
                 listadoEnv.add(new Envio(resListadoEnvios.getInt("IdEnvio"), direccionD, direccionO, null, paquete, cliente, null, pago, estados));
             }
         } catch (SQLException ex) {
-            LOGGER.severe("Error en la consulta de obtener los usuarios"+ex);
-            
+            LOGGER.severe("Error en la consulta de obtener los usuarios" + ex);
+
         }
         return listadoEnv;
     }
-    
+
     public ArrayList<Envio> listarEnviosFecha(String fechaInicio, String fechaFinal) {
         Cliente cliente;
         Paquete paquete;
@@ -83,7 +84,7 @@ public class ServicioEnvio {
         Pago pago;
         ArrayList<Estado> estados;
         ArrayList<Envio> listadoEnv = new ArrayList<Envio>();
-        
+
         try {
             PreparedStatement listadoEnvios = conexion.prepareStatement("SELECT E.id as IdEnvio, C.cedula AS Cedula,"
                     + " C.nombre AS Nombre, C.apellido AS Apellido, P.id AS IdPaquete, P.descripcion AS DescripcionPaquete, "
@@ -92,7 +93,7 @@ public class ServicioEnvio {
                     + " WHERE EC.idEnvio = E.id AND EC.cedulaCliente = C.cedula AND EC.tipoEntrega = 'Envio' "
                     + "AND P.id = E.idPaquete AND E.idDireccionOrigen = DIRO.id AND"
                     + " E.idDireccionOrigen = DIRD.id AND E.id = PAG.id AND"
-                    + " PAG.fechaPago >= '"+ fechaInicio +" 00:00:00' AND PAG.fechaPago <= '"+ fechaFinal +" 23:59:59';");
+                    + " PAG.fechaPago >= '" + fechaInicio + " 00:00:00' AND PAG.fechaPago <= '" + fechaFinal + " 23:59:59';");
             ResultSet resListadoEnvios = listadoEnvios.executeQuery();
             while (resListadoEnvios.next()) {
                 estados = new ArrayList<Estado>();
