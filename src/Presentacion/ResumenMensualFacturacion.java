@@ -39,7 +39,7 @@ public class ResumenMensualFacturacion extends javax.swing.JFrame {
 
     }
 
-    private void listarPagos() {
+    public void listarPagos() {
         ArrayList<Envio> listaEnvios = IE.listarEnviosFechaSeleccionadas(this.fechainicio, this.fechafinal);
         Estado estadoFinal = null;
         float montoTotal = 0;
@@ -400,9 +400,8 @@ public class ResumenMensualFacturacion extends javax.swing.JFrame {
         int row = tablaFacturacion.getSelectedRow();
         if (row != -1) {
             int idEnvio = Integer.parseInt(this.tablaFacturacion.getValueAt(row, 0).toString());
-            VerDetallesEnvio verDetallesEnvioPago = new VerDetallesEnvio(idEnvio, true);
+            VerDetallesEnvio verDetallesEnvioPago = new VerDetallesEnvio(idEnvio, this);
             verDetallesEnvioPago.setVisible(true);
-            this.setVisible(false);
         } else {
             JOptionPane.showMessageDialog(null, "No se ha seleccionado ningún envio", "Error", JOptionPane.ERROR_MESSAGE);
         }
