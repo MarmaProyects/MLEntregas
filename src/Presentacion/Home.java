@@ -384,12 +384,14 @@ public class Home extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         ListarPaquetesEnSecciones listarPaquetesSecciones = new ListarPaquetesEnSecciones();
         listarPaquetesSecciones.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void buttonVerClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVerClientesActionPerformed
         // TODO add your handling code here:
         ListarClientes listCli = new ListarClientes();
         listCli.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_buttonVerClientesActionPerformed
 
     /**

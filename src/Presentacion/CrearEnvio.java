@@ -234,6 +234,8 @@ public class CrearEnvio extends javax.swing.JFrame {
         campoNombreE = new javax.swing.JTextField();
         campoApellidoE = new javax.swing.JTextField();
         campoTelefonoE = new javax.swing.JTextField();
+        jLabelIcon = new javax.swing.JLabel();
+        jLabelIcon1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1098, 700));
@@ -242,15 +244,15 @@ public class CrearEnvio extends javax.swing.JFrame {
 
         scrollPanelGeneral.setBorder(null);
         scrollPanelGeneral.setAutoscrolls(true);
-        scrollPanelGeneral.setMaximumSize(null);
-        scrollPanelGeneral.setMinimumSize(new java.awt.Dimension(1100, 580));
+        scrollPanelGeneral.setMaximumSize(new java.awt.Dimension(1098, 600));
+        scrollPanelGeneral.setMinimumSize(new java.awt.Dimension(1098, 600));
         scrollPanelGeneral.setName(""); // NOI18N
+        scrollPanelGeneral.setPreferredSize(new java.awt.Dimension(1098, 600));
 
         panelGeneral.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         panelGeneral.setFocusable(false);
-        panelGeneral.setMaximumSize(new java.awt.Dimension(900, 1050));
-        panelGeneral.setMinimumSize(null);
-        panelGeneral.setPreferredSize(new java.awt.Dimension(900, 1050));
+        panelGeneral.setMaximumSize(null);
+        panelGeneral.setPreferredSize(null);
 
         labelTitle.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
         labelTitle.setText("CREAR ENVIO");
@@ -901,7 +903,7 @@ public class CrearEnvio extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDireccionOrigenLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1151,12 +1153,35 @@ public class CrearEnvio extends javax.swing.JFrame {
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jLabelIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo-sm.png"))); // NOI18N
+        jLabelIcon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabelIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelIconMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabelIconMousePressed(evt);
+            }
+        });
+
+        jLabelIcon1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelIcon1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabelIcon1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelIcon1MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabelIcon1MousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelGeneralLayout = new javax.swing.GroupLayout(panelGeneral);
         panelGeneral.setLayout(panelGeneralLayout);
         panelGeneralLayout.setHorizontalGroup(
             panelGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelGeneralLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(58, Short.MAX_VALUE)
                 .addGroup(panelGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelGeneralLayout.createSequentialGroup()
                         .addComponent(panelClienteReceptor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1169,11 +1194,13 @@ public class CrearEnvio extends javax.swing.JFrame {
                     .addComponent(panelPaquete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelDireccionDestino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelDireccionOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGeneralLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(labelTitle)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         panelGeneralLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {botonCancelarEnvio, botonCrearEnvio});
@@ -1182,8 +1209,12 @@ public class CrearEnvio extends javax.swing.JFrame {
             panelGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelGeneralLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabelIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(panelPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1197,7 +1228,7 @@ public class CrearEnvio extends javax.swing.JFrame {
                 .addGroup(panelGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonCancelarEnvio)
                     .addComponent(botonCrearEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         panelGeneralLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {botonCancelarEnvio, botonCrearEnvio});
@@ -1208,13 +1239,17 @@ public class CrearEnvio extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollPanelGeneral, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1068, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scrollPanelGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 1056, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(scrollPanelGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 884, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(scrollPanelGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, 878, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -1553,6 +1588,24 @@ public class CrearEnvio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_campoPesoPaqueteKeyReleased
 
+    private void jLabelIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelIconMouseClicked
+
+    }//GEN-LAST:event_jLabelIconMouseClicked
+
+    private void jLabelIconMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelIconMousePressed
+        Home home = new Home();
+        home.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabelIconMousePressed
+
+    private void jLabelIcon1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelIcon1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabelIcon1MouseClicked
+
+    private void jLabelIcon1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelIcon1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabelIcon1MousePressed
+
     /**
      * @param args the command line arguments
      */
@@ -1629,6 +1682,8 @@ public class CrearEnvio extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboSecciones;
     private javax.swing.JComboBox<String> comboTarifasEspeciales;
     private javax.swing.Box.Filler filler1;
+    private javax.swing.JLabel jLabelIcon;
+    private javax.swing.JLabel jLabelIcon1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import logica.clases.Cliente;
+import logica.clases_customs.CenterRenderer;
 import logica.clases_customs.TableActionCellEditor;
 import logica.clases_customs.TableActionCellRender;
 import logica.fabrica.Fabrica;
@@ -20,6 +21,8 @@ import logica.interfaces.ITableActionEvent;
 public class ListarClientes extends javax.swing.JFrame {
 
     private Fabrica fb;
+    private ITableActionEvent event = null;
+    private ListarClientes listaC;
     /**
      * Creates new form ListarClientes
      */
@@ -30,13 +33,13 @@ public class ListarClientes extends javax.swing.JFrame {
         this.setResizable(false);
         this.fb = Fabrica.getInstancia();
         this.cargarTablaClientes();
-        ITableActionEvent event = new ITableActionEvent() {
+        this.listaC = this;
+        this.event = new ITableActionEvent() {
 
             @Override
             public void onEdit(int id) {
-                EditarCliente editCliente = new EditarCliente(id);
+                EditarCliente editCliente = new EditarCliente(id, listaC);
                 editCliente.setVisible(true);
-                setVisible(false);
             }
 
             @Override
@@ -60,14 +63,21 @@ public class ListarClientes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         volverButton = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        crearClienteButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaClientes = new javax.swing.JTable();
-        crearClienteButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelIcon = new javax.swing.JLabel();
+        jLabelIcon1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1098, 700));
+        setMinimumSize(new java.awt.Dimension(1098, 700));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        jLabel1.setText("LISTADO DE CLIENTES");
 
         volverButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         volverButton.setText("Volver");
@@ -77,7 +87,37 @@ public class ListarClientes extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        crearClienteButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        crearClienteButton.setText("Crear cliente");
+        crearClienteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearClienteButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(volverButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(crearClienteButton)
+                .addContainerGap())
+        );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {crearClienteButton, volverButton});
+
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(volverButton, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                    .addComponent(crearClienteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         tablaClientes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
@@ -116,61 +156,63 @@ public class ListarClientes extends javax.swing.JFrame {
             tablaClientes.getColumnModel().getColumn(3).setPreferredWidth(6);
         }
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        crearClienteButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        crearClienteButton.setText("Crear cliente");
-        crearClienteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                crearClienteButtonActionPerformed(evt);
+        jLabelIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo-sm.png"))); // NOI18N
+        jLabelIcon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabelIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelIconMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabelIconMousePressed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
-        jLabel1.setText("LISTADO DE CLIENTES");
+        jLabelIcon1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelIcon1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabelIcon1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelIcon1MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabelIcon1MousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(70, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(volverButton)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(crearClienteButton))
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(70, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 93, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 774, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 93, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {crearClienteButton, volverButton});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(crearClienteButton, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
-                    .addComponent(volverButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                    .addComponent(jLabelIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -183,10 +225,41 @@ public class ListarClientes extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_crearClienteButtonActionPerformed
 
+    public void actualizarClientes(){
+        DefaultTableModel model = (DefaultTableModel) tablaClientes.getModel();
+        int i = tablaClientes.getRowCount();
+        while (i != 0) {
+            model.removeRow(0);
+            i--;
+        }
+        this.cargarTablaClientes();
+        this.tablaClientes.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
+        this.tablaClientes.getColumnModel().getColumn(3).setCellEditor(new TableActionCellEditor(this.event));
+    }
+    
     private void volverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtonActionPerformed
-        // TODO add your handling code here:
+        Home home = new Home();
+        home.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_volverButtonActionPerformed
+
+    private void jLabelIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelIconMouseClicked
+
+    }//GEN-LAST:event_jLabelIconMouseClicked
+
+    private void jLabelIconMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelIconMousePressed
+        Home home = new Home();
+        home.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabelIconMousePressed
+
+    private void jLabelIcon1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelIcon1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabelIcon1MouseClicked
+
+    private void jLabelIcon1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelIcon1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabelIcon1MousePressed
 
     /**
      * @param args the command line arguments
@@ -231,12 +304,18 @@ public class ListarClientes extends javax.swing.JFrame {
             Object[] row = {String.format("%08d", client.getCedula()), client.getNombre() + " " + client.getApellido(), String.format("%09d", telefono)};
             modelo.addRow(row);
         }
+        this.tablaClientes.getColumnModel().getColumn(0).setCellRenderer(new CenterRenderer());
+        this.tablaClientes.getColumnModel().getColumn(1).setCellRenderer(new CenterRenderer());
+        this.tablaClientes.getColumnModel().getColumn(2).setCellRenderer(new CenterRenderer());
+        this.tablaClientes.getColumnModel().getColumn(3).setCellRenderer(new CenterRenderer());
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton crearClienteButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabelIcon;
+    private javax.swing.JLabel jLabelIcon1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaClientes;
     private javax.swing.JButton volverButton;
