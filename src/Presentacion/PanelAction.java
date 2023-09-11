@@ -36,12 +36,6 @@ public class PanelAction extends javax.swing.JPanel {
                 
             }
         });
-        viewButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                event.onView(id);
-            }
-        });
     }
 
     /**
@@ -53,17 +47,8 @@ public class PanelAction extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        viewButton = new logica.clases_customs.ActionButton();
         editButton = new logica.clases_customs.ActionButton();
         deleteButton = new logica.clases_customs.ActionButton();
-
-        viewButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/view-sm.png"))); // NOI18N
-        viewButton.setPreferredSize(new java.awt.Dimension(12, 12));
-        viewButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewButtonActionPerformed(evt);
-            }
-        });
 
         editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/edit-sm.png"))); // NOI18N
         editButton.setPreferredSize(new java.awt.Dimension(12, 12));
@@ -90,21 +75,14 @@ public class PanelAction extends javax.swing.JPanel {
                 .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(viewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(viewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_viewButtonActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         // TODO add your handling code here:
@@ -118,6 +96,5 @@ public class PanelAction extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private logica.clases_customs.ActionButton deleteButton;
     private logica.clases_customs.ActionButton editButton;
-    private logica.clases_customs.ActionButton viewButton;
     // End of variables declaration//GEN-END:variables
 }

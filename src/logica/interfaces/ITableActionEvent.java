@@ -11,5 +11,4 @@ package logica.interfaces;
 public interface ITableActionEvent {
     public abstract void onEdit(int id);
     public abstract void onDelete(int id, int row);
-    public abstract void onView(int id);
 }

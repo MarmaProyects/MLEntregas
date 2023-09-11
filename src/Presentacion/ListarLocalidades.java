@@ -241,11 +241,6 @@ public class ListarLocalidades extends javax.swing.JFrame {
             public void onDelete(int id, int row) {
 
             }
-
-            @Override
-            public void onView(int id) {
-
-            }
         };
         this.tableLocalidades.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
         this.tableLocalidades.getColumnModel().getColumn(3).setCellEditor(new TableActionCellEditor(event));

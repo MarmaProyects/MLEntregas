@@ -46,9 +46,6 @@ public class ListarClientes extends javax.swing.JFrame {
             public void onDelete(int id, int row) {
             }
 
-            @Override
-            public void onView(int id) {
-            }
         };
         this.tablaClientes.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
         this.tablaClientes.getColumnModel().getColumn(3).setCellEditor(new TableActionCellEditor(event));

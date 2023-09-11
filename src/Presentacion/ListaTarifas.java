@@ -67,12 +67,6 @@ public class ListaTarifas extends javax.swing.JFrame {
                 }
 
             }
-
-            @Override
-            public void onView(int id) {
-                EditarTarifa editTarifa = new EditarTarifa(id, listaTarifas);
-                editTarifa.setVisible(true);
-            }
         };
         this.tableTarifa.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
         this.tableTarifa.getColumnModel().getColumn(3).setCellEditor(new TableActionCellEditor(this.event));
