@@ -1309,8 +1309,8 @@ public class CrearEnvio extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, "El envio fue ingresado con éxito", "Success", JOptionPane.DEFAULT_OPTION);
             this.setVisible(false);
-            Home home = new Home();
-            home.setVisible(true);
+            VerDetallesEnvio verDetallesEnvio = new VerDetallesEnvio(idEnvio, null);
+            verDetallesEnvio.setVisible(true);
         } else if (!this.validacionTarifas()) {
             JOptionPane.showMessageDialog(null, "Falta seleccionar la tarifa", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (!this.validacionSecciones()) {

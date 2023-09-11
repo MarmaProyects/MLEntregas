@@ -224,7 +224,9 @@ public class PagarEnvio extends javax.swing.JFrame {
         this.IP.pagarEnvio(this.idPago, this.jComboBoxMetodoPago.getSelectedItem().toString());
         JOptionPane.showMessageDialog(null, "Pago concretado!", "Success", JOptionPane.DEFAULT_OPTION);
         this.dispose();
-        this.envios.ActualizarLista();
+        if(this.envios != null){
+            this.envios.ActualizarLista();
+        }
     }//GEN-LAST:event_jButtonPagarActionPerformed
 
     /**

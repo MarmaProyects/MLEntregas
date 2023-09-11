@@ -66,7 +66,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         Estado estadoFinal = Fabrica.getInstancia().getControladorEstado().obtenerElEstado(idUltimo, idEnvio);
         if (estadoFinal != null) {
             this.jComboBoxEstados.addItem(estadoFinal.getTipo().getEstado());
-            this.jTextFieldIDEnvio.setText(Integer.toString(envio.getIdEnvio()));
+            this.jTextFieldIDEnvio.setText(String.valueOf(envio.getPago().getPrecio()));
             this.jTextFieldIDPaquete.setText(Integer.toString(envio.getPaquete().getIdPaquete()));
             this.jTextFieldTarifa.setText(envio.getTarifa().getNombre());
             this.jTextFieldCIEmisor.setText(Integer.toString(envio.getClienteEmisor().getCedula()));
@@ -160,10 +160,17 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         jTextFieldApartamentoReceptor = new javax.swing.JTextField();
         panelTitulo = new javax.swing.JPanel();
         labelTitulo = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jButtonVolver = new javax.swing.JToggleButton();
+        jButtonPagar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1098, 700));
+        setMinimumSize(new java.awt.Dimension(1098, 700));
+        setPreferredSize(new java.awt.Dimension(1098, 700));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jTextFieldIDPaquete.setText("-");
         jTextFieldIDPaquete.addActionListener(new java.awt.event.ActionListener() {
@@ -240,34 +247,34 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelIDEnvio)
-                    .addComponent(jLabelEstado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBoxEstados, 0, 187, Short.MAX_VALUE)
-                    .addComponent(jTextFieldIDEnvio))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelIDDelPaquete)
-                    .addComponent(jLabelTarifa))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextFieldIDPaquete, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                    .addComponent(jTextFieldTarifa))
-                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(buttonConfirmarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(buttonCancelarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonEditarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonEditarPaquete)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(0, 31, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelIDEnvio)
+                            .addComponent(jLabelEstado))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBoxEstados, 0, 187, Short.MAX_VALUE)
+                            .addComponent(jTextFieldIDEnvio))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelIDDelPaquete)
+                            .addComponent(jLabelTarifa))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldIDPaquete, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                            .addComponent(jTextFieldTarifa)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(buttonConfirmarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(buttonCancelarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonEditarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addComponent(jButtonEditarPaquete)))
+                .addGap(0, 32, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonEditarEnvio, jButtonEditarPaquete});
@@ -304,22 +311,22 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonEditarEnvio, jButtonEditarPaquete});
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabelEmisor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabelEmisor.setText("Emisor");
 
         jLabelNombreEmisor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jLabelNombreEmisor.setText("Nombre");
+        jLabelNombreEmisor.setText("Nombre:");
 
         jLabelCalle1Emisor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jLabelCalle1Emisor.setText("Calle 1");
+        jLabelCalle1Emisor.setText("Calle 1:");
 
         jLabelApartamentoEmisor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jLabelApartamentoEmisor.setText("Apartamento");
+        jLabelApartamentoEmisor.setText("Apartamento:");
 
         jLabelNroPuertaEmisor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jLabelNroPuertaEmisor.setText("Nº Puerta");
+        jLabelNroPuertaEmisor.setText("Nº Puerta:");
 
         jTextFieldCIEmisor.setText("-");
         jTextFieldCIEmisor.addActionListener(new java.awt.event.ActionListener() {
@@ -384,10 +391,10 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         });
 
         jLabelCalle2Emisor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jLabelCalle2Emisor.setText("Calle 2");
+        jLabelCalle2Emisor.setText("Calle 2:");
 
         jLabelCIEmisor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jLabelCIEmisor.setText("CI");
+        jLabelCIEmisor.setText("CI:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -395,72 +402,73 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabelCalle1Emisor)
-                            .addComponent(jLabelCalle2Emisor)
-                            .addComponent(jLabelNombreEmisor)
-                            .addComponent(jLabelCIEmisor))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldCIEmisor, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                            .addComponent(jTextFieldCalle2Emisor)
-                            .addComponent(jTextFieldCalle1Emisor)
-                            .addComponent(jTextFieldNombreEmisor)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabelApartamentoEmisor)
-                            .addComponent(jLabelNroPuertaEmisor))
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldNroPuertaEmisor, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                            .addComponent(jTextFieldApartamentoEmisor))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabelEmisor)
-                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabelApartamentoEmisor)
+                            .addComponent(jLabelNroPuertaEmisor)
+                            .addComponent(jLabelCalle2Emisor))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldApartamentoEmisor, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                            .addComponent(jTextFieldNroPuertaEmisor)
+                            .addComponent(jTextFieldCalle2Emisor)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabelCalle1Emisor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextFieldCalle1Emisor, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabelNombreEmisor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                        .addComponent(jTextFieldNombreEmisor, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabelCIEmisor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextFieldCIEmisor, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabelEmisor)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabelEmisor)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldNombreEmisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelNombreEmisor))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldCalle1Emisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelCalle1Emisor))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldCalle2Emisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelCalle2Emisor))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldApartamentoEmisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelApartamentoEmisor))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldNroPuertaEmisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelNroPuertaEmisor)))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextFieldCIEmisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabelCIEmisor)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldCIEmisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCIEmisor))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldNombreEmisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelNombreEmisor))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldCalle1Emisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCalle1Emisor))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldCalle2Emisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCalle2Emisor))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldApartamentoEmisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelApartamentoEmisor))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldNroPuertaEmisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelNroPuertaEmisor))
                 .addContainerGap())
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabelReceptor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabelReceptor.setText("Receptor");
 
         jLabelCIReceptor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jLabelCIReceptor.setText("CI");
+        jLabelCIReceptor.setText("CI:");
 
         jTextFieldCalle2Receptor.setText("-");
         jTextFieldCalle2Receptor.addActionListener(new java.awt.event.ActionListener() {
@@ -475,10 +483,10 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         });
 
         jLabelCalle2Receptor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jLabelCalle2Receptor.setText("Calle 2");
+        jLabelCalle2Receptor.setText("Calle 2:");
 
         jLabelNombreReceptor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jLabelNombreReceptor.setText("Nombre");
+        jLabelNombreReceptor.setText("Nombre:");
 
         jTextFieldNroPuertaReceptor.setText("-");
         jTextFieldNroPuertaReceptor.addActionListener(new java.awt.event.ActionListener() {
@@ -493,13 +501,13 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         });
 
         jLabelCalle1Receptor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jLabelCalle1Receptor.setText("Calle 1");
+        jLabelCalle1Receptor.setText("Calle 1:");
 
         jLabelApartamentoReceptor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jLabelApartamentoReceptor.setText("Apartamento");
+        jLabelApartamentoReceptor.setText("Apartamento:");
 
         jLabelNroPuertaReceptor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jLabelNroPuertaReceptor.setText("Nº Puerta");
+        jLabelNroPuertaReceptor.setText("Nº Puerta:");
 
         jTextFieldCIReceptor.setText("-");
         jTextFieldCIReceptor.addActionListener(new java.awt.event.ActionListener() {
@@ -539,50 +547,41 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelApartamentoReceptor)
+                    .addComponent(jLabelNroPuertaReceptor)
+                    .addComponent(jLabelCalle2Receptor)
+                    .addComponent(jLabelCalle1Receptor)
+                    .addComponent(jLabelNombreReceptor)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(jLabelCIReceptor)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextFieldCIReceptor, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabelCalle1Receptor)
-                                    .addComponent(jLabelNombreReceptor)
-                                    .addComponent(jLabelCalle2Receptor)))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabelApartamentoReceptor))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabelNroPuertaReceptor)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldNombreReceptor, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldApartamentoReceptor, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldNroPuertaReceptor, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextFieldCalle1Receptor, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextFieldCalle2Receptor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))))
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabelCIReceptor))
                     .addComponent(jLabelReceptor))
-                .addGap(0, 20, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldNombreReceptor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                    .addComponent(jTextFieldCalle1Receptor, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldCalle2Receptor, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldApartamentoReceptor, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldNroPuertaReceptor, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldCIReceptor))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabelReceptor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCIReceptor)
                     .addComponent(jTextFieldCIReceptor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelNombreReceptor)
                     .addComponent(jTextFieldNombreReceptor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(23, 23, 23)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelCalle1Receptor)
                     .addComponent(jTextFieldCalle1Receptor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -598,7 +597,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldNroPuertaReceptor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelNroPuertaReceptor))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         labelTitulo.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
@@ -606,22 +605,63 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         labelTitulo.setPreferredSize(new java.awt.Dimension(300, 300));
         labelTitulo.setRequestFocusEnabled(false);
 
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel3MousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelTituloLayout = new javax.swing.GroupLayout(panelTitulo);
         panelTitulo.setLayout(panelTituloLayout);
         panelTituloLayout.setHorizontalGroup(
             panelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelTituloLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTituloLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         panelTituloLayout.setVerticalGroup(
             panelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTituloLayout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTituloLayout.createSequentialGroup()
                 .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(27, 27, 27))
         );
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo-sm.png"))); // NOI18N
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel2MousePressed(evt);
+            }
+        });
+
+        jButtonVolver.setText("Volver");
+        jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVolverActionPerformed(evt);
+            }
+        });
+
+        jButtonPagar.setText("Pagar envíon");
+        jButtonPagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPagarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -629,49 +669,50 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 220, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 4, Short.MAX_VALUE))
-                    .addComponent(panelTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 220, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(panelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 87, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldIDEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDEnvioActionPerformed
-        this.setEnabled(false);
-    }//GEN-LAST:event_jTextFieldIDEnvioActionPerformed
-
     private void jTextFieldCIReceptorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCIReceptorActionPerformed
         this.setEnabled(false);
     }//GEN-LAST:event_jTextFieldCIReceptorActionPerformed
-
-    private void jTextFieldIDPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDPaqueteActionPerformed
-        this.setEnabled(false);
-    }//GEN-LAST:event_jTextFieldIDPaqueteActionPerformed
-
-    private void jTextFieldTarifaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTarifaActionPerformed
-        this.setEnabled(false);
-    }//GEN-LAST:event_jTextFieldTarifaActionPerformed
 
     private void jTextFieldCIEmisorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCIEmisorActionPerformed
         this.setEnabled(false);
@@ -717,28 +758,136 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTextFieldNroPuertaReceptorActionPerformed
 
-    private void jButtonEditarEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarEnvioActionPerformed
+    private void jTextFieldCalle1EmisorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCalle1EmisorKeyTyped
         // TODO add your handling code here:
-        jButtonEditarEnvio.setEnabled(false);
-        labelTitulo.setText("    EDITAR ENVÍO");
-        buttonCancelarEnvio.setText("Cancelar edición");
-        buttonConfirmarEnvio.setText("Confirmar edición");
-        //this.jTextAreaDescripcion.setEditable(true);
-        this.jTextFieldCalle1Emisor.setEditable(true);
-        this.jTextFieldCalle1Receptor.setEditable(true);
-        this.jTextFieldCalle2Emisor.setEditable(true);
-        this.jTextFieldCalle2Receptor.setEditable(true);
-        this.jTextFieldApartamentoEmisor.setEditable(true);
-        this.jTextFieldApartamentoReceptor.setEditable(true);
-        this.jTextFieldNroPuertaEmisor.setEditable(true);
-        this.jTextFieldNroPuertaReceptor.setEditable(true);
-        if (jComboBoxEstados.getSelectedItem().toString().equals("En preparación")) {
-            jComboBoxEstados.addItem("En camino");
-            jComboBoxEstados.addItem("Listo para entregar");
-        } else if (jComboBoxEstados.getSelectedItem().toString().equals("Listo para retirar")) {
-            jComboBoxEstados.addItem("En camino");
+        int key = evt.getKeyChar();
+        if (jTextFieldCalle1Emisor.getText().length() >= 40) {
+            evt.consume();
         }
-    }//GEN-LAST:event_jButtonEditarEnvioActionPerformed
+    }//GEN-LAST:event_jTextFieldCalle1EmisorKeyTyped
+
+    private void jTextFieldCalle2EmisorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCalle2EmisorKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        if (jTextFieldCalle2Emisor.getText().length() >= 40) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldCalle2EmisorKeyTyped
+
+    private void jTextFieldApartamentoEmisorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldApartamentoEmisorKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        if (jTextFieldApartamentoEmisor.getText().length() >= 20) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldApartamentoEmisorKeyTyped
+
+    private void jTextFieldNroPuertaEmisorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNroPuertaEmisorKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        if (!Character.isDigit(key)) {
+            evt.consume();
+        }
+        if (jTextFieldNroPuertaEmisor.getText().length() >= 11) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldNroPuertaEmisorKeyTyped
+
+    private void jTextFieldCalle1ReceptorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCalle1ReceptorKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        if (jTextFieldCalle1Receptor.getText().length() >= 40) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldCalle1ReceptorKeyTyped
+
+    private void jTextFieldCalle2ReceptorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCalle2ReceptorKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        if (jTextFieldCalle2Receptor.getText().length() >= 40) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldCalle2ReceptorKeyTyped
+
+    private void jTextFieldNroPuertaReceptorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNroPuertaReceptorKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        if (!Character.isDigit(key)) {
+            evt.consume();
+        }
+        if (jTextFieldNroPuertaReceptor.getText().length() >= 11) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldNroPuertaReceptorKeyTyped
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
+        Home home = new Home();
+        home.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel2MousePressed
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel3MousePressed
+
+    private void jButtonEditarPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarPaqueteActionPerformed
+        // TODO add your handling code here:
+        Envio envio = IE.verDetallesDelEnvio(idEnvio);
+        EditarPaquete editPaquete = new EditarPaquete(idPaquete, envio, listEnvios);
+        editPaquete.setVisible(true);
+    }//GEN-LAST:event_jButtonEditarPaqueteActionPerformed
+
+    private void jComboBoxEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEstadosActionPerformed
+
+    }//GEN-LAST:event_jComboBoxEstadosActionPerformed
+
+    private void buttonCancelarEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarEnvioActionPerformed
+        if (!labelTitulo.getText().equals("    EDITAR ENVÍO")) {
+            Envio envio = IE.verDetallesDelEnvio(idEnvio);
+            ArrayList<Estado> estados = envio.getEstados();
+            Boolean existeEstado = false;
+            for (Estado estado : estados) {
+                if (estado.getTipo() == TipoEstado.Cancelado || estado.getTipo() == TipoEstado.Entregado || estado.getTipo() == TipoEstado.ListoParaRetirar) {
+                    existeEstado = true;
+                }
+            }
+            if (existeEstado == false) {
+                int opt = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea cancelar el envío?",
+                        "Cancelar envío", JOptionPane.YES_NO_OPTION);
+                if (opt == 0) {
+                    this.IE.crearEstado(idEnvio, "Cancelado", "Paquete cancelado");
+                    this.jComboBoxEstados.removeAllItems();
+                    this.jComboBoxEstados.addItem("Cancelado");
+                    JOptionPane.showMessageDialog(null, "El envío fue cancelado", "Success", JOptionPane.DEFAULT_OPTION);
+                    if (this.listEnvios != null) {
+                        this.listEnvios.actualizarListaDeEnvios();
+                    }
+                    this.buttonConfirmarEnvio.setEnabled(false);
+                    this.buttonCancelarEnvio.setEnabled(false);
+                    this.jButtonEditarEnvio.setEnabled(false);
+                    this.jButtonEditarPaquete.setEnabled(false);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "El envio ya fue Cancelado/Entregado", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            jButtonEditarEnvio.setEnabled(true);
+            labelTitulo.setText("DETALLES DEL ENVÍO");
+            buttonCancelarEnvio.setText("Cancelar envío");
+            buttonConfirmarEnvio.setText("Confirmar envío");
+            this.jComboBoxEstados.removeAllItems();
+            this.AccederDetallesEnvio(idEnvio);
+        }
+
+    }//GEN-LAST:event_buttonCancelarEnvioActionPerformed
 
     private void buttonConfirmarEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarEnvioActionPerformed
         if (!labelTitulo.getText().equals("    EDITAR ENVÍO")) {
@@ -806,121 +955,62 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             }
 
         }
-        this.listEnvios.actualizarListaDeEnvios();
-
+        if (this.listEnvios != null) {
+            this.listEnvios.actualizarListaDeEnvios();
+        }
     }//GEN-LAST:event_buttonConfirmarEnvioActionPerformed
 
-    private void jComboBoxEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEstadosActionPerformed
-
-    }//GEN-LAST:event_jComboBoxEstadosActionPerformed
-
-    private void buttonCancelarEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarEnvioActionPerformed
-        if (!labelTitulo.getText().equals("    EDITAR ENVÍO")) {
-            Envio envio = IE.verDetallesDelEnvio(idEnvio);
-            ArrayList<Estado> estados = envio.getEstados();
-            Boolean existeEstado = false;
-            for (Estado estado : estados) {
-                if (estado.getTipo() == TipoEstado.Cancelado || estado.getTipo() == TipoEstado.Entregado || estado.getTipo() == TipoEstado.ListoParaRetirar) {
-                    existeEstado = true;
-                }
-            }
-            if (existeEstado == false) {
-                int opt = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea cancelar el envío?",
-                        "Cancelar envío", JOptionPane.YES_NO_OPTION);
-                if (opt == 0) {
-                    this.IE.crearEstado(idEnvio, "Cancelado", "Paquete cancelado");
-                    this.jComboBoxEstados.removeAllItems();
-                    this.jComboBoxEstados.addItem("Cancelado");
-                    JOptionPane.showMessageDialog(null, "El envío fue cancelado", "Success", JOptionPane.DEFAULT_OPTION);
-                    this.listEnvios.actualizarListaDeEnvios();
-                    this.buttonConfirmarEnvio.setEnabled(false);
-                    this.buttonCancelarEnvio.setEnabled(false);
-                    this.jButtonEditarEnvio.setEnabled(false);
-                    this.jButtonEditarPaquete.setEnabled(false);
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "El envio ya fue Cancelado/Entregado", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            jButtonEditarEnvio.setEnabled(true);
-            labelTitulo.setText("DETALLES DEL ENVÍO");
-            buttonCancelarEnvio.setText("Cancelar envío");
-            buttonConfirmarEnvio.setText("Confirmar envío");
-            this.jComboBoxEstados.removeAllItems();
-            this.AccederDetallesEnvio(idEnvio);
-        }
-
-
-    }//GEN-LAST:event_buttonCancelarEnvioActionPerformed
-
-    private void jTextFieldCalle1EmisorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCalle1EmisorKeyTyped
+    private void jButtonEditarEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarEnvioActionPerformed
         // TODO add your handling code here:
-        int key = evt.getKeyChar();
-        if (jTextFieldCalle1Emisor.getText().length() >= 40) {
-            evt.consume();
+        jButtonEditarEnvio.setEnabled(false);
+        labelTitulo.setText("    EDITAR ENVÍO");
+        buttonCancelarEnvio.setText("Cancelar edición");
+        buttonConfirmarEnvio.setText("Confirmar edición");
+        //this.jTextAreaDescripcion.setEditable(true);
+        this.jTextFieldCalle1Emisor.setEditable(true);
+        this.jTextFieldCalle1Receptor.setEditable(true);
+        this.jTextFieldCalle2Emisor.setEditable(true);
+        this.jTextFieldCalle2Receptor.setEditable(true);
+        this.jTextFieldApartamentoEmisor.setEditable(true);
+        this.jTextFieldApartamentoReceptor.setEditable(true);
+        this.jTextFieldNroPuertaEmisor.setEditable(true);
+        this.jTextFieldNroPuertaReceptor.setEditable(true);
+        if (jComboBoxEstados.getSelectedItem().toString().equals("En preparación")) {
+            jComboBoxEstados.addItem("En camino");
+            jComboBoxEstados.addItem("Listo para entregar");
+        } else if (jComboBoxEstados.getSelectedItem().toString().equals("Listo para retirar")) {
+            jComboBoxEstados.addItem("En camino");
         }
-    }//GEN-LAST:event_jTextFieldCalle1EmisorKeyTyped
+    }//GEN-LAST:event_jButtonEditarEnvioActionPerformed
 
-    private void jTextFieldCalle2EmisorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCalle2EmisorKeyTyped
-        // TODO add your handling code here:
-        int key = evt.getKeyChar();
-        if (jTextFieldCalle2Emisor.getText().length() >= 40) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextFieldCalle2EmisorKeyTyped
+    private void jTextFieldTarifaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTarifaActionPerformed
+        this.setEnabled(false);
+    }//GEN-LAST:event_jTextFieldTarifaActionPerformed
 
-    private void jTextFieldApartamentoEmisorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldApartamentoEmisorKeyTyped
-        // TODO add your handling code here:
-        int key = evt.getKeyChar();
-        if (jTextFieldApartamentoEmisor.getText().length() >= 20) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextFieldApartamentoEmisorKeyTyped
+    private void jTextFieldIDEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDEnvioActionPerformed
+        this.setEnabled(false);
+    }//GEN-LAST:event_jTextFieldIDEnvioActionPerformed
 
-    private void jTextFieldNroPuertaEmisorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNroPuertaEmisorKeyTyped
-        // TODO add your handling code here:
-        int key = evt.getKeyChar();
-        if (!Character.isDigit(key)) {
-            evt.consume();
-        }
-        if (jTextFieldNroPuertaEmisor.getText().length() >= 11) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextFieldNroPuertaEmisorKeyTyped
+    private void jTextFieldIDPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDPaqueteActionPerformed
+        this.setEnabled(false);
+    }//GEN-LAST:event_jTextFieldIDPaqueteActionPerformed
 
-    private void jTextFieldCalle1ReceptorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCalle1ReceptorKeyTyped
-        // TODO add your handling code here:
-        int key = evt.getKeyChar();
-        if (jTextFieldCalle1Receptor.getText().length() >= 40) {
-            evt.consume();
+    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
+        if (this.listEnvios != null) {
+            this.dispose();
+            ListaEnvios listadoEnvios = new ListaEnvios();
+            listadoEnvios.setVisible(true);
+        }else {
+            Home home = new Home();
+            home.setVisible(true);
         }
-    }//GEN-LAST:event_jTextFieldCalle1ReceptorKeyTyped
+    }//GEN-LAST:event_jButtonVolverActionPerformed
 
-    private void jTextFieldCalle2ReceptorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCalle2ReceptorKeyTyped
-        // TODO add your handling code here:
-        int key = evt.getKeyChar();
-        if (jTextFieldCalle2Receptor.getText().length() >= 40) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextFieldCalle2ReceptorKeyTyped
-
-    private void jButtonEditarPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarPaqueteActionPerformed
-        // TODO add your handling code here:
+    private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed
         Envio envio = IE.verDetallesDelEnvio(idEnvio);
-        EditarPaquete editPaquete = new EditarPaquete(idPaquete, envio, listEnvios);
-        editPaquete.setVisible(true);
-    }//GEN-LAST:event_jButtonEditarPaqueteActionPerformed
-
-    private void jTextFieldNroPuertaReceptorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNroPuertaReceptorKeyTyped
-        // TODO add your handling code here:
-        int key = evt.getKeyChar();
-        if (!Character.isDigit(key)) {
-            evt.consume();
-        }
-        if (jTextFieldNroPuertaReceptor.getText().length() >= 11) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextFieldNroPuertaReceptorKeyTyped
+        PagarEnvio pagarEnvio = new PagarEnvio(this.idEnvio, envio.getPago().getPrecio(), null);
+        pagarEnvio.setVisible(true);
+    }//GEN-LAST:event_jButtonPagarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -962,7 +1052,11 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
     private javax.swing.JButton buttonConfirmarEnvio;
     private javax.swing.JButton jButtonEditarEnvio;
     private javax.swing.JButton jButtonEditarPaquete;
+    private javax.swing.JButton jButtonPagar;
+    private javax.swing.JToggleButton jButtonVolver;
     private javax.swing.JComboBox<String> jComboBoxEstados;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelApartamentoEmisor;
     private javax.swing.JLabel jLabelApartamentoReceptor;
     private javax.swing.JLabel jLabelCIEmisor;

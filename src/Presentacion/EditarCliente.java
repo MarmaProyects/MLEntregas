@@ -31,7 +31,7 @@ public class EditarCliente extends javax.swing.JFrame {
         this.listaC = listaC;
         if (cliente != null) {
             this.cedula = cliente.getCedula();
-            this.campoCedula.setText(String.valueOf(cliente.getCedula()));
+            this.campoCedula.setText(String.format("%08d", cliente.getCedula()));
             this.campoNombre.setText(cliente.getNombre());
             this.campoApellido.setText(cliente.getApellido());
             this.campoTelefono.setText(cliente.getTelefono());

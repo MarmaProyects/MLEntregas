@@ -208,6 +208,7 @@ public class ListaEnvios extends javax.swing.JFrame {
             int id = Integer.parseInt(this.tableEnvio.getValueAt(row, 0).toString());
             VerDetallesEnvio accedeDetalles = new VerDetallesEnvio(id, this);
             accedeDetalles.setVisible(true);
+            this.setVisible(false);
         } else {
             llamarAlertaNoSeleccionado();
         }
@@ -285,12 +286,12 @@ public class ListaEnvios extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) this.tableEnvio.getModel();
         for (Envio envio : listaDeEnvios) {
             estado = envio.getEstados().get(envio.getEstados().size() - 1).getTipo().getEstado();
-            fecha = envio.getEstados().get(0).getFecha().toString();          
+            fecha = envio.getEstados().get(0).getFecha().toString();
             Object[] row = {envio.getIdEnvio(), envio.getClienteEmisor().getNombre() + " " + envio.getClienteEmisor().getApellido(), estado, envio.getPaquete().getDescripcion(), fecha};
             modelo.addRow(row);
 
         }
-        
+
         this.tableEnvio.getColumnModel().getColumn(0).setCellRenderer(new CenterRenderer());
         this.tableEnvio.getColumnModel().getColumn(1).setCellRenderer(new CenterRenderer());
         this.tableEnvio.getColumnModel().getColumn(2).setCellRenderer(new CenterRenderer());
@@ -307,7 +308,7 @@ public class ListaEnvios extends javax.swing.JFrame {
         }
         this.cargarTodasLosEnvios();
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton VerDetallesEnvio;
     private javax.swing.JLabel jLabel1;
