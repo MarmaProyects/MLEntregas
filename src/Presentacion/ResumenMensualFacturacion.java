@@ -54,7 +54,7 @@ public class ResumenMensualFacturacion extends javax.swing.JFrame {
                 }
             }
             montoTotal = envio.getPago().getPrecio() + montoTotal;
-            Object[] row = {estadoFinal.getTipo(), envio.getPaquete().getDescripcion(), envio.getPago().getFecha(), envio.getPago().getPrecio(), envio.getPago().getPago()};
+            Object[] row = {estadoFinal.getTipo(), envio.getPaquete().getDescripcion(), envio.getPago().getFecha(), envio.getPago().getPrecio(), envio.getPago().getPago(), envio.getIdEnvio()};
             modelo.addRow(row);
 
         }
@@ -68,7 +68,7 @@ public class ResumenMensualFacturacion extends javax.swing.JFrame {
             model.removeRow(0);
             i--;
         }
-        
+
     }
 
     /**
@@ -96,6 +96,7 @@ public class ResumenMensualFacturacion extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         campoTotal = new javax.swing.JTextField();
         labelTotal = new javax.swing.JLabel();
+        VerDetalles = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabelIcon = new javax.swing.JLabel();
 
@@ -158,14 +159,25 @@ public class ResumenMensualFacturacion extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Estado", "Descripcion", "Fecha Pago", "Precio Pago", "Método Pago"
+                "id", "Estado", "Descripcion", "Fecha Pago", "Precio Pago", "Método Pago"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tablaFacturacion);
         if (tablaFacturacion.getColumnModel().getColumnCount() > 0) {
-            tablaFacturacion.getColumnModel().getColumn(0).setResizable(false);
+            tablaFacturacion.getColumnModel().getColumn(0).setMinWidth(0);
+            tablaFacturacion.getColumnModel().getColumn(0).setPreferredWidth(0);
+            tablaFacturacion.getColumnModel().getColumn(0).setMaxWidth(0);
             tablaFacturacion.getColumnModel().getColumn(1).setResizable(false);
             tablaFacturacion.getColumnModel().getColumn(2).setResizable(false);
+            tablaFacturacion.getColumnModel().getColumn(3).setResizable(false);
         }
 
         botonCargarPagos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
@@ -214,6 +226,14 @@ public class ResumenMensualFacturacion extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        VerDetalles.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        VerDetalles.setText("Ver Detalles");
+        VerDetalles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VerDetallesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -221,6 +241,8 @@ public class ResumenMensualFacturacion extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addComponent(VerDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -234,7 +256,8 @@ public class ResumenMensualFacturacion extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botonVolver, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                     .addComponent(botonCargarPagos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(VerDetalles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -337,7 +360,6 @@ public class ResumenMensualFacturacion extends javax.swing.JFrame {
             this.fechafinal = dateFormatFinal.format(timestampFinal);
             this.limpiaListaDePagos();
             this.listarPagos();
-            
 
         }
 
@@ -366,6 +388,17 @@ public class ResumenMensualFacturacion extends javax.swing.JFrame {
         home.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabelIconMousePressed
+
+    private void VerDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerDetallesActionPerformed
+        int row = tablaFacturacion.getSelectedRow();
+        if (row != -1) {
+            int idEnvio = Integer.parseInt(this.tablaFacturacion.getValueAt(row, 0).toString());
+            VerDetallesEnvio verDetallesEnvioPago = new VerDetallesEnvio(idEnvio, null);
+            verDetallesEnvioPago.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado ningún envio", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_VerDetallesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -403,6 +436,7 @@ public class ResumenMensualFacturacion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton VerDetalles;
     private javax.swing.JButton botonCargarPagos;
     private javax.swing.JButton botonVolver;
     private javax.swing.JTextField campoTotal;
