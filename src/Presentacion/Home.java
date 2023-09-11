@@ -364,7 +364,8 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_crearClienteButtonActionPerformed
 
     private void crearSeccionesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearSeccionesButtonActionPerformed
-        CrearSeccion crearSeccion = new CrearSeccion(null);
+        ListarSecciones lS = null;
+        CrearSeccion crearSeccion = new CrearSeccion(lS);
         crearSeccion.setVisible(true);
     }//GEN-LAST:event_crearSeccionesButtonActionPerformed
 

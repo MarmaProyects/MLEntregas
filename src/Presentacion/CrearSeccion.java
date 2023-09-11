@@ -27,6 +27,7 @@ public class CrearSeccion extends javax.swing.JFrame {
     ArrayList<String> listaLocalidad = new ArrayList<String>();
     ArrayList<Seccion> listaSeccion = new ArrayList<Seccion>();
     private ListarSecciones listarSecciones = null;
+    private CrearEnvio crearEnvi = null;
 
     /**
      * Creates new form crearSeccion
@@ -38,6 +39,22 @@ public class CrearSeccion extends javax.swing.JFrame {
         this.setTitle("Crear Seccion");
         this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Images/logo.png")).getImage());
         this.listarSecciones = listarSecciones;
+        this.IPR = Fabrica.getInstancia().getControladorSeccion();
+        this.obtenerListaLocalidad();
+
+        jComboBox1.addItem(" ");
+        for (String res : listaLocalidad) {
+            jComboBox1.addItem(res);
+        }
+    }
+
+    public CrearSeccion(CrearEnvio crearEnv) {
+        initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        this.setTitle("Crear Seccion");
+        this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Images/logo.png")).getImage());
+        this.crearEnvi = crearEnv;
         this.IPR = Fabrica.getInstancia().getControladorSeccion();
         this.obtenerListaLocalidad();
 
@@ -219,6 +236,9 @@ public class CrearSeccion extends javax.swing.JFrame {
                 if (this.listarSecciones != null) {
                     this.listarSecciones.actualizarTabla();
                 }
+                if (this.crearEnvi != null) {
+                    this.crearEnvi.actualizarListaSeccion();
+                }
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "El nombre ya existe en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
@@ -242,9 +262,14 @@ public class CrearSeccion extends javax.swing.JFrame {
 
     private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
         // TODO add your handling code here:
-        ListarSecciones listarSec = new ListarSecciones();
-        listarSec.setVisible(true);
-        this.dispose();
+        if (this.listarSecciones != null) {
+            ListarSecciones listarSec = new ListarSecciones();
+            listarSec.setVisible(true);
+            this.dispose();
+        } else {
+            this.dispose();
+        }
+
     }//GEN-LAST:event_cancelarButtonActionPerformed
 
     private void nombreFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreFieldKeyTyped
