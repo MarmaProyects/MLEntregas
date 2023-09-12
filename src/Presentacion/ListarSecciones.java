@@ -63,11 +63,6 @@ public class ListarSecciones extends javax.swing.JFrame {
                     }
                 }
             }
-
-            @Override
-            public void onView(int id) {
-                //
-            }
         };
         this.tablaSecciones.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
         this.tablaSecciones.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(event));
