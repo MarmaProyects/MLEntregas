@@ -87,4 +87,8 @@ public class ControladorLocalidad implements IProximidad {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    public Localidad obtenerLaLocalidad(String nombreLocalidad) {
+        return this.servicioLocalidad.obtenerLocalidad(nombreLocalidad);
+    }
+
 }

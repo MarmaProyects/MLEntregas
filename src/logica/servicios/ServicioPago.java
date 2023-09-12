@@ -9,7 +9,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Logger;
+import logica.clases.Pago;
+import logica.dataTypes.MetodoPago;
 
 /**
  *
@@ -55,6 +58,23 @@ public class ServicioPago {
         } catch (SQLException e) {
             LOGGER.severe("Error: " + e);
         }
+    }
+    
+    public ArrayList<Pago> traerLosPagosNoAsociados() {
+        ArrayList<Pago> pagos = new ArrayList<Pago>();
+        try {
+            PreparedStatement queryTraerPago = conexion.prepareStatement("SELECT *" +
+            "FROM pago " +
+            "LEFT JOIN envio ON pago.id = envio.idPago " +
+            "WHERE envio.idPago IS NULL;");
+            ResultSet pagoResultSet = queryTraerPago.executeQuery();
+            while (pagoResultSet.next()) {
+                pagos.add(new Pago(pagoResultSet.getFloat("precio"), MetodoPago.valueOf(pagoResultSet.getString("metodoPago")), pagoResultSet.getTimestamp("fechaPago"), pagoResultSet.getInt("id"))); 
+            }
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
+        }
+        return pagos;
     }
 
 }

@@ -161,11 +161,11 @@ public class ServicioSeccion {
     public int obtenerIdSeccion_Paquete(int idPaquete) {
         int resultado = 0;
         try {
-            PreparedStatement query = conexion.prepareStatement("SELECT * FROM seccion_paquete");
+            PreparedStatement query = conexion.prepareStatement("SELECT * FROM seccion_paquete WHERE seccion_paquete.idPaquete = " + idPaquete);
             ResultSet resultadoDeLaQuery = query.executeQuery();
             while (resultadoDeLaQuery.next()) {
-                if (idPaquete == resultadoDeLaQuery.getInt("id")) {
-                    resultado = resultadoDeLaQuery.getInt("id");
+                if (idPaquete == resultadoDeLaQuery.getInt("idPaquete")) {
+                    resultado = resultadoDeLaQuery.getInt("idSeccion");
                     break;
                 }
             }

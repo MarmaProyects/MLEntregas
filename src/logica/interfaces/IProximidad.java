@@ -17,6 +17,7 @@ public interface IProximidad {
     public abstract boolean editarSeccionSeleccionada(int idSeccion, String nombre, int idLocalidad);
     public abstract Seccion traerSeccionSeleccionada(int id);
     public abstract void agregarUnaLocalidad(String nombre, int codigoPostal);
+    public abstract Localidad obtenerLaLocalidad(String nombreLocalidad);
     public abstract void agregarUnaSeccion(String nombre, String localidad);
     public abstract ArrayList<Localidad> obtenerLasLocalidades();
     public abstract ArrayList<Seccion> obtenerLasSecciones();

@@ -152,4 +152,14 @@ public class ControladorEnvio implements IEnvio {
         return this.servicioEnvio.listarEnviosFecha(fechaInicio, fechaFinal);
     }
 
+    @Override
+    public ArrayList<Paquete> obtenerPaquetesNoAsociados() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ArrayList<Direccion> traerDirecciones() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }
