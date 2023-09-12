@@ -4,22 +4,15 @@
  */
 package Presentacion;
 
-import BaseDeDatos.Conexion;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JOptionPane;
 import logica.clases.Cliente;
 import logica.clases.Direccion;
 import logica.clases.Localidad;
-import logica.clases.Pago;
 import logica.clases.Paquete;
 import logica.clases.Seccion;
 import logica.clases.Tarifa;
-import logica.dataTypes.TipoEstado;
 import logica.fabrica.Fabrica;
 import logica.interfaces.IEnvio;
 
@@ -87,7 +80,7 @@ public class IngresarDatosDePrueba extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(92, Short.MAX_VALUE)
+                .addContainerGap(70, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jButtonGenerarSeccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonCrearEnvioConDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -106,7 +99,7 @@ public class IngresarDatosDePrueba extends javax.swing.JFrame {
                 .addComponent(jButtonGenerarCliente)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonGenerarTarifaEspecial)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         pack();
@@ -114,85 +107,96 @@ public class IngresarDatosDePrueba extends javax.swing.JFrame {
 
     private void jButtonCrearEnvioConDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearEnvioConDatosActionPerformed
         //creacion de secciones
-        this.jButtonGenerarSeccionActionPerformed(evt);
-        for (int i = 0; i < 5; i++) {
-            int idPrimerEnvio;
-            int idSegundoEnvio;
-            //creacion de clientes
-            Cliente cliente = new Cliente(this.GenerarCI(), this.GenerarNombre(), this.GenerarApellido(), String.valueOf(this.GenerarTelefono()));
-            Fabrica.getInstancia().getControladorCliente().agregarCliente(cliente.getCedula(), cliente.getNombre(), cliente.getApellido(), Integer.parseInt(cliente.getTelefono()));
-            Cliente segundoCliente = new Cliente(this.GenerarCI(), this.GenerarNombre(), this.GenerarApellido(), String.valueOf(this.GenerarTelefono()));
-            Fabrica.getInstancia().getControladorCliente().agregarCliente(segundoCliente.getCedula(), segundoCliente.getNombre(), segundoCliente.getApellido(), Integer.parseInt(segundoCliente.getTelefono()));
-            //creación de direcciones
-            Direccion direccionO = new Direccion(this.GenerarCalle(), this.GenerarCalle(), this.GenerarApartamento(), this.GenerarNumeroPuerta(), 0, this.GenerarNombreLocalidad(), 0);
-            Direccion direccionD = new Direccion(this.GenerarCalle(), this.GenerarCalle(), this.GenerarApartamento(), this.GenerarNumeroPuerta(), 0, this.GenerarNombreLocalidad(), 0);
-            direccionO.setIdDireccion(Fabrica.getInstancia().getControladorEnvio().crearDireccion(direccionO.getCalle(), direccionO.getSegunda_calle(), direccionO.getNro_puerta(), direccionO.getDatos_adicionales()));
-            direccionD.setIdDireccion(Fabrica.getInstancia().getControladorEnvio().crearDireccion(direccionD.getCalle(), direccionD.getSegunda_calle(), direccionD.getNro_puerta(), direccionD.getDatos_adicionales()));
-            ArrayList<Localidad> localidades = Fabrica.getInstancia().getControladorLocalidad().obtenerLasLocalidades();
-            int idRandomLocalidad = this.random.nextInt(localidades.size() - 1);
-            Fabrica.getInstancia().getControladorEnvio().conexionLocalidad_Direccion(localidades.get(idRandomLocalidad).getIdLocalidad(), direccionO.getIdDireccion());
-            Fabrica.getInstancia().getControladorEnvio().conexionLocalidad_Direccion(localidades.get(idRandomLocalidad).getIdLocalidad(), direccionD.getIdDireccion());
-            //creación de paquete
-            ArrayList<Seccion> secciones = Fabrica.getInstancia().getControladorSeccion().obtenerLasSecciones();
-            int idRandomSeccion = this.random.nextInt(secciones.size() - 1);
-            Paquete paquete = new Paquete(this.GenerarDescripcionPaquete(), this.GenerarPesoPaquete(), this.GenerarBool(), this.GenerarBool(), 0, secciones.get(idRandomSeccion).getNombre());
-            int esFragilInt = paquete.isEsFragil() ? 1 : 0;
-            int esEspecialInt = paquete.isEsEspecial() ? 1 : 0;
-            paquete.setIdPaquete(Fabrica.getInstancia().getControladorEnvio().crearPaquete(paquete.getDescripcion(), paquete.getPeso(), esFragilInt, esEspecialInt));
-            Fabrica.getInstancia().getControladorEnvio().conexionSeccion_Paquete(paquete.getIdPaquete(), secciones.get(idRandomSeccion).getIdSeccion());
-            //crear tarifas
-            Fabrica.getInstancia().getControladorTarifa().crearUnaTarifa(this.GenerarNombreTarifaEspecial(), this.GenerarPrecioTarifaEspecial());
-            Fabrica.getInstancia().getControladorTarifa().crearUnaTarifa(this.GenerarNombreTarifaEspecial(), this.GenerarPrecioTarifaEspecial());
-            Fabrica.getInstancia().getControladorTarifa().crearUnaTarifa(this.GenerarNombreTarifaEspecial(), this.GenerarPrecioTarifaEspecial());
-            //crear Envio
-            ArrayList<Tarifa> tarifas = Fabrica.getInstancia().getControladorTarifa().listarTarifas();
-            int idRandomTarifa = this.random.nextInt(tarifas.size() - 1);
-            idPrimerEnvio = Fabrica.getInstancia().getControladorEnvio().crearEnvio(paquete.getIdPaquete(),
-                    tarifas.get(idRandomTarifa).getIdTarifa(),
-                    direccionO.getIdDireccion(),
-                    direccionD.getIdDireccion(),
-                    Fabrica.getInstancia().getControladorPago().crearPago(tarifas.get(idRandomTarifa).getIdTarifa(), localidades.get(idRandomLocalidad).getIdLocalidad()));
-            Fabrica.getInstancia().getControladorEnvio().crearEstado(idPrimerEnvio, "preparando", "Envio en preparación");
-            Fabrica.getInstancia().getControladorEnvio().conexionEnvio_Cliente(idPrimerEnvio, cliente.getCedula(), "Envio");
-            Fabrica.getInstancia().getControladorEnvio().conexionEnvio_Cliente(idPrimerEnvio, segundoCliente.getCedula(), "Recibe");
-        }
+        this.generarSecciones();
+        this.generarTarifas();
+        this.generarEnvios(this.generarPesoPaqueteChico());
+        this.generarEnvios(this.generarPesoPaqueteGrande());
+        this.generarEnvios(this.generarPesoPaqueteChico());
+        this.generarEnvios(this.generarPesoPaqueteMediano());
+        this.generarEnvios(this.generarPesoPaqueteEspecial());
+        this.generarEnvios(this.generarPesoPaqueteMediano());
+        this.generarEnvios(this.generarPesoPaqueteGrande());
+        this.generarEnvios(this.generarPesoPaqueteEspecial());
+        JOptionPane.showMessageDialog(null, "Datos generadaos exitosamente", "Generación exitosa", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void generarEnvios(float pesoPaquete) {
+        int idPrimerEnvio;
+        //creacion de clientes
+        Cliente cliente = new Cliente(this.generarCI(), this.generarNombre(), this.generarApellido(), String.valueOf(this.generarTelefono()));
+        Fabrica.getInstancia().getControladorCliente().agregarCliente(cliente.getCedula(), cliente.getNombre(), cliente.getApellido(), Integer.parseInt(cliente.getTelefono()));
+        Cliente segundoCliente = new Cliente(this.generarCI(), this.generarNombre(), this.generarApellido(), String.valueOf(this.generarTelefono()));
+        Fabrica.getInstancia().getControladorCliente().agregarCliente(segundoCliente.getCedula(), segundoCliente.getNombre(), segundoCliente.getApellido(), Integer.parseInt(segundoCliente.getTelefono()));
+        //creación de direcciones
+        Direccion direccionO = new Direccion(this.generarCalle(), this.generarCalle(), this.generarApartamento(), this.generarNumeroPuerta(), 0, this.generarNombreLocalidad(), 0);
+        Direccion direccionD = new Direccion(this.generarCalle(), this.generarCalle(), this.generarApartamento(), this.generarNumeroPuerta(), 0, this.generarNombreLocalidad(), 0);
+        direccionO.setIdDireccion(Fabrica.getInstancia().getControladorEnvio().crearDireccion(direccionO.getCalle(), direccionO.getSegunda_calle(), direccionO.getNro_puerta(), direccionO.getDatos_adicionales()));
+        direccionD.setIdDireccion(Fabrica.getInstancia().getControladorEnvio().crearDireccion(direccionD.getCalle(), direccionD.getSegunda_calle(), direccionD.getNro_puerta(), direccionD.getDatos_adicionales()));
+        ArrayList<Localidad> localidades = Fabrica.getInstancia().getControladorLocalidad().obtenerLasLocalidades();
+        int idRandomLocalidad = this.random.nextInt(localidades.size() - 1);
+        Fabrica.getInstancia().getControladorEnvio().conexionLocalidad_Direccion(localidades.get(idRandomLocalidad).getIdLocalidad(), direccionO.getIdDireccion());
+        Fabrica.getInstancia().getControladorEnvio().conexionLocalidad_Direccion(localidades.get(idRandomLocalidad).getIdLocalidad(), direccionD.getIdDireccion());
+        //creación de paquete
+        ArrayList<Seccion> secciones = Fabrica.getInstancia().getControladorSeccion().obtenerLasSecciones();
+        int idRandomSeccion = this.random.nextInt(secciones.size() - 1);
+        Paquete paquete = new Paquete(this.generarDescripcionPaquete(), pesoPaquete, this.generarBool(), pesoPaquete > 15, 0, secciones.get(idRandomSeccion).getNombre());
+        int esFragilInt = paquete.isEsFragil() ? 1 : 0;
+        int esEspecialInt = paquete.isEsEspecial() ? 1 : 0;
+        paquete.setIdPaquete(Fabrica.getInstancia().getControladorEnvio().crearPaquete(paquete.getDescripcion(), paquete.getPeso(), esFragilInt, esEspecialInt));
+        Fabrica.getInstancia().getControladorEnvio().conexionSeccion_Paquete(paquete.getIdPaquete(), secciones.get(idRandomSeccion).getIdSeccion());
+        //crear Envio
+        int idTarifa = this.idTarifaGenerada(pesoPaquete);
+        idPrimerEnvio = Fabrica.getInstancia().getControladorEnvio().crearEnvio(paquete.getIdPaquete(),
+                idTarifa,
+                direccionO.getIdDireccion(),
+                direccionD.getIdDireccion(),
+                Fabrica.getInstancia().getControladorPago().crearPago(idTarifa, localidades.get(idRandomLocalidad).getIdLocalidad()));
+        Fabrica.getInstancia().getControladorEnvio().crearEstado(idPrimerEnvio, "preparando", "Envio en preparación");
+        Fabrica.getInstancia().getControladorEnvio().conexionEnvio_Cliente(idPrimerEnvio, cliente.getCedula(), "Envio");
+        Fabrica.getInstancia().getControladorEnvio().conexionEnvio_Cliente(idPrimerEnvio, segundoCliente.getCedula(), "Recibe");
+
     }//GEN-LAST:event_jButtonCrearEnvioConDatosActionPerformed
+    private int idTarifaGenerada(float peso) {
+        ArrayList<Tarifa> tarifas = Fabrica.getInstancia().getControladorEnvio().obtenerTarifasEspeciales();
+        if (peso <= 5) {
+            return 1;
+        } else if (peso <= 10) {
+            return 2;
+        } else if (peso <= 15) {
+            return 3;
+        } else {
+            ;
+            return tarifas.get(this.random.nextInt(tarifas.size()-1)).getIdTarifa();
+        }
+    }
 
     private void jButtonGenerarSeccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerarSeccionActionPerformed
-        Fabrica.getInstancia().getControladorSeccion().agregarUnaSeccion("Seccion " + this.GenerarNombreSeccion(), this.GenerarNombreLocalidad());
-        Fabrica.getInstancia().getControladorSeccion().agregarUnaSeccion("Seccion " + this.GenerarNombreSeccion(), this.GenerarNombreLocalidad());
-        Fabrica.getInstancia().getControladorSeccion().agregarUnaSeccion("Seccion " + this.GenerarNombreSeccion(), this.GenerarNombreLocalidad());
-        Fabrica.getInstancia().getControladorSeccion().agregarUnaSeccion("Seccion " + this.GenerarNombreSeccion(), this.GenerarNombreLocalidad());
-        Fabrica.getInstancia().getControladorSeccion().agregarUnaSeccion("Seccion " + this.GenerarNombreSeccion(), this.GenerarNombreLocalidad());
+        this.generarSecciones();
         JOptionPane.showMessageDialog(null, "Seccion generada exitosamente", "Generación exitosa", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButtonGenerarSeccionActionPerformed
 
     private void jButtonGenerarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerarClienteActionPerformed
-        Fabrica.getInstancia().getControladorCliente().agregarCliente(this.GenerarCI(), this.GenerarNombre(), this.GenerarApellido(), this.GenerarTelefono());
-        Fabrica.getInstancia().getControladorCliente().agregarCliente(this.GenerarCI(), this.GenerarNombre(), this.GenerarApellido(), this.GenerarTelefono());
-        Fabrica.getInstancia().getControladorCliente().agregarCliente(this.GenerarCI(), this.GenerarNombre(), this.GenerarApellido(), this.GenerarTelefono());
-        Fabrica.getInstancia().getControladorCliente().agregarCliente(this.GenerarCI(), this.GenerarNombre(), this.GenerarApellido(), this.GenerarTelefono());
-        Fabrica.getInstancia().getControladorCliente().agregarCliente(this.GenerarCI(), this.GenerarNombre(), this.GenerarApellido(), this.GenerarTelefono());
+        Fabrica.getInstancia().getControladorCliente().agregarCliente(this.generarCI(), this.generarNombre(), this.generarApellido(), this.generarTelefono());
+        Fabrica.getInstancia().getControladorCliente().agregarCliente(this.generarCI(), this.generarNombre(), this.generarApellido(), this.generarTelefono());
+        Fabrica.getInstancia().getControladorCliente().agregarCliente(this.generarCI(), this.generarNombre(), this.generarApellido(), this.generarTelefono());
+        Fabrica.getInstancia().getControladorCliente().agregarCliente(this.generarCI(), this.generarNombre(), this.generarApellido(), this.generarTelefono());
+        Fabrica.getInstancia().getControladorCliente().agregarCliente(this.generarCI(), this.generarNombre(), this.generarApellido(), this.generarTelefono());
         JOptionPane.showMessageDialog(null, "Cliente generado exitosamente", "Generación exitosa", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButtonGenerarClienteActionPerformed
 
     private void jButtonGenerarTarifaEspecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerarTarifaEspecialActionPerformed
-        Fabrica.getInstancia().getControladorTarifa().crearUnaTarifa(this.GenerarNombreTarifaEspecial(), this.GenerarPrecioTarifaEspecial());
-        Fabrica.getInstancia().getControladorTarifa().crearUnaTarifa(this.GenerarNombreTarifaEspecial(), this.GenerarPrecioTarifaEspecial());
-        Fabrica.getInstancia().getControladorTarifa().crearUnaTarifa(this.GenerarNombreTarifaEspecial(), this.GenerarPrecioTarifaEspecial());
-        Fabrica.getInstancia().getControladorTarifa().crearUnaTarifa(this.GenerarNombreTarifaEspecial(), this.GenerarPrecioTarifaEspecial());
-        Fabrica.getInstancia().getControladorTarifa().crearUnaTarifa(this.GenerarNombreTarifaEspecial(), this.GenerarPrecioTarifaEspecial());
+        this.generarTarifas();
         JOptionPane.showMessageDialog(null, "Tarifa generada exitosamente", "Generación exitosa", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButtonGenerarTarifaEspecialActionPerformed
 
     //Datos CLiente
-    public String GenerarNombre() {
+    public String generarNombre() {
         String[] nombres = {"Juan", "María", "Pedro", "Ana", "Luis", "Sofía", "Carlos", "Laura", "Miguel", "Elena"};
         String nombreAleatorio = nombres[this.random.nextInt(nombres.length)];
         return nombreAleatorio;
     }
 
-    public String GenerarApellido() {
+    public String generarApellido() {
         String[] apellidos = {
             "García",
             "Martínez",
@@ -209,33 +213,44 @@ public class IngresarDatosDePrueba extends javax.swing.JFrame {
         return apellidoAleatorio;
     }
 
-    public int GenerarCI() {
+    public int generarCI() {
         int CIAleatorio = this.random.nextInt(90000000) + 10000000;
         return CIAleatorio;
     }
 
-    public int GenerarTelefono() {
+    public int generarTelefono() {
         int telefonoAleatorio = this.random.nextInt(900000000) + 100000000;
         return telefonoAleatorio;
     }
 
-    //Tarifas Especiales
-    public String GenerarNombreTarifaEspecial() {
+    private void generarTarifas() {
         String[] nombres = {"Electrodomestico", "Bicicleta", "Televisor", "Microondas", "Mueble"};
-        String[] tamanios = {"Chico/a", "Mediano/a", "Grande"};
-        String nombreTarifaAleatorio = nombres[this.random.nextInt(nombres.length)];
-        String tamanioTarifaAleatorio = tamanios[this.random.nextInt(tamanios.length)];
-
-        return nombreTarifaAleatorio + " " + tamanioTarifaAleatorio;
+        String[] tamanios = {"Chico", "Mediano", "Grande"};
+        ArrayList<Tarifa> listaTarifas = Fabrica.getInstancia().getControladorEnvio().obtenerTarifasEspeciales();
+        boolean seRepiteNombre = false;
+        for (String nombre : nombres) {
+            for (String tamanio : tamanios) {
+                for (Tarifa seccion : listaTarifas) {
+                    if (seccion.getNombre().equals(nombre + " " + tamanio)) {
+                        seRepiteNombre = true;
+                    }
+                }
+                if (!seRepiteNombre) {
+                    Fabrica.getInstancia().getControladorTarifa().crearUnaTarifa(nombre + " " + tamanio, this.generarPrecioTarifaEspecial());
+                } else {
+                    seRepiteNombre = false;
+                }
+            }
+        }
     }
 
-    public int GenerarPrecioTarifaEspecial() {
+    public int generarPrecioTarifaEspecial() {
         int PrecioTarifa = this.random.nextInt(900) + 100;
         return PrecioTarifa;
     }
 
     //Direcciones
-    public String GenerarCalle() {
+    public String generarCalle() {
         String[] calles = {
             "Felipone",
             "Solano Garcia",
@@ -252,12 +267,12 @@ public class IngresarDatosDePrueba extends javax.swing.JFrame {
         return calleAleatoria;
     }
 
-    public int GenerarNumeroPuerta() {
+    public int generarNumeroPuerta() {
         int numeroCalle = this.random.nextInt(9000) + 100;
         return numeroCalle;
     }
 
-    public String GenerarApartamento() {
+    public String generarApartamento() {
         String[] apartamentos = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j"};
         String apartamentoAleatorio = apartamentos[this.random.nextInt(apartamentos.length)];
         int numeroapartamento = this.random.nextInt(9) + 1;
@@ -265,7 +280,7 @@ public class IngresarDatosDePrueba extends javax.swing.JFrame {
     }
 
     //Paquetes
-    public String GenerarDescripcionPaquete() {
+    public String generarDescripcionPaquete() {
         String[] objetos = {
             "mueble",
             "electrodoméstico",
@@ -287,18 +302,29 @@ public class IngresarDatosDePrueba extends javax.swing.JFrame {
         return paqueteAleatorio;
     }
 
-    public float GenerarPesoPaquete() {
-        float Peso = this.random.nextFloat(90) + 1;
-        return Peso;
+    public float generarPesoPaqueteEspecial() {
+        return this.random.nextFloat() * 75 + 15;
     }
 
-    public Boolean GenerarBool() {
+    public float generarPesoPaqueteChico() {
+        return this.random.nextFloat() * 4 + 1;
+    }
+
+    public float generarPesoPaqueteMediano() {
+        return this.generarPesoPaqueteChico() + 5;
+    }
+
+    public float generarPesoPaqueteGrande() {
+        return this.generarPesoPaqueteChico() + 10;
+    }
+
+    public Boolean generarBool() {
         Boolean bool = this.random.nextBoolean();
         return bool;
     }
 
     //Seccion
-    public String GenerarNombreLocalidad() {
+    public String generarNombreLocalidad() {
         String[] nombres = {
             "Barrio Norte",
             "Porvenir",
@@ -313,8 +339,8 @@ public class IngresarDatosDePrueba extends javax.swing.JFrame {
         String nombreLocalidadAleatorio = nombres[this.random.nextInt(nombres.length)];
         return nombreLocalidadAleatorio;
     }
-    
-    public String GenerarNombreSeccion() {
+
+    private void generarSecciones() {
         String[] nombres = {
             "BN",
             "P",
@@ -326,8 +352,20 @@ public class IngresarDatosDePrueba extends javax.swing.JFrame {
             "NP",
             "BS"
         };
-        String nombreSeccionAleatorio = nombres[this.random.nextInt(nombres.length)];
-        return nombreSeccionAleatorio;
+        ArrayList<Seccion> secciones = Fabrica.getInstancia().getControladorSeccion().obtenerLasSecciones();
+        boolean seRepiteNombre = false;
+        for (String nombre : nombres) {
+            for (Seccion seccion : secciones) {
+                if (seccion.getNombre().equals("Seccion " + nombre)) {
+                    seRepiteNombre = true;
+                }
+            }
+            if (!seRepiteNombre) {
+                Fabrica.getInstancia().getControladorSeccion().agregarUnaSeccion("Seccion " + nombre, this.generarNombreLocalidad());
+            } else {
+                seRepiteNombre = false;
+            }
+        }
     }
 
     /**
