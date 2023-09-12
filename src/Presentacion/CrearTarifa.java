@@ -18,6 +18,7 @@ public class CrearTarifa extends javax.swing.JFrame {
     private IAdministracion IA;
     private CrearEnvio crearEnvio = null;
     private ListaTarifas listaTarifas = null;
+    private EditarPaquete editPaquete = null;
 
     /**
      * Creates new form CrearTarifa
@@ -40,6 +41,16 @@ public class CrearTarifa extends javax.swing.JFrame {
         this.IA = Fabrica.getInstancia().getControladorTarifa();
         this.setResizable(false);
         this.crearEnvio = envio;
+    }
+    
+    public CrearTarifa(EditarPaquete editPaq) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle("MLEntregas");
+        this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Images/logo.png")).getImage());
+        this.IA = Fabrica.getInstancia().getControladorTarifa();
+        this.setResizable(false);
+        this.editPaquete = editPaq;
     }
 
     /**
@@ -263,6 +274,9 @@ public class CrearTarifa extends javax.swing.JFrame {
             } else if (this.listaTarifas != null) {
                 this.dispose();
                 this.listaTarifas.actualizarTabla();
+            } else if (this.editPaquete != null) {
+                this.dispose();
+                this.editPaquete.actualizarComboBoxTrfEsp();
             }
         }
     }//GEN-LAST:event_jButton2ActionPerformed

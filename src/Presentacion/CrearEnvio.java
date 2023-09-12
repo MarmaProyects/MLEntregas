@@ -1493,8 +1493,8 @@ public class CrearEnvio extends javax.swing.JFrame {
     }
 
     private boolean validacionCamposDireccionO() {
-        return this.checkSucursal.isSelected() || (!this.campoCalleDireccion.getText().isBlank()
-                && !this.campoPuertaDireccion.getText().isBlank());
+        return this.checkSucursal.isSelected() || (!this.campoCalleDireccionO.getText().isBlank()
+                && !this.campoPuertaDireccionO.getText().isBlank());
     }
 
     private boolean validacionCamposClienteR() {
