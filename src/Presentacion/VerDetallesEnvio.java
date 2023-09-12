@@ -1013,10 +1013,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             ListaEnvios listadoEnvios = new ListaEnvios();
             listadoEnvios.setVisible(true);
         } else if (this.vieneDeResumen != null) {
-<<<<<<< HEAD
             vieneDeResumen.limpiaListaDePagos();
-=======
->>>>>>> bc922cfbd3b7b9717ffaa932607c9c6400caed7d
             vieneDeResumen.listarPagos();
         } else {
             Home home = new Home();
