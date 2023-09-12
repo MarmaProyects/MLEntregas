@@ -96,6 +96,34 @@ public class ServicioPaquete {
         return resultado;
     }
     
+    public ArrayList<Paquete> obtenerPaquetesNoAsociados() {
+        ArrayList<Paquete> resultado = new ArrayList<Paquete>();
+        try {
+            PreparedStatement query = conexion.prepareStatement("SELECT * " +
+            "FROM paquete " +
+            "LEFT JOIN envio ON paquete.id = envio.idPaquete " +
+            "WHERE envio.idPaquete IS NULL;");
+            ResultSet resultadoDeLaQuery = query.executeQuery();
+            while (resultadoDeLaQuery.next()) {
+                int id = resultadoDeLaQuery.getInt("id");
+                String descripcion = resultadoDeLaQuery.getString("descripcion");
+                float peso = resultadoDeLaQuery.getFloat("peso");
+                Boolean esFragil = resultadoDeLaQuery.getBoolean("esFragil");
+                Boolean esEspecial = resultadoDeLaQuery.getBoolean("esEspecial");
+                //obtenerSeccion dos consultas, consulta en seccion_paquete para obtener idSeccion, y luego obtener el nombre con la segunda consulta
+                ServicioSeccion ServicioSeccion = new ServicioSeccion();
+                int idSeccion = ServicioSeccion.obtenerIdSeccion_Paquete(id);
+                IProximidad IP = Fabrica.getInstancia().getControladorSeccion();
+                Seccion nombreSeccion = IP.buscarUnaSeccion(idSeccion);
+                resultado.add(new Paquete(descripcion, peso, esFragil, esEspecial, id, nombreSeccion.getNombre()));
+            }
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
+        }
+
+        return resultado;
+    }
+    
     public Paquete traerUnPaquete(int idPaquete) {
         Paquete paqueteRes = null;
         try {

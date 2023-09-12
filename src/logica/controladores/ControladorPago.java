@@ -6,6 +6,7 @@ package logica.controladores;
 
 import java.util.ArrayList;
 import logica.clases.Cliente;
+import logica.clases.Pago;
 import logica.clases.Tarifa;
 import logica.interfaces.IAdministracion;
 import logica.servicios.ServicioPago;
@@ -86,5 +87,9 @@ public class ControladorPago implements IAdministracion {
 
     public void pagarEnvio(int idPago, String metodo) {
        this.servicioPago.pagarUnEnvio(idPago, metodo);
+    }
+
+    public ArrayList<Pago> traerPagosNoAsociados() {
+        return this.servicioPago.traerLosPagosNoAsociados();
     }
 }

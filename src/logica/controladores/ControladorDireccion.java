@@ -161,4 +161,13 @@ public class ControladorDireccion implements IEnvio {
     public ArrayList<Envio> listarEnviosFechaSeleccionadas(String fechaInicio, String fechaFinal) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public ArrayList<Paquete> obtenerPaquetesNoAsociados() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public ArrayList<Direccion> traerDirecciones() {
+        return this.servicioDireccion.traerLasDirecciones();
+    }
 }

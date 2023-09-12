@@ -59,5 +59,24 @@ public class ServicioLocalidad {
         return resultado;
     }
     
+    public Localidad obtenerLocalidad(String nombreLocalidad){
+         Localidad resultado = null;
+        try {
+                
+            PreparedStatement query = conexion.prepareStatement("SELECT * FROM localidad WHERE localidad.nombre = '" + nombreLocalidad + "';");
+            ResultSet resultadoDeLaQuery = query.executeQuery();
+            if(resultadoDeLaQuery.next()) {
+                int id = resultadoDeLaQuery.getInt("id");
+                String nombre = resultadoDeLaQuery.getString("nombre");
+                int codigoPostal = resultadoDeLaQuery.getInt("codigoPostal");
+                resultado = new Localidad(nombre, codigoPostal, id);
+            }
+                } catch (SQLException e) {
+                LOGGER.severe("Error: " + e);
+            }
+        
+        return resultado;
+    }
+    
 
 }

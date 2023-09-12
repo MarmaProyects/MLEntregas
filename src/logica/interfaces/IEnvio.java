@@ -27,9 +27,11 @@ public interface IEnvio {
     public abstract int crearPaquete(String desc, float peso, int fragil, int tipo);
     public abstract void editarPaquete(int idPaquete, float peso, String descripcion, int esFragil, int esEspecial); 
     public abstract Paquete traerPaquete(int idPaquete);
+    public abstract ArrayList<Paquete> obtenerPaquetesNoAsociados();
     public abstract int crearDireccion(String calle, String calle2, int puerta, String apartamento); 
     public abstract void editarDireccion(int idDireccion, String calle1, String calle2, String apartamento,  int nroPuerta); 
     public abstract Direccion traerDireccion(int idDireccion);
+    public abstract ArrayList<Direccion> traerDirecciones();
     public abstract ArrayList<Localidad> listarLocalidades();
     public abstract ArrayList<Seccion> listarSecciones();
     public abstract void conexionSeccion_Paquete(int idPaquete, int idSeccion);

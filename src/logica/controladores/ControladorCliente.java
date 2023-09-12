@@ -6,6 +6,7 @@ package logica.controladores;
 
 import java.util.ArrayList;
 import logica.clases.Cliente;
+import logica.clases.Pago;
 import logica.clases.Tarifa;
 import logica.interfaces.IAdministracion;
 import logica.servicios.ServicioCliente;
@@ -91,6 +92,11 @@ public class ControladorCliente  implements IAdministracion {
 
     @Override
     public void pagarEnvio(int idPago, String metodo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ArrayList<Pago> traerPagosNoAsociados() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
