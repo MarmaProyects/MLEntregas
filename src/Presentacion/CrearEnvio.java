@@ -62,6 +62,11 @@ public class CrearEnvio extends javax.swing.JFrame {
         this.cargarListaTarifasEspeciales();
     }
 
+    public void actualizarListaSeccion() {
+        this.limpiarListaSecciones();
+        this.cargarListaSecciones();
+    }
+
     //LISTAR OBJETOS DE TIPO SECCION
     private void cargarListaLocalidades() {
         listaLocalidades = this.iE.listarLocalidades();
@@ -69,7 +74,6 @@ public class CrearEnvio extends javax.swing.JFrame {
             comboLocalidadDestino.addItem(localidad.getNombre());
             comboLocalidadOrigen.addItem(localidad.getNombre());
         }
-
     }
 
     //LISTAR OBJETOS DE TIPO SECCION
@@ -78,6 +82,11 @@ public class CrearEnvio extends javax.swing.JFrame {
         for (Seccion seccion : this.listaSecciones) {
             comboSecciones.addItem(seccion.getNombre());
         }
+    }
+
+    private void limpiarListaSecciones() {
+
+        comboSecciones.removeAllItems();
 
     }
 
@@ -86,7 +95,6 @@ public class CrearEnvio extends javax.swing.JFrame {
         for (Tarifa tarifa : this.listaTarifasEsp) {
             comboTarifasEspeciales.addItem(tarifa.getNombre());
         }
-
     }
 
     private int obtenerIdTarifaEspecial() {
@@ -168,6 +176,7 @@ public class CrearEnvio extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         labelSecciones = new javax.swing.JLabel();
         comboSecciones = new javax.swing.JComboBox<>();
+        buttonCrearSeccion = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         labelTarifasEspeciales = new javax.swing.JLabel();
         comboTarifasEspeciales = new javax.swing.JComboBox<>();
@@ -238,9 +247,7 @@ public class CrearEnvio extends javax.swing.JFrame {
         jLabelIcon1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1098, 700));
         setMinimumSize(new java.awt.Dimension(1098, 700));
-        setPreferredSize(new java.awt.Dimension(1098, 700));
 
         scrollPanelGeneral.setBorder(null);
         scrollPanelGeneral.setAutoscrolls(true);
@@ -252,7 +259,6 @@ public class CrearEnvio extends javax.swing.JFrame {
         panelGeneral.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         panelGeneral.setFocusable(false);
         panelGeneral.setMaximumSize(null);
-        panelGeneral.setPreferredSize(null);
 
         labelTitle.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
         labelTitle.setText("CREAR ENVIO");
@@ -344,7 +350,7 @@ public class CrearEnvio extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descripción:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Semibold", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Descripción:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Semibold", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
         jPanel10.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
 
         campoDescPaquete.setColumns(20);
@@ -376,15 +382,25 @@ public class CrearEnvio extends javax.swing.JFrame {
             }
         });
 
+        buttonCrearSeccion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        buttonCrearSeccion.setText("Crear sección");
+        buttonCrearSeccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCrearSeccionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap(7, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(labelSecciones)
-                .addGap(100, 100, 100)
-                .addComponent(comboSecciones, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(comboSecciones, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonCrearSeccion)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -393,7 +409,8 @@ public class CrearEnvio extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelSecciones)
-                    .addComponent(comboSecciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboSecciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonCrearSeccion))
                 .addGap(12, 12, 12))
         );
 
@@ -429,7 +446,7 @@ public class CrearEnvio extends javax.swing.JFrame {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labelTarifasEspeciales)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(comboTarifasEspeciales, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -443,6 +460,7 @@ public class CrearEnvio extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        botonCrearTarifaEsp.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         botonCrearTarifaEsp.setText("Crear Tarifa Especial");
         botonCrearTarifaEsp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1606,6 +1624,12 @@ public class CrearEnvio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabelIcon1MousePressed
 
+    private void buttonCrearSeccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCrearSeccionActionPerformed
+        // TODO add your handling code here:
+        CrearSeccion crearSec = new CrearSeccion(this);
+        crearSec.setVisible(true);
+    }//GEN-LAST:event_buttonCrearSeccionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1656,6 +1680,7 @@ public class CrearEnvio extends javax.swing.JFrame {
     private javax.swing.JButton botonCancelarEnvio;
     private javax.swing.JButton botonCrearEnvio;
     private javax.swing.JButton botonCrearTarifaEsp;
+    private javax.swing.JButton buttonCrearSeccion;
     private javax.swing.JTextField campoApartDireccion;
     private javax.swing.JTextField campoApartDireccionO;
     private javax.swing.JTextField campoApellidoE;
