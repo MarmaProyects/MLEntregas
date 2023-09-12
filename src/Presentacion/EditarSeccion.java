@@ -26,6 +26,7 @@ public class EditarSeccion extends javax.swing.JFrame {
     ArrayList<Localidad> localidades = new ArrayList<Localidad>();
     private ListarSecciones listarSecciones = null;
     int localidadSelect = 0;
+    private ListarPaquetesEnSecciones listaPaquete = null;
 
     /**
      * Creates new form EditarSeccion
@@ -37,6 +38,46 @@ public class EditarSeccion extends javax.swing.JFrame {
         this.setTitle("Crear Seccion");
         this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Images/logo.png")).getImage());
         this.listarSecciones = listarSecciones;
+        this.fb = Fabrica.getInstancia();
+        this.id = id;
+        if (id != -1) {
+            this.seccion = this.fb.getControladorSeccion().traerSeccionSeleccionada(id);
+            this.localidades = this.fb.getControladorLocalidad().obtenerLasLocalidades();
+            this.localidadComboBox.addItem(" ");
+            for (Localidad loc : localidades) {
+                this.localidadComboBox.addItem(loc.getNombre());
+            }
+            this.nombreField.setText(seccion.getNombre());
+            this.localidadComboBox.setSelectedIndex(seccion.getIdLocalidad());
+            this.localidadSelect = seccion.getIdLocalidad() - 1;
+            this.secciones = this.fb.getControladorSeccion().obtenerLasSecciones();
+            ArrayList<Localidad> localidades = this.fb.getControladorLocalidad().obtenerLasLocalidades();
+            this.comboBoxSecciones.addItem(" ");
+            for (Seccion sec : secciones) {
+                if (sec.getIdLocalidad() != -1) {
+                    for (Localidad loc : localidades) {
+                        if (sec.getIdLocalidad() == loc.getIdLocalidad()) {
+                            this.comboBoxSecciones.addItem(sec.getNombre() + " - " + loc.getNombre());
+                            break;
+                        }
+                    }
+                } else {
+                    this.comboBoxSecciones.addItem(sec.getNombre());
+                }
+            }
+            this.cargarDatosSeccion();
+        } else {
+            this.editButton.setVisible(false);
+        }
+    }
+
+    public EditarSeccion(int id, ListarPaquetesEnSecciones listaPaquete) {
+        initComponents();
+        this.setResizable(false);
+        this.listaPaquete = listaPaquete;
+        this.setLocationRelativeTo(null);
+        this.setTitle("Crear Seccion");
+        this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Images/logo.png")).getImage());
         this.fb = Fabrica.getInstancia();
         this.id = id;
         if (id != -1) {
@@ -335,7 +376,12 @@ public class EditarSeccion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void volverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtonActionPerformed
-        this.dispose();
+        if (this.listaPaquete != null) {
+            this.setVisible(false);
+            listaPaquete.actualizarDatosSeccion();
+        } else {
+            this.dispose();
+        }
     }//GEN-LAST:event_volverButtonActionPerformed
 
     private void comboBoxSeccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxSeccionesActionPerformed

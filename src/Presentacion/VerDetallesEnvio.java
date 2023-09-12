@@ -25,6 +25,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
     private ListaEnvios listEnvios;
     private int idEnvio;
     private int idPaquete;
+    private ResumenMensualFacturacion vieneDeResumen = null;
 
     /**
      * Creates new form VerDetallesEnvio
@@ -38,6 +39,18 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         this.fb = Fabrica.getInstancia();
         this.IE = fb.getControladorEnvio();
         this.listEnvios = listEnv;
+        AccederDetallesEnvio(id);
+    }
+
+    public VerDetallesEnvio(int id, ResumenMensualFacturacion deResumen) {
+        initComponents();
+        this.setTitle("MLEntregas");
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        this.idEnvio = id;
+        this.fb = Fabrica.getInstancia();
+        this.IE = fb.getControladorEnvio();
+        this.vieneDeResumen = deResumen;
         AccederDetallesEnvio(id);
     }
 
@@ -997,13 +1010,16 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
         if (this.listEnvios != null) {
-            this.dispose();
             ListaEnvios listadoEnvios = new ListaEnvios();
             listadoEnvios.setVisible(true);
-        }else {
+        } else if (this.vieneDeResumen != null) {
+            vieneDeResumen.limpiaListaDePagos();
+            vieneDeResumen.listarPagos();
+        } else {
             Home home = new Home();
             home.setVisible(true);
         }
+        this.setVisible(false);
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed
