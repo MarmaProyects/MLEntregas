@@ -1565,7 +1565,7 @@ public class CrearEnvio extends javax.swing.JFrame {
     private void campoPesoPaqueteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoPesoPaqueteFocusLost
         if (!campoPesoPaquete.getText().isBlank()) {
             float peso = Float.parseFloat(campoPesoPaquete.getText());
-            if (checkboxEspecial.isSelected() && peso > 15) {
+            if (peso > 15) {
                 this.labelTipo.setVisible(true);
                 this.checkboxEspecial.setVisible(true);
                 this.checkboxEspecial.setSelected(true);
@@ -1621,7 +1621,7 @@ public class CrearEnvio extends javax.swing.JFrame {
     private void campoPesoPaqueteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoPesoPaqueteKeyReleased
         if (!campoPesoPaquete.getText().isBlank()) {
             float peso = Float.parseFloat(campoPesoPaquete.getText());
-            if (checkboxEspecial.isSelected() && peso > 15) {
+            if (peso > 15) {
                 this.labelTipo.setVisible(true);
                 this.checkboxEspecial.setVisible(true);
                 this.checkboxEspecial.setSelected(true);
@@ -1632,7 +1632,7 @@ public class CrearEnvio extends javax.swing.JFrame {
             } else {
                 this.labelTipo.setVisible(false);
                 this.checkboxEspecial.setVisible(false);
-                this.checkboxEspecial.doClick();
+                this.checkboxEspecial.setSelected(false);
                 this.botonCrearTarifaEsp.setVisible(false);
                 this.labelTarifasEspeciales.setVisible(false);
                 this.comboTarifasEspeciales.setVisible(false);
