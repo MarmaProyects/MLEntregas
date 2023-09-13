@@ -355,6 +355,11 @@ public class CrearEnvio extends javax.swing.JFrame {
 
         campoDescPaquete.setColumns(20);
         campoDescPaquete.setRows(5);
+        campoDescPaquete.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoDescPaqueteKeyTyped(evt);
+            }
+        });
         scrollPaneDescrp.setViewportView(campoDescPaquete);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
@@ -1548,7 +1553,26 @@ public class CrearEnvio extends javax.swing.JFrame {
     }//GEN-LAST:event_checkboxEspecialActionPerformed
 
     private void campoPesoPaqueteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoPesoPaqueteFocusLost
-
+        if (!campoPesoPaquete.getText().isBlank()) {
+            float peso = Float.parseFloat(campoPesoPaquete.getText());
+            if (checkboxEspecial.isSelected() && peso > 15) {
+                this.labelTipo.setVisible(true);
+                this.checkboxEspecial.setVisible(true);
+                this.checkboxEspecial.setSelected(true);
+                this.checkboxEspecial.setEnabled(false);
+                this.botonCrearTarifaEsp.setVisible(true);
+                this.comboTarifasEspeciales.setVisible(true);
+                this.labelTarifasEspeciales.setVisible(true);
+            } else {
+                this.labelTipo.setVisible(false);
+                this.checkboxEspecial.setVisible(false);
+                this.checkboxEspecial.doClick();
+                this.botonCrearTarifaEsp.setVisible(false);
+                this.labelTarifasEspeciales.setVisible(false);
+                this.comboTarifasEspeciales.setVisible(false);
+                this.idTarifa = this.obtenerIdTarifasNormales(peso);
+            }
+        }
     }//GEN-LAST:event_campoPesoPaqueteFocusLost
 
     private void comboLocalidadDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLocalidadDestinoActionPerformed
@@ -1630,6 +1654,15 @@ public class CrearEnvio extends javax.swing.JFrame {
         CrearSeccion crearSec = new CrearSeccion(this);
         crearSec.setVisible(true);
     }//GEN-LAST:event_buttonCrearSeccionActionPerformed
+
+    private void campoDescPaqueteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoDescPaqueteKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+
+        if (campoDescPaquete.getText().trim().length() >= 100) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_campoDescPaqueteKeyTyped
 
     /**
      * @param args the command line arguments

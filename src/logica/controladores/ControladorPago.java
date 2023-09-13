@@ -92,4 +92,8 @@ public class ControladorPago implements IAdministracion {
     public ArrayList<Pago> traerPagosNoAsociados() {
         return this.servicioPago.traerLosPagosNoAsociados();
     }
+
+    public void editarPago(int idPago, float precio) {
+        this.servicioPago.editarUnPago(idPago, precio);
+    }
 }

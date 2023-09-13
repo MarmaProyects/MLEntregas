@@ -100,8 +100,12 @@
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jComboBoxEstados" pref="187" max="32767" attributes="0"/>
-                              <Component id="jTextFieldIDEnvio" max="32767" attributes="0"/>
+                              <Component id="jComboBoxEstados" min="-2" pref="187" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jTextFieldPrecio" min="-2" pref="87" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="jLabelPago" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
@@ -136,7 +140,8 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabelIDEnvio" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextFieldIDEnvio" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextFieldPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelPago" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -193,12 +198,12 @@
             <Property name="text" type="java.lang.String" value="Tarifa"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldIDEnvio">
+        <Component class="javax.swing.JTextField" name="jTextFieldPrecio">
           <Properties>
             <Property name="text" type="java.lang.String" value="-"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldIDEnvioActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldPrecioActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelIDEnvio">
@@ -281,6 +286,11 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEditarPaqueteActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelPago">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x25a1; No pagado"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

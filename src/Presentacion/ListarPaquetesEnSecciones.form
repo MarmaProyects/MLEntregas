@@ -41,13 +41,13 @@
                       <Component id="jLabel6" min="-2" pref="86" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="83" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
+                      <EmptySpace min="0" pref="148" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jButtonVolver" linkSize="1" min="-2" pref="100" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="436" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="botonEditarPaquete" linkSize="1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="botonVerSeccion" linkSize="1" min="-2" pref="111" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" min="-2" pref="800" max="-2" attributes="0"/>

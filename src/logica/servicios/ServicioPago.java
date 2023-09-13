@@ -77,4 +77,14 @@ public class ServicioPago {
         return pagos;
     }
 
+    public void editarUnPago(int idPago, float precio) {
+        try {
+            PreparedStatement queryEditarPago = conexion.prepareStatement("UPDATE pago SET precio = ? "
+                    + "WHERE id = " + idPago);
+            queryEditarPago.setFloat(1, precio);
+            queryEditarPago.executeUpdate();
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
+        }
+    }
 }

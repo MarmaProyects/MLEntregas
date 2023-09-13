@@ -70,6 +70,7 @@ public class ListaTarifas extends javax.swing.JFrame {
         };
         this.tableTarifa.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
         this.tableTarifa.getColumnModel().getColumn(3).setCellEditor(new TableActionCellEditor(this.event));
+        this.tableTarifa.getTableHeader().setReorderingAllowed(false);
     }
 
     /**

@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import logica.clases.Envio;
 import logica.clases.Paquete;
 import logica.clases.Tarifa;
+import logica.dataTypes.MetodoPago;
 import logica.fabrica.Fabrica;
 
 /**
@@ -25,6 +26,7 @@ public class EditarPaquete extends javax.swing.JFrame {
     private ArrayList<Tarifa> tarifEspeciales;
     private Fabrica fb;
     private ListarPaquetesEnSecciones listadoP_S = null;
+    private float precioTarifa;
 
     /**
      * Creates new form EditarPaquete
@@ -57,6 +59,10 @@ public class EditarPaquete extends javax.swing.JFrame {
             this.panelEspecial.setVisible(false);
             this.checkBoxEspecial.setSelected(false);
         }
+        if (this.envio.getPago().getPago() != null) {
+            this.textFieldPeso.setEditable(false);
+            this.comboBoxTarifas.setEnabled(false);
+        }
     }
 
     public EditarPaquete(int idPaquete, ListarPaquetesEnSecciones listadoP_Secciones) {
@@ -65,16 +71,31 @@ public class EditarPaquete extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.fb = Fabrica.getInstancia();
-        this.idPaquete = idPaquete;
         this.listadoP_S = listadoP_Secciones;
+        this.idPaquete = idPaquete;
+        this.envio = this.fb.getControladorEnvio().obtenerEnvioPaquete(idPaquete);
+        this.idTarifa = envio.getTarifa().getIdTarifa();
+        this.tarifEspeciales = this.fb.getControladorEnvio().obtenerTarifasEspeciales();
         this.paquete = fb.getControladorPaquete().traerPaquete(idPaquete);
         this.textAreaDescripcion.setText(paquete.getDescripcion());
         this.textFieldPeso.setText(String.valueOf(paquete.getPeso()));
         this.checkBoxFragil.setSelected(paquete.isEsFragil());
-        this.setIdTarifa();
-        this.envio = Fabrica.getInstancia().getControladorEnvio().obtenerEnvioPaquete(idPaquete);
-        
-        
+        this.checkBoxEspecial.setEnabled(false);
+        this.checkBoxEspecial.setSelected(true);
+        for (Tarifa tarifaEsp : this.tarifEspeciales) {
+            this.comboBoxTarifas.addItem(tarifaEsp.getNombre());
+            if (this.idTarifa == tarifaEsp.getIdTarifa()) {
+                this.comboBoxTarifas.setSelectedIndex(this.comboBoxTarifas.getItemCount() - 1);
+            }
+        }
+        if (!this.envio.getPaquete().isEsEspecial()) {
+            this.panelEspecial.setVisible(false);
+            this.checkBoxEspecial.setSelected(false);
+        }
+        if (this.envio.getPago().getPago() != null) {
+            this.textFieldPeso.setEditable(false);
+            this.comboBoxTarifas.setEnabled(false);
+        }
     }
 
     /**
@@ -208,7 +229,7 @@ public class EditarPaquete extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textFieldPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
@@ -216,6 +237,11 @@ public class EditarPaquete extends javax.swing.JFrame {
 
         textAreaDescripcion.setColumns(20);
         textAreaDescripcion.setRows(5);
+        textAreaDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textAreaDescripcionKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(textAreaDescripcion);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -288,7 +314,7 @@ public class EditarPaquete extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboBoxTarifas, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(buttonCrearTarifas, javax.swing.GroupLayout.PREFERRED_SIZE, 143, Short.MAX_VALUE)
+                .addComponent(buttonCrearTarifas, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelTarifasLayout.setVerticalGroup(
@@ -410,6 +436,8 @@ public class EditarPaquete extends javax.swing.JFrame {
         this.setIdTarifa();
         this.fb.getControladorPaquete().editarPaquete(paqueteEnv.getIdPaquete(), Float.parseFloat(textFieldPeso.getText().trim()),
                 this.textAreaDescripcion.getText().trim(), esFragil, esEspecial);
+        float precioLoc = this.fb.getControladorLocalidad().obtenerPrecioLocalidad(this.envio.getDireccionDestino().getIdDireccion());
+        this.fb.getControladorPago().editarPago(envio.getPago().getIdPago(), precioTarifa + precioLoc);
         this.fb.getControladorEnvio().editarEnvio(envio.getIdEnvio(), this.idTarifa, envio.getDireccionOrigen().getIdDireccion(),
                 envio.getDireccionDestino().getIdDireccion(), envio.getPago().getIdPago());
         JOptionPane.showMessageDialog(null, "Edición confirmada", "Confirmación exitosa", JOptionPane.INFORMATION_MESSAGE);
@@ -418,11 +446,11 @@ public class EditarPaquete extends javax.swing.JFrame {
             this.dispose();
         }
         if (this.verDetallesEnv != null) {
-            this.verDetallesEnv.actualizarDetalleEnvio(this.idTarifa, checkBoxEspecial.isSelected(), checkBoxFragil.isSelected());
+            this.verDetallesEnv.actualizarDetalleEnvio(this.idTarifa, checkBoxEspecial.isSelected(), checkBoxFragil.isSelected(), precioTarifa + precioLoc);
         }
-        if(listadoP_S != null){
-        listadoP_S.actualizarDatosSeccion();
-        this.setVisible(false);
+        if (listadoP_S != null) {
+            listadoP_S.actualizarDatosSeccion();
+            this.setVisible(false);
         }
     }//GEN-LAST:event_buttonConfirmarActionPerformed
 
@@ -457,6 +485,14 @@ public class EditarPaquete extends javax.swing.JFrame {
         crearTrf.setVisible(true);
     }//GEN-LAST:event_buttonCrearTarifasActionPerformed
 
+    private void textAreaDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textAreaDescripcionKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        if (textAreaDescripcion.getText().trim().length() >= 100) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_textAreaDescripcionKeyTyped
+
     private void setIdTarifa() {
         if (!textFieldPeso.getText().isBlank()) {
             float peso = Float.parseFloat(textFieldPeso.getText().trim());
@@ -475,18 +511,22 @@ public class EditarPaquete extends javax.swing.JFrame {
 
     private int obtTarifasNormales(float peso) {
         if (peso > 0 && peso <= 5) {
+            precioTarifa = 100;
             return 1;
         } else if (peso > 5 && peso <= 10) {
+            precioTarifa = 200;
             return 2;
         } else {
+            precioTarifa = 300;
             return 3;
         }
     }
 
     private int obtTarifasEspeciales() {
         for (Tarifa tarifaEspecial : this.tarifEspeciales) {
-            if (comboBoxTarifas.getSelectedItem().equals(tarifaEspecial.getNombre())) {
+            if (comboBoxTarifas.getSelectedItem().toString().equals(tarifaEspecial.getNombre())) {
                 idTarifa = tarifaEspecial.getIdTarifa();
+                this.precioTarifa = tarifaEspecial.getPrecio();
                 break;
             }
         }

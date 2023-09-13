@@ -32,6 +32,7 @@ public class EnviosSinPagar extends javax.swing.JFrame {
         this.IE = Fabrica.getInstancia().getControladorEnvio();
         this.setResizable(false);
         this.cargarLosEnviosSinPagar();
+        this.tableEnvio.getTableHeader().setReorderingAllowed(false);
     }
 
     private void cargarLosEnviosSinPagar() {
