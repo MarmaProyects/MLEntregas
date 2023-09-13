@@ -66,6 +66,7 @@ public class ListarSecciones extends javax.swing.JFrame {
         };
         this.tablaSecciones.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
         this.tablaSecciones.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(event));
+        this.tablaSecciones.getTableHeader().setReorderingAllowed(false);
     }
 
     /**

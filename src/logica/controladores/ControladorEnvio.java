@@ -162,4 +162,8 @@ public class ControladorEnvio implements IEnvio {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    public Envio obtenerEnvioPaquete(int idPaquete) {
+        return this.servicioEnvio.obtenerEnvioDeUnPaquete(idPaquete);
+    }
+
 }

@@ -36,7 +36,7 @@ public class ResumenMensualFacturacion extends javax.swing.JFrame {
         this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Images/logo.png")).getImage());
         this.IE = Fabrica.getInstancia().getControladorEnvio();
         campoTotal.setEditable(false);
-
+        this.tablaFacturacion.getTableHeader().setReorderingAllowed(false);
     }
 
     public void listarPagos() {

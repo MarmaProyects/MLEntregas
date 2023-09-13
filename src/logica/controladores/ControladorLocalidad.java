@@ -51,12 +51,16 @@ public class ControladorLocalidad implements IProximidad {
             if (localidad.getNombre().equals(nombre) && localidad.getCodigoPostal() == codigoPostal) {
 
                 resultado = true;
-                break;
+                    break;
             }
         }
         return resultado;
     }
 
+    public float obtenerPrecioLocalidad(int idDireccion) {
+        return this.servicioLocalidad.obtenerPrecioDeLocalidad(idDireccion);
+    }
+    
     @Override
     public void agregarUnaSeccion(String nombre, String localidad) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

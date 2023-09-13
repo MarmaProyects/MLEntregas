@@ -45,6 +45,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         AccederDetallesEnvio(id);
         if (this.envio.getPago().getPago() != null) {
             this.jButtonPagar.setEnabled(false);
+            this.jLabelPago.setText("■ Pagado");
         }
     }
 
@@ -60,6 +61,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         this.vieneDeResumen = deResumen;
         AccederDetallesEnvio(id);
         this.jButtonPagar.setEnabled(false);
+        this.jLabelPago.setText("■ Pagado");
     }
 
     public void llamarAlertaEnvioConfirmado() {
@@ -74,7 +76,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "El envío ya está confirmado", "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    public void actualizarDetalleEnvio(int idTarifa, boolean esEspecial, boolean esFragil) {
+    public void actualizarDetalleEnvio(int idTarifa, boolean esEspecial, boolean esFragil, float precio) {
         if (idTarifa < 4) {
             if (idTarifa == 1) {
                 this.jTextFieldTarifa.setText("<5kg");
@@ -94,6 +96,8 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         }
         this.envio.getPaquete().setEsEspecial(esEspecial);
         this.envio.getPaquete().setEsFragil(esFragil);
+        this.envio.getPago().setPrecio(precio);
+        this.jTextFieldPrecio.setText(String.valueOf(precio));
     }
 
     public void AccederDetallesEnvio(int idEnvio) {
@@ -110,8 +114,8 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         if (estadoFinal != null) {
             if (this.jComboBoxEstados.getItemCount() == 0) {
                 this.jComboBoxEstados.addItem(estadoFinal.getTipo().getEstado());
-            }            
-            this.jTextFieldIDEnvio.setText(String.valueOf(envio.getPago().getPrecio()));
+            }
+            this.jTextFieldPrecio.setText(String.valueOf(envio.getPago().getPrecio()));
             this.jTextFieldIDPaquete.setText(Integer.toString(envio.getPaquete().getIdPaquete()));
             this.jTextFieldTarifa.setText(envio.getTarifa().getNombre());
             this.jTextFieldCIEmisor.setText(Integer.toString(envio.getClienteEmisor().getCedula()));
@@ -127,7 +131,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             this.jTextFieldApartamentoReceptor.setText(envio.getDireccionDestino().getDatos_adicionales());
             this.jTextFieldNroPuertaReceptor.setText(Integer.toString(envio.getDireccionDestino().getNro_puerta()));
             //deshabilitar
-            this.jTextFieldIDEnvio.setEditable(false);
+            this.jTextFieldPrecio.setEditable(false);
             this.jTextFieldIDPaquete.setEditable(false);
             this.jTextFieldTarifa.setEditable(false);
             this.jTextFieldCIEmisor.setEditable(false);
@@ -167,7 +171,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         jTextFieldIDPaquete = new javax.swing.JTextField();
         jLabelIDDelPaquete = new javax.swing.JLabel();
         jLabelTarifa = new javax.swing.JLabel();
-        jTextFieldIDEnvio = new javax.swing.JTextField();
+        jTextFieldPrecio = new javax.swing.JTextField();
         jLabelIDEnvio = new javax.swing.JLabel();
         jTextFieldTarifa = new javax.swing.JTextField();
         jButtonEditarEnvio = new javax.swing.JButton();
@@ -176,6 +180,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         jComboBoxEstados = new javax.swing.JComboBox<>();
         jLabelEstado = new javax.swing.JLabel();
         jButtonEditarPaquete = new javax.swing.JButton();
+        jLabelPago = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabelEmisor = new javax.swing.JLabel();
         jLabelNombreEmisor = new javax.swing.JLabel();
@@ -212,9 +217,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         jButtonPagar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1098, 700));
         setMinimumSize(new java.awt.Dimension(1098, 700));
-        setPreferredSize(new java.awt.Dimension(1098, 700));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -231,10 +234,10 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         jLabelTarifa.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabelTarifa.setText("Tarifa");
 
-        jTextFieldIDEnvio.setText("-");
-        jTextFieldIDEnvio.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldPrecio.setText("-");
+        jTextFieldPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldIDEnvioActionPerformed(evt);
+                jTextFieldPrecioActionPerformed(evt);
             }
         });
 
@@ -289,6 +292,8 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             }
         });
 
+        jLabelPago.setText("□ No pagado");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -302,8 +307,11 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                             .addComponent(jLabelEstado))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBoxEstados, 0, 187, Short.MAX_VALUE)
-                            .addComponent(jTextFieldIDEnvio))
+                            .addComponent(jComboBoxEstados, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelPago)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabelIDDelPaquete)
@@ -333,7 +341,8 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelIDEnvio)
-                            .addComponent(jTextFieldIDEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelPago))
                         .addGap(21, 21, 21)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBoxEstados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -900,7 +909,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             for (Estado estado : estados) {
                 if (estado.getTipo() == TipoEstado.Cancelado || estado.getTipo() == TipoEstado.Entregado || estado.getTipo() == TipoEstado.ListoParaRetirar) {
                     existeEstado = true;
-                } 
+                }
             }
             if (existeEstado == false) {
                 int opt = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea cancelar el envío?",
@@ -966,6 +975,9 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             if (this.jTextFieldCalle1Emisor.getText().trim().equals(this.jTextFieldCalle1Receptor.getText().trim())
                     && this.jTextFieldNroPuertaEmisor.getText().trim().equals(this.jTextFieldNroPuertaReceptor.getText().trim())) {
                 JOptionPane.showMessageDialog(null, "Las calles y números de puerta no pueden ser iguales", "Error", JOptionPane.ERROR_MESSAGE);
+            } else if (this.jTextFieldCalle1Emisor.getText().trim().isBlank() || this.jTextFieldApartamentoEmisor.getText().trim().isBlank()
+                    || this.jTextFieldCalle1Receptor.getText().trim().isBlank() || this.jTextFieldApartamentoReceptor.getText().trim().isBlank()) {
+                JOptionPane.showMessageDialog(null, "Las calles y números de puerta no pueden ser vacías", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 //Se edita la dirección origen
                 Direccion dirOrigen = this.fb.getControladorDireccion().traerDireccion(envio.getDireccionOrigen().getIdDireccion());
@@ -1035,9 +1047,9 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         this.setEnabled(false);
     }//GEN-LAST:event_jTextFieldTarifaActionPerformed
 
-    private void jTextFieldIDEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDEnvioActionPerformed
+    private void jTextFieldPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPrecioActionPerformed
         this.setEnabled(false);
-    }//GEN-LAST:event_jTextFieldIDEnvioActionPerformed
+    }//GEN-LAST:event_jTextFieldPrecioActionPerformed
 
     private void jTextFieldIDPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDPaqueteActionPerformed
         this.setEnabled(false);
@@ -1064,6 +1076,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
 
     public void actualizarJButtonPago() {
         this.jButtonPagar.setEnabled(false);
+        this.jLabelPago.setText("■ Pagado");
     }
 
     /**
@@ -1127,6 +1140,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelNombreReceptor;
     private javax.swing.JLabel jLabelNroPuertaEmisor;
     private javax.swing.JLabel jLabelNroPuertaReceptor;
+    private javax.swing.JLabel jLabelPago;
     private javax.swing.JLabel jLabelReceptor;
     private javax.swing.JLabel jLabelTarifa;
     private javax.swing.JPanel jPanel1;
@@ -1140,12 +1154,12 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldCalle1Receptor;
     private javax.swing.JTextField jTextFieldCalle2Emisor;
     private javax.swing.JTextField jTextFieldCalle2Receptor;
-    private javax.swing.JTextField jTextFieldIDEnvio;
     private javax.swing.JTextField jTextFieldIDPaquete;
     private javax.swing.JTextField jTextFieldNombreEmisor;
     private javax.swing.JTextField jTextFieldNombreReceptor;
     private javax.swing.JTextField jTextFieldNroPuertaEmisor;
     private javax.swing.JTextField jTextFieldNroPuertaReceptor;
+    private javax.swing.JTextField jTextFieldPrecio;
     private javax.swing.JTextField jTextFieldTarifa;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JPanel panelTitulo;

@@ -170,4 +170,9 @@ public class ControladorDireccion implements IEnvio {
     public ArrayList<Direccion> traerDirecciones() {
         return this.servicioDireccion.traerLasDirecciones();
     }
+
+    @Override
+    public Envio obtenerEnvioPaquete(int idPaquete) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

@@ -30,6 +30,7 @@ public class ListarPaquetesEnSecciones extends javax.swing.JFrame {
         this.setResizable(false);
         this.fb = Fabrica.getInstancia();
         this.cargarDatosSeccion();
+        this.tablaPaquetes.getTableHeader().setReorderingAllowed(false);
     }
 
     private void cargarDatosSeccion() {
@@ -75,6 +76,7 @@ public class ListarPaquetesEnSecciones extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         botonVerSeccion = new javax.swing.JButton();
+        botonEditarPaquete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1098, 700));
@@ -159,6 +161,14 @@ public class ListarPaquetesEnSecciones extends javax.swing.JFrame {
             }
         });
 
+        botonEditarPaquete.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        botonEditarPaquete.setText("Editar Paquete");
+        botonEditarPaquete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEditarPaqueteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -173,18 +183,20 @@ public class ListarPaquetesEnSecciones extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 110, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(0, 148, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(589, 589, 589)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botonEditarPaquete)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(botonVerSeccion, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 110, Short.MAX_VALUE)))
+                        .addGap(0, 83, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {botonVerSeccion, jButtonVolver});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {botonEditarPaquete, botonVerSeccion, jButtonVolver});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,11 +211,12 @@ public class ListarPaquetesEnSecciones extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonVerSeccion, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addComponent(botonVerSeccion, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonEditarPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {botonVerSeccion, jButtonVolver});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {botonEditarPaquete, botonVerSeccion, jButtonVolver});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -243,6 +256,17 @@ public class ListarPaquetesEnSecciones extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botonVerSeccionActionPerformed
 
+    private void botonEditarPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarPaqueteActionPerformed
+         int row = this.tablaPaquetes.getSelectedRow();
+        if (row != -1) {
+            int idPaquete = Integer.parseInt(this.tablaPaquetes.getValueAt(row, 0).toString());
+            EditarPaquete editarP = new EditarPaquete(idPaquete, this);
+            editarP.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado ningún paquete", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_botonEditarPaqueteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -279,6 +303,7 @@ public class ListarPaquetesEnSecciones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonEditarPaquete;
     private javax.swing.JButton botonVerSeccion;
     private java.awt.Canvas canvas1;
     private javax.swing.JButton jButtonVolver;

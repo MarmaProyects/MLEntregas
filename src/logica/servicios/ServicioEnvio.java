@@ -483,4 +483,19 @@ public class ServicioEnvio {
         }
     }
 
+    public Envio obtenerEnvioDeUnPaquete(int idPaquete) {
+        int idEnvioSeleccionado = 0;
+        try {
+            PreparedStatement queryTraerIdEnvio = conexion.prepareStatement("SELECT "
+                    + "id FROM envio WHERE idPaquete='" + idPaquete + "';");
+            ResultSet resultadoDeLaQuery = queryTraerIdEnvio.executeQuery();
+            while (resultadoDeLaQuery.next()) {
+                idEnvioSeleccionado = resultadoDeLaQuery.getInt("id");
+                return this.obtenerDetallesEnvio(idEnvioSeleccionado);
+            }
+        } catch (Exception e) {
+            LOGGER.severe("Error: " + e);
+        }
+        return null;
+    }
 }

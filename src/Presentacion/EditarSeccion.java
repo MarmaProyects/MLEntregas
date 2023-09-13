@@ -70,6 +70,7 @@ public class EditarSeccion extends javax.swing.JFrame {
         } else {
             this.editButton.setVisible(false);
         }
+        this.tablaPaquetes.getTableHeader().setReorderingAllowed(false);
     }
 
     public EditarSeccion(int id, ListarPaquetesEnSecciones listaPaquete) {
@@ -110,6 +111,7 @@ public class EditarSeccion extends javax.swing.JFrame {
         } else {
             this.editButton.setVisible(false);
         }
+        this.tablaPaquetes.getTableHeader().setReorderingAllowed(false);
     }
 
     /**

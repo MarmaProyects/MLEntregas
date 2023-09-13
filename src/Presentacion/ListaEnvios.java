@@ -32,6 +32,7 @@ public class ListaEnvios extends javax.swing.JFrame {
         this.IE = Fabrica.getInstancia().getControladorEnvio();
         this.setResizable(false);
         this.cargarTodasLosEnvios();
+        this.tableEnvio.getTableHeader().setReorderingAllowed(false);
     }
 
     public void llamarAlertaNoSeleccionado() {

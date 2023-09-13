@@ -48,4 +48,5 @@ public interface IEnvio {
     public abstract int crearEstado(int idEnvio, String tipo, String comentario); 
     public abstract Estado obtenerElEstado(int idEstado, int idEnvio);
     public abstract ArrayList<Envio> listarEnviosFechaSeleccionadas(String fechaInicio, String fechaFinal);
+    public abstract Envio obtenerEnvioPaquete(int idPaquete);
 }

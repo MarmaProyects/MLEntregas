@@ -50,6 +50,7 @@ public class ListarClientes extends javax.swing.JFrame {
         };
         this.tablaClientes.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
         this.tablaClientes.getColumnModel().getColumn(3).setCellEditor(new TableActionCellEditor(event));
+        this.tablaClientes.getTableHeader().setReorderingAllowed(false);
     }
 
     /**

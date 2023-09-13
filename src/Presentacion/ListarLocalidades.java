@@ -37,7 +37,7 @@ public class ListarLocalidades extends javax.swing.JFrame {
         this.IP = Fabrica.getInstancia().getControladorLocalidad();
         this.setResizable(false);
         this.cargarTodasLasLocalidades();
-
+        this.tableLocalidades.getTableHeader().setReorderingAllowed(false);
     }
 
     /**
