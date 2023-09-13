@@ -4,6 +4,8 @@
  */
 package Presentacion;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -51,6 +53,14 @@ public class ListarClientes extends javax.swing.JFrame {
         this.tablaClientes.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
         this.tablaClientes.getColumnModel().getColumn(3).setCellEditor(new TableActionCellEditor(event));
         this.tablaClientes.getTableHeader().setReorderingAllowed(false);
+        
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosed(WindowEvent e){
+                Home home = new Home();
+                home.setVisible(true);
+            }
+        });
     }
 
     /**
@@ -239,7 +249,7 @@ public class ListarClientes extends javax.swing.JFrame {
     private void volverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtonActionPerformed
         Home home = new Home();
         home.setVisible(true);
-        this.dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_volverButtonActionPerformed
 
     private void jLabelIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelIconMouseClicked

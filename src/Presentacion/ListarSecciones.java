@@ -4,6 +4,8 @@
  */
 package Presentacion;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -67,6 +69,14 @@ public class ListarSecciones extends javax.swing.JFrame {
         this.tablaSecciones.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
         this.tablaSecciones.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(event));
         this.tablaSecciones.getTableHeader().setReorderingAllowed(false);
+        
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosed(WindowEvent e){
+                Home home = new Home();
+                home.setVisible(true);
+            }
+        });
     }
 
     /**
@@ -86,7 +96,7 @@ public class ListarSecciones extends javax.swing.JFrame {
         volverButton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
         setMinimumSize(new java.awt.Dimension(1098, 700));
 
