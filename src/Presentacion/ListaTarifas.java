@@ -4,6 +4,8 @@
  */
 package Presentacion;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -71,6 +73,14 @@ public class ListaTarifas extends javax.swing.JFrame {
         this.tableTarifa.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
         this.tableTarifa.getColumnModel().getColumn(3).setCellEditor(new TableActionCellEditor(this.event));
         this.tableTarifa.getTableHeader().setReorderingAllowed(false);
+        
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosed(WindowEvent e){
+                Home home = new Home();
+                home.setVisible(true);
+            }
+        });
     }
 
     /**
@@ -91,7 +101,7 @@ public class ListaTarifas extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1098, 700));
 
         tableTarifa.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N

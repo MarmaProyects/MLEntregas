@@ -4,6 +4,8 @@
  */
 package Presentacion;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -31,6 +33,14 @@ public class ListarPaquetesEnSecciones extends javax.swing.JFrame {
         this.fb = Fabrica.getInstancia();
         this.cargarDatosSeccion();
         this.tablaPaquetes.getTableHeader().setReorderingAllowed(false);
+        
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosed(WindowEvent e){
+                Home home = new Home();
+                home.setVisible(true);
+            }
+        });
     }
 
     private void cargarDatosSeccion() {
@@ -224,7 +234,7 @@ public class ListarPaquetesEnSecciones extends javax.swing.JFrame {
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
         Home home = new Home();
         home.setVisible(true);
-        this.dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked

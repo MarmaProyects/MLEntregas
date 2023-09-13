@@ -4,6 +4,8 @@
  */
 package Presentacion;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import logica.clases.Direccion;
@@ -47,6 +49,14 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             this.jButtonPagar.setEnabled(false);
             this.jLabelPago.setText("■ Pagado");
         }
+        
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosed(WindowEvent e){
+                Home home = new Home();
+                home.setVisible(true);
+            }
+        });
     }
 
     public VerDetallesEnvio(int id, ResumenMensualFacturacion deResumen) {

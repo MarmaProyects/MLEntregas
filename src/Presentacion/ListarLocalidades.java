@@ -4,6 +4,8 @@
  */
 package Presentacion;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -38,6 +40,14 @@ public class ListarLocalidades extends javax.swing.JFrame {
         this.setResizable(false);
         this.cargarTodasLasLocalidades();
         this.tableLocalidades.getTableHeader().setReorderingAllowed(false);
+        
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosed(WindowEvent e){
+                Home home = new Home();
+                home.setVisible(true);
+            }
+        });
     }
 
     /**
@@ -58,7 +68,7 @@ public class ListarLocalidades extends javax.swing.JFrame {
         tableLocalidades = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1098, 700));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N

@@ -4,6 +4,8 @@
  */
 package Presentacion;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import logica.clases.Envio;
@@ -37,6 +39,14 @@ public class ResumenMensualFacturacion extends javax.swing.JFrame {
         this.IE = Fabrica.getInstancia().getControladorEnvio();
         campoTotal.setEditable(false);
         this.tablaFacturacion.getTableHeader().setReorderingAllowed(false);
+        
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosed(WindowEvent e){
+                Home home = new Home();
+                home.setVisible(true);
+            }
+        });
     }
 
     public void listarPagos() {

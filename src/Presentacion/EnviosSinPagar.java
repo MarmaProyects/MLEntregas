@@ -4,6 +4,8 @@
  */
 package Presentacion;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -33,6 +35,14 @@ public class EnviosSinPagar extends javax.swing.JFrame {
         this.setResizable(false);
         this.cargarLosEnviosSinPagar();
         this.tableEnvio.getTableHeader().setReorderingAllowed(false);
+        
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosed(WindowEvent e){
+                Home home = new Home();
+                home.setVisible(true);
+            }
+        });
     }
 
     private void cargarLosEnviosSinPagar() {
@@ -75,7 +85,7 @@ public class EnviosSinPagar extends javax.swing.JFrame {
         volverButton1 = new javax.swing.JButton();
         volverButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1098, 700));
 
         tableEnvio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N

@@ -4,6 +4,8 @@
  */
 package Presentacion;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import logica.clases.Cliente;
@@ -55,6 +57,14 @@ public class CrearEnvio extends javax.swing.JFrame {
         botonCrearTarifaEsp.setVisible(false);
         labelTarifasEspeciales.setVisible(false);
         comboTarifasEspeciales.setVisible(false);
+        
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosed(WindowEvent e){
+                Home home = new Home();
+                home.setVisible(true);
+            }
+        });
     }
 
     public void actualizarTarifasEspeciales() {
