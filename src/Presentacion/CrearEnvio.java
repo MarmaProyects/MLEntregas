@@ -1327,8 +1327,8 @@ public class CrearEnvio extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, "El envio fue ingresado con éxito", "Success", JOptionPane.DEFAULT_OPTION);
             this.setVisible(false);
-            ResumenMensualFacturacion resumen = null;
-            VerDetallesEnvio verDetallesEnvio = new VerDetallesEnvio(idEnvio, resumen);
+            ListaEnvios listEnv = null;
+            VerDetallesEnvio verDetallesEnvio = new VerDetallesEnvio(idEnvio, listEnv);
             verDetallesEnvio.setVisible(true);
         } else if (!this.validacionTarifas()) {
             JOptionPane.showMessageDialog(null, "Falta seleccionar la tarifa", "Error", JOptionPane.ERROR_MESSAGE);

@@ -44,6 +44,7 @@ public class ListarClientes extends javax.swing.JFrame {
 
             @Override
             public void onDelete(int id, int row) {
+                JOptionPane.showMessageDialog(null, "No se puede eliminar el cliente", "Error", JOptionPane.ERROR_MESSAGE);
             }
 
         };

@@ -97,6 +97,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
     }
 
     public void AccederDetallesEnvio(int idEnvio) {
+        this.envio = this.fb.getControladorEnvio().verDetallesDelEnvio(idEnvio);
         idPaquete = envio.getPaquete().getIdPaquete();
         ArrayList<Estado> estados = envio.getEstados();
         int idUltimo = 0;
@@ -107,7 +108,9 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         }
         Estado estadoFinal = Fabrica.getInstancia().getControladorEstado().obtenerElEstado(idUltimo, idEnvio);
         if (estadoFinal != null) {
-            this.jComboBoxEstados.addItem(estadoFinal.getTipo().getEstado());
+            if (this.jComboBoxEstados.getItemCount() == 0) {
+                this.jComboBoxEstados.addItem(estadoFinal.getTipo().getEstado());
+            }            
             this.jTextFieldIDEnvio.setText(String.valueOf(envio.getPago().getPrecio()));
             this.jTextFieldIDPaquete.setText(Integer.toString(envio.getPaquete().getIdPaquete()));
             this.jTextFieldTarifa.setText(envio.getTarifa().getNombre());
@@ -897,7 +900,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             for (Estado estado : estados) {
                 if (estado.getTipo() == TipoEstado.Cancelado || estado.getTipo() == TipoEstado.Entregado || estado.getTipo() == TipoEstado.ListoParaRetirar) {
                     existeEstado = true;
-                }
+                } 
             }
             if (existeEstado == false) {
                 int opt = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea cancelar el envío?",
@@ -914,9 +917,10 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                     this.buttonCancelarEnvio.setEnabled(false);
                     this.jButtonEditarEnvio.setEnabled(false);
                     this.jButtonEditarPaquete.setEnabled(false);
+                    this.jButtonPagar.setEnabled(false);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "El envio ya fue Cancelado/Entregado", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No se puede cancelar este envío", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             jButtonEditarEnvio.setEnabled(true);
@@ -982,24 +986,22 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                     }
                 }
                 Estado estadoFinal = Fabrica.getInstancia().getControladorEstado().obtenerElEstado(idUltimo, idEnvio);
-
+                String estadoNuevo = "";
                 if (!estadoFinal.getTipo().getEstado().equals(jComboBoxEstados.getSelectedItem().toString())) {
-                    String estadoNuevo = jComboBoxEstados.getSelectedItem().toString().equals("Listo para entregar") ? "ListoParaRetirar" : "EnCamino";
+                    estadoNuevo = jComboBoxEstados.getSelectedItem().toString().equals("Listo para entregar") ? "ListoParaRetirar" : "EnCamino";
                     this.IE.crearEstado(idEnvio, estadoNuevo, "");
                 }
                 String comboBoxItem = jComboBoxEstados.getSelectedItem().toString();
                 this.jComboBoxEstados.removeAllItems();
+                this.jComboBoxEstados.getItemCount();
                 this.jComboBoxEstados.addItem(comboBoxItem);
-
                 JOptionPane.showMessageDialog(null, "Edición confirmada", "Edición exitosa", JOptionPane.INFORMATION_MESSAGE);
                 jButtonEditarEnvio.setEnabled(true);
                 labelTitulo.setText("DETALLES DEL ENVÍO");
                 buttonCancelarEnvio.setText("Cancelar envío");
                 buttonConfirmarEnvio.setText("Confirmar envío");
-                this.jComboBoxEstados.removeAllItems();
                 this.AccederDetallesEnvio(idEnvio);
             }
-
         }
         if (this.listEnvios != null) {
             this.listEnvios.actualizarListaDeEnvios();
@@ -1063,6 +1065,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
     public void actualizarJButtonPago() {
         this.jButtonPagar.setEnabled(false);
     }
+
     /**
      * @param args the command line arguments
      */
