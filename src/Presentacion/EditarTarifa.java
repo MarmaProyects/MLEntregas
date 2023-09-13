@@ -1,9 +1,10 @@
-    /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Presentacion;
 
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import logica.clases.Tarifa;
@@ -33,7 +34,7 @@ public class EditarTarifa extends javax.swing.JFrame {
         this.IA = Fabrica.getInstancia().getControladorTarifa();
         this.id = id;
         this.listaTar = listaTar;
-        if (id != -1){
+        if (id != -1) {
             this.tarifa = this.IA.traerTarifaSeleccionada(id);
             this.nombreField.setText(tarifa.getNombre());
             this.costoField.setText(String.valueOf(tarifa.getPrecio()));
@@ -160,12 +161,19 @@ public class EditarTarifa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        ArrayList<Tarifa> listaTarifas = Fabrica.getInstancia().getControladorEnvio().obtenerTarifasEspeciales();
+        for (Tarifa tarifa : listaTarifas) {
+            if (tarifa.getNombre().equals(this.nombreField.getText().trim())) {
+                JOptionPane.showMessageDialog(null, "Ya existe una tarifa con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
         if (this.IA.editarTarifaSeleccionada(this.id, this.nombreField.getText().trim(), Float.parseFloat(this.costoField.getText()))) {
             JOptionPane.showMessageDialog(null, "La tarifa fue editada con exito", "Success", JOptionPane.DEFAULT_OPTION);
             this.listaTar.actualizarTabla();
             this.dispose();
-        }else{
-             JOptionPane.showMessageDialog(null, "Hubo un error inesperado", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Hubo un error inesperado", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_editButtonActionPerformed
 

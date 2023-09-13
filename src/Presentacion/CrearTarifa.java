@@ -4,8 +4,10 @@
  */
 package Presentacion;
 
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import logica.clases.Tarifa;
 import logica.fabrica.Fabrica;
 import logica.interfaces.IAdministracion;
 
@@ -42,7 +44,7 @@ public class CrearTarifa extends javax.swing.JFrame {
         this.setResizable(false);
         this.crearEnvio = envio;
     }
-    
+
     public CrearTarifa(EditarPaquete editPaq) {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -225,16 +227,11 @@ public class CrearTarifa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TextPrecioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextPrecioFocusGained
-        if (TextPrecio.getText().equals("Ingrese el precio")) {
-            TextPrecio.setText(null);
-            TextPrecio.requestFocus();
-        }
+
     }//GEN-LAST:event_TextPrecioFocusGained
 
     private void TextPrecioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextPrecioFocusLost
-        if (TextPrecio.getText().length() == 0) {
-            TextPrecio.setText("Ingrese el precio");
-        }
+
     }//GEN-LAST:event_TextPrecioFocusLost
 
     private void TextPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextPrecioActionPerformed
@@ -242,16 +239,11 @@ public class CrearTarifa extends javax.swing.JFrame {
     }//GEN-LAST:event_TextPrecioActionPerformed
 
     private void TextNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextNombreFocusGained
-        if (TextNombre.getText().equals("Ingrese el nombre")) {
-            TextNombre.setText(null);
-            TextNombre.requestFocus();
-        }
+
     }//GEN-LAST:event_TextNombreFocusGained
 
     private void TextNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextNombreFocusLost
-        if (TextNombre.getText().length() == 0) {
-            TextNombre.setText("Ingrese el nombre");
-        }
+
     }//GEN-LAST:event_TextNombreFocusLost
 
     private void TextNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextNombreActionPerformed
@@ -264,9 +256,16 @@ public class CrearTarifa extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String nombreText = TextNombre.getText().trim();
-        if (TextNombre.getText().equals("Ingrese el nombre") || TextPrecio.getText().equals("Ingrese el precio") || nombreText.isEmpty()) {
+        if (this.TextNombre.getText().isBlank() || this.TextPrecio.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "El nombre y el precio no pueden ser vacios", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
+            ArrayList<Tarifa> listaTarifas = Fabrica.getInstancia().getControladorEnvio().obtenerTarifasEspeciales();
+            for (Tarifa tarifa : listaTarifas) {
+                if (tarifa.getNombre().equals(nombreText)) {
+                    JOptionPane.showMessageDialog(null, "Ya existe una tarifa con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
+                    return ;
+                }
+            }
             this.IA.crearUnaTarifa(TextNombre.getText().trim(), Float.parseFloat(TextPrecio.getText()));
             if (this.crearEnvio != null) {
                 this.dispose();
@@ -277,6 +276,8 @@ public class CrearTarifa extends javax.swing.JFrame {
             } else if (this.editPaquete != null) {
                 this.dispose();
                 this.editPaquete.actualizarComboBoxTrfEsp();
+            } else {
+                this.dispose();
             }
         }
     }//GEN-LAST:event_jButton2ActionPerformed

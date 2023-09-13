@@ -74,7 +74,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "El envío ya está confirmado", "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    public void actualizarTarifa(int idTarifa) {
+    public void actualizarDetalleEnvio(int idTarifa, boolean esEspecial, boolean esFragil) {
         if (idTarifa < 4) {
             if (idTarifa == 1) {
                 this.jTextFieldTarifa.setText("<5kg");
@@ -92,7 +92,8 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                 }
             }
         }
-
+        this.envio.getPaquete().setEsEspecial(esEspecial);
+        this.envio.getPaquete().setEsFragil(esFragil);
     }
 
     public void AccederDetallesEnvio(int idEnvio) {
@@ -881,7 +882,6 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel3MousePressed
 
     private void jButtonEditarPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarPaqueteActionPerformed
-        // TODO add your handling code here:
         EditarPaquete editPaquete = new EditarPaquete(idPaquete, envio, listEnvios, this);
         editPaquete.setVisible(true);
     }//GEN-LAST:event_jButtonEditarPaqueteActionPerformed
