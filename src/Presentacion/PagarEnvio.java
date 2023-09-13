@@ -19,6 +19,7 @@ public class PagarEnvio extends javax.swing.JFrame {
     private IAdministracion IP;
     private int idPago = 0;
     private EnviosSinPagar envios = null;
+    private VerDetallesEnvio verDetallesEnv = null;
     
     /**
      * Creates new form PagarEnvio
@@ -34,6 +35,20 @@ public class PagarEnvio extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Images/logo.png")).getImage());
         this.IP = Fabrica.getInstancia().getControladorPago();
+        this.jTextPrecio.setText(String.valueOf(precio));
+        this.jTextPrecio.setEditable(false);
+        this.setResizable(false);
+        this.cargarMetodosPago();
+    }
+    
+    public PagarEnvio(int idPago, float precio, VerDetallesEnvio verDetalles) {
+        initComponents();
+        this.idPago = idPago;
+        this.setTitle("MLEntregas");
+        this.setLocationRelativeTo(null);
+        this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Images/logo.png")).getImage());
+        this.IP = Fabrica.getInstancia().getControladorPago();
+        this.verDetallesEnv = verDetalles;
         this.jTextPrecio.setText(String.valueOf(precio));
         this.jTextPrecio.setEditable(false);
         this.setResizable(false);
@@ -226,13 +241,15 @@ public class PagarEnvio extends javax.swing.JFrame {
         this.dispose();
         if(this.envios != null){
             this.envios.ActualizarLista();
+        } else if (this.verDetallesEnv != null) {
+            this.verDetallesEnv.actualizarJButtonPago();
         }
     }//GEN-LAST:event_jButtonPagarActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[], int idPago, float precio, VerDetallesEnvio verDetalles) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -259,7 +276,7 @@ public class PagarEnvio extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PagarEnvio(-1, 0, null).setVisible(true);
+                new PagarEnvio(idPago, precio, verDetalles).setVisible(true);
             }
         });
     }
