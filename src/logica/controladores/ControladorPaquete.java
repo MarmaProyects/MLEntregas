@@ -168,4 +168,9 @@ public class ControladorPaquete implements IEnvio {
     public ArrayList<Direccion> traerDirecciones() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public Envio obtenerEnvioPaquete(int idPaquete) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

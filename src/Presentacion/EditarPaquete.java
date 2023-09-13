@@ -20,6 +20,7 @@ public class EditarPaquete extends javax.swing.JFrame {
     private Paquete paquete;
     private ListaEnvios listaEnv;
     private Fabrica fb;
+    private ListarPaquetesEnSecciones listadoP_S = null;
 
     /**
      * Creates new form EditarPaquete
@@ -38,6 +39,24 @@ public class EditarPaquete extends javax.swing.JFrame {
         this.textFieldPeso.setText(String.valueOf(paquete.getPeso()));
         this.checkBoxFragil.setSelected(paquete.isEsFragil());
         this.setIdTarifa();
+    }
+
+    public EditarPaquete(int idPaquete, ListarPaquetesEnSecciones listadoP_Secciones) {
+        initComponents();
+        this.setTitle("MLEntregas");
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        this.fb = Fabrica.getInstancia();
+        this.idPaquete = idPaquete;
+        this.listadoP_S = listadoP_Secciones;
+        this.paquete = fb.getControladorPaquete().traerPaquete(idPaquete);
+        this.textAreaDescripcion.setText(paquete.getDescripcion());
+        this.textFieldPeso.setText(String.valueOf(paquete.getPeso()));
+        this.checkBoxFragil.setSelected(paquete.isEsFragil());
+        this.setIdTarifa();
+        this.envio = Fabrica.getInstancia().getControladorEnvio().obtenerEnvioPaquete(idPaquete);
+        
+        
     }
 
     /**
@@ -379,8 +398,12 @@ public class EditarPaquete extends javax.swing.JFrame {
         this.fb.getControladorEnvio().editarEnvio(envio.getIdEnvio(), this.idTarifa, envio.getDireccionOrigen().getIdDireccion(),
                 envio.getDireccionDestino().getIdDireccion(), envio.getPago().getIdPago());
         JOptionPane.showMessageDialog(null, "Edición confirmada", "Confirmación exitosa", JOptionPane.INFORMATION_MESSAGE);
-        if(this.listaEnv != null){
+        if (this.listaEnv != null) {
             this.listaEnv.actualizarListaDeEnvios();
+        }
+        if(listadoP_S != null){
+        listadoP_S.actualizarDatosSeccion();
+        this.setVisible(false);
         }
     }//GEN-LAST:event_buttonConfirmarActionPerformed
 
@@ -411,10 +434,10 @@ public class EditarPaquete extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel7MousePressed
 
     private void buttonCrearTarifasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCrearTarifasActionPerformed
-        
+
     }//GEN-LAST:event_buttonCrearTarifasActionPerformed
 
-    private void setIdTarifa(){
+    private void setIdTarifa() {
         if (!textFieldPeso.getText().isBlank()) {
             float peso = Float.parseFloat(textFieldPeso.getText().trim());
             if (peso > 15) {
@@ -433,6 +456,7 @@ public class EditarPaquete extends javax.swing.JFrame {
             }
         }
     }
+
     private int obtTarifasNormales(float peso) {
         if (peso > 0 && peso <= 5) {
             return 1;
