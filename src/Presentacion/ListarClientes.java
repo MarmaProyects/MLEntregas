@@ -231,7 +231,6 @@ public class ListarClientes extends javax.swing.JFrame {
         // TODO add your handling code here:
         CrearCliente crearCli = new CrearCliente();
         crearCli.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_crearClienteButtonActionPerformed
 
     public void actualizarClientes(){
