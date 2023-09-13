@@ -6,6 +6,7 @@ package Presentacion;
 
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import logica.clases.Localidad;
 import logica.clases_customs.CenterRenderer;
@@ -239,7 +240,7 @@ public class ListarLocalidades extends javax.swing.JFrame {
 
             @Override
             public void onDelete(int id, int row) {
-
+                JOptionPane.showMessageDialog(null, "No se puede eliminar la localidad", "Error", JOptionPane.ERROR_MESSAGE);
             }
         };
         this.tableLocalidades.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());

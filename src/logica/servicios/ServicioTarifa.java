@@ -65,7 +65,7 @@ public class ServicioTarifa {
             int rowsAffected = query.executeUpdate();
             return rowsAffected > 0;
         } catch (SQLException e) {
-            LOGGER.severe("Error: " + e);
+            LOGGER.info(e.getMessage());
             return false;
         }
     }

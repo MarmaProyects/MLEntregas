@@ -4,9 +4,11 @@
  */
 package Presentacion;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import logica.clases.Envio;
 import logica.clases.Paquete;
+import logica.clases.Tarifa;
 import logica.fabrica.Fabrica;
 
 /**
@@ -19,13 +21,15 @@ public class EditarPaquete extends javax.swing.JFrame {
     private Envio envio;
     private Paquete paquete;
     private ListaEnvios listaEnv;
+    private VerDetallesEnvio verDetallesEnv;
+    private ArrayList<Tarifa> tarifEspeciales;
     private Fabrica fb;
     private ListarPaquetesEnSecciones listadoP_S = null;
 
     /**
      * Creates new form EditarPaquete
      */
-    public EditarPaquete(int idPaquete, Envio envio, ListaEnvios listEnv) {
+    public EditarPaquete(int idPaquete, Envio envio, ListaEnvios listEnv, VerDetallesEnvio verDetallesEnv) {
         initComponents();
         this.setTitle("MLEntregas");
         this.setLocationRelativeTo(null);
@@ -33,12 +37,26 @@ public class EditarPaquete extends javax.swing.JFrame {
         this.fb = Fabrica.getInstancia();
         this.idPaquete = idPaquete;
         this.envio = envio;
+        this.verDetallesEnv = verDetallesEnv;
+        this.idTarifa = envio.getTarifa().getIdTarifa();
+        this.tarifEspeciales = this.fb.getControladorEnvio().obtenerTarifasEspeciales();
         this.listaEnv = listEnv;
         this.paquete = fb.getControladorPaquete().traerPaquete(idPaquete);
         this.textAreaDescripcion.setText(paquete.getDescripcion());
         this.textFieldPeso.setText(String.valueOf(paquete.getPeso()));
         this.checkBoxFragil.setSelected(paquete.isEsFragil());
-        this.setIdTarifa();
+        this.checkBoxEspecial.setEnabled(false);
+        this.checkBoxEspecial.setSelected(true);
+        for (Tarifa tarifaEsp : this.tarifEspeciales) {
+            this.comboBoxTarifas.addItem(tarifaEsp.getNombre());
+            if (this.idTarifa == tarifaEsp.getIdTarifa()) {
+                this.comboBoxTarifas.setSelectedIndex(this.comboBoxTarifas.getItemCount() - 1);
+            }
+        }
+        if (!this.envio.getPaquete().isEsEspecial()) {
+            this.panelEspecial.setVisible(false);
+            this.checkBoxEspecial.setSelected(false);
+        }
     }
 
     public EditarPaquete(int idPaquete, ListarPaquetesEnSecciones listadoP_Secciones) {
@@ -74,8 +92,8 @@ public class EditarPaquete extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        checkBoxFragil = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
+        checkBoxFragil = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         textFieldPeso = new javax.swing.JTextField();
@@ -83,7 +101,7 @@ public class EditarPaquete extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         textAreaDescripcion = new javax.swing.JTextArea();
-        jPanel7 = new javax.swing.JPanel();
+        panelEspecial = new javax.swing.JPanel();
         panelTarifas = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         comboBoxTarifas = new javax.swing.JComboBox<>();
@@ -144,22 +162,20 @@ public class EditarPaquete extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(checkBoxFragil))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(checkBoxFragil)
+                .addGap(23, 23, 23))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(9, 9, 9)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addContainerGap(13, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(checkBoxFragil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(12, 12, 12))
+            .addComponent(checkBoxFragil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
@@ -229,29 +245,27 @@ public class EditarPaquete extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16))))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(6, 6, 6))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
-
-        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jPanel1, jPanel2});
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel6.setText("Tarifas especiales:");
@@ -274,7 +288,7 @@ public class EditarPaquete extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboBoxTarifas, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(buttonCrearTarifas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonCrearTarifas, javax.swing.GroupLayout.PREFERRED_SIZE, 143, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelTarifasLayout.setVerticalGroup(
@@ -308,27 +322,27 @@ public class EditarPaquete extends javax.swing.JFrame {
                 .addContainerGap(9, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelEspecialLayout = new javax.swing.GroupLayout(panelEspecial);
+        panelEspecial.setLayout(panelEspecialLayout);
+        panelEspecialLayout.setHorizontalGroup(
+            panelEspecialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelEspecialLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(panelEspecialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelEspecialLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(checkBoxEspecial)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(panelTarifas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        panelEspecialLayout.setVerticalGroup(
+            panelEspecialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelEspecialLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panelEspecialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(checkBoxEspecial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
@@ -356,7 +370,7 @@ public class EditarPaquete extends javax.swing.JFrame {
                 .addGap(0, 123, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 124, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -374,15 +388,15 @@ public class EditarPaquete extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
                 .addComponent(jLabel5)
                 .addGap(33, 33, 33)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
+                .addComponent(panelEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(17, 17, 17))
         );
 
         pack();
@@ -393,6 +407,7 @@ public class EditarPaquete extends javax.swing.JFrame {
         Paquete paqueteEnv = this.fb.getControladorPaquete().traerPaquete(idPaquete);
         int esFragil = checkBoxFragil.isSelected() ? 1 : 0;
         int esEspecial = checkBoxEspecial.isSelected() ? 1 : 0;
+        this.setIdTarifa();
         this.fb.getControladorPaquete().editarPaquete(paqueteEnv.getIdPaquete(), Float.parseFloat(textFieldPeso.getText().trim()),
                 this.textAreaDescripcion.getText().trim(), esFragil, esEspecial);
         this.fb.getControladorEnvio().editarEnvio(envio.getIdEnvio(), this.idTarifa, envio.getDireccionOrigen().getIdDireccion(),
@@ -400,6 +415,10 @@ public class EditarPaquete extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Edición confirmada", "Confirmación exitosa", JOptionPane.INFORMATION_MESSAGE);
         if (this.listaEnv != null) {
             this.listaEnv.actualizarListaDeEnvios();
+            this.dispose();
+        }
+        if (this.verDetallesEnv != null) {
+            this.verDetallesEnv.actualizarDetalleEnvio(this.idTarifa, checkBoxEspecial.isSelected(), checkBoxFragil.isSelected());
         }
         if(listadoP_S != null){
         listadoP_S.actualizarDatosSeccion();
@@ -434,24 +453,21 @@ public class EditarPaquete extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel7MousePressed
 
     private void buttonCrearTarifasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCrearTarifasActionPerformed
-
+        CrearTarifa crearTrf = new CrearTarifa(this);
+        crearTrf.setVisible(true);
     }//GEN-LAST:event_buttonCrearTarifasActionPerformed
 
     private void setIdTarifa() {
         if (!textFieldPeso.getText().isBlank()) {
             float peso = Float.parseFloat(textFieldPeso.getText().trim());
             if (peso > 15) {
-                this.labelEspecial.setVisible(true);
-                this.checkBoxEspecial.setVisible(true);
-                this.checkBoxEspecial.setEnabled(false);
+                this.panelEspecial.setVisible(true);
                 this.checkBoxEspecial.setSelected(true);
-                this.panelTarifas.setVisible(true);
-            } else {
-                this.labelEspecial.setVisible(false);
-                this.checkBoxEspecial.setVisible(false);
                 this.checkBoxEspecial.setEnabled(false);
+                this.idTarifa = this.obtTarifasEspeciales();
+            } else {
+                this.panelEspecial.setVisible(false);
                 this.checkBoxEspecial.setSelected(false);
-                this.panelTarifas.setVisible(false);
                 this.idTarifa = this.obtTarifasNormales(peso);
             }
         }
@@ -467,10 +483,28 @@ public class EditarPaquete extends javax.swing.JFrame {
         }
     }
 
+    private int obtTarifasEspeciales() {
+        for (Tarifa tarifaEspecial : this.tarifEspeciales) {
+            if (comboBoxTarifas.getSelectedItem().equals(tarifaEspecial.getNombre())) {
+                idTarifa = tarifaEspecial.getIdTarifa();
+                break;
+            }
+        }
+        return idTarifa;
+    }
+
+    public void actualizarComboBoxTrfEsp() {
+        this.tarifEspeciales = this.fb.getControladorEnvio().obtenerTarifasEspeciales();
+        this.comboBoxTarifas.removeAllItems();
+        for (Tarifa tarifEspecial : this.tarifEspeciales) {
+            this.comboBoxTarifas.addItem(tarifEspecial.getNombre());
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[], int idPaquete, Envio envio, ListaEnvios listEnv) {
+    public static void main(String args[], int idPaquete, Envio envio, ListaEnvios listEnv, VerDetallesEnvio verDetalles) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -497,7 +531,7 @@ public class EditarPaquete extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditarPaquete(idPaquete, envio, listEnv).setVisible(true);
+                new EditarPaquete(idPaquete, envio, listEnv, verDetalles).setVisible(true);
             }
         });
     }
@@ -521,9 +555,9 @@ public class EditarPaquete extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelEspecial;
+    private javax.swing.JPanel panelEspecial;
     private javax.swing.JPanel panelTarifas;
     private javax.swing.JTextArea textAreaDescripcion;
     private javax.swing.JTextField textFieldPeso;

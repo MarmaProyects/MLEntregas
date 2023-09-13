@@ -4,12 +4,12 @@
  */
 package Presentacion;
 
-import java.awt.FlowLayout;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import logica.clases.Direccion;
 import logica.clases.Envio;
 import logica.clases.Estado;
+import logica.clases.Tarifa;
 import logica.dataTypes.TipoEstado;
 import logica.fabrica.Fabrica;
 import logica.interfaces.IEnvio;
@@ -25,6 +25,8 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
     private ListaEnvios listEnvios;
     private int idEnvio;
     private int idPaquete;
+    private Envio envio;
+    private ArrayList<Tarifa> tarifEspeciales = null;
     private ResumenMensualFacturacion vieneDeResumen = null;
 
     /**
@@ -38,8 +40,12 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         this.idEnvio = id;
         this.fb = Fabrica.getInstancia();
         this.IE = fb.getControladorEnvio();
+        this.envio = IE.verDetallesDelEnvio(idEnvio);
         this.listEnvios = listEnv;
         AccederDetallesEnvio(id);
+        if (this.envio.getPago().getPago() != null) {
+            this.jButtonPagar.setEnabled(false);
+        }
     }
 
     public VerDetallesEnvio(int id, ResumenMensualFacturacion deResumen) {
@@ -50,8 +56,10 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         this.idEnvio = id;
         this.fb = Fabrica.getInstancia();
         this.IE = fb.getControladorEnvio();
+        this.envio = IE.verDetallesDelEnvio(idEnvio);
         this.vieneDeResumen = deResumen;
         AccederDetallesEnvio(id);
+        this.jButtonPagar.setEnabled(false);
     }
 
     public void llamarAlertaEnvioConfirmado() {
@@ -66,8 +74,30 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "El envío ya está confirmado", "Error", JOptionPane.ERROR_MESSAGE);
     }
 
+    public void actualizarDetalleEnvio(int idTarifa, boolean esEspecial, boolean esFragil) {
+        if (idTarifa < 4) {
+            if (idTarifa == 1) {
+                this.jTextFieldTarifa.setText("<5kg");
+            } else if (idTarifa == 2) {
+                this.jTextFieldTarifa.setText("5-10kg");
+            } else {
+                this.jTextFieldTarifa.setText("10-15kg");
+            }
+        } else {
+            this.tarifEspeciales = this.fb.getControladorEnvio().obtenerTarifasEspeciales();
+            for (Tarifa tarifEsp : this.tarifEspeciales) {
+                if (tarifEsp.getIdTarifa() == idTarifa) {
+                    this.jTextFieldTarifa.setText(tarifEsp.getNombre());
+                    break;
+                }
+            }
+        }
+        this.envio.getPaquete().setEsEspecial(esEspecial);
+        this.envio.getPaquete().setEsFragil(esFragil);
+    }
+
     public void AccederDetallesEnvio(int idEnvio) {
-        Envio envio = IE.verDetallesDelEnvio(idEnvio);
+        this.envio = this.fb.getControladorEnvio().verDetallesDelEnvio(idEnvio);
         idPaquete = envio.getPaquete().getIdPaquete();
         ArrayList<Estado> estados = envio.getEstados();
         int idUltimo = 0;
@@ -78,7 +108,9 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         }
         Estado estadoFinal = Fabrica.getInstancia().getControladorEstado().obtenerElEstado(idUltimo, idEnvio);
         if (estadoFinal != null) {
-            this.jComboBoxEstados.addItem(estadoFinal.getTipo().getEstado());
+            if (this.jComboBoxEstados.getItemCount() == 0) {
+                this.jComboBoxEstados.addItem(estadoFinal.getTipo().getEstado());
+            }            
             this.jTextFieldIDEnvio.setText(String.valueOf(envio.getPago().getPrecio()));
             this.jTextFieldIDPaquete.setText(Integer.toString(envio.getPaquete().getIdPaquete()));
             this.jTextFieldTarifa.setText(envio.getTarifa().getNombre());
@@ -110,11 +142,12 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             this.jTextFieldCalle2Receptor.setEditable(false);
             this.jTextFieldApartamentoReceptor.setEditable(false);
             this.jTextFieldNroPuertaReceptor.setEditable(false);
-            if (estadoFinal.getTipo().getEstado().equals("Cancelado")) {
+            if (estadoFinal.getTipo().getEstado().equals("Cancelado") || estadoFinal.getTipo().getEstado().equals("Entregado")) {
                 this.buttonConfirmarEnvio.setEnabled(false);
                 this.buttonCancelarEnvio.setEnabled(false);
                 this.jButtonEditarEnvio.setEnabled(false);
                 this.jButtonEditarPaquete.setEnabled(false);
+                this.jButtonPagar.setEnabled(false);
             }
         } else {
             llamarAlertaEstadoNoEncontrado();
@@ -669,7 +702,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             }
         });
 
-        jButtonPagar.setText("Pagar envíon");
+        jButtonPagar.setText("Pagar envío");
         jButtonPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonPagarActionPerformed(evt);
@@ -852,9 +885,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel3MousePressed
 
     private void jButtonEditarPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarPaqueteActionPerformed
-        // TODO add your handling code here:
-        Envio envio = IE.verDetallesDelEnvio(idEnvio);
-        EditarPaquete editPaquete = new EditarPaquete(idPaquete, envio, listEnvios);
+        EditarPaquete editPaquete = new EditarPaquete(idPaquete, envio, listEnvios, this);
         editPaquete.setVisible(true);
     }//GEN-LAST:event_jButtonEditarPaqueteActionPerformed
 
@@ -864,13 +895,12 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
 
     private void buttonCancelarEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarEnvioActionPerformed
         if (!labelTitulo.getText().equals("    EDITAR ENVÍO")) {
-            Envio envio = IE.verDetallesDelEnvio(idEnvio);
             ArrayList<Estado> estados = envio.getEstados();
             Boolean existeEstado = false;
             for (Estado estado : estados) {
                 if (estado.getTipo() == TipoEstado.Cancelado || estado.getTipo() == TipoEstado.Entregado || estado.getTipo() == TipoEstado.ListoParaRetirar) {
                     existeEstado = true;
-                }
+                } 
             }
             if (existeEstado == false) {
                 int opt = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea cancelar el envío?",
@@ -887,9 +917,10 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                     this.buttonCancelarEnvio.setEnabled(false);
                     this.jButtonEditarEnvio.setEnabled(false);
                     this.jButtonEditarPaquete.setEnabled(false);
+                    this.jButtonPagar.setEnabled(false);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "El envio ya fue Cancelado/Entregado", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No se puede cancelar este envío", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             jButtonEditarEnvio.setEnabled(true);
@@ -904,7 +935,6 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
 
     private void buttonConfirmarEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarEnvioActionPerformed
         if (!labelTitulo.getText().equals("    EDITAR ENVÍO")) {
-            Envio envio = IE.verDetallesDelEnvio(idEnvio);
             ArrayList<Estado> estados = envio.getEstados();
             Boolean existeEstado = false;
             for (Estado estado : estados) {
@@ -913,13 +943,21 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                 }
             }
             if (existeEstado == false) {
-                int opt = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea confirmar el envío?",
-                        "Confirmar envío", JOptionPane.YES_NO_OPTION);
-                if (opt == 0) {
-                    this.IE.crearEstado(idEnvio, "Entregado", "Paquete entregado");
-                    llamarAlertaEnvioConfirmado();
-                    this.jComboBoxEstados.removeAllItems();
-                    this.jComboBoxEstados.addItem("Entregado");
+                if (!this.jButtonPagar.isEnabled()) {
+                    int opt = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea confirmar el envío?",
+                            "Confirmar envío", JOptionPane.YES_NO_OPTION);
+                    if (opt == 0) {
+                        this.IE.crearEstado(idEnvio, "Entregado", "Paquete entregado");
+                        llamarAlertaEnvioConfirmado();
+                        this.jComboBoxEstados.removeAllItems();
+                        this.jComboBoxEstados.addItem("Entregado");
+                        this.buttonConfirmarEnvio.setEnabled(false);
+                        this.buttonCancelarEnvio.setEnabled(false);
+                        this.jButtonEditarEnvio.setEnabled(false);
+                        this.jButtonEditarPaquete.setEnabled(false);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Para confirmar un envío debe haber sido pagado", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
                 llamarAlertaEstadoYaConfirmado();
@@ -929,7 +967,6 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                     && this.jTextFieldNroPuertaEmisor.getText().trim().equals(this.jTextFieldNroPuertaReceptor.getText().trim())) {
                 JOptionPane.showMessageDialog(null, "Las calles y números de puerta no pueden ser iguales", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                Envio envio = IE.verDetallesDelEnvio(idEnvio);
                 //Se edita la dirección origen
                 Direccion dirOrigen = this.fb.getControladorDireccion().traerDireccion(envio.getDireccionOrigen().getIdDireccion());
                 this.fb.getControladorDireccion().editarDireccion(dirOrigen.getIdDireccion(), this.jTextFieldCalle1Emisor.getText().trim(),
@@ -949,24 +986,22 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                     }
                 }
                 Estado estadoFinal = Fabrica.getInstancia().getControladorEstado().obtenerElEstado(idUltimo, idEnvio);
-
+                String estadoNuevo = "";
                 if (!estadoFinal.getTipo().getEstado().equals(jComboBoxEstados.getSelectedItem().toString())) {
-                    String estadoNuevo = jComboBoxEstados.getSelectedItem().toString().equals("Listo para entregar") ? "ListoParaRetirar" : "EnCamino";
+                    estadoNuevo = jComboBoxEstados.getSelectedItem().toString().equals("Listo para entregar") ? "ListoParaRetirar" : "EnCamino";
                     this.IE.crearEstado(idEnvio, estadoNuevo, "");
                 }
                 String comboBoxItem = jComboBoxEstados.getSelectedItem().toString();
                 this.jComboBoxEstados.removeAllItems();
+                this.jComboBoxEstados.getItemCount();
                 this.jComboBoxEstados.addItem(comboBoxItem);
-
                 JOptionPane.showMessageDialog(null, "Edición confirmada", "Edición exitosa", JOptionPane.INFORMATION_MESSAGE);
                 jButtonEditarEnvio.setEnabled(true);
                 labelTitulo.setText("DETALLES DEL ENVÍO");
                 buttonCancelarEnvio.setText("Cancelar envío");
                 buttonConfirmarEnvio.setText("Confirmar envío");
-                this.jComboBoxEstados.removeAllItems();
                 this.AccederDetallesEnvio(idEnvio);
             }
-
         }
         if (this.listEnvios != null) {
             this.listEnvios.actualizarListaDeEnvios();
@@ -991,8 +1026,8 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
         if (jComboBoxEstados.getSelectedItem().toString().equals("En preparación")) {
             jComboBoxEstados.addItem("En camino");
             jComboBoxEstados.addItem("Listo para entregar");
-        } else if (jComboBoxEstados.getSelectedItem().toString().equals("Listo para retirar")) {
-            jComboBoxEstados.addItem("En camino");
+        } else if (jComboBoxEstados.getSelectedItem().toString().equals("En camino")) {
+            jComboBoxEstados.addItem("Listo para entregar");
         }
     }//GEN-LAST:event_jButtonEditarEnvioActionPerformed
 
@@ -1023,10 +1058,13 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed
-        Envio envio = IE.verDetallesDelEnvio(idEnvio);
-        PagarEnvio pagarEnvio = new PagarEnvio(this.idEnvio, envio.getPago().getPrecio(), null);
+        PagarEnvio pagarEnvio = new PagarEnvio(this.idEnvio, envio.getPago().getPrecio(), this);
         pagarEnvio.setVisible(true);
     }//GEN-LAST:event_jButtonPagarActionPerformed
+
+    public void actualizarJButtonPago() {
+        this.jButtonPagar.setEnabled(false);
+    }
 
     /**
      * @param args the command line arguments

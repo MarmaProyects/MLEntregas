@@ -129,10 +129,10 @@ public class ServicioEnvio {
         ArrayList<Estado> estados;
         Envio envioDetalles = null;
         try {
-            PreparedStatement listadoEnvios = conexion.prepareStatement("SELECT DISTINCT E.id as IdEnvio, PG.id AS IdPago, PG.precio AS precio, T.id AS IdTarifa, T.nombre AS NombreTarifa, T.precioBase AS PrecioTarifa,"
+            PreparedStatement listadoEnvios = conexion.prepareStatement("SELECT DISTINCT E.id as IdEnvio, PG.id AS IdPago, PG.metodoPago AS Pago, PG.precio AS precio, T.id AS IdTarifa, T.nombre AS NombreTarifa, T.precioBase AS PrecioTarifa,"
                     + " C.cedula AS CedulaClienteEmisor,"
                     + " C2.cedula AS CedulaClienteReceptor, C.nombre AS NombreEmisor,C.apellido AS ApellidoEmisor,"
-                    + " C2.nombre AS NombreReceptor, C2.apellido AS ApellidoReceptor, P.id AS IdPaquete,"
+                    + " C2.nombre AS NombreReceptor, C2.apellido AS ApellidoReceptor, P.id AS IdPaquete, P.peso AS peso, P.esEspecial AS esEspecial, P.esFragil AS esFragil,"
                     + " P.descripcion AS DescripcionPaquete, D.id AS idDireccionEmisor, D.calle AS CalleEmisor, D.calle2 AS Calle2Emisor,"
                     + " D.nroPuerta AS NroPuertaEmisor, D.apartamento AS ApartamentoEmisor, D2.id AS idDireccionReceptor, D2.calle AS CalleReceptor,"
                     + " D2.calle2 AS Calle2Receptor, D2.nroPuerta AS NroPuertaReceptor, D2.apartamento AS ApartamentoReceptor"
@@ -155,12 +155,18 @@ public class ServicioEnvio {
                             reslistadoEstados.getTimestamp("fechaEstado"),
                             reslistadoEstados.getInt("id")));
                 }
-                direccionDestino = new Direccion(resListadoEnvios.getString("CalleReceptor"), resListadoEnvios.getString("Calle2Receptor"), resListadoEnvios.getString("ApartamentoReceptor"), resListadoEnvios.getInt("NroPuertaReceptor"), resListadoEnvios.getInt("idDireccionReceptor"), null, 0);
-                direccionOrigen = new Direccion(resListadoEnvios.getString("CalleEmisor"), resListadoEnvios.getString("Calle2Emisor"), resListadoEnvios.getString("ApartamentoEmisor"), resListadoEnvios.getInt("NroPuertaEmisor"), resListadoEnvios.getInt("idDireccionEmisor"), null, 0);
+                direccionDestino = new Direccion(resListadoEnvios.getString("CalleReceptor"), resListadoEnvios.getString("Calle2Receptor"),
+                        resListadoEnvios.getString("ApartamentoReceptor"), resListadoEnvios.getInt("NroPuertaReceptor"), resListadoEnvios.getInt("idDireccionReceptor"), null, 0);
+                
+                direccionOrigen = new Direccion(resListadoEnvios.getString("CalleEmisor"), resListadoEnvios.getString("Calle2Emisor"), 
+                        resListadoEnvios.getString("ApartamentoEmisor"), resListadoEnvios.getInt("NroPuertaEmisor"), resListadoEnvios.getInt("idDireccionEmisor"), null, 0);
+                
                 clienteEmisor = new Cliente(resListadoEnvios.getInt("CedulaClienteEmisor"), resListadoEnvios.getString("NombreEmisor"), resListadoEnvios.getString("ApellidoEmisor"), null);
                 clienteReceptor = new Cliente(resListadoEnvios.getInt("CedulaClienteReceptor"), resListadoEnvios.getString("NombreReceptor"), resListadoEnvios.getString("ApellidoReceptor"), null);
-                paquete = new Paquete(resListadoEnvios.getString("DescripcionPaquete"), 0, true, true, resListadoEnvios.getInt("IdPaquete"), null);
-                pago = new Pago(resListadoEnvios.getInt("precio"), null, null, resListadoEnvios.getInt("IdPago"));
+                
+                paquete = new Paquete(resListadoEnvios.getString("DescripcionPaquete"), resListadoEnvios.getFloat("peso"), resListadoEnvios.getBoolean("esFragil"), resListadoEnvios.getBoolean("esEspecial"), resListadoEnvios.getInt("IdPaquete"), null);
+                pago = new Pago(resListadoEnvios.getInt("precio"), resListadoEnvios.getString("Pago") != null ? 
+                        MetodoPago.valueOf(resListadoEnvios.getString("pago")) : null, null, resListadoEnvios.getInt("IdPago"));
                 tarifa = new Tarifa(resListadoEnvios.getInt("PrecioTarifa"), resListadoEnvios.getString("NombreTarifa"), resListadoEnvios.getInt("IdTarifa"));
                 envioDetalles = new Envio(idEnvio, direccionDestino, direccionOrigen, tarifa, paquete, clienteEmisor, clienteReceptor, pago, estados);
             }
