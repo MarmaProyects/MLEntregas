@@ -14,7 +14,6 @@ import logica.clases.Paquete;
 import logica.clases.Seccion;
 import logica.clases.Tarifa;
 import logica.fabrica.Fabrica;
-import logica.interfaces.IEnvio;
 
 /**
  *
@@ -27,9 +26,6 @@ public class IngresarDatosDePrueba extends javax.swing.JFrame {
     public IngresarDatosDePrueba() {
         initComponents();
     }
-    private final IEnvio iE = Fabrica.getInstancia().getControladorEnvio();
-
-    ;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -165,7 +161,6 @@ public class IngresarDatosDePrueba extends javax.swing.JFrame {
         } else if (peso <= 15) {
             return 3;
         } else {
-            ;
             return tarifas.get(this.random.nextInt(tarifas.size()-1)).getIdTarifa();
         }
     }
@@ -384,15 +379,11 @@ public class IngresarDatosDePrueba extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IngresarDatosDePrueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IngresarDatosDePrueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IngresarDatosDePrueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(IngresarDatosDePrueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        
         //</editor-fold>
 
         /* Create and display the form */
