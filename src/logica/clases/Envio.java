@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public class Envio {
     private int idEnvio;
+    private int codigoRastreo;
     private Direccion direccionDestino, direccionOrigen;
     private Tarifa tarifa;
     private Paquete paquete;
@@ -20,8 +21,11 @@ public class Envio {
     private Pago pago;
     private ArrayList<Estado> estados; 
 
-    public Envio(int idEnvio, Direccion direccionDestino, Direccion direccionOrigen, Tarifa tarifa, Paquete paquete, Cliente clienteEmisor, Cliente clienteReceptor, Pago pago, ArrayList<Estado> estados) {
+    public Envio(int idEnvio, Direccion direccionDestino, Direccion direccionOrigen, 
+            Tarifa tarifa, Paquete paquete, Cliente clienteEmisor, Cliente clienteReceptor, 
+            Pago pago, ArrayList<Estado> estados, int codigoRastreo) {
         this.idEnvio = idEnvio;
+        this.codigoRastreo = codigoRastreo;
         this.direccionDestino = direccionDestino;
         this.direccionOrigen = direccionOrigen;
         this.tarifa = tarifa;
@@ -32,6 +36,15 @@ public class Envio {
         this.estados = estados;
     }
 
+    public int getCodigoRastreo() {
+        return codigoRastreo;
+    }
+
+    public void setCodigoRastreo(int codigoRastreo) {
+        this.codigoRastreo = codigoRastreo;
+    }
+
+    
     public int getIdEnvio() {
         return idEnvio;
     }

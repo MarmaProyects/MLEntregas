@@ -103,7 +103,7 @@ public class ControladorPaquete implements IEnvio {
     }
 
     @Override
-    public int crearEnvio(int idPaquete, int idTarifa, int idDireOrigen, int idDireDestino, int idPago) {
+    public int crearEnvio(int idPaquete, int idTarifa, int idDireOrigen, int idDireDestino, int idPago, int codigoR) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -171,6 +171,11 @@ public class ControladorPaquete implements IEnvio {
 
     @Override
     public Envio obtenerEnvioPaquete(int idPaquete) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Envio obtenerCodigoRastreo(int codigoR) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

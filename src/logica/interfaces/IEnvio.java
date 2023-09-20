@@ -41,8 +41,9 @@ public interface IEnvio {
     public abstract ArrayList<Tarifa> obtenerTarifasEspeciales();
     public abstract Localidad traerIdLocalidadSucursal();
     public abstract void conexionLocalidad_Direccion(int idLocalidad, int idDireccion);
-    public abstract int crearEnvio(int idPaquete, int idTarifa, int idDireOrigen, int idDireDestino, int idPago); 
+    public abstract int crearEnvio(int idPaquete, int idTarifa, int idDireOrigen, int idDireDestino, int idPago, int codigoR); 
     public abstract void editarEnvio(int idEnvio, int idTarifa, int idDirOrigen, int idDirDestino, int idPago);
+    public abstract Envio obtenerCodigoRastreo(int codigoR);
     public abstract void conexionEnvio_Cliente(int idEnvio, int cedulaCliente, String tipoEntrega);
     public abstract void conexionEnvio_Estado(int idEnvio, int idEstado);
     public abstract int crearEstado(int idEnvio, String tipo, String comentario); 
