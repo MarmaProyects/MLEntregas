@@ -146,7 +146,7 @@ public class IngresarDatosDePrueba extends javax.swing.JFrame {
                 idTarifa,
                 direccionO.getIdDireccion(),
                 direccionD.getIdDireccion(),
-                Fabrica.getInstancia().getControladorPago().crearPago(idTarifa, localidades.get(idRandomLocalidad).getIdLocalidad()));
+                Fabrica.getInstancia().getControladorPago().crearPago(idTarifa, localidades.get(idRandomLocalidad).getIdLocalidad()), 0);
         Fabrica.getInstancia().getControladorEnvio().crearEstado(idPrimerEnvio, "preparando", "Envio en preparación");
         Fabrica.getInstancia().getControladorEnvio().conexionEnvio_Cliente(idPrimerEnvio, cliente.getCedula(), "Envio");
         Fabrica.getInstancia().getControladorEnvio().conexionEnvio_Cliente(idPrimerEnvio, segundoCliente.getCedula(), "Recibe");

@@ -7,6 +7,7 @@ package Presentacion;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.ImageIcon;
 import logica.clases.Cliente;
 import logica.clases.Localidad;
@@ -35,6 +36,7 @@ public class CrearEnvio extends javax.swing.JFrame {
     private ArrayList<Localidad> listaLocalidades = null;
     private ArrayList<Tarifa> listaTarifasEsp = null;
     private int idTarifa = 0;
+    private Random random = new Random();
 
     public CrearEnvio() {
         initComponents();
@@ -66,7 +68,21 @@ public class CrearEnvio extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    private int crearCodigoRastreo() {
+        int codigoRastreo = this.random.nextInt(888888888) + 111111111;
+        boolean existe = true;
+        while (existe) {
+            if(this.iE.obtenerCodigoRastreo(codigoRastreo) == null) {
+                existe = false;
+            } else {
+                codigoRastreo = this.random.nextInt(888888888) + 111111111;
+            }
+        }
+        
+        return codigoRastreo;
+    }
+    
     public void actualizarTarifasEspeciales() {
         this.limpiarTarifasEspeciales();
         this.cargarListaTarifasEspeciales();
@@ -1281,7 +1297,7 @@ public class CrearEnvio extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollPanelGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, 947, Short.MAX_VALUE)
+                .addComponent(scrollPanelGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, 866, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1323,7 +1339,7 @@ public class CrearEnvio extends javax.swing.JFrame {
             //Crear pago
             int idPago = this.iAP.crearPago(this.idTarifa, obtenerLocalidad(this.comboLocalidadDestino.getSelectedItem().toString()));
             //ENVIO
-            int idEnvio = this.iE.crearEnvio(idP, idTarifa, idDireccionOrigen, idDireccionDestino, idPago);
+            int idEnvio = this.iE.crearEnvio(idP, idTarifa, idDireccionOrigen, idDireccionDestino, idPago, this.crearCodigoRastreo());
             //CLIENTES
             if (!this.iA.verificarExisteClienteNuevo(Integer.parseInt(campoCedulaE.getText()))) {
                 this.iA.agregarCliente(Integer.parseInt(campoCedulaE.getText()), campoNombreE.getText(),

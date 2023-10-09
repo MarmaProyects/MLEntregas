@@ -107,8 +107,8 @@ public class ControladorEnvio implements IEnvio {
         this.servicioEnvio.crearLocalidad_Direccion(idLocalidad, idDireccion);
     }
 
-    public int crearEnvio(int idPaquete, int idTarifa, int idDireOrigen, int idDireDestino, int idPago) {
-        return this.servicioEnvio.crearUnEnvio(idPaquete, idTarifa, idDireOrigen, idDireDestino, idPago);
+    public int crearEnvio(int idPaquete, int idTarifa, int idDireOrigen, int idDireDestino, int idPago, int codigoR) {
+        return this.servicioEnvio.crearUnEnvio(idPaquete, idTarifa, idDireOrigen, idDireDestino, idPago, codigoR);
     }
 
     public void conexionEnvio_Cliente(int idEnvio, int cedulaCliente, String tipoEntrega) {
@@ -121,6 +121,10 @@ public class ControladorEnvio implements IEnvio {
 
     public int crearEstado(int idEnvio, String tipo, String comentario) {
         return this.servicioEnvio.crearUnEstado(idEnvio, tipo, comentario);
+    }
+    
+    public Envio obtenerCodigoRastreo(int codigoR) {
+        return this.servicioEnvio.obtenerUnCodigoRastreo(codigoR);
     }
 
     @Override

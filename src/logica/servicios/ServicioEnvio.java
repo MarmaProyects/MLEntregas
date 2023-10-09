@@ -43,7 +43,7 @@ public class ServicioEnvio {
         ArrayList<Estado> estados;
         ArrayList<Envio> listadoEnv = new ArrayList<Envio>();
         try {
-            PreparedStatement listadoEnvios = conexion.prepareStatement("SELECT E.id as IdEnvio, C.cedula AS Cedula,"
+            PreparedStatement listadoEnvios = conexion.prepareStatement("SELECT E.id as IdEnvio, E.codigoRastreo AS codigoR, C.cedula AS Cedula,"
                     + " C.nombre AS Nombre, C.apellido AS Apellido, P.id AS IdPaquete, P.descripcion AS DescripcionPaquete, "
                     + "DIRO.calle AS calleOrigen, DIRD.calle AS calleDestino, PAG.fechaPago AS fechaPago, PAG.precio AS precio, PAG.metodoPago AS metodoPago, PAG.id AS idPago"
                     + " FROM envio AS E, envio_cliente AS EC, cliente AS C, paquete AS P , direccion AS DIRO, direccion AS DIRD, pago AS PAG"
@@ -68,7 +68,7 @@ public class ServicioEnvio {
                 direccionD = new Direccion(resListadoEnvios.getString("calleDestino"), null, null, 0, 0, null, 0);
                 metodoPago = resListadoEnvios.getString("metodoPago") != null ? MetodoPago.valueOf(resListadoEnvios.getString("metodoPago")) : null;
                 pago = new Pago(resListadoEnvios.getFloat("precio"), metodoPago, resListadoEnvios.getTimestamp("fechaPago"), resListadoEnvios.getInt("idPago"));
-                listadoEnv.add(new Envio(resListadoEnvios.getInt("IdEnvio"), direccionD, direccionO, null, paquete, cliente, null, pago, estados));
+                listadoEnv.add(new Envio(resListadoEnvios.getInt("IdEnvio"), direccionD, direccionO, null, paquete, cliente, null, pago, estados, resListadoEnvios.getInt("codigoR")));
             }
         } catch (SQLException ex) {
             LOGGER.severe("Error en la consulta de obtener los usuarios" + ex);
@@ -86,7 +86,7 @@ public class ServicioEnvio {
         ArrayList<Envio> listadoEnv = new ArrayList<Envio>();
 
         try {
-            PreparedStatement listadoEnvios = conexion.prepareStatement("SELECT E.id as IdEnvio, C.cedula AS Cedula,"
+            PreparedStatement listadoEnvios = conexion.prepareStatement("SELECT E.id as IdEnvio, E.codigoRastreo AS codigoR, C.cedula AS Cedula,"
                     + " C.nombre AS Nombre, C.apellido AS Apellido, P.id AS IdPaquete, P.descripcion AS DescripcionPaquete, "
                     + "DIRO.calle AS calleOrigen, DIRD.calle AS calleDestino, PAG.fechaPago AS fechaPago, PAG.precio AS precio, PAG.metodoPago AS metodoPago, PAG.id AS idPago"
                     + " FROM envio AS E, envio_cliente AS EC, cliente AS C, paquete AS P , direccion AS DIRO, direccion AS DIRD, pago AS PAG"
@@ -112,7 +112,7 @@ public class ServicioEnvio {
                 direccionO = new Direccion(resListadoEnvios.getString("calleOrigen"), null, null, 0, 0, null, 0);
                 direccionD = new Direccion(resListadoEnvios.getString("calleDestino"), null, null, 0, 0, null, 0);
                 pago = new Pago(resListadoEnvios.getFloat("precio"), MetodoPago.valueOf(resListadoEnvios.getString("metodoPago")), resListadoEnvios.getTimestamp("fechaPago"), resListadoEnvios.getInt("idPago"));
-                listadoEnv.add(new Envio(resListadoEnvios.getInt("IdEnvio"), direccionD, direccionO, null, paquete, cliente, null, pago, estados));
+                listadoEnv.add(new Envio(resListadoEnvios.getInt("IdEnvio"), direccionD, direccionO, null, paquete, cliente, null, pago, estados, resListadoEnvios.getInt("codigoR")));
             }
         } catch (SQLException e) {
             LOGGER.severe("Error: " + e);
@@ -129,7 +129,7 @@ public class ServicioEnvio {
         ArrayList<Estado> estados;
         Envio envioDetalles = null;
         try {
-            PreparedStatement listadoEnvios = conexion.prepareStatement("SELECT DISTINCT E.id as IdEnvio, PG.id AS IdPago, PG.metodoPago AS Pago, PG.precio AS precio, T.id AS IdTarifa, T.nombre AS NombreTarifa, T.precioBase AS PrecioTarifa,"
+            PreparedStatement listadoEnvios = conexion.prepareStatement("SELECT DISTINCT E.id as IdEnvio, E.codigoRastreo AS codigoR, PG.id AS IdPago, PG.metodoPago AS Pago, PG.precio AS precio, T.id AS IdTarifa, T.nombre AS NombreTarifa, T.precioBase AS PrecioTarifa,"
                     + " C.cedula AS CedulaClienteEmisor,"
                     + " C2.cedula AS CedulaClienteReceptor, C.nombre AS NombreEmisor,C.apellido AS ApellidoEmisor,"
                     + " C2.nombre AS NombreReceptor, C2.apellido AS ApellidoReceptor, P.id AS IdPaquete, P.peso AS peso, P.esEspecial AS esEspecial, P.esFragil AS esFragil,"
@@ -157,18 +157,18 @@ public class ServicioEnvio {
                 }
                 direccionDestino = new Direccion(resListadoEnvios.getString("CalleReceptor"), resListadoEnvios.getString("Calle2Receptor"),
                         resListadoEnvios.getString("ApartamentoReceptor"), resListadoEnvios.getInt("NroPuertaReceptor"), resListadoEnvios.getInt("idDireccionReceptor"), null, 0);
-                
-                direccionOrigen = new Direccion(resListadoEnvios.getString("CalleEmisor"), resListadoEnvios.getString("Calle2Emisor"), 
+
+                direccionOrigen = new Direccion(resListadoEnvios.getString("CalleEmisor"), resListadoEnvios.getString("Calle2Emisor"),
                         resListadoEnvios.getString("ApartamentoEmisor"), resListadoEnvios.getInt("NroPuertaEmisor"), resListadoEnvios.getInt("idDireccionEmisor"), null, 0);
-                
+
                 clienteEmisor = new Cliente(resListadoEnvios.getInt("CedulaClienteEmisor"), resListadoEnvios.getString("NombreEmisor"), resListadoEnvios.getString("ApellidoEmisor"), null);
                 clienteReceptor = new Cliente(resListadoEnvios.getInt("CedulaClienteReceptor"), resListadoEnvios.getString("NombreReceptor"), resListadoEnvios.getString("ApellidoReceptor"), null);
-                
+
                 paquete = new Paquete(resListadoEnvios.getString("DescripcionPaquete"), resListadoEnvios.getFloat("peso"), resListadoEnvios.getBoolean("esFragil"), resListadoEnvios.getBoolean("esEspecial"), resListadoEnvios.getInt("IdPaquete"), null);
-                pago = new Pago(resListadoEnvios.getInt("precio"), resListadoEnvios.getString("Pago") != null ? 
-                        MetodoPago.valueOf(resListadoEnvios.getString("pago")) : null, null, resListadoEnvios.getInt("IdPago"));
+                pago = new Pago(resListadoEnvios.getInt("precio"), resListadoEnvios.getString("Pago") != null
+                        ? MetodoPago.valueOf(resListadoEnvios.getString("pago")) : null, null, resListadoEnvios.getInt("IdPago"));
                 tarifa = new Tarifa(resListadoEnvios.getInt("PrecioTarifa"), resListadoEnvios.getString("NombreTarifa"), resListadoEnvios.getInt("IdTarifa"));
-                envioDetalles = new Envio(idEnvio, direccionDestino, direccionOrigen, tarifa, paquete, clienteEmisor, clienteReceptor, pago, estados);
+                envioDetalles = new Envio(idEnvio, direccionDestino, direccionOrigen, tarifa, paquete, clienteEmisor, clienteReceptor, pago, estados, resListadoEnvios.getInt("codigoR"));
             }
         } catch (SQLException ex) {
             LOGGER.severe("Error: " + ex);
@@ -403,17 +403,18 @@ public class ServicioEnvio {
         }
     }
 
-    public int crearUnEnvio(int idPaquete, int idTarifa, int idDireOrigen, int idDireDestino, int idPago) {
+    public int crearUnEnvio(int idPaquete, int idTarifa, int idDireOrigen, int idDireDestino, int idPago, int codigoR) {
         int idEnvio = 0;
         try {
             PreparedStatement queryCrearEnvio = conexion.prepareStatement(""
                     + "INSERT INTO envio (idPaquete, idTarifa, idDireccionOrigen,"
-                    + " idDireccionDestino, idPago) VALUES (?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+                    + " idDireccionDestino, idPago, codigoRastreo) VALUES (?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
             queryCrearEnvio.setInt(1, idPaquete);
             queryCrearEnvio.setInt(2, idTarifa);
             queryCrearEnvio.setInt(3, idDireOrigen);
             queryCrearEnvio.setInt(4, idDireDestino);
             queryCrearEnvio.setInt(5, idPago);
+            queryCrearEnvio.setInt(6,codigoR);
             queryCrearEnvio.executeUpdate();
             // OBTENGO EL ID GENERADO 
             ResultSet idE = queryCrearEnvio.getGeneratedKeys();
@@ -494,6 +495,22 @@ public class ServicioEnvio {
                 return this.obtenerDetallesEnvio(idEnvioSeleccionado);
             }
         } catch (Exception e) {
+            LOGGER.severe("Error: " + e);
+        }
+        return null;
+    }
+
+    public Envio obtenerUnCodigoRastreo(int codigoR) {
+        int idEnvio = 0;
+        try {
+            PreparedStatement queryTraerIdEnvio = conexion.prepareStatement("SELECT "
+                    + "id FROM envio WHERE codigoRastreo='" + codigoR + "';");
+            ResultSet resultadoDeLaQuery = queryTraerIdEnvio.executeQuery();
+            while (resultadoDeLaQuery.next()) {
+                idEnvio = resultadoDeLaQuery.getInt("id");
+            }
+            return this.obtenerDetallesEnvio(idEnvio);
+        } catch (SQLException e) {
             LOGGER.severe("Error: " + e);
         }
         return null;
