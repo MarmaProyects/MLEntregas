@@ -50,8 +50,8 @@ public class ListarClientes extends javax.swing.JFrame {
             }
 
         };
-        this.tablaClientes.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
-        this.tablaClientes.getColumnModel().getColumn(3).setCellEditor(new TableActionCellEditor(event));
+        this.tablaClientes.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
+        this.tablaClientes.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(event));
         this.tablaClientes.getTableHeader().setReorderingAllowed(false);
         
         addWindowListener(new WindowAdapter(){
@@ -82,7 +82,6 @@ public class ListarClientes extends javax.swing.JFrame {
         jLabelIcon1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1098, 700));
         setMinimumSize(new java.awt.Dimension(1098, 700));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
@@ -134,14 +133,14 @@ public class ListarClientes extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cédula", "Nombre completo", "Teléfono", "Acción"
+                "Cédula", "Nombre completo", "Teléfono", "Correo", "Acción"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, true
+                false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -162,7 +161,8 @@ public class ListarClientes extends javax.swing.JFrame {
             tablaClientes.getColumnModel().getColumn(2).setResizable(false);
             tablaClientes.getColumnModel().getColumn(2).setPreferredWidth(55);
             tablaClientes.getColumnModel().getColumn(3).setResizable(false);
-            tablaClientes.getColumnModel().getColumn(3).setPreferredWidth(6);
+            tablaClientes.getColumnModel().getColumn(4).setResizable(false);
+            tablaClientes.getColumnModel().getColumn(4).setPreferredWidth(6);
         }
 
         jLabelIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -309,13 +309,14 @@ public class ListarClientes extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) this.tablaClientes.getModel();
         for (Cliente client : listaCliente) {
             int telefono = Integer.parseInt(client.getTelefono());
-            Object[] row = {String.format("%08d", client.getCedula()), client.getNombre() + " " + client.getApellido(), String.format("%09d", telefono)};
+            Object[] row = {String.format("%08d", client.getCedula()), client.getNombre() + " " + client.getApellido(), String.format("%09d", telefono), client.getCorreo()};
             modelo.addRow(row);
         }
         this.tablaClientes.getColumnModel().getColumn(0).setCellRenderer(new CenterRenderer());
         this.tablaClientes.getColumnModel().getColumn(1).setCellRenderer(new CenterRenderer());
         this.tablaClientes.getColumnModel().getColumn(2).setCellRenderer(new CenterRenderer());
         this.tablaClientes.getColumnModel().getColumn(3).setCellRenderer(new CenterRenderer());
+        this.tablaClientes.getColumnModel().getColumn(4).setCellRenderer(new CenterRenderer());
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

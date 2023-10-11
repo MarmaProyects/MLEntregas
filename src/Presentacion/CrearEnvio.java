@@ -237,22 +237,26 @@ public class CrearEnvio extends javax.swing.JFrame {
         labelNombreR = new javax.swing.JLabel();
         labelCedulaR = new javax.swing.JLabel();
         labelTelefonoR = new javax.swing.JLabel();
+        jLabelCorreoR = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         campoCedulaR = new javax.swing.JTextField();
         campoNombreR = new javax.swing.JTextField();
         campoApellidoR = new javax.swing.JTextField();
         campoTelefonoR = new javax.swing.JTextField();
+        campoCorreoR = new javax.swing.JTextField();
         panelClienteEmisor = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         labelApellidoR1 = new javax.swing.JLabel();
         labelNombreR1 = new javax.swing.JLabel();
         labelCedulaR1 = new javax.swing.JLabel();
         labelTelefonoR1 = new javax.swing.JLabel();
+        jLabelCorreoE = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         campoCedulaE = new javax.swing.JTextField();
         campoNombreE = new javax.swing.JTextField();
         campoApellidoE = new javax.swing.JTextField();
         campoTelefonoE = new javax.swing.JTextField();
+        campoCorreoE = new javax.swing.JTextField();
         jLabelIcon = new javax.swing.JLabel();
         jLabelIcon1 = new javax.swing.JLabel();
 
@@ -360,7 +364,7 @@ public class CrearEnvio extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Descripción:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Semibold", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descripción:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Semibold", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
         jPanel10.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
 
         campoDescPaquete.setColumns(20);
@@ -973,6 +977,8 @@ public class CrearEnvio extends javax.swing.JFrame {
         labelTelefonoR.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         labelTelefonoR.setText("Teléfono:");
 
+        jLabelCorreoR.setText("Correo:");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -983,20 +989,23 @@ public class CrearEnvio extends javax.swing.JFrame {
                     .addComponent(labelApellidoR)
                     .addComponent(labelNombreR)
                     .addComponent(labelCedulaR)
-                    .addComponent(labelTelefonoR))
+                    .addComponent(labelTelefonoR)
+                    .addComponent(jLabelCorreoR))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(12, 12, 12)
                 .addComponent(labelCedulaR)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelNombreR)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelApellidoR)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelApellidoR)
+                .addGap(18, 18, 18)
                 .addComponent(labelTelefonoR)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelCorreoR)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1038,7 +1047,8 @@ public class CrearEnvio extends javax.swing.JFrame {
                     .addComponent(campoCedulaR, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
                     .addComponent(campoNombreR)
                     .addComponent(campoApellidoR)
-                    .addComponent(campoTelefonoR))
+                    .addComponent(campoTelefonoR)
+                    .addComponent(campoCorreoR))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -1052,6 +1062,8 @@ public class CrearEnvio extends javax.swing.JFrame {
                 .addComponent(campoApellidoR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(campoTelefonoR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campoCorreoR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -1087,6 +1099,8 @@ public class CrearEnvio extends javax.swing.JFrame {
         labelTelefonoR1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         labelTelefonoR1.setText("Teléfono:");
 
+        jLabelCorreoE.setText("Correo:");
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -1094,24 +1108,32 @@ public class CrearEnvio extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelTelefonoR1)
-                    .addComponent(labelApellidoR1)
-                    .addComponent(labelNombreR1)
-                    .addComponent(labelCedulaR1))
-                .addContainerGap())
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel7Layout.createSequentialGroup()
+                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(labelApellidoR1)
+                                .addComponent(labelNombreR1)
+                                .addComponent(labelCedulaR1))
+                            .addGap(9, 9, 9))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                            .addComponent(labelTelefonoR1)
+                            .addContainerGap()))
+                    .addComponent(jLabelCorreoE)))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(labelCedulaR1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelNombreR1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelApellidoR1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(labelTelefonoR1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabelCorreoE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         campoCedulaE.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -1145,13 +1167,14 @@ public class CrearEnvio extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+            .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(campoCedulaE, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
-                    .addComponent(campoNombreE)
-                    .addComponent(campoApellidoE)
-                    .addComponent(campoTelefonoE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(campoCedulaE, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
+                    .addComponent(campoNombreE, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(campoApellidoE, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(campoTelefonoE, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(campoCorreoE))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -1164,7 +1187,10 @@ public class CrearEnvio extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(campoApellidoE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoTelefonoE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(campoTelefonoE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campoCorreoE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelClienteEmisorLayout = new javax.swing.GroupLayout(panelClienteEmisor);
@@ -1183,7 +1209,9 @@ public class CrearEnvio extends javax.swing.JFrame {
             .addGroup(panelClienteEmisorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panelClienteEmisorLayout.createSequentialGroup()
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jLabelIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1220,13 +1248,13 @@ public class CrearEnvio extends javax.swing.JFrame {
                         .addComponent(panelClienteReceptor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(panelClienteEmisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGeneralLayout.createSequentialGroup()
-                        .addComponent(botonCancelarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonCrearEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(panelPaquete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelDireccionDestino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelDireccionOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panelDireccionOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panelGeneralLayout.createSequentialGroup()
+                        .addComponent(botonCancelarEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonCrearEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(63, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGeneralLayout.createSequentialGroup()
                 .addComponent(jLabelIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1250,12 +1278,12 @@ public class CrearEnvio extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(panelPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panelGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelClienteReceptor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelClienteEmisor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelDireccionDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelDireccionOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1281,8 +1309,8 @@ public class CrearEnvio extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollPanelGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, 947, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(scrollPanelGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 984, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -1294,57 +1322,60 @@ public class CrearEnvio extends javax.swing.JFrame {
 
     private void botonCrearEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearEnvioActionPerformed
         if (this.validacionCamposVacios() && this.validacionDeClientes()) {
+            if (!this.iA.verificarExisteCorreoCliente(this.campoCorreoE.getText()) && !this.iA.verificarExisteClienteNuevo(Integer.parseInt(campoCedulaE.getText())) && !this.iA.verificarExisteCorreoCliente(this.campoCorreoR.getText()) && !this.iA.verificarExisteClienteNuevo(Integer.parseInt(campoCedulaR.getText()))) {
+                int idDireccionOrigen, idDireccionDestino = 0;
+                int fragil = this.checkBoxFragil.isSelected() ? 1 : 0;
+                int especial = this.checkboxEspecial.isSelected() ? 1 : 0;
+                if (especial == 1) {
+                    idTarifa = this.obtenerIdTarifaEspecial();
+                }
+                int idP = this.iE.crearPaquete(campoDescPaquete.getText(), Float.parseFloat(campoPesoPaquete.getText()), fragil, especial);
+                if (this.validacionCamposVacios()) {
+                    idDireccionDestino = this.iE.crearDireccion(campoCalleDireccion.getText(), campoCalle2Direccion.getText(),
+                            Integer.parseInt(campoPuertaDireccion.getText()), campoApartDireccion.getText());
+                }
 
-            int idDireccionOrigen, idDireccionDestino = 0;
-            int fragil = this.checkBoxFragil.isSelected() ? 1 : 0;
-            int especial = this.checkboxEspecial.isSelected() ? 1 : 0;
-            if (especial == 1) {
-                idTarifa = this.obtenerIdTarifaEspecial();
-            }
-            int idP = this.iE.crearPaquete(campoDescPaquete.getText(), Float.parseFloat(campoPesoPaquete.getText()), fragil, especial);
-            if (this.validacionCamposVacios()) {
-                idDireccionDestino = this.iE.crearDireccion(campoCalleDireccion.getText(), campoCalle2Direccion.getText(),
-                        Integer.parseInt(campoPuertaDireccion.getText()), campoApartDireccion.getText());
-            }
+                if (checkSucursal.isSelected()) { //Se toma la sucursal
+                    Direccion sucursal = this.iE.traerDireccionSucursal();
+                    idDireccionOrigen = sucursal.getIdDireccion();
+                } else {
+                    //CREACION DE LA DIRECCION ORIGEN
+                    idDireccionOrigen = this.iE.crearDireccion(campoCalleDireccionO.getText(), campoCalle2DireccionO.getText(),
+                            Integer.parseInt(campoPuertaDireccionO.getText()), campoApartDireccionO.getText());
+                    this.insertarLocalidadDireccion(idDireccionOrigen, comboLocalidadOrigen.getSelectedItem().toString());
+                }
 
-            if (checkSucursal.isSelected()) { //Se toma la sucursal
-                Direccion sucursal = this.iE.traerDireccionSucursal();
-                idDireccionOrigen = sucursal.getIdDireccion();
+                //SECCION-PAQUETE
+                this.insertarSeccionPaquete(idP);
+                this.insertarLocalidadDireccion(idDireccionDestino, comboLocalidadDestino.getSelectedItem().toString());
+                //Crear pago
+                int idPago = this.iAP.crearPago(this.idTarifa, obtenerLocalidad(this.comboLocalidadDestino.getSelectedItem().toString()));
+                //ENVIO
+                int idEnvio = this.iE.crearEnvio(idP, idTarifa, idDireccionOrigen, idDireccionDestino, idPago);
+                //CLIENTES
+                if (!this.iA.verificarExisteClienteNuevo(Integer.parseInt(campoCedulaE.getText()))) {
+                    this.iA.agregarCliente(Integer.parseInt(campoCedulaE.getText()), campoNombreE.getText(),
+                            campoApellidoE.getText(), Integer.parseInt(campoTelefonoE.getText()), campoCorreoE.getText());
+                }
+                if (!this.iA.verificarExisteClienteNuevo(Integer.parseInt(campoCedulaR.getText()))) {
+                    this.iA.agregarCliente(Integer.parseInt(campoCedulaR.getText()),
+                            campoNombreR.getText(), campoApellidoR.getText(),
+                            Integer.parseInt(campoTelefonoR.getText().trim()), campoCorreoR.getText());
+                }
+                //CONEXION ENVIO Y CLIENTE
+                this.iE.conexionEnvio_Cliente(idEnvio, Integer.parseInt(campoCedulaE.getText()), "Envio");
+                this.iE.conexionEnvio_Cliente(idEnvio, Integer.parseInt(campoCedulaR.getText()), "Recibe");
+                //CONEXION ENVIO Y ESTADO
+                this.iE.crearEstado(idEnvio, "Preparando", "Creacion del envio");
+
+                JOptionPane.showMessageDialog(null, "El envio fue ingresado con éxito", "Success", JOptionPane.DEFAULT_OPTION);
+                this.setVisible(false);
+                ListaEnvios listEnv = null;
+                VerDetallesEnvio verDetallesEnvio = new VerDetallesEnvio(idEnvio, listEnv);
+                verDetallesEnvio.setVisible(true);
             } else {
-                //CREACION DE LA DIRECCION ORIGEN
-                idDireccionOrigen = this.iE.crearDireccion(campoCalleDireccionO.getText(), campoCalle2DireccionO.getText(),
-                        Integer.parseInt(campoPuertaDireccionO.getText()), campoApartDireccionO.getText());
-                this.insertarLocalidadDireccion(idDireccionOrigen, comboLocalidadOrigen.getSelectedItem().toString());
+                JOptionPane.showMessageDialog(null, "Ese correo ya está registrado en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
             }
-
-            //SECCION-PAQUETE
-            this.insertarSeccionPaquete(idP);
-            this.insertarLocalidadDireccion(idDireccionDestino, comboLocalidadDestino.getSelectedItem().toString());
-            //Crear pago
-            int idPago = this.iAP.crearPago(this.idTarifa, obtenerLocalidad(this.comboLocalidadDestino.getSelectedItem().toString()));
-            //ENVIO
-            int idEnvio = this.iE.crearEnvio(idP, idTarifa, idDireccionOrigen, idDireccionDestino, idPago);
-            //CLIENTES
-            if (!this.iA.verificarExisteClienteNuevo(Integer.parseInt(campoCedulaE.getText()))) {
-                this.iA.agregarCliente(Integer.parseInt(campoCedulaE.getText()), campoNombreE.getText(),
-                        campoApellidoE.getText(), Integer.parseInt(campoTelefonoE.getText()));
-            }
-            if (!this.iA.verificarExisteClienteNuevo(Integer.parseInt(campoCedulaR.getText()))) {
-                this.iA.agregarCliente(Integer.parseInt(campoCedulaR.getText()),
-                        campoNombreR.getText(), campoApellidoR.getText(),
-                        Integer.parseInt(campoTelefonoR.getText().trim()));
-            }
-            //CONEXION ENVIO Y CLIENTE
-            this.iE.conexionEnvio_Cliente(idEnvio, Integer.parseInt(campoCedulaE.getText()), "Envio");
-            this.iE.conexionEnvio_Cliente(idEnvio, Integer.parseInt(campoCedulaR.getText()), "Recibe");
-            //CONEXION ENVIO Y ESTADO
-            this.iE.crearEstado(idEnvio, "Preparando", "Creacion del envio");
-
-            JOptionPane.showMessageDialog(null, "El envio fue ingresado con éxito", "Success", JOptionPane.DEFAULT_OPTION);
-            this.setVisible(false);
-            ListaEnvios listEnv = null;
-            VerDetallesEnvio verDetallesEnvio = new VerDetallesEnvio(idEnvio, listEnv);
-            verDetallesEnvio.setVisible(true);
         } else if (!this.validacionTarifas()) {
             JOptionPane.showMessageDialog(null, "Falta seleccionar la tarifa", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (!this.validacionSecciones()) {
@@ -1735,6 +1766,8 @@ public class CrearEnvio extends javax.swing.JFrame {
     private javax.swing.JTextField campoCalleDireccionO;
     private javax.swing.JTextField campoCedulaE;
     private javax.swing.JTextField campoCedulaR;
+    private javax.swing.JTextField campoCorreoE;
+    private javax.swing.JTextField campoCorreoR;
     private javax.swing.JTextArea campoDescPaquete;
     private javax.swing.JTextField campoNombreE;
     private javax.swing.JTextField campoNombreR;
@@ -1751,6 +1784,8 @@ public class CrearEnvio extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboSecciones;
     private javax.swing.JComboBox<String> comboTarifasEspeciales;
     private javax.swing.Box.Filler filler1;
+    private javax.swing.JLabel jLabelCorreoE;
+    private javax.swing.JLabel jLabelCorreoR;
     private javax.swing.JLabel jLabelIcon;
     private javax.swing.JLabel jLabelIcon1;
     private javax.swing.JPanel jPanel1;

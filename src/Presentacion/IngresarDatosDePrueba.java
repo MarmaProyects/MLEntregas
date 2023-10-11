@@ -119,10 +119,10 @@ public class IngresarDatosDePrueba extends javax.swing.JFrame {
     private void generarEnvios(float pesoPaquete) {
         int idPrimerEnvio;
         //creacion de clientes
-        Cliente cliente = new Cliente(this.generarCI(), this.generarNombre(), this.generarApellido(), String.valueOf(this.generarTelefono()));
-        Fabrica.getInstancia().getControladorCliente().agregarCliente(cliente.getCedula(), cliente.getNombre(), cliente.getApellido(), Integer.parseInt(cliente.getTelefono()));
-        Cliente segundoCliente = new Cliente(this.generarCI(), this.generarNombre(), this.generarApellido(), String.valueOf(this.generarTelefono()));
-        Fabrica.getInstancia().getControladorCliente().agregarCliente(segundoCliente.getCedula(), segundoCliente.getNombre(), segundoCliente.getApellido(), Integer.parseInt(segundoCliente.getTelefono()));
+        Cliente cliente = new Cliente(this.generarCI(), this.generarNombre(), this.generarApellido(), String.valueOf(this.generarTelefono()), this.generarCorreo());
+        Fabrica.getInstancia().getControladorCliente().agregarCliente(cliente.getCedula(), cliente.getNombre(), cliente.getApellido(), Integer.parseInt(cliente.getTelefono()), cliente.getCorreo());
+        Cliente segundoCliente = new Cliente(this.generarCI(), this.generarNombre(), this.generarApellido(), String.valueOf(this.generarTelefono()), this.generarCorreo());
+        Fabrica.getInstancia().getControladorCliente().agregarCliente(segundoCliente.getCedula(), segundoCliente.getNombre(), segundoCliente.getApellido(), Integer.parseInt(segundoCliente.getTelefono()), segundoCliente.getCorreo());
         //creación de direcciones
         Direccion direccionO = new Direccion(this.generarCalle(), this.generarCalle(), this.generarApartamento(), this.generarNumeroPuerta(), 0, this.generarNombreLocalidad(), 0);
         Direccion direccionD = new Direccion(this.generarCalle(), this.generarCalle(), this.generarApartamento(), this.generarNumeroPuerta(), 0, this.generarNombreLocalidad(), 0);
@@ -161,7 +161,7 @@ public class IngresarDatosDePrueba extends javax.swing.JFrame {
         } else if (peso <= 15) {
             return 3;
         } else {
-            return tarifas.get(this.random.nextInt(tarifas.size()-1)).getIdTarifa();
+            return tarifas.get(this.random.nextInt(tarifas.size() - 1)).getIdTarifa();
         }
     }
 
@@ -171,11 +171,10 @@ public class IngresarDatosDePrueba extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonGenerarSeccionActionPerformed
 
     private void jButtonGenerarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerarClienteActionPerformed
-        Fabrica.getInstancia().getControladorCliente().agregarCliente(this.generarCI(), this.generarNombre(), this.generarApellido(), this.generarTelefono());
-        Fabrica.getInstancia().getControladorCliente().agregarCliente(this.generarCI(), this.generarNombre(), this.generarApellido(), this.generarTelefono());
-        Fabrica.getInstancia().getControladorCliente().agregarCliente(this.generarCI(), this.generarNombre(), this.generarApellido(), this.generarTelefono());
-        Fabrica.getInstancia().getControladorCliente().agregarCliente(this.generarCI(), this.generarNombre(), this.generarApellido(), this.generarTelefono());
-        Fabrica.getInstancia().getControladorCliente().agregarCliente(this.generarCI(), this.generarNombre(), this.generarApellido(), this.generarTelefono());
+        Fabrica.getInstancia().getControladorCliente().agregarCliente(this.generarCI(), this.generarNombre(), this.generarApellido(), this.generarTelefono(), this.generarCorreo());
+        Fabrica.getInstancia().getControladorCliente().agregarCliente(this.generarCI(), this.generarNombre(), this.generarApellido(), this.generarTelefono(), this.generarCorreo());
+        Fabrica.getInstancia().getControladorCliente().agregarCliente(this.generarCI(), this.generarNombre(), this.generarApellido(), this.generarTelefono(), this.generarCorreo());
+        Fabrica.getInstancia().getControladorCliente().agregarCliente(this.generarCI(), this.generarNombre(), this.generarApellido(), this.generarTelefono(), this.generarCorreo());
         JOptionPane.showMessageDialog(null, "Cliente generado exitosamente", "Generación exitosa", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButtonGenerarClienteActionPerformed
 
@@ -297,6 +296,19 @@ public class IngresarDatosDePrueba extends javax.swing.JFrame {
         return paqueteAleatorio;
     }
 
+    public String generarCorreo() {
+        String[] nombres = {"Juan", "María", "Pedro", "Ana", "Luis", "Sofía", "Carlos", "Laura", "Miguel", "Elena"};
+        String nombreAleatorio = nombres[this.random.nextInt(nombres.length)];
+        String[] apellidos = {"García", "Martínez","López","Rodríguez","Fernández","Pérez","González","Sánchez","Ramírez","Torres"};
+        String apellidoAleatorio = apellidos[this.random.nextInt(apellidos.length)];
+        int numero = this.random.nextInt(900);
+        String[] datoCorreo = {"gmail", "outlook", "yahoo"};
+        String datoCorreoAleatorio = datoCorreo[this.random.nextInt(datoCorreo.length)];
+        String[] datoTerminacion = {"com", "ar", "uy"};
+        String datoTreminacionAleatorio = datoTerminacion[this.random.nextInt(datoTerminacion.length)];
+        return nombreAleatorio + apellidoAleatorio + numero + "@" + datoCorreoAleatorio + "." + datoTreminacionAleatorio;
+    }
+
     public float generarPesoPaqueteEspecial() {
         return this.random.nextFloat() * 75 + 15;
     }
@@ -383,7 +395,7 @@ public class IngresarDatosDePrueba extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(IngresarDatosDePrueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */

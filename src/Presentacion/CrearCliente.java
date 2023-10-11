@@ -8,7 +8,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import logica.fabrica.Fabrica;
 import logica.interfaces.IAdministracion;
-import Presentacion.CrearEnvio; 
+import Presentacion.CrearEnvio;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -64,6 +66,8 @@ public class CrearCliente extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        LabelCorreo = new javax.swing.JLabel();
+        TextFieldCorreo = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         BotonConfirmar = new javax.swing.JButton();
         volverButton = new javax.swing.JButton();
@@ -205,7 +209,17 @@ public class CrearCliente extends javax.swing.JFrame {
         jLabel5.setText("Teléfono:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 44, 245, 180));
+        LabelCorreo.setText("Correo:");
+        jPanel1.add(LabelCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, -1, -1));
+
+        TextFieldCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextFieldCorreoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(TextFieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 110, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 44, 245, 220));
 
         BotonConfirmar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         BotonConfirmar.setText("Confirmar");
@@ -244,17 +258,17 @@ public class CrearCliente extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 242, -1, -1));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void TextFieldCedulaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldCedulaFocusGained
-        
+
     }//GEN-LAST:event_TextFieldCedulaFocusGained
 
     private void TextFieldCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldCedulaFocusLost
-        
+
     }//GEN-LAST:event_TextFieldCedulaFocusLost
 
     private void TextFieldCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldCedulaActionPerformed
@@ -262,11 +276,11 @@ public class CrearCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_TextFieldCedulaActionPerformed
 
     private void TextFieldNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldNombreFocusGained
-        
+
     }//GEN-LAST:event_TextFieldNombreFocusGained
 
     private void TextFieldNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldNombreFocusLost
-        
+
     }//GEN-LAST:event_TextFieldNombreFocusLost
 
     private void TextFieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldNombreActionPerformed
@@ -274,11 +288,11 @@ public class CrearCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_TextFieldNombreActionPerformed
 
     private void TextFieldNombre1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldNombre1FocusGained
-        
+
     }//GEN-LAST:event_TextFieldNombre1FocusGained
 
     private void TextFieldNombre1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldNombre1FocusLost
-        
+
     }//GEN-LAST:event_TextFieldNombre1FocusLost
 
     private void TextFieldNombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldNombre1ActionPerformed
@@ -286,11 +300,11 @@ public class CrearCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_TextFieldNombre1ActionPerformed
 
     private void TextFieldApellidoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldApellidoFocusGained
-        
+
     }//GEN-LAST:event_TextFieldApellidoFocusGained
 
     private void TextFieldApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldApellidoFocusLost
-        
+
     }//GEN-LAST:event_TextFieldApellidoFocusLost
 
     private void TextFieldApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldApellidoActionPerformed
@@ -298,11 +312,11 @@ public class CrearCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_TextFieldApellidoActionPerformed
 
     private void TextFieldTelefonoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldTelefonoFocusGained
-        
+
     }//GEN-LAST:event_TextFieldTelefonoFocusGained
 
     private void TextFieldTelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextFieldTelefonoFocusLost
-        
+
     }//GEN-LAST:event_TextFieldTelefonoFocusLost
 
     private void TextFieldTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldTelefonoActionPerformed
@@ -313,25 +327,44 @@ public class CrearCliente extends javax.swing.JFrame {
         String verificaCedula = this.TextFieldCedula.getText().trim();
         String nombre = this.TextFieldNombre1.getText().trim();
         String apellido = this.TextFieldApellido.getText().trim();
+        String correo = this.TextFieldCorreo.getText().trim();
         String verificaTelefono = this.TextFieldTelefono.getText().trim();
-        if (verificaCedula.isBlank() || nombre.isBlank() || apellido.isBlank() || verificaTelefono.isBlank()) {
+        if (verificaCedula.isBlank() || nombre.isBlank() || apellido.isBlank() || verificaTelefono.isBlank() || correo.isBlank()) {
             llamarAlertaDatosFaltantes();
             return;
         }
         int cedula = Integer.parseInt(this.TextFieldCedula.getText().trim());
         int telefono = Integer.parseInt(this.TextFieldTelefono.getText().trim());
-        if (this.IA.verificarExisteClienteNuevo(cedula) != true) {
-            this.IA.agregarCliente(cedula, nombre, apellido, telefono);
-            llamarAlertaClienteCreado();
-            this.TextFieldCedula.setText("");
-            this.TextFieldApellido.setText("");
-            this.TextFieldNombre.setText("");
-            this.TextFieldNombre1.setText("");
-            this.TextFieldTelefono.setText("");
+        if (verificaCorreo(correo)) {
+            if (this.IA.verificarExisteClienteNuevo(cedula) != true) {
+                if (!this.IA.verificarExisteCorreoCliente(correo)) {
+                    this.IA.agregarCliente(cedula, nombre, apellido, telefono, correo);
+                    llamarAlertaClienteCreado();
+                    this.TextFieldCedula.setText("");
+                    this.TextFieldApellido.setText("");
+                    this.TextFieldNombre.setText("");
+                    this.TextFieldNombre1.setText("");
+                    this.TextFieldTelefono.setText("");
+                    this.TextFieldCorreo.setText("");
+                } else {
+                    JOptionPane.showMessageDialog(null, "El correo ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                llamarAlertaClienteExistente();
+            }
         } else {
-            llamarAlertaClienteExistente();
+            JOptionPane.showMessageDialog(null, "El formato del correo no es correcto", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_BotonConfirmarActionPerformed
+
+    public Boolean verificaCorreo(String correo) {
+        // Pauta para la verificación del correo electrónico
+        String patronCorreo = "^[A-Za-z0-9+_.-]+@(.+)$";
+        Pattern pattern = Pattern.compile(patronCorreo);
+        Matcher matcher = pattern.matcher(correo);
+        return matcher.matches();
+    }
+
 
     private void TextFieldCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextFieldCedulaKeyTyped
         int key = evt.getKeyChar();
@@ -385,6 +418,10 @@ public class CrearCliente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_TextFieldApellidoKeyTyped
 
+    private void TextFieldCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextFieldCorreoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -422,8 +459,10 @@ public class CrearCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonConfirmar;
+    private javax.swing.JLabel LabelCorreo;
     private javax.swing.JTextField TextFieldApellido;
     private javax.swing.JTextField TextFieldCedula;
+    private javax.swing.JTextField TextFieldCorreo;
     private javax.swing.JTextField TextFieldNombre;
     private javax.swing.JTextField TextFieldNombre1;
     private javax.swing.JTextField TextFieldTelefono;
