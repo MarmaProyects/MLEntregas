@@ -31,8 +31,8 @@ public class ControladorCliente  implements IAdministracion {
         return instance;
     }    
     
-    public void agregarCliente(int cedula, String nombre ,String apellido, int telefono) {
-            this.servicioCliente.insertarCliente(cedula, nombre, apellido, telefono);
+    public void agregarCliente(int cedula, String nombre ,String apellido, int telefono, String correo) {
+            this.servicioCliente.insertarCliente(cedula, nombre, apellido, telefono, correo);
 
     }
 
@@ -41,6 +41,18 @@ public class ControladorCliente  implements IAdministracion {
         ArrayList<Cliente> clientes = this.servicioCliente.obtenerCliente();
         for (Cliente cliente : clientes) {
             if (cliente.getCedula() == cedula) {
+                resultado = true;
+                break;
+            }
+        }
+        return resultado;
+    }
+    
+    public Boolean verificarExisteCorreoCliente(String correo) {
+        Boolean resultado = false;
+        ArrayList<Cliente> clientes = this.servicioCliente.obtenerCliente();
+        for (Cliente cliente : clientes) {
+            if (cliente.getCorreo().equals(correo)) {
                 resultado = true;
                 break;
             }
@@ -81,8 +93,8 @@ public class ControladorCliente  implements IAdministracion {
         return this.servicioCliente.traerCliente(cedula);
     }
 
-    public void editarClienteSeleccionado(int cedula, String nombre, String apellido, int telefono) {
-        this.servicioCliente.editarCliente(cedula, nombre, apellido, telefono);
+    public void editarClienteSeleccionado(int cedula, String nombre, String apellido, int telefono, String correo) {
+        this.servicioCliente.editarCliente(cedula, nombre, apellido, telefono, correo);
     }
 
     @Override

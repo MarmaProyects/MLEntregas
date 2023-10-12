@@ -42,7 +42,7 @@ public class ControladorPago implements IAdministracion {
     }
 
     @Override
-    public void agregarCliente(int cedula, String nombre, String apellido, int telefono) {
+    public void agregarCliente(int cedula, String nombre, String apellido, int telefono, String correo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -72,7 +72,7 @@ public class ControladorPago implements IAdministracion {
     }
 
     @Override
-    public void editarClienteSeleccionado(int cedula, String nombre, String apellido, int telefono) {
+    public void editarClienteSeleccionado(int cedula, String nombre, String apellido, int telefono, String correo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -95,5 +95,10 @@ public class ControladorPago implements IAdministracion {
 
     public void editarPago(int idPago, float precio) {
         this.servicioPago.editarUnPago(idPago, precio);
+    }
+
+    @Override
+    public Boolean verificarExisteCorreoCliente(String correo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

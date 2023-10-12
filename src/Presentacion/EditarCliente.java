@@ -35,6 +35,7 @@ public class EditarCliente extends javax.swing.JFrame {
             this.campoNombre.setText(cliente.getNombre());
             this.campoApellido.setText(cliente.getApellido());
             this.campoTelefono.setText(cliente.getTelefono());
+            this.campoCorreo.setText(cliente.getCorreo());
         } else {
             this.botonEditar.setEnabled(false);
         }
@@ -51,14 +52,18 @@ public class EditarCliente extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        labelNombre = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        labelCedula = new javax.swing.JLabel();
-        campoTelefono = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
         labelTelefono = new javax.swing.JLabel();
-        campoCedula = new javax.swing.JTextField();
-        campoNombre = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        labelNombre = new javax.swing.JLabel();
+        labelCedula = new javax.swing.JLabel();
+        labelTelefono1 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        campoCorreo = new javax.swing.JTextField();
+        campoTelefono = new javax.swing.JTextField();
         campoApellido = new javax.swing.JTextField();
+        campoNombre = new javax.swing.JTextField();
+        campoCedula = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         botonEditar = new javax.swing.JButton();
         botonVolver = new javax.swing.JButton();
@@ -67,14 +72,61 @@ public class EditarCliente extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        labelNombre.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        labelNombre.setText("Nombre:");
+        labelTelefono.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        labelTelefono.setText("Teléfono:");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel1.setText("Apellido:");
 
+        labelNombre.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        labelNombre.setText("Nombre:");
+
         labelCedula.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         labelCedula.setText("Cedula:");
+
+        labelTelefono1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        labelTelefono1.setText("Correo:");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelNombre)
+                    .addComponent(labelCedula)
+                    .addComponent(jLabel1)
+                    .addComponent(labelTelefono)
+                    .addComponent(labelTelefono1))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelCedula)
+                .addGap(16, 16, 16)
+                .addComponent(labelNombre)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(labelTelefono)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelTelefono1)
+                .addContainerGap())
+        );
+
+        campoCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoCorreoActionPerformed(evt);
+            }
+        });
+        campoCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoCorreoKeyTyped(evt);
+            }
+        });
 
         campoTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,10 +139,11 @@ public class EditarCliente extends javax.swing.JFrame {
             }
         });
 
-        labelTelefono.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        labelTelefono.setText("Teléfono:");
-
-        campoCedula.setEditable(false);
+        campoApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoApellidoKeyTyped(evt);
+            }
+        });
 
         campoNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -98,11 +151,37 @@ public class EditarCliente extends javax.swing.JFrame {
             }
         });
 
-        campoApellido.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                campoApellidoKeyTyped(evt);
-            }
-        });
+        campoCedula.setEditable(false);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(campoNombre, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(campoCedula, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(campoApellido, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(campoTelefono, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(campoCorreo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(campoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -110,45 +189,18 @@ public class EditarCliente extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelNombre)
-                            .addComponent(labelCedula))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoCedula, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(labelTelefono)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                        .addComponent(campoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(campoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelCedula)
-                    .addComponent(campoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelNombre))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelTelefono)
-                    .addComponent(campoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         botonEditar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -171,21 +223,20 @@ public class EditarCliente extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(botonVolver)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botonEditar)
-                .addGap(0, 0, 0))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonEditar)
                     .addComponent(botonVolver))
-                .addContainerGap())
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         labelCliente.setFont(new java.awt.Font("Segoe UI Semilight", 1, 24)); // NOI18N
@@ -208,33 +259,32 @@ public class EditarCliente extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 65, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 65, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(labelCliente)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 71, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 72, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(labelCliente)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(labelCliente)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 15, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -245,12 +295,16 @@ public class EditarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_botonVolverActionPerformed
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
-        if (!campoNombre.getText().trim().equals("") && !campoApellido.getText().trim().equals("") && !campoTelefono.getText().trim().equals("")) {
+        if (!campoNombre.getText().trim().equals("") && !campoApellido.getText().trim().equals("") && !campoTelefono.getText().trim().equals("") && !campoCorreo.getText().trim().equals("")) {
             if (campoTelefono.getText().trim().length() <= 9) {
-                
-                this.IA.editarClienteSeleccionado(this.cedula, campoNombre.getText().trim(), campoApellido.getText().trim(), Integer.parseInt(campoTelefono.getText().trim()));
-                JOptionPane.showMessageDialog(null, "Cliente editado", "Edición exitosa", JOptionPane.INFORMATION_MESSAGE);
-                this.listaC.actualizarClientes();
+                if (!this.IA.verificarExisteCorreoCliente(campoCorreo.getText().trim())) {
+                    this.IA.editarClienteSeleccionado(this.cedula, campoNombre.getText().trim(), campoApellido.getText().trim(), Integer.parseInt(campoTelefono.getText().trim()), campoCorreo.getText().trim());
+                    JOptionPane.showMessageDialog(null, "Cliente editado", "Edición exitosa", JOptionPane.INFORMATION_MESSAGE);
+                    this.listaC.actualizarClientes();
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "El correo ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Demasiados digitos para el teléfono", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -297,6 +351,17 @@ public class EditarCliente extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jLabel2MousePressed
 
+    private void campoCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoCorreoKeyTyped
+        int key = evt.getKeyChar();
+        if (campoCorreo.getText().trim().length() >= 30) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_campoCorreoKeyTyped
+
+    private void campoCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoCorreoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -337,15 +402,19 @@ public class EditarCliente extends javax.swing.JFrame {
     private javax.swing.JButton botonVolver;
     private javax.swing.JTextField campoApellido;
     private javax.swing.JTextField campoCedula;
+    private javax.swing.JTextField campoCorreo;
     private javax.swing.JTextField campoNombre;
     private javax.swing.JTextField campoTelefono;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel labelCedula;
     private javax.swing.JLabel labelCliente;
     private javax.swing.JLabel labelNombre;
     private javax.swing.JLabel labelTelefono;
+    private javax.swing.JLabel labelTelefono1;
     // End of variables declaration//GEN-END:variables
 }

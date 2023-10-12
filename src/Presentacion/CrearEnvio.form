@@ -35,10 +35,10 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="scrollPanelGeneral" pref="866" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="scrollPanelGeneral" min="-2" pref="984" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -88,14 +88,14 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="panelClienteEmisor" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
+                          <Component id="panelPaquete" alignment="0" max="32767" attributes="0"/>
+                          <Component id="panelDireccionDestino" alignment="0" max="32767" attributes="0"/>
+                          <Component id="panelDireccionOrigen" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="botonCancelarEnvio" linkSize="1" min="-2" pref="116" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="botonCrearEnvio" linkSize="1" min="-2" pref="133" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="panelPaquete" alignment="0" max="32767" attributes="0"/>
-                          <Component id="panelDireccionDestino" alignment="0" max="32767" attributes="0"/>
-                          <Component id="panelDireccionOrigen" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="63" max="32767" attributes="0"/>
                   </Group>
@@ -126,9 +126,9 @@
                           <Component id="panelClienteReceptor" max="32767" attributes="0"/>
                           <Component id="panelClienteEmisor" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace pref="21" max="32767" attributes="0"/>
                       <Component id="panelDireccionDestino" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="panelDireccionOrigen" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -1213,8 +1213,8 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
                       <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jPanel4" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1231,6 +1231,7 @@
                                   <Component id="labelNombreR" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="labelCedulaR" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="labelTelefonoR" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelCorreoR" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -1239,15 +1240,17 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               <Component id="labelCedulaR" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="labelNombreR" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Component id="labelApellidoR" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Component id="labelTelefonoR" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jLabelCorreoR" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1285,6 +1288,11 @@
                         <Property name="text" type="java.lang.String" value="Tel&#xe9;fono:"/>
                       </Properties>
                     </Component>
+                    <Component class="javax.swing.JLabel" name="jLabelCorreoR">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Correo:"/>
+                      </Properties>
+                    </Component>
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="jPanel4">
@@ -1292,13 +1300,14 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="campoCedulaR" pref="343" max="32767" attributes="0"/>
                                   <Component id="campoNombreR" alignment="0" max="32767" attributes="0"/>
                                   <Component id="campoApellidoR" max="32767" attributes="0"/>
                                   <Component id="campoTelefonoR" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="campoCorreoR" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -1315,6 +1324,8 @@
                               <Component id="campoApellidoR" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="campoTelefonoR" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="campoCorreoR" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1339,6 +1350,8 @@
                       <Events>
                         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="campoTelefonoRKeyTyped"/>
                       </Events>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="campoCorreoR">
                     </Component>
                   </SubComponents>
                 </Container>
@@ -1378,7 +1391,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel7" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jPanel5" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jPanel5" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1391,27 +1404,39 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labelTelefonoR1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelApellidoR1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelNombreR1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelCedulaR1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="labelApellidoR1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="labelNombreR1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="labelCedulaR1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="labelTelefonoR1" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="jLabelCorreoE" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="labelCedulaR1" min="-2" pref="18" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="labelNombreR1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Component id="labelApellidoR1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="labelTelefonoR1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jLabelCorreoE" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1449,6 +1474,11 @@
                         <Property name="text" type="java.lang.String" value="Tel&#xe9;fono:"/>
                       </Properties>
                     </Component>
+                    <Component class="javax.swing.JLabel" name="jLabelCorreoE">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Correo:"/>
+                      </Properties>
+                    </Component>
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="jPanel5">
@@ -1456,13 +1486,14 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="campoCedulaE" pref="343" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="campoCedulaE" alignment="1" pref="343" max="32767" attributes="0"/>
                                   <Component id="campoNombreE" alignment="1" max="32767" attributes="0"/>
                                   <Component id="campoApellidoE" alignment="1" max="32767" attributes="0"/>
                                   <Component id="campoTelefonoE" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="campoCorreoE" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -1479,6 +1510,9 @@
                               <Component id="campoApellidoE" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="campoTelefonoE" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="campoCorreoE" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1500,6 +1534,8 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoTelefonoEActionPerformed"/>
                         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="campoTelefonoEKeyTyped"/>
                       </Events>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="campoCorreoE">
                     </Component>
                   </SubComponents>
                 </Container>
