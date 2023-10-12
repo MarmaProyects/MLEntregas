@@ -43,7 +43,7 @@ public class ServicioEnvio {
         ArrayList<Estado> estados;
         ArrayList<Envio> listadoEnv = new ArrayList<Envio>();
         try {
-            PreparedStatement listadoEnvios = conexion.prepareStatement("SELECT E.id as IdEnvio, E.codigoRastreo AS codigoR, C.cedula AS Cedula,"
+            PreparedStatement listadoEnvios = conexion.prepareStatement("SELECT E.id as IdEnvio, E.codigoR AS codigoR, C.cedula AS Cedula,"
                     + " C.nombre AS Nombre, C.apellido AS Apellido, C.correo AS Correo, P.id AS IdPaquete, P.descripcion AS DescripcionPaquete, "
                     + "DIRO.calle AS calleOrigen, DIRD.calle AS calleDestino, PAG.fechaPago AS fechaPago, PAG.precio AS precio, PAG.metodoPago AS metodoPago, PAG.id AS idPago"
                     + " FROM envio AS E, envio_cliente AS EC, cliente AS C, paquete AS P , direccion AS DIRO, direccion AS DIRD, pago AS PAG"
@@ -86,7 +86,7 @@ public class ServicioEnvio {
         ArrayList<Envio> listadoEnv = new ArrayList<Envio>();
 
         try {
-            PreparedStatement listadoEnvios = conexion.prepareStatement("SELECT E.id as IdEnvio, E.codigoRastreo AS codigoR, C.cedula AS Cedula,"
+            PreparedStatement listadoEnvios = conexion.prepareStatement("SELECT E.id as IdEnvio, E.codigoR AS codigoR, C.cedula AS Cedula,"
                     + " C.nombre AS Nombre, C.apellido AS Apellido, C.correo AS Correo, P.id AS IdPaquete, P.descripcion AS DescripcionPaquete, "
                     + "DIRO.calle AS calleOrigen, DIRD.calle AS calleDestino, PAG.fechaPago AS fechaPago, PAG.precio AS precio, PAG.metodoPago AS metodoPago, PAG.id AS idPago"
                     + " FROM envio AS E, envio_cliente AS EC, cliente AS C, paquete AS P , direccion AS DIRO, direccion AS DIRD, pago AS PAG"
@@ -129,7 +129,7 @@ public class ServicioEnvio {
         ArrayList<Estado> estados;
         Envio envioDetalles = null;
         try {
-            PreparedStatement listadoEnvios = conexion.prepareStatement("SELECT DISTINCT E.id as IdEnvio, E.codigoRastreo AS codigoR, PG.id AS IdPago, PG.metodoPago AS Pago, PG.precio AS precio, T.id AS IdTarifa, T.nombre AS NombreTarifa, T.precioBase AS PrecioTarifa,"
+            PreparedStatement listadoEnvios = conexion.prepareStatement("SELECT DISTINCT E.id as IdEnvio, E.codigoR AS codigoR, PG.id AS IdPago, PG.metodoPago AS Pago, PG.precio AS precio, T.id AS IdTarifa, T.nombre AS NombreTarifa, T.precioBase AS PrecioTarifa,"
                     + " C.cedula AS CedulaClienteEmisor,"
                     + " C2.cedula AS CedulaClienteReceptor, C.nombre AS NombreEmisor,C.apellido AS ApellidoEmisor, C.correo as CorreoEmisor, "
                     + " C2.nombre AS NombreReceptor, C2.apellido AS ApellidoReceptor, C2.correo as CorreoReceptor, P.id AS IdPaquete, P.peso AS peso, P.esEspecial AS esEspecial, P.esFragil AS esFragil,"
@@ -408,7 +408,7 @@ public class ServicioEnvio {
         try {
             PreparedStatement queryCrearEnvio = conexion.prepareStatement(""
                     + "INSERT INTO envio (idPaquete, idTarifa, idDireccionOrigen,"
-                    + " idDireccionDestino, idPago, codigoRastreo) VALUES (?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+                    + " idDireccionDestino, idPago, codigoR) VALUES (?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
             queryCrearEnvio.setInt(1, idPaquete);
             queryCrearEnvio.setInt(2, idTarifa);
             queryCrearEnvio.setInt(3, idDireOrigen);
@@ -504,7 +504,7 @@ public class ServicioEnvio {
         int idEnvio = 0;
         try {
             PreparedStatement queryTraerIdEnvio = conexion.prepareStatement("SELECT "
-                    + "id FROM envio WHERE codigoRastreo='" + codigoR + "';");
+                    + "id FROM envio WHERE codigoR='" + codigoR + "';");
             ResultSet resultadoDeLaQuery = queryTraerIdEnvio.executeQuery();
             while (resultadoDeLaQuery.next()) {
                 idEnvio = resultadoDeLaQuery.getInt("id");

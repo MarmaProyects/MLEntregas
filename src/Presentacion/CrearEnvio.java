@@ -1016,13 +1016,13 @@ public class CrearEnvio extends javax.swing.JFrame {
                 .addComponent(labelCedulaR)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelNombreR)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(labelApellidoR)
                 .addGap(18, 18, 18)
                 .addComponent(labelTelefonoR)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelCorreoR)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         campoCedulaR.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -1096,8 +1096,8 @@ public class CrearEnvio extends javax.swing.JFrame {
         );
         panelClienteReceptorLayout.setVerticalGroup(
             panelClienteReceptorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         panelClienteEmisor.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "CLIENTE EMISOR:"));
@@ -1143,13 +1143,13 @@ public class CrearEnvio extends javax.swing.JFrame {
                 .addComponent(labelCedulaR1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelNombreR1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(labelApellidoR1)
                 .addGap(18, 18, 18)
                 .addComponent(labelTelefonoR1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelCorreoE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         campoCedulaE.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -1206,7 +1206,7 @@ public class CrearEnvio extends javax.swing.JFrame {
                 .addComponent(campoTelefonoE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(campoCorreoE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout panelClienteEmisorLayout = new javax.swing.GroupLayout(panelClienteEmisor);
@@ -1225,9 +1225,7 @@ public class CrearEnvio extends javax.swing.JFrame {
             .addGroup(panelClienteEmisorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panelClienteEmisorLayout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jLabelIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1294,10 +1292,10 @@ public class CrearEnvio extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(panelPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panelClienteReceptor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelClienteEmisor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(panelDireccionDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelDireccionOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1338,7 +1336,7 @@ public class CrearEnvio extends javax.swing.JFrame {
 
     private void botonCrearEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearEnvioActionPerformed
         if (this.validacionCamposVacios() && this.validacionDeClientes()) {
-            if (!this.iA.verificarExisteCorreoCliente(this.campoCorreoE.getText()) && !this.iA.verificarExisteClienteNuevo(Integer.parseInt(campoCedulaE.getText())) && !this.iA.verificarExisteCorreoCliente(this.campoCorreoR.getText()) && !this.iA.verificarExisteClienteNuevo(Integer.parseInt(campoCedulaR.getText()))) {
+            if (this.verificarCorreo()) {
                 int idDireccionOrigen, idDireccionDestino = 0;
                 int fragil = this.checkBoxFragil.isSelected() ? 1 : 0;
                 int especial = this.checkboxEspecial.isSelected() ? 1 : 0;
@@ -1414,16 +1412,20 @@ public class CrearEnvio extends javax.swing.JFrame {
     private void campoCedulaEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCedulaEActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoCedulaEActionPerformed
-
+    
+    private boolean verificarCorreo(){
+        return (this.iA.verificarExisteCorreoCliente(this.campoCorreoE.getText()) && this.iA.verificarExisteClienteNuevo(Integer.parseInt(campoCedulaE.getText())) && (this.iA.verificarExisteCorreoCliente(this.campoCorreoR.getText()) && this.iA.verificarExisteClienteNuevo(Integer.parseInt(campoCedulaR.getText()))));
+    }
+    
     private void campoCedulaEFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoCedulaEFocusLost
-        this.completarDatosCliente(this.campoCedulaE, this.campoNombreE, this.campoApellidoE, this.campoTelefonoE);
+        this.completarDatosCliente(this.campoCedulaE, this.campoNombreE, this.campoApellidoE, this.campoTelefonoE, this.campoCorreoE);
     }//GEN-LAST:event_campoCedulaEFocusLost
 
     private void campoCedulaRFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoCedulaRFocusLost
-        this.completarDatosCliente(this.campoCedulaR, this.campoNombreR, this.campoApellidoR, this.campoTelefonoR);
+        this.completarDatosCliente(this.campoCedulaR, this.campoNombreR, this.campoApellidoR, this.campoTelefonoR, this.campoCorreoR);
     }//GEN-LAST:event_campoCedulaRFocusLost
 
-    private void completarDatosCliente(JTextField campoCedula, JTextField campoNombre, JTextField campoApellido, JTextField campoTelefono) {
+    private void completarDatosCliente(JTextField campoCedula, JTextField campoNombre, JTextField campoApellido, JTextField campoTelefono, JTextField campoCorreo) {
         Cliente cliente = !campoCedula.getText().isBlank()
                 ? this.iE.traerCliente(Integer.parseInt(campoCedula.getText())) : null;
         if (cliente != null) {
@@ -1431,10 +1433,12 @@ public class CrearEnvio extends javax.swing.JFrame {
             campoNombre.setText(cliente.getNombre());
             campoApellido.setText(cliente.getApellido());
             campoTelefono.setText(cliente.getTelefono());
+            campoCorreo.setText(cliente.getCorreo());
         } else {
             campoNombre.setText("");
             campoApellido.setText("");
             campoTelefono.setText("");
+            campoCorreo.setText("");
         }
     }
 

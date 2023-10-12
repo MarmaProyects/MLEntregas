@@ -110,7 +110,7 @@ public class CrearCliente extends javax.swing.JFrame {
 
         TituloCrearUsuario1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
         TituloCrearUsuario1.setText("CREAR CLIENTE");
-        jPanel1.add(TituloCrearUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
+        jPanel1.add(TituloCrearUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
         TextFieldNombre1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -130,7 +130,7 @@ public class CrearCliente extends javax.swing.JFrame {
                 TextFieldNombre1KeyTyped(evt);
             }
         });
-        jPanel1.add(TextFieldNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 113, -1));
+        jPanel1.add(TextFieldNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 130, -1));
 
         TextFieldApellido.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -150,7 +150,7 @@ public class CrearCliente extends javax.swing.JFrame {
                 TextFieldApellidoKeyTyped(evt);
             }
         });
-        jPanel1.add(TextFieldApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 113, -1));
+        jPanel1.add(TextFieldApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 130, -1));
 
         TextFieldTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -170,7 +170,7 @@ public class CrearCliente extends javax.swing.JFrame {
                 TextFieldTelefonoKeyTyped(evt);
             }
         });
-        jPanel1.add(TextFieldTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 113, -1));
+        jPanel1.add(TextFieldTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 130, -1));
 
         TextFieldCedula.setToolTipText("Ingrese cédula sin punto ni guión");
         TextFieldCedula.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -191,7 +191,7 @@ public class CrearCliente extends javax.swing.JFrame {
                 TextFieldCedulaKeyTyped(evt);
             }
         });
-        jPanel1.add(TextFieldCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 113, -1));
+        jPanel1.add(TextFieldCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 130, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel1.setText("Cédula:");
@@ -217,7 +217,7 @@ public class CrearCliente extends javax.swing.JFrame {
                 TextFieldCorreoActionPerformed(evt);
             }
         });
-        jPanel1.add(TextFieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 110, -1));
+        jPanel1.add(TextFieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 130, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 44, 245, 220));
 
