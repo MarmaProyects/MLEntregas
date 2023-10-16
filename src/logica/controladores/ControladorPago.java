@@ -104,7 +104,7 @@ public class ControladorPago implements IAdministracion {
     }
 
     @Override
-    public void crearUsuario(String correo, String contrasenia) {
+    public void crearUsuario(String correo, String contrasenia, byte[] key) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
