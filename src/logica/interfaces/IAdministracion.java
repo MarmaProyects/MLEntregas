@@ -25,6 +25,7 @@ public interface IAdministracion {
     public abstract Tarifa traerTarifaSeleccionada(int id);
     public abstract boolean editarTarifaSeleccionada(int id, String nombre, float precio);
     public abstract Cliente traerClienteSeleccionado(int cedula);
+    public abstract Cliente traerClientePorNomApe(String nomApe);
     public abstract void editarClienteSeleccionado(int cedula, String nombre, String apellido, int telefono, String correo);
     public abstract int crearPago(int idTarifa, int obtenerLocalidad);
     public abstract void pagarEnvio(int idPago, String metodo);

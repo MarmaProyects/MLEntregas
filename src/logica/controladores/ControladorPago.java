@@ -101,4 +101,9 @@ public class ControladorPago implements IAdministracion {
     public Boolean verificarExisteCorreoCliente(String correo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public Cliente traerClientePorNomApe(String nomApe) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
