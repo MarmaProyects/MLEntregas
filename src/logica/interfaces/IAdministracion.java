@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import logica.clases.Cliente;
 import logica.clases.Pago;
 import logica.clases.Tarifa;
+import logica.clases.Usuario;
 
 /**
  *
@@ -18,6 +19,8 @@ public interface IAdministracion {
     public abstract ArrayList<Tarifa> listarTarifas();
     public abstract void crearUnaTarifa(String nombre, float precioBase);
     public abstract void agregarCliente(int cedula, String nombre ,String apellido, int telefono, String correo);
+    public abstract void crearUsuario(String correo, String contrasenia);
+    public abstract Usuario obtenerUsuario(String correo);
     public abstract ArrayList<Cliente> obtenerLosClientes();
     public abstract Boolean verificarExisteClienteNuevo(int cedula);
     public abstract Boolean verificarExisteCorreoCliente(String correo);
