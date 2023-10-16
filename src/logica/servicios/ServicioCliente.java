@@ -111,7 +111,7 @@ public class ServicioCliente {
                 LOGGER.severe("Error: " + e);
             }
         }
-        
+
         return cliente;
     }
 
