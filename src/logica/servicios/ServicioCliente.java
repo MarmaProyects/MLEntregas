@@ -8,11 +8,12 @@ import BaseDeDatos.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 import logica.clases.Cliente;
 import java.util.logging.Logger;
+import logica.clases.Usuario;
 
 /**
  *
@@ -124,4 +125,41 @@ public class ServicioCliente {
             LOGGER.severe("Error: " + e);
         }
     }
+
+    public Usuario obtenerUsuario(String correo) {
+        Usuario user = null;
+        try {
+            PreparedStatement queryObtenerUser = conexion.prepareStatement("SELECT * FROM `usuario` WHERE correo = '" + correo + "'");
+            ResultSet resultadoUser = queryObtenerUser.executeQuery();
+            if (resultadoUser.next()) {
+                String password = resultadoUser.getString("password");
+                String correoBD = resultadoUser.getString("correo");
+                Blob keyBlob = resultadoUser.getBlob("keyGen");
+                int keyLength = (int) keyBlob.length();
+                byte[] key = keyBlob.getBytes(1, keyLength);
+                user = new Usuario(correoBD, password, key);
+            }
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
+        }
+        return user;
+    }
+
+    public void crearUser(String correo, String clave, byte[] key) {
+        try {
+            Blob blob = conexion.createBlob();
+            blob.setBytes(1, key);
+            
+            String query = "INSERT INTO usuario (correo, password, keyGen) VALUES (?, ?, ?)";
+            PreparedStatement queryCrearUser = conexion.prepareStatement(query);
+            queryCrearUser.setString(1, correo);
+            queryCrearUser.setString(2, clave);
+            queryCrearUser.setBlob(3, blob);
+            
+            queryCrearUser.executeUpdate();
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
+        }
+    }
+
 }
