@@ -4,17 +4,22 @@
  */
 package logica.clases;
 
+import javax.crypto.spec.SecretKeySpec;
+
 /**
  *
  * @author MarmaduX
  */
 public class Usuario {
+
     private String correo;
     private String contrasenia;
+    private byte[] keyGen;
 
-    public Usuario(String correo, String contrasenia) {
+    public Usuario(String correo, String contrasenia,  byte[] keyGen) {
         this.correo = correo;
         this.contrasenia = contrasenia;
+        this.keyGen = keyGen;
     }
 
     public String getCorreo() {
@@ -32,5 +37,13 @@ public class Usuario {
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
-            
+
+    public  byte[] getKeyGen() {
+        return keyGen;
+    }
+
+    public void setKeyGen(byte[] keyGen) {
+        this.keyGen = keyGen;
+    }
+
 }

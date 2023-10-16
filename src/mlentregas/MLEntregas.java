@@ -22,7 +22,7 @@ public class MLEntregas {
            FlatDarkLaf.setup();
         } catch(Exception ex){
             Logger.getLogger("Error:" + ex);
-        }
+        } 
         AutenticacionUsuario autenticacion = new AutenticacionUsuario();
         autenticacion.setVisible(true);        
 

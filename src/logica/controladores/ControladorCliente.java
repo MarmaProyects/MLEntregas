@@ -119,8 +119,8 @@ public class ControladorCliente implements IAdministracion {
     }
 
     @Override
-    public void crearUsuario(String correo, String contrasenia) {
-        this.servicioCliente.crearUser(correo, contrasenia);
+    public void crearUsuario(String correo, String contrasenia, byte[] key) {
+        this.servicioCliente.crearUser(correo, contrasenia, key);
     }
 
     @Override
