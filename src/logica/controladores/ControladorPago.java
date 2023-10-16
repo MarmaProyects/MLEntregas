@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import logica.clases.Cliente;
 import logica.clases.Pago;
 import logica.clases.Tarifa;
+import logica.clases.Usuario;
 import logica.interfaces.IAdministracion;
 import logica.servicios.ServicioPago;
 
@@ -99,6 +100,16 @@ public class ControladorPago implements IAdministracion {
 
     @Override
     public Boolean verificarExisteCorreoCliente(String correo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void crearUsuario(String correo, String contrasenia) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Usuario obtenerUsuario(String correo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

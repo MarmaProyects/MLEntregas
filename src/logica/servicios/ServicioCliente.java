@@ -12,7 +12,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 import logica.clases.Cliente;
+import logica.clases.Usuario;
 import java.util.logging.Logger;
+import logica.clases.Usuario;
 
 /**
  *
@@ -84,4 +86,30 @@ public class ServicioCliente {
             LOGGER.severe("Error: " + e);
         }
     }
+
+    public Usuario obtenerUsuario(String correo) {
+        Usuario user = null;
+        try {
+            PreparedStatement queryObtenerUser = conexion.prepareStatement("SELECT * FROM usuario WHERE correo = '" + correo + "'");
+            ResultSet resultadoUser = queryObtenerUser.executeQuery(); 
+            if (resultadoUser.next()) {
+                String password = resultadoUser.getString("password");
+                String correoBD = resultadoUser.getString("correo"); 
+                user = new Usuario(correoBD, password);
+            }
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
+        }
+        return user;
+    }
+    
+    public void crearUser(String correo, String clave) {
+        try {
+            PreparedStatement queryCrearUser = conexion.prepareStatement("INSERT INTO `usuario` (`correo`,`password`) VALUES ('" + correo + "', '" + clave + "');");
+            queryCrearUser.executeUpdate(); 
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
+        }
+    }
+
 }

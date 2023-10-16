@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import logica.clases.Cliente;
 import logica.clases.Pago;
 import logica.clases.Tarifa;
+import logica.clases.Usuario;
 import logica.interfaces.IAdministracion;
 import logica.servicios.ServicioCliente;
 
@@ -15,7 +16,7 @@ import logica.servicios.ServicioCliente;
  *
  * @author MarmaduX
  */
-public class ControladorCliente  implements IAdministracion {
+public class ControladorCliente implements IAdministracion {
 
     private static ControladorCliente instance;
     private ServicioCliente servicioCliente;
@@ -23,16 +24,16 @@ public class ControladorCliente  implements IAdministracion {
     public ControladorCliente() {
         this.servicioCliente = new ServicioCliente();
     }
-    
+
     public static ControladorCliente getInstancia() {
         if (instance == null) {
             instance = new ControladorCliente();
-        }       
+        }
         return instance;
-    }    
-    
-    public void agregarCliente(int cedula, String nombre ,String apellido, int telefono, String correo) {
-            this.servicioCliente.insertarCliente(cedula, nombre, apellido, telefono, correo);
+    }
+
+    public void agregarCliente(int cedula, String nombre, String apellido, int telefono, String correo) {
+        this.servicioCliente.insertarCliente(cedula, nombre, apellido, telefono, correo);
 
     }
 
@@ -47,7 +48,7 @@ public class ControladorCliente  implements IAdministracion {
         }
         return resultado;
     }
-    
+
     public Boolean verificarExisteCorreoCliente(String correo) {
         Boolean resultado = false;
         ArrayList<Cliente> clientes = this.servicioCliente.obtenerCliente();
@@ -115,5 +116,15 @@ public class ControladorCliente  implements IAdministracion {
     @Override
     public void editarPago(int idPago, float precio) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void crearUsuario(String correo, String contrasenia) {
+        this.servicioCliente.crearUser(correo, contrasenia);
+    }
+
+    @Override
+    public Usuario obtenerUsuario(String correo) {
+        return this.servicioCliente.obtenerUsuario(correo);
     }
 }
