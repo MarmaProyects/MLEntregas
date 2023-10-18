@@ -255,7 +255,7 @@ public class ServicioEnvio {
                 int id = listaLocali.getInt("id");
                 String nombre = listaLocali.getString("nombre");
                 int codPostal = listaLocali.getInt("codigoPostal");
-                listaLocalidades.add(new Localidad(nombre, codPostal, id));
+                listaLocalidades.add(new Localidad(nombre, codPostal, id, 0));
             }
 
         } catch (SQLException e) {
@@ -384,7 +384,7 @@ public class ServicioEnvio {
             while (localiSucursal.next()) {
                 locali = new Localidad(localiSucursal.getString("nombre"),
                         localiSucursal.getInt("codigoPostal"),
-                        localiSucursal.getInt("id"));
+                        localiSucursal.getInt("id"),0);
             }
         } catch (SQLException e) {
             LOGGER.severe("Error: " + e);

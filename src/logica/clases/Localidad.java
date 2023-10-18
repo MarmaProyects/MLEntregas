@@ -18,16 +18,27 @@ public class Localidad {
     private int codigoPostal;
     private int idLocalidad;
     private List<Direccion> listaDirecciones;
+    private float precio;
 
-    public Localidad(String nombre, int codigoPostal, int idLocalidad) {
+    public Localidad(String nombre, int codigoPostal, int idLocalidad, float precio) {
         this.nombre = nombre;
         this.codigoPostal = codigoPostal;
         this.idLocalidad = idLocalidad;
+        this.precio = precio;
     }
    
     public String getNombre() {
         return nombre;
     }
+
+    public float getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(float precio) {
+        this.precio = precio;
+    }
+    
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
