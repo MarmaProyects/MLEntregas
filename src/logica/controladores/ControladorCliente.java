@@ -117,13 +117,15 @@ public class ControladorCliente implements IAdministracion {
     public void editarPago(int idPago, float precio) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    public Cliente traerClientePorNomApe(String nomApe) {
+        return this.servicioCliente.traerClientePorNombreApellido(nomApe);
+    }
 
-    @Override
     public void crearUsuario(String correo, String contrasenia, byte[] key) {
         this.servicioCliente.crearUser(correo, contrasenia, key);
     }
 
-    @Override
     public Usuario obtenerUsuario(String correo) {
         return this.servicioCliente.obtenerUsuario(correo);
     }

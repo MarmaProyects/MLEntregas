@@ -45,7 +45,8 @@ public class ServicioEnvio {
         try {
             PreparedStatement listadoEnvios = conexion.prepareStatement("SELECT E.id as IdEnvio, E.codigoR AS codigoR, C.cedula AS Cedula,"
                     + " C.nombre AS Nombre, C.apellido AS Apellido, C.correo AS Correo, P.id AS IdPaquete, P.descripcion AS DescripcionPaquete, "
-                    + "DIRO.calle AS calleOrigen, DIRD.calle AS calleDestino, PAG.fechaPago AS fechaPago, PAG.precio AS precio, PAG.metodoPago AS metodoPago, PAG.id AS idPago"
+                    + "DIRO.calle AS calleOrigen, DIRO.calle2 AS segundaCalleO, DIRO.nroPuerta AS nroPuertaO, DIRD.calle AS calleDestino, "
+                    + "PAG.fechaPago AS fechaPago, PAG.precio AS precio, PAG.metodoPago AS metodoPago, PAG.id AS idPago"
                     + " FROM envio AS E, envio_cliente AS EC, cliente AS C, paquete AS P , direccion AS DIRO, direccion AS DIRD, pago AS PAG"
                     + " WHERE EC.idEnvio = E.id AND EC.cedulaCliente = C.cedula AND EC.tipoEntrega = 'Envio' "
                     + "AND P.id = E.idPaquete AND E.idDireccionOrigen = DIRO.id AND E.idDireccionOrigen = DIRD.id AND E.id = PAG.id");
@@ -64,7 +65,7 @@ public class ServicioEnvio {
                 }
                 cliente = new Cliente(resListadoEnvios.getInt("Cedula"), resListadoEnvios.getString("Nombre"), resListadoEnvios.getString("Apellido"), null, resListadoEnvios.getString("Correo"));
                 paquete = new Paquete(resListadoEnvios.getString("DescripcionPaquete"), 0, true, true, resListadoEnvios.getInt("IdPaquete"), null);
-                direccionO = new Direccion(resListadoEnvios.getString("calleOrigen"), null, null, 0, 0, null, 0);
+                direccionO = new Direccion(resListadoEnvios.getString("calleOrigen"), resListadoEnvios.getString("segundaCalleO"), null, resListadoEnvios.getInt("nroPuertaO"), 0, null, 0);
                 direccionD = new Direccion(resListadoEnvios.getString("calleDestino"), null, null, 0, 0, null, 0);
                 metodoPago = resListadoEnvios.getString("metodoPago") != null ? MetodoPago.valueOf(resListadoEnvios.getString("metodoPago")) : null;
                 pago = new Pago(resListadoEnvios.getFloat("precio"), metodoPago, resListadoEnvios.getTimestamp("fechaPago"), resListadoEnvios.getInt("idPago"));

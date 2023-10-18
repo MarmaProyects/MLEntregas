@@ -76,6 +76,46 @@ public class ServicioCliente {
         return cliente;
     }
 
+    public Cliente traerClientePorNombreApellido(String nomApe) {
+        Cliente cliente = null;
+
+        try {
+            PreparedStatement queryTraerCliente = conexion.prepareStatement("SELECT * FROM cliente WHERE nombre = " + nomApe);
+            ResultSet resultadoCliente = queryTraerCliente.executeQuery();
+            if (resultadoCliente.next()) {
+                int ced = resultadoCliente.getInt("cedula");
+                String nom = resultadoCliente.getString("nombre");
+                String ape = resultadoCliente.getString("apellido");
+                int t = resultadoCliente.getInt("telefono");
+                String correo = resultadoCliente.getString("correo");
+                String tel = String.valueOf(t);
+                cliente = new Cliente(ced, nom, ape, tel, correo);
+            }
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
+        }
+
+        if (cliente == null) {
+            try {
+                PreparedStatement queryTraerCliente = conexion.prepareStatement("SELECT * FROM cliente WHERE apellido = " + nomApe);
+                ResultSet resultadoCliente = queryTraerCliente.executeQuery();
+                if (resultadoCliente.next()) {
+                    int ced = resultadoCliente.getInt("cedula");
+                    String nom = resultadoCliente.getString("nombre");
+                    String ape = resultadoCliente.getString("apellido");
+                    int t = resultadoCliente.getInt("telefono");
+                    String correo = resultadoCliente.getString("correo");
+                    String tel = String.valueOf(t);
+                    cliente = new Cliente(ced, nom, ape, tel, correo);
+                }
+            } catch (SQLException e) {
+                LOGGER.severe("Error: " + e);
+            }
+        }
+
+        return cliente;
+    }
+
     public void editarCliente(int cedula, String nombre, String apellido, int telefono, String correo) {
         try {
             PreparedStatement queryEditarCliente = conexion.prepareStatement("UPDATE cliente SET nombre= '" + nombre + "',"
