@@ -180,4 +180,9 @@ public class ControladorDireccion implements IEnvio {
     public Envio obtenerCodigoRastreo(int codigoR) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public ArrayList<Envio> listaDeEnviosEnCamino() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

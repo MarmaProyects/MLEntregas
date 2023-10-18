@@ -13,6 +13,7 @@ import logica.clases.Estado;
 import logica.clases.Localidad;
 import logica.clases.Seccion;
 import logica.clases.Tarifa;
+import logica.dataTypes.TipoEstado;
 import logica.interfaces.IEnvio;
 import logica.servicios.ServicioEnvio;
 
@@ -43,6 +44,27 @@ public class ControladorEnvio implements IEnvio {
 
     public ArrayList<Envio> listaDeEnvios() {
         return this.servicioEnvio.listarEnvios();
+    }
+
+    public ArrayList<Envio> listaDeEnviosEnCamino() {
+        ArrayList<Envio> envios = this.servicioEnvio.listarEnvios();
+        ArrayList<Envio> enviosEnCamino = new ArrayList<>();;
+        Boolean estaEnCamino = false;
+        for (Envio envio : envios) {
+            ArrayList<Estado> estados = envio.getEstados();
+            for (Estado estado : estados) {
+                if (estado.getTipo() == TipoEstado.EnCamino) {
+                    estaEnCamino = true;
+                }
+                else {
+                    estaEnCamino = false;
+                }
+            }
+            if (estaEnCamino == true) {
+                enviosEnCamino.add(envio);
+            }
+        }
+        return enviosEnCamino;
     }
 
     public void editarEnvio(int idEnvio, int idTarifa, int idDirOrigen, int idDirDestino, int idPago) {
@@ -122,7 +144,7 @@ public class ControladorEnvio implements IEnvio {
     public int crearEstado(int idEnvio, String tipo, String comentario) {
         return this.servicioEnvio.crearUnEstado(idEnvio, tipo, comentario);
     }
-    
+
     public Envio obtenerCodigoRastreo(int codigoR) {
         return this.servicioEnvio.obtenerUnCodigoRastreo(codigoR);
     }
