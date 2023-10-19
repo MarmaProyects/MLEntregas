@@ -11,16 +11,26 @@ import javax.crypto.spec.SecretKeySpec;
  * @author MarmaduX
  */
 public class Usuario {
-
     private String correo;
     private String contrasenia;
     private byte[] keyGen;
+    private int admin;
 
-    public Usuario(String correo, String contrasenia,  byte[] keyGen) {
+    public Usuario(String correo, String contrasenia,  byte[] keyGen, int admin) {
         this.correo = correo;
         this.contrasenia = contrasenia;
         this.keyGen = keyGen;
+        this.admin = admin;
     }
+
+    public int getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(int admin) {
+        this.admin = admin;
+    }
+    
 
     public String getCorreo() {
         return correo;
