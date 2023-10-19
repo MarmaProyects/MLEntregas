@@ -135,9 +135,10 @@ public class ServicioCliente {
                 String password = resultadoUser.getString("password");
                 String correoBD = resultadoUser.getString("correo");
                 Blob keyBlob = resultadoUser.getBlob("keyGen");
+                int admin = resultadoUser.getInt("admin");
                 int keyLength = (int) keyBlob.length();
                 byte[] key = keyBlob.getBytes(1, keyLength);
-                user = new Usuario(correoBD, password, key);
+                user = new Usuario(correoBD, password, key, admin);
             }
         } catch (SQLException e) {
             LOGGER.severe("Error: " + e);
