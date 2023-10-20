@@ -19,12 +19,18 @@ public class Localidad {
     private int idLocalidad;
     private List<Direccion> listaDirecciones;
     private float precio;
+    private float latitud;
+    private float longitud;
+    private float zoom;
 
-    public Localidad(String nombre, int codigoPostal, int idLocalidad, float precio) {
+    public Localidad(String nombre, int codigoPostal, int idLocalidad, float precio, float latitud ,float longitud, float zoom) {
         this.nombre = nombre;
         this.codigoPostal = codigoPostal;
         this.idLocalidad = idLocalidad;
         this.precio = precio;
+        this.longitud = longitud;
+        this.latitud = latitud;
+        this.zoom = zoom;
     }
    
     public String getNombre() {
@@ -38,6 +44,31 @@ public class Localidad {
     public void setPrecio(float precio) {
         this.precio = precio;
     }
+
+    public float getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(float latitud) {
+        this.latitud = latitud;
+    }
+
+    public float getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(float longitud) {
+        this.longitud = longitud;
+    }
+
+    public float getZoom() {
+        return zoom;
+    }
+
+    public void setZoom(float zoom) {
+        this.zoom = zoom;
+    }
+    
     
 
     public void setNombre(String nombre) {
