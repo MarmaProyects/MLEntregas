@@ -50,7 +50,12 @@ public class ServicioLocalidad {
                 int id = resultadoDeLaQuery.getInt("id");
                 String nombre = resultadoDeLaQuery.getString("nombre");
                 int codigoPostal = resultadoDeLaQuery.getInt("codigoPostal");
-                resultado.add(new Localidad(nombre, codigoPostal, id));
+                float precio = resultadoDeLaQuery.getFloat("precio");
+                float latitud = resultadoDeLaQuery.getFloat("latitud");
+                float longitud = resultadoDeLaQuery.getFloat("longitud");
+                float zoom = resultadoDeLaQuery.getFloat("zoom");
+                
+                resultado.add(new Localidad(nombre, codigoPostal, id, precio, latitud, longitud, zoom));
             }
         } catch (SQLException e) {
             LOGGER.severe("Error: " + e);
@@ -69,7 +74,11 @@ public class ServicioLocalidad {
                 int id = resultadoDeLaQuery.getInt("id");
                 String nombre = resultadoDeLaQuery.getString("nombre");
                 int codigoPostal = resultadoDeLaQuery.getInt("codigoPostal");
-                resultado = new Localidad(nombre, codigoPostal, id);
+                float precio = resultadoDeLaQuery.getFloat("precio");
+                float latitud = resultadoDeLaQuery.getFloat("latitud");
+                float longitud = resultadoDeLaQuery.getFloat("longitud");
+                float zoom = resultadoDeLaQuery.getFloat("zoom");
+                resultado = new Localidad(nombre, codigoPostal, id, precio, latitud, longitud, zoom);
             }
         } catch (SQLException e) {
             LOGGER.severe("Error: " + e);
