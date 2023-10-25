@@ -64,6 +64,10 @@ public class ControladorCliente implements IAdministracion {
     public ArrayList<Cliente> obtenerLosClientes() {
         return this.servicioCliente.obtenerCliente();
     }
+    
+    public Cliente traerClientePorCorreo(String correo) {
+        return this.servicioCliente.traerUnClientePorCorreo(correo);
+    }
 
     @Override
     public void crearUnaTarifa(String nombre, float precioBase) {

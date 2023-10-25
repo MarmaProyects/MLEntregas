@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 import logica.clases.Cliente;
@@ -130,7 +131,7 @@ public class ServicioEnvio {
         ArrayList<Estado> estados;
         Envio envioDetalles = null;
         try {
-            PreparedStatement listadoEnvios = conexion.prepareStatement("SELECT DISTINCT E.id as IdEnvio, E.codigoR AS codigoR, PG.id AS IdPago, PG.metodoPago AS Pago, PG.precio AS precio, T.id AS IdTarifa, T.nombre AS NombreTarifa, T.precioBase AS PrecioTarifa,"
+            PreparedStatement listadoEnvios = conexion.prepareStatement("SELECT DISTINCT E.id as IdEnvio, E.codigoR AS codigoR, PG.id AS IdPago, PG.metodoPago AS Pago, PG.precio AS precio, PG.fechaPago AS fechaPago,T.id AS IdTarifa, T.nombre AS NombreTarifa, T.precioBase AS PrecioTarifa,"
                     + " C.cedula AS CedulaClienteEmisor,"
                     + " C2.cedula AS CedulaClienteReceptor, C.nombre AS NombreEmisor,C.apellido AS ApellidoEmisor, C.correo as CorreoEmisor, "
                     + " C2.nombre AS NombreReceptor, C2.apellido AS ApellidoReceptor, C2.correo as CorreoReceptor, P.id AS IdPaquete, P.peso AS peso, P.esEspecial AS esEspecial, P.esFragil AS esFragil,"
@@ -167,7 +168,8 @@ public class ServicioEnvio {
 
                 paquete = new Paquete(resListadoEnvios.getString("DescripcionPaquete"), resListadoEnvios.getFloat("peso"), resListadoEnvios.getBoolean("esFragil"), resListadoEnvios.getBoolean("esEspecial"), resListadoEnvios.getInt("IdPaquete"), null);
                 pago = new Pago(resListadoEnvios.getInt("precio"), resListadoEnvios.getString("Pago") != null
-                        ? MetodoPago.valueOf(resListadoEnvios.getString("pago")) : null, null, resListadoEnvios.getInt("IdPago"));
+                        ? MetodoPago.valueOf(resListadoEnvios.getString("pago")) : null, resListadoEnvios.getString("fechaPago") != null
+                        ? resListadoEnvios.getTimestamp("fechaPago") : null, resListadoEnvios.getInt("IdPago"));
                 tarifa = new Tarifa(resListadoEnvios.getInt("PrecioTarifa"), resListadoEnvios.getString("NombreTarifa"), resListadoEnvios.getInt("IdTarifa"));
                 envioDetalles = new Envio(idEnvio, direccionDestino, direccionOrigen, tarifa, paquete, clienteEmisor, clienteReceptor, pago, estados, resListadoEnvios.getInt("codigoR"));
             }

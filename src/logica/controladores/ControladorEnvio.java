@@ -14,6 +14,7 @@ import logica.clases.Localidad;
 import logica.clases.Seccion;
 import logica.clases.Tarifa;
 import logica.dataTypes.TipoEstado;
+import logica.fabrica.Fabrica;
 import logica.interfaces.IEnvio;
 import logica.servicios.ServicioEnvio;
 
@@ -25,6 +26,7 @@ public class ControladorEnvio implements IEnvio {
 
     private static ControladorEnvio instance;
     private ServicioEnvio servicioEnvio;
+    private Fabrica fab;
 
     public ControladorEnvio() {
         this.servicioEnvio = new ServicioEnvio();
@@ -36,7 +38,18 @@ public class ControladorEnvio implements IEnvio {
         }
         return instance;
     }
-
+    
+    public ArrayList<Envio> listarEnviosPorCorreo(String correo) {
+        ArrayList<Envio> resultado = null;
+        ArrayList<Envio> envios = this.servicioEnvio.listarEnvios();
+        for (int i = 0; i < envios.size(); i++) {
+            if ((envios.get(i).getClienteEmisor().getCorreo().equals(correo)) || (envios.get(i).getClienteReceptor().getCorreo().equals(correo))) {
+                resultado.add(envios.get(i));
+            }
+        }
+        return resultado;
+    }   
+    
     public Envio verDetallesDelEnvio(int idEnvio) {
         Envio envio = this.servicioEnvio.obtenerDetallesEnvio(idEnvio);
         return envio;
