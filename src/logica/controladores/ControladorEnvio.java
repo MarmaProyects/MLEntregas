@@ -40,8 +40,8 @@ public class ControladorEnvio implements IEnvio {
     }
     
     public ArrayList<Envio> listarEnviosPorCorreo(String correo) {
-        ArrayList<Envio> resultado = null;
-        ArrayList<Envio> envios = this.servicioEnvio.listarEnvios();
+        ArrayList<Envio> resultado = new ArrayList<Envio>();
+        ArrayList<Envio> envios = this.servicioEnvio.listarEnviosSinRepetir();
         for (int i = 0; i < envios.size(); i++) {
             if ((envios.get(i).getClienteEmisor().getCorreo().equals(correo)) || (envios.get(i).getClienteReceptor().getCorreo().equals(correo))) {
                 resultado.add(envios.get(i));
