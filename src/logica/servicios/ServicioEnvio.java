@@ -36,7 +36,8 @@ public class ServicioEnvio {
     private static final Logger LOGGER = Logger.getLogger(ServicioEnvio.class.getName());
 
     public ArrayList<Envio> listarEnvios() {
-        Cliente cliente;
+        Cliente clienteE;
+        Cliente clienteR;
         Paquete paquete;
         Direccion direccionD, direccionO;
         Pago pago;
@@ -44,11 +45,12 @@ public class ServicioEnvio {
         ArrayList<Estado> estados;
         ArrayList<Envio> listadoEnv = new ArrayList<Envio>();
         try {
-            PreparedStatement listadoEnvios = conexion.prepareStatement("SELECT E.id as IdEnvio, E.codigoR AS codigoR, C.cedula AS Cedula,"
-                    + " C.nombre AS Nombre, C.apellido AS Apellido, C.correo AS Correo, P.id AS IdPaquete, P.descripcion AS DescripcionPaquete, "
+            PreparedStatement listadoEnvios = conexion.prepareStatement("SELECT E.id as IdEnvio, E.codigoR AS codigoR, CE.cedula AS CedulaE, CR.cedula AS CedulaR,"
+                    + " CE.nombre AS NombreE, CE.apellido AS ApellidoE, CE.correo AS CorreoE, P.id AS IdPaquete, P.descripcion AS DescripcionPaquete, "
+                    + " CR.nombre AS NombreR, CR.apellido AS ApellidoR, CR.correo AS CorreoR,"
                     + "DIRO.calle AS calleOrigen, DIRO.calle2 AS segundaCalleO, DIRO.nroPuerta AS nroPuertaO, DIRD.calle AS calleDestino, "
                     + "PAG.fechaPago AS fechaPago, PAG.precio AS precio, PAG.metodoPago AS metodoPago, PAG.id AS idPago"
-                    + " FROM envio AS E, envio_cliente AS EC, cliente AS C, paquete AS P , direccion AS DIRO, direccion AS DIRD, pago AS PAG"
+                    + " FROM envio AS E, envio_cliente AS EC, cliente AS CE, cliente AS CR, paquete AS P , direccion AS DIRO, direccion AS DIRD, pago AS PAG"
                     + " WHERE EC.idEnvio = E.id AND EC.cedulaCliente = C.cedula AND EC.tipoEntrega = 'Envio' "
                     + "AND P.id = E.idPaquete AND E.idDireccionOrigen = DIRO.id AND E.idDireccionOrigen = DIRD.id AND E.id = PAG.id");
             ResultSet resListadoEnvios = listadoEnvios.executeQuery();
@@ -64,13 +66,14 @@ public class ServicioEnvio {
                             reslistadoEstados.getTimestamp("fechaEstado"),
                             reslistadoEstados.getInt("id")));
                 }
-                cliente = new Cliente(resListadoEnvios.getInt("Cedula"), resListadoEnvios.getString("Nombre"), resListadoEnvios.getString("Apellido"), null, resListadoEnvios.getString("Correo"));
+                clienteE = new Cliente(resListadoEnvios.getInt("CedulaE"), resListadoEnvios.getString("NombreE"), resListadoEnvios.getString("ApellidoE"), null, resListadoEnvios.getString("CorreoE"));
+                clienteR = new Cliente(resListadoEnvios.getInt("CedulaR"), resListadoEnvios.getString("NombreR"), resListadoEnvios.getString("ApellidoR"), null, resListadoEnvios.getString("CorreoR"));
                 paquete = new Paquete(resListadoEnvios.getString("DescripcionPaquete"), 0, true, true, resListadoEnvios.getInt("IdPaquete"), null);
                 direccionO = new Direccion(resListadoEnvios.getString("calleOrigen"), resListadoEnvios.getString("segundaCalleO"), null, resListadoEnvios.getInt("nroPuertaO"), 0, null, 0);
                 direccionD = new Direccion(resListadoEnvios.getString("calleDestino"), null, null, 0, 0, null, 0);
                 metodoPago = resListadoEnvios.getString("metodoPago") != null ? MetodoPago.valueOf(resListadoEnvios.getString("metodoPago")) : null;
                 pago = new Pago(resListadoEnvios.getFloat("precio"), metodoPago, resListadoEnvios.getTimestamp("fechaPago"), resListadoEnvios.getInt("idPago"));
-                listadoEnv.add(new Envio(resListadoEnvios.getInt("IdEnvio"), direccionD, direccionO, null, paquete, cliente, null, pago, estados, resListadoEnvios.getInt("codigoR")));
+                listadoEnv.add(new Envio(resListadoEnvios.getInt("IdEnvio"), direccionD, direccionO, null, paquete, clienteE, clienteR, pago, estados, resListadoEnvios.getInt("codigoR")));
             }
         } catch (SQLException ex) {
             LOGGER.severe("Error en la consulta de obtener los usuarios" + ex);
