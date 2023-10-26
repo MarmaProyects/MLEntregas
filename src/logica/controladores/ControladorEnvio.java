@@ -58,6 +58,10 @@ public class ControladorEnvio implements IEnvio {
     public ArrayList<Envio> listaDeEnvios() {
         return this.servicioEnvio.listarEnvios();
     }
+    
+    public ArrayList<Envio> listaDeEnviosSinRepetir() {
+        return this.servicioEnvio.listarEnviosSinRepetir();
+    }
 
     public ArrayList<Envio> listaDeEnviosEnCamino() {
         ArrayList<Envio> envios = this.servicioEnvio.listarEnvios();
