@@ -53,7 +53,26 @@ public class ServicioCliente {
 
         return resultado;
     }
+        
+    public Cliente obtenerCliente(String correo) {
+        Cliente cliente = null;
 
+        try {
+            PreparedStatement queryTraerCliente = conexion.prepareStatement("SELECT * FROM cliente WHERE correo= '" + correo + "'");
+            ResultSet resultadoCliente = queryTraerCliente.executeQuery();
+            if (resultadoCliente.next()) {
+                int ced = resultadoCliente.getInt("cedula");
+                String nom = resultadoCliente.getString("nombre");
+                String ape = resultadoCliente.getString("apellido");
+                int t = resultadoCliente.getInt("telefono"); 
+                String tel = String.valueOf(t);
+                cliente = new Cliente(ced, nom, ape, tel, correo);
+            }
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
+        }
+        return cliente;
+    }
     public Cliente traerCliente(int cedula) {
 
         Cliente cliente = null;

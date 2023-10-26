@@ -129,4 +129,9 @@ public class ControladorCliente implements IAdministracion {
     public Usuario obtenerUsuario(String correo) {
         return this.servicioCliente.obtenerUsuario(correo);
     }
+
+    @Override
+    public Cliente obtenerCliente(String correo) {
+        return this.servicioCliente.obtenerCliente(correo);
+    }
 }
