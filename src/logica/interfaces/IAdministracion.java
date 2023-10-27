@@ -24,6 +24,7 @@ public interface IAdministracion {
     public abstract ArrayList<Cliente> obtenerLosClientes();
     public abstract Boolean verificarExisteClienteNuevo(int cedula);
     public abstract Boolean verificarExisteCorreoCliente(String correo);
+    public abstract Boolean verificarCorrespondenciaCorreoCliente(String correo, int cedula);
     public abstract boolean eliminarTarifaSeleccionada(int id);
     public abstract Tarifa traerTarifaSeleccionada(int id);
     public abstract boolean editarTarifaSeleccionada(int id, String nombre, float precio);
