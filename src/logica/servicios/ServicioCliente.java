@@ -53,7 +53,7 @@ public class ServicioCliente {
 
         return resultado;
     }
-        
+
     public Cliente obtenerCliente(String correo) {
         Cliente cliente = null;
 
@@ -64,7 +64,7 @@ public class ServicioCliente {
                 int ced = resultadoCliente.getInt("cedula");
                 String nom = resultadoCliente.getString("nombre");
                 String ape = resultadoCliente.getString("apellido");
-                int t = resultadoCliente.getInt("telefono"); 
+                int t = resultadoCliente.getInt("telefono");
                 String tel = String.valueOf(t);
                 cliente = new Cliente(ced, nom, ape, tel, correo);
             }
@@ -73,6 +73,7 @@ public class ServicioCliente {
         }
         return cliente;
     }
+
     public Cliente traerCliente(int cedula) {
 
         Cliente cliente = null;
@@ -144,6 +145,26 @@ public class ServicioCliente {
             LOGGER.severe("Error: " + e);
         }
     }
+    
+    public void editarCliente(int cedula, int cedulaVieja, String nombre, String apellido, int telefono, String correo) {
+        try {
+            PreparedStatement queryEditarCliente = conexion.prepareStatement("UPDATE cliente SET cedula= '" + cedula + "', nombre= '" + nombre + "',"
+                    + " apellido= '" + apellido + "', telefono= '" + telefono + "', correo= '" + correo + "' WHERE cedula= '" + cedulaVieja + "'");
+            queryEditarCliente.executeUpdate();
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
+        }
+    }
+
+    public void editarUsuario(String correo, String idFoto, String correoViejo) {
+        try {
+            PreparedStatement queryEditarUsuario = conexion.prepareStatement("UPDATE usuario SET correo = '" + correo + "', idFoto= '"
+                    + idFoto + "' WHERE correo = '" + correoViejo + "'");
+            queryEditarUsuario.executeUpdate();
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
+        }
+    }
 
     public Usuario obtenerUsuario(String correo) {
         Usuario user = null;
@@ -152,12 +173,13 @@ public class ServicioCliente {
             ResultSet resultadoUser = queryObtenerUser.executeQuery();
             if (resultadoUser.next()) {
                 String password = resultadoUser.getString("password");
+                String idFoto = resultadoUser.getString("idFoto");
                 String correoBD = resultadoUser.getString("correo");
                 Blob keyBlob = resultadoUser.getBlob("keyGen");
                 int admin = resultadoUser.getInt("admin");
                 int keyLength = (int) keyBlob.length();
                 byte[] key = keyBlob.getBytes(1, keyLength);
-                user = new Usuario(correoBD, password, key, admin);
+                user = new Usuario(correoBD, password, key, admin, idFoto);
             }
         } catch (SQLException e) {
             LOGGER.severe("Error: " + e);
@@ -169,13 +191,13 @@ public class ServicioCliente {
         try {
             Blob blob = conexion.createBlob();
             blob.setBytes(1, key);
-            
+
             String query = "INSERT INTO usuario (correo, password, keyGen) VALUES (?, ?, ?)";
             PreparedStatement queryCrearUser = conexion.prepareStatement(query);
             queryCrearUser.setString(1, correo);
             queryCrearUser.setString(2, clave);
             queryCrearUser.setBlob(3, blob);
-            
+
             queryCrearUser.executeUpdate();
         } catch (SQLException e) {
             LOGGER.severe("Error: " + e);
