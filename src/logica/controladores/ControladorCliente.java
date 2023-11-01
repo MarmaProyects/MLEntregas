@@ -129,4 +129,19 @@ public class ControladorCliente implements IAdministracion {
     public Usuario obtenerUsuario(String correo) {
         return this.servicioCliente.obtenerUsuario(correo);
     }
+
+    @Override
+    public Cliente obtenerCliente(String correo) {
+        return this.servicioCliente.obtenerCliente(correo);
+    }
+
+    @Override
+    public void editarUsuario(String correo, String idImage, String correoviejo) { 
+        this.servicioCliente.editarUsuario(correo, idImage, correoviejo);
+    }
+
+    @Override
+    public void editarClienteSeleccionado(int cedula, int cedulaVieja, String nombre, String apellido, int telefono, String correo) {
+        this.servicioCliente.editarCliente(cedula, cedulaVieja, nombre, apellido, telefono, correo);
+    }
 }
