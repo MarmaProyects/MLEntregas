@@ -18,9 +18,11 @@ public interface IAdministracion {
 
     public abstract ArrayList<Tarifa> listarTarifas();
     public abstract void crearUnaTarifa(String nombre, float precioBase);
+    public abstract void editarUsuario(String correo, String idImage, String correoViejo);
     public abstract void agregarCliente(int cedula, String nombre ,String apellido, int telefono, String correo);
     public abstract void crearUsuario(String correo, String contrasenia, byte[] key);
     public abstract Usuario obtenerUsuario(String correo);
+    public abstract Cliente obtenerCliente(String correo);
     public abstract ArrayList<Cliente> obtenerLosClientes();
     public abstract Boolean verificarExisteClienteNuevo(int cedula);
     public abstract Boolean verificarExisteCorreoCliente(String correo);
@@ -32,6 +34,7 @@ public interface IAdministracion {
     public abstract Cliente traerClientePorNomApe(String nomApe);
     public abstract Cliente traerClientePorCorreo(String correo);
     public abstract void editarClienteSeleccionado(int cedula, String nombre, String apellido, int telefono, String correo);
+    public abstract void editarClienteSeleccionado(int cedula, int cedulaVieja, String nombre, String apellido, int telefono, String correo);
     public abstract int crearPago(int idTarifa, int obtenerLocalidad);
     public abstract void pagarEnvio(int idPago, String metodo);
     public abstract void editarPago(int idPago, float precio);
