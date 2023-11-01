@@ -22,7 +22,6 @@ public interface IAdministracion {
     public abstract void agregarCliente(int cedula, String nombre ,String apellido, int telefono, String correo);
     public abstract void crearUsuario(String correo, String contrasenia, byte[] key);
     public abstract Usuario obtenerUsuario(String correo);
-    public abstract Cliente obtenerCliente(String correo);
     public abstract ArrayList<Cliente> obtenerLosClientes();
     public abstract Boolean verificarExisteClienteNuevo(int cedula);
     public abstract Boolean verificarExisteCorreoCliente(String correo);
