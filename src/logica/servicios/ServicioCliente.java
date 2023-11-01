@@ -53,12 +53,11 @@ public class ServicioCliente {
 
         return resultado;
     }
-
-    public Cliente obtenerCliente(String correo) {
+    
+    public Cliente traerUnClientePorCorreo (String correo) {
         Cliente cliente = null;
-
         try {
-            PreparedStatement queryTraerCliente = conexion.prepareStatement("SELECT * FROM cliente WHERE correo= '" + correo + "'");
+            PreparedStatement queryTraerCliente = conexion.prepareStatement("SELECT * FROM cliente WHERE correo= " + correo);
             ResultSet resultadoCliente = queryTraerCliente.executeQuery();
             if (resultadoCliente.next()) {
                 int ced = resultadoCliente.getInt("cedula");
@@ -73,7 +72,7 @@ public class ServicioCliente {
         }
         return cliente;
     }
-
+  
     public Cliente traerCliente(int cedula) {
 
         Cliente cliente = null;

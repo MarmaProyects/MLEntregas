@@ -61,8 +61,26 @@ public class ControladorCliente implements IAdministracion {
         return resultado;
     }
 
+    public Boolean verificarCorrespondenciaCorreoCliente(String correo, int cedula) {
+        Boolean resultado = false;
+        ArrayList<Cliente> clientes = this.servicioCliente.obtenerCliente();
+        for (Cliente cliente : clientes) {
+            if (cliente.getCorreo().equals(correo)) {
+                if (cliente.getCedula() == cedula) {
+                    resultado = true;
+                    break;
+                }
+            }
+        }
+        return resultado;
+    }
+
     public ArrayList<Cliente> obtenerLosClientes() {
         return this.servicioCliente.obtenerCliente();
+    }
+
+    public Cliente traerClientePorCorreo(String correo) {
+        return this.servicioCliente.traerUnClientePorCorreo(correo);
     }
 
     @Override
@@ -117,7 +135,7 @@ public class ControladorCliente implements IAdministracion {
     public void editarPago(int idPago, float precio) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
     public Cliente traerClientePorNomApe(String nomApe) {
         return this.servicioCliente.traerClientePorNombreApellido(nomApe);
     }
