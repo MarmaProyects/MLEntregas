@@ -68,21 +68,21 @@ public class CrearEnvio extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private int crearCodigoRastreo() {
         int codigoRastreo = this.random.nextInt(888888888) + 111111111;
         boolean existe = true;
         while (existe) {
-            if(this.iE.obtenerCodigoRastreo(codigoRastreo) == null) {
+            if (this.iE.obtenerCodigoRastreo(codigoRastreo) == null) {
                 existe = false;
             } else {
                 codigoRastreo = this.random.nextInt(888888888) + 111111111;
             }
         }
-        
+
         return codigoRastreo;
     }
-    
+
     public void actualizarTarifasEspeciales() {
         this.limpiarTarifasEspeciales();
         this.cargarListaTarifasEspeciales();
@@ -129,6 +129,9 @@ public class CrearEnvio extends javax.swing.JFrame {
                 idTarifa = tarifaEspecial.getIdTarifa();
                 break;
             }
+        }
+        if(this.listaTarifasEsp.isEmpty()){
+            idTarifa = 0;
         }
         return idTarifa;
     }
@@ -1016,11 +1019,11 @@ public class CrearEnvio extends javax.swing.JFrame {
                 .addComponent(labelCedulaR)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelNombreR)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelApellidoR)
                 .addGap(18, 18, 18)
                 .addComponent(labelTelefonoR)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelCorreoR)
                 .addContainerGap())
         );
@@ -1079,7 +1082,7 @@ public class CrearEnvio extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(campoTelefonoR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoCorreoR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoCorreoR, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -1222,10 +1225,8 @@ public class CrearEnvio extends javax.swing.JFrame {
         );
         panelClienteEmisorLayout.setVerticalGroup(
             panelClienteEmisorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelClienteEmisorLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jLabelIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1295,7 +1296,7 @@ public class CrearEnvio extends javax.swing.JFrame {
                 .addGroup(panelGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panelClienteReceptor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelClienteEmisor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
                 .addComponent(panelDireccionDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelDireccionOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1335,19 +1336,21 @@ public class CrearEnvio extends javax.swing.JFrame {
     }//GEN-LAST:event_campoPesoPaqueteActionPerformed
 
     private void botonCrearEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearEnvioActionPerformed
+        if(this.checkboxEspecial.isSelected()){
+            this.idTarifa = this.obtenerIdTarifaEspecial();
+        }
         if (this.validacionCamposVacios() && this.validacionDeClientes()) {
             if (this.verificarCorreo()) {
-                int idDireccionOrigen, idDireccionDestino = 0;
+                int idDireccionOrigen = 0, idDireccionDestino = 0;
                 int fragil = this.checkBoxFragil.isSelected() ? 1 : 0;
                 int especial = this.checkboxEspecial.isSelected() ? 1 : 0;
                 if (especial == 1) {
                     idTarifa = this.obtenerIdTarifaEspecial();
                 }
                 int idP = this.iE.crearPaquete(campoDescPaquete.getText(), Float.parseFloat(campoPesoPaquete.getText()), fragil, especial);
-                if (this.validacionCamposVacios()) {
-                    idDireccionDestino = this.iE.crearDireccion(campoCalleDireccion.getText(), campoCalle2Direccion.getText(),
-                            Integer.parseInt(campoPuertaDireccion.getText()), campoApartDireccion.getText());
-                }
+
+                idDireccionDestino = this.iE.crearDireccion(campoCalleDireccion.getText(), campoCalle2Direccion.getText(),
+                        Integer.parseInt(campoPuertaDireccion.getText()), campoApartDireccion.getText());
 
                 if (checkSucursal.isSelected()) { //Se toma la sucursal
                     Direccion sucursal = this.iE.traerDireccionSucursal();
@@ -1412,8 +1415,8 @@ public class CrearEnvio extends javax.swing.JFrame {
     private void campoCedulaEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCedulaEActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoCedulaEActionPerformed
-    
-    private boolean verificarCorreo(){
+
+    private boolean verificarCorreo() {
         Boolean resultado = true;
         if (this.iA.verificarExisteClienteNuevo(Integer.parseInt(this.campoCedulaE.getText()))) {
             if (!this.iA.verificarCorrespondenciaCorreoCliente(this.campoCorreoE.getText(), Integer.parseInt(this.campoCedulaE.getText()))) {
@@ -1427,7 +1430,7 @@ public class CrearEnvio extends javax.swing.JFrame {
         }
         return resultado;
     }
-    
+
     private void campoCedulaEFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoCedulaEFocusLost
         this.completarDatosCliente(this.campoCedulaE, this.campoNombreE, this.campoApellidoE, this.campoTelefonoE, this.campoCorreoE);
     }//GEN-LAST:event_campoCedulaEFocusLost
@@ -1625,26 +1628,7 @@ public class CrearEnvio extends javax.swing.JFrame {
     }//GEN-LAST:event_checkboxEspecialActionPerformed
 
     private void campoPesoPaqueteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoPesoPaqueteFocusLost
-        if (!campoPesoPaquete.getText().isBlank()) {
-            float peso = Float.parseFloat(campoPesoPaquete.getText());
-            if (peso > 15) {
-                this.labelTipo.setVisible(true);
-                this.checkboxEspecial.setVisible(true);
-                this.checkboxEspecial.setSelected(true);
-                this.checkboxEspecial.setEnabled(false);
-                this.botonCrearTarifaEsp.setVisible(true);
-                this.comboTarifasEspeciales.setVisible(true);
-                this.labelTarifasEspeciales.setVisible(true);
-            } else {
-                this.labelTipo.setVisible(false);
-                this.checkboxEspecial.setVisible(false);
-                this.checkboxEspecial.setSelected(false);
-                this.botonCrearTarifaEsp.setVisible(false);
-                this.labelTarifasEspeciales.setVisible(false);
-                this.comboTarifasEspeciales.setVisible(false);
-                this.idTarifa = this.obtenerIdTarifasNormales(peso);
-            }
-        }
+
     }//GEN-LAST:event_campoPesoPaqueteFocusLost
 
     private void comboLocalidadDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLocalidadDestinoActionPerformed
@@ -1687,10 +1671,10 @@ public class CrearEnvio extends javax.swing.JFrame {
                 this.labelTipo.setVisible(true);
                 this.checkboxEspecial.setVisible(true);
                 this.checkboxEspecial.setSelected(true);
-                this.checkboxEspecial.setEnabled(false);
                 this.botonCrearTarifaEsp.setVisible(true);
                 this.comboTarifasEspeciales.setVisible(true);
                 this.labelTarifasEspeciales.setVisible(true);
+                this.idTarifa = this.obtenerIdTarifaEspecial();
             } else {
                 this.labelTipo.setVisible(false);
                 this.checkboxEspecial.setVisible(false);
