@@ -1391,7 +1391,7 @@ public class CrearEnvio extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Uno de los correos registrados no concuerda con el cliente ingresado", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else if (!this.validacionTarifas()) {
-            JOptionPane.showMessageDialog(null, "Falta seleccionar la tarifa", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una tarifa especial", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (!this.validacionSecciones()) {
             JOptionPane.showMessageDialog(null, "Falta seleccionar la seccion", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (!this.validacionCamposVacios()) {
@@ -1589,7 +1589,7 @@ public class CrearEnvio extends javax.swing.JFrame {
     }
 
     private boolean validacionTarifas() {
-        return this.idTarifa != 0;
+        return Integer.parseInt(this.campoPesoPaquete.getText())>=15 && (this.idTarifa==1 || this.idTarifa==2 || this.idTarifa==3);
     }
 
     private boolean validacionSecciones() {
