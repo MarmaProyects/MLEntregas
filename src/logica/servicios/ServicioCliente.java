@@ -150,7 +150,7 @@ public class ServicioCliente {
                            <body>
                                 <p>
                                     Hola %s, <br>
-                                    Tu paquete <a>%d</a> fue cancelado.
+                                    Tu paquete <a >%d</a> fue cancelado.
                                     Clickea en la referencia para ir a nuestra página de Seguimiento.
                                 </p>
                            </body>
