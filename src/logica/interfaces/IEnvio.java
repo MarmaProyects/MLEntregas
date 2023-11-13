@@ -24,7 +24,9 @@ public interface IEnvio {
     public abstract ArrayList<Paquete> listarPaquetesPorSeccion(int idSeccion);
     public abstract void moverPaqueteASeccion(int idPaquete, int idSeccionAMover);
     public abstract ArrayList<Envio> listaDeEnvios();
+    public abstract ArrayList<Envio> listaDeEnviosSinRepetir();
     public abstract ArrayList<Envio> listaDeEnviosEnCamino();
+    public abstract ArrayList<Envio> listarEnviosPorCorreo(String correo);
     public abstract Envio verDetallesDelEnvio(int idEnvio);
     public abstract int crearPaquete(String desc, float peso, int fragil, int tipo);
     public abstract void editarPaquete(int idPaquete, float peso, String descripcion, int esFragil, int esEspecial); 

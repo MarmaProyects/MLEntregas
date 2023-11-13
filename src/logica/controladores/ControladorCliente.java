@@ -6,6 +6,7 @@ package logica.controladores;
 
 import java.util.ArrayList;
 import logica.clases.Cliente;
+import logica.clases.Envio;
 import logica.clases.Pago;
 import logica.clases.Tarifa;
 import logica.clases.Usuario;
@@ -31,7 +32,15 @@ public class ControladorCliente implements IAdministracion {
         }
         return instance;
     }
-
+    
+    public boolean crearMail(Cliente client, Envio envio, int idEstado) {
+        return this.servicioCliente.crearUnEmail(client, envio, idEstado);
+    }
+    
+    public void enviarMail(){
+        this.servicioCliente.enviarUnEmail();
+    }
+    
     public void agregarCliente(int cedula, String nombre, String apellido, int telefono, String correo) {
         this.servicioCliente.insertarCliente(cedula, nombre, apellido, telefono, correo);
 
@@ -61,8 +70,26 @@ public class ControladorCliente implements IAdministracion {
         return resultado;
     }
 
+    public Boolean verificarCorrespondenciaCorreoCliente(String correo, int cedula) {
+        Boolean resultado = false;
+        ArrayList<Cliente> clientes = this.servicioCliente.obtenerCliente();
+        for (Cliente cliente : clientes) {
+            if (cliente.getCorreo().equals(correo)) {
+                if (cliente.getCedula() == cedula) {
+                    resultado = true;
+                    break;
+                }
+            }
+        }
+        return resultado;
+    }
+
     public ArrayList<Cliente> obtenerLosClientes() {
         return this.servicioCliente.obtenerCliente();
+    }
+
+    public Cliente traerClientePorCorreo(String correo) {
+        return this.servicioCliente.traerUnClientePorCorreo(correo);
     }
 
     @Override
@@ -117,7 +144,7 @@ public class ControladorCliente implements IAdministracion {
     public void editarPago(int idPago, float precio) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
     public Cliente traerClientePorNomApe(String nomApe) {
         return this.servicioCliente.traerClientePorNombreApellido(nomApe);
     }
@@ -128,5 +155,19 @@ public class ControladorCliente implements IAdministracion {
 
     public Usuario obtenerUsuario(String correo) {
         return this.servicioCliente.obtenerUsuario(correo);
+    }
+
+    @Override
+    public void editarUsuario(String correo, String idImage, String correoviejo) { 
+        this.servicioCliente.editarUsuario(correo, idImage, correoviejo);
+    }
+    
+    public void cambiarNotisEmail(String correo, boolean notisEmail) {
+        this.servicioCliente.cambiarNotisDeEmail(correo, notisEmail);
+    }
+
+    @Override
+    public void editarClienteSeleccionado(int cedula, int cedulaVieja, String nombre, String apellido, int telefono, String correo) {
+        this.servicioCliente.editarCliente(cedula, cedulaVieja, nombre, apellido, telefono, correo);
     }
 }

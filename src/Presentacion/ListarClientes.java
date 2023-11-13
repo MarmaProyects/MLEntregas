@@ -241,8 +241,8 @@ public class ListarClientes extends javax.swing.JFrame {
             i--;
         }
         this.cargarTablaClientes();
-        this.tablaClientes.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
-        this.tablaClientes.getColumnModel().getColumn(3).setCellEditor(new TableActionCellEditor(this.event));
+        this.tablaClientes.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
+        this.tablaClientes.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(this.event));
     }
     
     private void volverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtonActionPerformed

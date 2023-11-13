@@ -291,7 +291,7 @@ public class ListaEnvios extends javax.swing.JFrame {
     }
 
     private void cargarTodasLosEnvios() {
-        ArrayList<Envio> listaDeEnvios = this.IE.listaDeEnvios();
+        ArrayList<Envio> listaDeEnvios = this.IE.listaDeEnviosSinRepetir();
         String estado;
         String fecha;
         DefaultTableModel modelo = (DefaultTableModel) this.tableEnvio.getModel();

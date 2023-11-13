@@ -1388,7 +1388,7 @@ public class CrearEnvio extends javax.swing.JFrame {
                 VerDetallesEnvio verDetallesEnvio = new VerDetallesEnvio(idEnvio, listEnv);
                 verDetallesEnvio.setVisible(true);
             } else {
-                JOptionPane.showMessageDialog(null, "Ese correo ya está registrado en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Uno de los correos registrados no concuerda con el cliente ingresado", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else if (!this.validacionTarifas()) {
             JOptionPane.showMessageDialog(null, "Falta seleccionar la tarifa", "Error", JOptionPane.ERROR_MESSAGE);
@@ -1414,7 +1414,18 @@ public class CrearEnvio extends javax.swing.JFrame {
     }//GEN-LAST:event_campoCedulaEActionPerformed
     
     private boolean verificarCorreo(){
-        return (this.iA.verificarExisteCorreoCliente(this.campoCorreoE.getText()) && this.iA.verificarExisteClienteNuevo(Integer.parseInt(campoCedulaE.getText())) && (this.iA.verificarExisteCorreoCliente(this.campoCorreoR.getText()) && this.iA.verificarExisteClienteNuevo(Integer.parseInt(campoCedulaR.getText()))));
+        Boolean resultado = true;
+        if (this.iA.verificarExisteClienteNuevo(Integer.parseInt(this.campoCedulaE.getText()))) {
+            if (!this.iA.verificarCorrespondenciaCorreoCliente(this.campoCorreoE.getText(), Integer.parseInt(this.campoCedulaE.getText()))) {
+                resultado = false;
+            }
+        }
+        if (resultado && this.iA.verificarExisteClienteNuevo(Integer.parseInt(this.campoCedulaR.getText()))) {
+            if (!this.iA.verificarCorrespondenciaCorreoCliente(this.campoCorreoR.getText(), Integer.parseInt(this.campoCedulaR.getText()))) {
+                resultado = false;
+            }
+        }
+        return resultado;
     }
     
     private void campoCedulaEFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoCedulaEFocusLost
