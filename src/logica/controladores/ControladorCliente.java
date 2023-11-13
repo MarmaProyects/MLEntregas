@@ -6,6 +6,7 @@ package logica.controladores;
 
 import java.util.ArrayList;
 import logica.clases.Cliente;
+import logica.clases.Envio;
 import logica.clases.Pago;
 import logica.clases.Tarifa;
 import logica.clases.Usuario;
@@ -31,7 +32,15 @@ public class ControladorCliente implements IAdministracion {
         }
         return instance;
     }
-
+    
+    public boolean crearMail(Cliente client, Envio envio, int idEstado) {
+        return this.servicioCliente.crearUnEmail(client, envio, idEstado);
+    }
+    
+    public void enviarMail(){
+        this.servicioCliente.enviarUnEmail();
+    }
+    
     public void agregarCliente(int cedula, String nombre, String apellido, int telefono, String correo) {
         this.servicioCliente.insertarCliente(cedula, nombre, apellido, telefono, correo);
 
@@ -151,6 +160,10 @@ public class ControladorCliente implements IAdministracion {
     @Override
     public void editarUsuario(String correo, String idImage, String correoviejo) { 
         this.servicioCliente.editarUsuario(correo, idImage, correoviejo);
+    }
+    
+    public void cambiarNotisEmail(String correo, boolean notisEmail) {
+        this.servicioCliente.cambiarNotisDeEmail(correo, notisEmail);
     }
 
     @Override

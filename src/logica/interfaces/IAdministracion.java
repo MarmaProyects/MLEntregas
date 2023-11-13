@@ -6,6 +6,7 @@ package logica.interfaces;
 
 import java.util.ArrayList;
 import logica.clases.Cliente;
+import logica.clases.Envio;
 import logica.clases.Pago;
 import logica.clases.Tarifa;
 import logica.clases.Usuario;
@@ -16,9 +17,12 @@ import logica.clases.Usuario;
  */
 public interface IAdministracion {
 
+    public abstract boolean crearMail(Cliente client, Envio envio, int idEstado);
+    public abstract void enviarMail();
     public abstract ArrayList<Tarifa> listarTarifas();
     public abstract void crearUnaTarifa(String nombre, float precioBase);
     public abstract void editarUsuario(String correo, String idImage, String correoViejo);
+    public abstract void cambiarNotisEmail(String correo, boolean notisEmail);
     public abstract void agregarCliente(int cedula, String nombre ,String apellido, int telefono, String correo);
     public abstract void crearUsuario(String correo, String contrasenia, byte[] key);
     public abstract Usuario obtenerUsuario(String correo);

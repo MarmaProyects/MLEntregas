@@ -8,10 +8,12 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import logica.clases.Cliente;
 import logica.clases.Direccion;
 import logica.clases.Envio;
 import logica.clases.Estado;
 import logica.clases.Tarifa;
+import logica.clases.Usuario;
 import logica.dataTypes.TipoEstado;
 import logica.fabrica.Fabrica;
 import logica.interfaces.IEnvio;
@@ -49,10 +51,10 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             this.jButtonPagar.setEnabled(false);
             this.jLabelPago.setText("■ Pagado");
         }
-        
-        addWindowListener(new WindowAdapter(){
+
+        addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosed(WindowEvent e){
+            public void windowClosed(WindowEvent e) {
                 Home home = new Home();
                 home.setVisible(true);
             }
@@ -984,7 +986,23 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                     int opt = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea confirmar el envío?",
                             "Confirmar envío", JOptionPane.YES_NO_OPTION);
                     if (opt == 0) {
-                        this.IE.crearEstado(idEnvio, "Entregado", "Paquete entregado");
+                        int idEstado = this.IE.crearEstado(idEnvio, "Entregado", "Paquete entregado");
+                        Usuario user = null;
+                        Cliente client = null;
+                        ArrayList<Cliente> arrayClis = this.fb.getControladorCliente().obtenerLosClientes();
+                        for (Cliente cli : arrayClis) {
+                            if (cli.getCedula() == Integer.parseInt(this.jTextFieldCIReceptor.getText())) {
+                                user = this.fb.getControladorCliente().obtenerUsuario(cli.getCorreo());
+                                client = cli;
+                                break;
+                            }
+                        }
+                        if (user != null && user.getNotisEmail()) {
+                            JOptionPane.showMessageDialog(null, "Espere mientras se envía el correo al cliente.", "Cargando", JOptionPane.ERROR_MESSAGE);
+                            if (this.fb.getControladorCliente().crearMail(client, envio, idEstado)) {
+                                this.fb.getControladorCliente().enviarMail();
+                            }
+                        }
                         llamarAlertaEnvioConfirmado();
                         this.jComboBoxEstados.removeAllItems();
                         this.jComboBoxEstados.addItem("Entregado");
@@ -999,7 +1017,7 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             } else {
                 llamarAlertaEstadoYaConfirmado();
             }
-        } else {
+        } else { //Cuando esta en modo edicion, hace esto
             if (this.jTextFieldCalle1Emisor.getText().trim().equals(this.jTextFieldCalle1Receptor.getText().trim())
                     && this.jTextFieldNroPuertaEmisor.getText().trim().equals(this.jTextFieldNroPuertaReceptor.getText().trim())) {
                 JOptionPane.showMessageDialog(null, "Las calles y números de puerta no pueden ser iguales", "Error", JOptionPane.ERROR_MESSAGE);
@@ -1028,12 +1046,26 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                 Estado estadoFinal = Fabrica.getInstancia().getControladorEstado().obtenerElEstado(idUltimo, idEnvio);
                 String estadoNuevo = "";
                 if (!estadoFinal.getTipo().getEstado().equals(jComboBoxEstados.getSelectedItem().toString())) {
+                    Usuario user = null;
+                    Cliente client = null;
                     estadoNuevo = jComboBoxEstados.getSelectedItem().toString().equals("Listo para entregar") ? "ListoParaRetirar" : "EnCamino";
-                    this.IE.crearEstado(idEnvio, estadoNuevo, "");
+                    int idEstado = this.IE.crearEstado(idEnvio, estadoNuevo, "");
+                    ArrayList<Cliente> arrayClis = this.fb.getControladorCliente().obtenerLosClientes();
+                    for (Cliente cli : arrayClis) {
+                        if (cli.getCedula() == Integer.parseInt(this.jTextFieldCIReceptor.getText())) {
+                            user = this.fb.getControladorCliente().obtenerUsuario(cli.getCorreo());
+                            client = cli;
+                            break;
+                        }
+                    }
+                    if (user != null && user.getNotisEmail()) {
+                        if (this.fb.getControladorCliente().crearMail(client, envio, idEstado)) {
+                            this.fb.getControladorCliente().enviarMail();
+                        }
+                    }
                 }
                 String comboBoxItem = jComboBoxEstados.getSelectedItem().toString();
                 this.jComboBoxEstados.removeAllItems();
-                this.jComboBoxEstados.getItemCount();
                 this.jComboBoxEstados.addItem(comboBoxItem);
                 JOptionPane.showMessageDialog(null, "Edición confirmada", "Edición exitosa", JOptionPane.INFORMATION_MESSAGE);
                 jButtonEditarEnvio.setEnabled(true);

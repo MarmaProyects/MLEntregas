@@ -6,6 +6,7 @@ package logica.controladores;
 
 import java.util.ArrayList;
 import logica.clases.Cliente;
+import logica.clases.Envio;
 import logica.clases.Pago;
 import logica.clases.Tarifa;
 import logica.clases.Usuario;
@@ -127,6 +128,11 @@ public class ControladorTarifa implements IAdministracion {
     public Cliente traerClientePorCorreo(String correo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    @Override
+    public boolean crearMail(Cliente client, Envio envio, int idEstado) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
     @Override
     public Boolean verificarCorrespondenciaCorreoCliente(String correo, int cedula) {
@@ -139,6 +145,16 @@ public class ControladorTarifa implements IAdministracion {
 
     @Override
     public void editarClienteSeleccionado(int cedula, int cedulaVieja, String nombre, String apellido, int telefono, String correo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    @Override
+    public void enviarMail() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void cambiarNotisEmail(String correo, boolean notisEmail) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

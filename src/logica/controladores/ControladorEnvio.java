@@ -64,7 +64,7 @@ public class ControladorEnvio implements IEnvio {
     }
 
     public ArrayList<Envio> listaDeEnviosEnCamino() {
-        ArrayList<Envio> envios = this.servicioEnvio.listarEnvios();
+        ArrayList<Envio> envios = this.servicioEnvio.listarEnviosSinRepetir();
         ArrayList<Envio> enviosEnCamino = new ArrayList<>();;
         Boolean estaEnCamino = false;
         for (Envio envio : envios) {

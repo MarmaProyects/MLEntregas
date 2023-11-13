@@ -17,13 +17,15 @@ public class Usuario {
     private String idFoto;
     private byte[] keyGen;
     private int admin;
+    private boolean notisEmail;
 
-    public Usuario(String correo, String contrasenia, byte[] keyGen, int admin, String idFoto) {
+    public Usuario(String correo, String contrasenia, byte[] keyGen, int admin, String idFoto, boolean notisEmail) {
         this.correo = correo;
         this.contrasenia = contrasenia;
         this.keyGen = keyGen;
         this.admin = admin;
         this.idFoto = idFoto;
+        this.notisEmail = notisEmail;
     }
 
     public String getIdFoto() {
@@ -66,4 +68,11 @@ public class Usuario {
         this.keyGen = keyGen;
     }
 
+    public boolean getNotisEmail() {
+        return notisEmail;
+    }
+
+    public void setNotisEmail(boolean notisEmail) {
+        this.notisEmail = notisEmail;
+    }
 }
