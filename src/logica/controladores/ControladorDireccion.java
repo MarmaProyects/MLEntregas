@@ -13,6 +13,7 @@ import logica.clases.Estado;
 import logica.clases.Localidad;
 import logica.clases.Seccion;
 import logica.clases.Tarifa;
+import logica.clases.Valoracion;
 import logica.interfaces.IEnvio;
 import logica.servicios.ServicioDireccion;
 
@@ -187,10 +188,25 @@ public class ControladorDireccion implements IEnvio {
     }
 
     @Override
+    public ArrayList<Valoracion> obtenerValoraciones() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+  
+    @Override
     public ArrayList<Envio> listarEnviosPorCorreo(String correo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @Override
+    public void crearValoracion(int idEnvio, int puntaje, String comentario) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+  
+    @Override
+    public Valoracion buscarValoracionId(int idEnvio) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+  
     @Override
     public ArrayList<Envio> listaDeEnviosSinRepetir() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

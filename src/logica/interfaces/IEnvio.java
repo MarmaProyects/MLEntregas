@@ -13,6 +13,7 @@ import logica.clases.Estado;
 import logica.clases.Localidad;
 import logica.clases.Seccion;
 import logica.clases.Tarifa;
+import logica.clases.Valoracion;
 
 /**
  *
@@ -53,4 +54,7 @@ public interface IEnvio {
     public abstract Estado obtenerElEstado(int idEstado, int idEnvio);
     public abstract ArrayList<Envio> listarEnviosFechaSeleccionadas(String fechaInicio, String fechaFinal);
     public abstract Envio obtenerEnvioPaquete(int idPaquete);
+    public abstract ArrayList<Valoracion> obtenerValoraciones();
+    public abstract void crearValoracion(int idEnvio, int puntaje, String comentario);
+    public abstract Valoracion buscarValoracionId(int idEnvio);
 }

@@ -22,6 +22,7 @@ import logica.clases.Pago;
 import logica.clases.Paquete;
 import logica.clases.Seccion;
 import logica.clases.Tarifa;
+import logica.clases.Valoracion;
 import logica.dataTypes.MetodoPago;
 import logica.dataTypes.TipoEstado;
 
@@ -579,5 +580,52 @@ public class ServicioEnvio {
             LOGGER.severe("Error: " + e);
         }
         return null;
+    }
+
+    public ArrayList<Valoracion> obtenerValoraciones() {
+        ArrayList<Valoracion> resultado = new ArrayList<Valoracion>();
+        try {
+            PreparedStatement query = conexion.prepareStatement("SELECT * FROM valoracion");
+            ResultSet resultadoDeLaQuery = query.executeQuery();
+            while (resultadoDeLaQuery.next()) {
+                int puntaje = resultadoDeLaQuery.getInt("puntaje");
+                String comentario = resultadoDeLaQuery.getString("comentario");
+                resultado.add(new Valoracion(obtenerDetallesEnvio(resultadoDeLaQuery.getInt("idEnvio")), puntaje, comentario));
+            }
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
+        }
+
+        return resultado;
+    }
+
+    public void crearUnaValoracion(int idEnvio, int puntaje, String comentario) {
+        try {
+
+            String query = "INSERT INTO valoracion (idEnvio, puntaje, comentario) VALUES (?, ?, ?)";
+            PreparedStatement queryCrearValoracion = conexion.prepareStatement(query);
+            queryCrearValoracion.setInt(1, idEnvio);
+            queryCrearValoracion.setInt(2, puntaje);
+            queryCrearValoracion.setString(3, comentario);
+
+            queryCrearValoracion.executeUpdate();
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
+        }
+    }
+
+    public Valoracion buscarValoracionPorId(int idEnvio) {
+        Valoracion valoracion = null;
+        try {
+            PreparedStatement queryTraerValoracion = conexion.prepareStatement("SELECT * FROM valoracion WHERE idEnvio = " + idEnvio + ";");
+            ResultSet valoracionSeleccionada = queryTraerValoracion.executeQuery();
+            while (valoracionSeleccionada.next()) {
+                valoracion = new Valoracion(obtenerDetallesEnvio(idEnvio), valoracionSeleccionada.getInt("puntaje"), valoracionSeleccionada.getString("comentario"));
+            }
+
+        } catch (SQLException e) {
+            LOGGER.severe("Error: " + e);
+        }
+        return valoracion;
     }
 }
