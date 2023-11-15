@@ -17,7 +17,9 @@ import logica.interfaces.IEnvio;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import logica.clases.Direccion;
+import logica.clases.Envio;
 import logica.clases.Tarifa;
+import logica.clases.Usuario;
 import logica.interfaces.IAdministracion;
 
 /**
@@ -1380,9 +1382,25 @@ public class CrearEnvio extends javax.swing.JFrame {
                 this.iE.conexionEnvio_Cliente(idEnvio, Integer.parseInt(campoCedulaE.getText()), "Envio");
                 this.iE.conexionEnvio_Cliente(idEnvio, Integer.parseInt(campoCedulaR.getText()), "Recibe");
                 //CONEXION ENVIO Y ESTADO
-                this.iE.crearEstado(idEnvio, "Preparando", "Creacion del envio");
-
+                int idEstado = this.iE.crearEstado(idEnvio, "Preparando", "Creacion del envio");
+                Usuario user = null;
+                Cliente client = null;
+                ArrayList<Cliente> arrayClis = this.iA.obtenerLosClientes();
+                for (Cliente cli : arrayClis) {
+                    if (cli.getCedula() == Integer.parseInt(this.campoCedulaR.getText())) {
+                        user = this.iA.obtenerUsuario(cli.getCorreo());
+                        client = cli;
+                        break;
+                    }
+                }
+                Envio envio = this.iE.verDetallesDelEnvio(idEnvio);
+                if (user != null && user.getNotisEmail()) {
+                    if (this.iA.crearMail(client, envio, idEstado)) {
+                        this.iA.enviarMail();
+                    }
+                }
                 JOptionPane.showMessageDialog(null, "El envio fue ingresado con éxito", "Success", JOptionPane.DEFAULT_OPTION);
+                
                 this.setVisible(false);
                 ListaEnvios listEnv = null;
                 VerDetallesEnvio verDetallesEnvio = new VerDetallesEnvio(idEnvio, listEnv);

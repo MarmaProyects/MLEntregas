@@ -998,7 +998,6 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
                             }
                         }
                         if (user != null && user.getNotisEmail()) {
-                            JOptionPane.showMessageDialog(null, "Espere mientras se envía el correo al cliente.", "Cargando", JOptionPane.ERROR_MESSAGE);
                             if (this.fb.getControladorCliente().crearMail(client, envio, idEstado)) {
                                 this.fb.getControladorCliente().enviarMail();
                             }
@@ -1021,8 +1020,8 @@ public class VerDetallesEnvio extends javax.swing.JFrame {
             if (this.jTextFieldCalle1Emisor.getText().trim().equals(this.jTextFieldCalle1Receptor.getText().trim())
                     && this.jTextFieldNroPuertaEmisor.getText().trim().equals(this.jTextFieldNroPuertaReceptor.getText().trim())) {
                 JOptionPane.showMessageDialog(null, "Las calles y números de puerta no pueden ser iguales", "Error", JOptionPane.ERROR_MESSAGE);
-            } else if (this.jTextFieldCalle1Emisor.getText().trim().isBlank() || this.jTextFieldApartamentoEmisor.getText().trim().isBlank()
-                    || this.jTextFieldCalle1Receptor.getText().trim().isBlank() || this.jTextFieldApartamentoReceptor.getText().trim().isBlank()) {
+            } else if (this.jTextFieldCalle1Emisor.getText().trim().isBlank() || this.jTextFieldNroPuertaEmisor.getText().trim().isBlank()
+                    || this.jTextFieldCalle1Receptor.getText().trim().isBlank() || this.jTextFieldNroPuertaReceptor.getText().trim().isBlank()) {
                 JOptionPane.showMessageDialog(null, "Las calles y números de puerta no pueden ser vacías", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 //Se edita la dirección origen
