@@ -38,8 +38,8 @@ public class ServicioCliente {
     private static final Logger LOGGER = Logger.getLogger(ServicioEnvio.class.getName());
     //Variables para enviar mail
     private Fabrica fab = Fabrica.getInstancia();
-    private static String emailFrom = "franco.sancristobal@estudiantes.utec.edu.uy"; //Correo que envía 
-    private static String passwordFrom = "tugr kfup vina fgfs"; //Contraseña de aplicacion
+    private static String emailFrom = "mlentregasweb@gmail.com"; //Correo que envía 
+    private static String passwordFrom = "zjeg ozmv kktd wjvq"; //Contraseña de aplicacion
     private Properties mProperties = new Properties();
     private Session mSession;
     private MimeMessage mCorreo;
@@ -94,87 +94,170 @@ public class ServicioCliente {
         if (estadoNuevo.getTipo().getEstado().equals("En preparación")) {
             String asunto = "Tu orden " + envio.getCodigoRastreo() + " está en preparación.";
             String contenido = """
-                           <html style="font-family: Helvetica, Arial, sans-serif;">
-                           <body>
-                           <td>
-                                <p>
+                            <html>
+                                <head>
+                                    <style>
+                                        button {
+                                            background-color: white;
+                                            border: none;
+                                            text-decoration: underline;
+                                            color: blue;
+                                            padding: 0px;                     
+                                        }
+                                        button:hover {
+                                            cursor: pointer;
+                                        }                 
+                                    </style>
+                                </head>
+                                <body>
                                     Hola %s, <br>
-                                    Queremos decirte que, tu paquete de
-                                    referencia <a>%d</a> está en nuestra agencia. <br>
-                                    Clickea en la referencia para ir a nuestra página de Seguimiento.
-                                </p>
-                           </td>    
-                           </body>
-                           </html>
-                           """.formatted(client.getNombre(), envio.getCodigoRastreo()).stripIndent();
+                                    <form method="post" action="http://localhost:8081/Seguimiento">     
+                                        <input type="hidden" name="codigoRastreo" value="%s" />
+                                        <lable>Tu paquete</label>
+                                        <button type="submit">%d</button>
+                                        <lable>está en preparación.</label>
+                                    </form>
+                                    ¡Gracias por confiar en nosotros!
+                                </body>
+                            </html>
+                           """.formatted(client.getNombre(), envio.getCodigoRastreo(), envio.getCodigoRastreo()).stripIndent();
             asunto0_contenido1.add(asunto);
             asunto0_contenido1.add(contenido);
         } else if (estadoNuevo.getTipo().getEstado().equals("En camino")) {
             String asunto = "Tu orden " + envio.getCodigoRastreo() + " está en camino.";
             String contenido = """
-                           <html style="font-family: Helvetica, Arial, sans-serif;">
-                           <body>
-                           <td>
-                                <p>
+                            <html>
+                                <head>
+                                    <style>
+                                        button {
+                                            background-color: white;
+                                            border: none;
+                                            text-decoration: underline;
+                                            color: blue;
+                                            padding: 0px;                     
+                                        }
+                                        button:hover {
+                                            cursor: pointer;
+                                        }                 
+                                    </style>
+                                </head>
+                                <body>
                                     Hola %s, <br>
-                                    Queremos decirte que, tu paquete de referencia
-                                    <a>%d</a> está en camino. <br>
-                                    Clickea en la referencia para ir a nuestra página de Seguimiento.
-                                </p>
-                           </td>
-                           </body>
-                           </html>
-                           """.formatted(client.getNombre(), envio.getCodigoRastreo()).stripIndent();
+                                    <form method="post" action="http://localhost:8081/Seguimiento">     
+                                        <input type="hidden" name="codigoRastreo" value="%s" />
+                                        <lable>Tu paquete</label>
+                                        <button type="submit">%d</button>
+                                        <lable>está en camino.</label>
+                                    </form>
+                                    Clickea en el código de rastreo para dirigirte a tu seguimiento. <br>
+                                    ¡Gracias por confiar en nosotros!
+                                </body>
+                            </html>
+                           """.formatted(client.getNombre(), envio.getCodigoRastreo(), envio.getCodigoRastreo()).stripIndent();
             asunto0_contenido1.add(asunto);
             asunto0_contenido1.add(contenido);
         } else if (estadoNuevo.getTipo().getEstado().equals("Listo para entregar")) {
             String asunto = "Tu orden " + envio.getCodigoRastreo() + " está lista para entregar.";
             String contenido = """
-                           <html>
-                           <body>
-                                <p>
+                            <html>
+                                <head>
+                                    <style>
+                                        button {
+                                            background-color: white;
+                                            border: none;
+                                            text-decoration: underline;
+                                            color: blue;
+                                            padding: 0px;                     
+                                        }
+                                        button:hover {
+                                            cursor: pointer;
+                                        }
+                                    </style>
+                                </head>
+                                <body>
                                     Hola %s, <br>
-                                    Queremos decirte que, tu paquete de referencia
-                                    <a>%d</a> está listo para entregar. <br>
-                                    Clickea en la referencia para ir a nuestra página de Seguimiento.
-                                </p>
-                           </body>
-                           </html>
-                           """.formatted(client.getNombre(), envio.getCodigoRastreo()).stripIndent();
+                                    <form method="post" action="http://localhost:8081/Seguimiento">     
+                                        <input type="hidden" name="codigoRastreo" value="%s" />
+                                        <lable>Tu paquete</label>
+                                        <button type="submit">%d</button>
+                                        <lable>está listo para entregar.</label>
+                                    </form>
+                                    Clickea en el código de rastreo para dirigirte a tu seguimiento. <br>
+                                    ¡Gracias por confiar en nosotros!
+                                </body>
+                            </html>
+                           """.formatted(client.getNombre(), envio.getCodigoRastreo(), envio.getCodigoRastreo()).stripIndent();
             asunto0_contenido1.add(asunto);
             asunto0_contenido1.add(contenido);
         } else if (estadoNuevo.getTipo().getEstado().equals("Cancelado")) {
             String asunto = "Tu orden " + envio.getCodigoRastreo() + " fue cancelada.";
             String contenido = """
                            <html>
-                           <body>
-                                <p>
+                                <head>
+                                    <style>
+                                        button {
+                                            background-color: white;
+                                            border: none;
+                                            text-decoration: underline;
+                                            color: blue;
+                                            padding: 0px;                     
+                                        }
+                                        button:hover {
+                                            cursor: pointer;
+                                        }
+                                    </style>
+                                </head>
+                                <body>
                                     Hola %s, <br>
-                                    Tu paquete <a >%d</a> fue cancelado.
-                                    Clickea en la referencia para ir a nuestra página de Seguimiento.
-                                </p>
-                           </body>
-                           </html>
-                           """.formatted(client.getNombre(), envio.getCodigoRastreo()).stripIndent();
+                                    <form method="post" action="http://localhost:8081/Seguimiento">     
+                                        <input type="hidden" name="codigoRastreo" value="%s" />
+                                        <lable>Tu paquete</label>
+                                        <button type="submit">%d</button>
+                                        <lable>fue cancelado.</label>
+                                    </form>
+                                    Clickea en el código de rastreo para dirigirte a tu seguimiento. <br>
+                                    ¡Gracias por confiar en nosotros!
+                                </body>
+                            </html>
+                           """.formatted(client.getNombre(), envio.getCodigoRastreo(), envio.getCodigoRastreo()).stripIndent();
             asunto0_contenido1.add(asunto);
             asunto0_contenido1.add(contenido);
         } else {
             String asunto = "Tu orden " + envio.getCodigoRastreo() + " fue entregada.";
             String contenido = """
                            <html>
+                               <head>
+                                    <style>
+                                        button {
+                                            background-color: white;
+                                            border: none;
+                                            text-decoration: underline;
+                                            color: blue;
+                                            padding: 0px;                     
+                                        }
+                                        button:hover {
+                                            cursor: pointer;
+                                        }   
+                                    </style>
+                                </head>
                            <body>
-                                <p>
-                                    Hola %s, <br>
-                                    Tu paquete <a>%d</a> fue entregado.
-                                    ¡Gracias por confiar en nosotros!
-                                </p>
+                                Hola %s, <br>
+                                <form method="post" action="http://localhost:8081/Seguimiento">     
+                                    <input type="hidden" name="codigoRastreo" value="%s" />
+                                    <lable>Tu paquete</label>
+                                    <button type="submit">%d</button>
+                                    <lable>fue entregado.</label>
+                                </form>
+                                ¡Gracias por confiar en nosotros! <br>
+                                ¡Valora nuestro servicio 
+                                <a href="http://localhost:8081/Valoracion?idEnvio=%d">aquí!</a>
                            </body>
                            </html>
-                           """.formatted(client.getNombre(), envio.getCodigoRastreo()).stripIndent();
+                           """.formatted(client.getNombre(), envio.getCodigoRastreo(), envio.getCodigoRastreo(), envio.getIdEnvio()).stripIndent();
             asunto0_contenido1.add(asunto);
             asunto0_contenido1.add(contenido);
         }
-        return asunto0_contenido1;
+        return asunto0_contenido1;  
     }
 
     public void cambiarNotisDeEmail(String correo, boolean notisEmail) {
