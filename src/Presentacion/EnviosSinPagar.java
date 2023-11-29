@@ -46,7 +46,7 @@ public class EnviosSinPagar extends javax.swing.JFrame {
     }
 
     private void cargarLosEnviosSinPagar() {
-        ArrayList<Envio> listaDeEnvios = this.IE.listaDeEnvios();
+        ArrayList<Envio> listaDeEnvios = this.IE.listaDeEnviosSinRepetir();
         String estado;
         String fecha;
         DefaultTableModel modelo = (DefaultTableModel) this.tableEnvio.getModel();
