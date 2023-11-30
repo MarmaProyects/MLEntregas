@@ -166,7 +166,7 @@ public class Home extends javax.swing.JFrame {
         });
 
         buttonFacturar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        buttonFacturar.setText("FACTURAR");
+        buttonFacturar.setText("HISTORIAL DE PAGOS");
         buttonFacturar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonFacturarActionPerformed(evt);
